@@ -1,0 +1,54 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+TA office hours: Tuesday 2-3 MC 5418, Wednesday 12-1 MC 5415, Thursday 11-12 MC 5416, Friday 2:30-3:30 MC 5406
+
+\section*{Completeness Property of R}
+$\mathbb{R}$ is an ordered (every $x \in \mathbb{R}$ is either $<$ or $>$ than another) field containing $\mathbb{N}$ (and therefore containing $\mathbb{Q}$) with the property that every non-empty subset of $\mathbb{R}$ that is bounded above has a LUB. 
+
+\paragraph*{Terminology}
+\subparagraph*{Upper Bound}
+$S\subseteq\mathbb{R}$ is bounded above if there exists a real number r, such that $s \leq r$ for every $s\in S$. Any number r is the upper bound for S. 
+
+\subparagraph*{Least Upper Bound}
+$S\subseteq\mathbb{R}$ is a number r that is: (1) an upper bound for S, and (2) if $\exists q\in\mathbb{R}$ which is an upper bound for S, then $q \geq r$. Then LUB(S) = r = sup(S). 
+
+\subparagraph*{Greatest Lower Bound}
+GLB(S) is defined similarly. 
+
+\paragraph*{Examples}\mbox{}\\
+(1) $S = \{1-\frac{1}{n}:n = 1,2,...\}$ One UB (upper bound) is 1. One LB (lower bound) is 0. LUB(S) = 1. (note LUB(S) $\notin S$). GLB(S) = 0 (note GLB(S) $\in S$) \\
+(2) $S = \mathbb{N}$. LB is 0. GLB = 1. Not bounded above, so no LUB. \\ \\ 
+
+Think about if $\mathbb{Q}$ was our universe of numbers. The completeness property does not hold, e.g. $S = \{x\in\mathbb{Q}:x^2 <2\}$. The LUB would be $\sqrt{2}$, but that does not exist in $\mathbb{Q}$. 
+
+\section*{Sequences}
+A Sequence is a list of real numbers $x_1$, $x_2$, etc.
+
+\paragraph*{Convergence}
+A sequence $(x_n)$ converges to a real number L if $\forall\epsilon>0$ $\exists N\in \mathbb{N}$ such that $\forall n\geq N$, $|x_n - L| < \epsilon$. We write $lim_{n\rightarrow\infty}x_n = L$, or $(x_n)\rightarrow L$.
+
+\paragraph*{Examples}\mbox{}\\
+(1) $x_n = \frac{1}{n} \rightarrow 0$\\
+(2) $x_n = (-1)^n$ diverges \\ 
+(3) $x_n = \frac{2^n}{n!} \rightarrow 0$\\
+
+\paragraph*{Convergence and Bounds}
+Say a sequence $(x_n)$ is bounded if the set $\{x_n: n=1,2,3...\}\subseteq\mathbb{R}$ is bounded. If $x_n$ converges, then it is bounded. And the converse of that is false. 
+
+\paragraph*{Bolzano-Weierstrass Theorem}
+Every bounded sequence has a convergent subsequence. (This is a consequence of completeness, and can be used to prove completeness)
+
+\paragraph*{Subsequence}
+A subsequence of $(x_n)$ is a sequence $(y_k)$ where $y_k = x_{n_k}$. 
+
+
+
+\end{document}

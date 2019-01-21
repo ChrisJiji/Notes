@@ -1,0 +1,142 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+
+\begin{document}
+
+\section*{Lecture 1}
+\paragraph{A Gentle Introduction}
+Optimization is making the best use of scarce resources. Example: Rockets to Mars. The objective was to get there, but also to minimize fuel/energy expenditure. NASA sent the problem to optimizers in Berkeley, and they figured out the best path to conserve fuel is to orbit earth 50 times, use the moon's gravity to slingshot to Jupiter, and then used a Lagrange equilibrium point in our solar system to slingshot towards Mars. This optimization problem is subject to the constraints of starting time, ending time, flight dynamics, etc.
+
+\paragraph{General Optimization Problem}
+Here is the process to solve a general optimization problem
+\begin{enumerate}
+    \item Problem description 
+    \item Build mathematical model
+    \item Ensure that the model is solvable by an algorithm 
+    \item Verify solution
+    \item Implementation
+\end{enumerate}
+
+\paragraph{Transportation Problem}
+Studied by Kantorovich in 1939 in Russia, who got a Nobel prize in economics in 1975 for his work. Given $m$ warehouses, $W_1,\ldots,W_m$, and $n$ markets, $M_1,\ldots,M_n$. $S_i$ is the supply(units) at $W_i$. $D_j$ is the demand at $M_j$. $C_{ij}$ is the cost of transportation per unit between $W_i$ and $M_j$. The objective is to lower the total cost while meeting the demand. \\ 
+Model: Let $X_{ij}$ be the number of units shipped from $W_i$ to $M_j$. The cost along each route is $C_{ij}\times X_{ij}$. Objective is to minimize $c_{11}x_{11}+\ldots+c_{ij}x_{ij}+\ldots+c_{mn}x_{mn}$.\\ 
+Constraints: \begin{itemize}
+    \item Supply: $\sum_{j=1}^n x_{ij}\leq S_i\quad\forall i<m$ (the units leaving each warehouse does not exceed the supply of the warehouse) 
+    \item Demand: $\sum_{i=1}^m x_{ij}\geq D_j\quad\forall j<n$ (the units entering each market at least meets the demand of the market) 
+    \item $x_{ij}\geq0\quad\forall i,j$ (no non-positive solutions)
+    \item $\sum_{j>0}D_j\leq\sum_{i>0}S_i$ (the supply can meet the demand)
+\end{itemize}
+
+\paragraph{Numerical Example}
+$m=3, n=2$. Minimize $3X_{11}+2X_{12}+X_{21}+5X_{22}+5X_{31}+4X_{22}$ such that $x_{11}+x_{12}\leq 45,x_{21}+x_{22}\leq60,x_{31}+x_{32}\leq 35,x_{11}+x_{21}+x_{31}\geq50, x_{12}+x_{22}+x_{32}\geq60$, with all $x_{ij}\geq0$. The optimal solution is $x_{11}=20,x_{12}=20,x_{21}=20,x_{22}=20,x_{31}=10,x_{32}=20$. We will see how to verify optimality by duality.
+
+\section*{Lecture 2}
+\paragraph{Linear Programs}
+A function $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is an \textbf{affine function} if $f(x)=a^Tx+\beta$, where $x,a$ are vectors with $n$ entries and $\beta$ is a real number. If $\beta=0$, then $f$ is a \textbf{linear function}. Thus, ever linear function is affine, but the converse is not true. A \textbf{linear constraint} is any constraint of the following form: 
+\begin{itemize}
+    \item $f(x)\leq\beta$
+    \item $f(x)\geq\beta$ 
+    \item $f(x)=\beta$ 
+\end{itemize}
+where $f(x)$ is a linear function, and $\beta$ is a real number. A \textbf{linear program} (LP) is the problem of maximizing or minimizing an affine function subject to a finite number of linear constraints. 
+
+
+
+\section*{Lecture 3}
+\paragraph{General Optimization Model}
+Functions, real valued ($f,h_i,g_j:\mathbb{R}^n\rightarrow\mathbb{R}$). Our typical problem looks like: min (or max) $f(x)=\text{objective function}$ such that: $h_i(x)=0,g_j(x)\leq0\quad\forall i$. All functions that are linear/affine we get a linear program. In addition, often some of the $x_i$ are restricted to be integer values. \\ 
+Say we had $M>>0$ as an upper bound on the number of products. With $y_j\in\{0,1\}$. $y_j$ is whether or not we produce the $j^{th}$ product. How would we product at most 2 out of 3 $x_j$ products? $y_1+y_2+y_3\leq2$. 
+\paragraph{Example: Product Mix}
+Factory has $n=5$ products. There are $m=2$ processes to manufacture these products. The profits are:\\ \\ \begin{tabular}{|c|ccccc|}
+\hline
+Product & 1&2&3&4&5 \\ \hline
+Profit & 550&600&350&400&200    \\
+grinding & 12&20&-&25&15   \\      
+drilling & 10&8&16&-&-\\\hline
+\end{tabular}\\ \\
+Final assembly takes 20 hours of employee times. Factory has 3 grinding machines and 2 drilling machines. 6 day work week, 2 shifts; 8 hours per shift every day. 8 different workers that all work 1 shift per day. Objective: maximize profit. \\ 
+Let $x_j$ be the number of units of product $j$. Objective function: maximize $f(x)=550x_1+600x_2+350x_3+400x_4+200x_5$. \\ 
+\textbf{Constraints:} 96 hours/week gives 288 hours for grinding, and 192 hours for drilling. Then we need $12x_1+20x_2+35x_4+15x_5\leq288$ for grinding, and $10x_1+8x_2+16x_3\leq192$ for drilling. We need all of the workers hours to be less than their total working: $20x_1+20x_2+20x_3+20x_4+20x_5\leq384$ (384 from $8$ workers 1 shift per day times 6 days a week). Additionally, $x\geq0$
+
+\paragraph{Multiperiod Models}
+When decision-making processes have temporal components; time is split into periods, with decisions being made at the beginning or end of each period, we need a multiperiod model. Variables are often shared between two or more constraints, and those variables are called \textbf{balance constraints} as they balance demand and inventory between periods. 
+
+\paragraph{Example: Multiperiod Problem from the text}
+Oil supplier\\\\
+\begin{tabular}{|c|cccc|}
+\hline
+Month & 1&2&3&4 \\ \hline
+Demand &5k&8k&9k&6k    \\
+Predicted price & 0.75&0.72&0.92&0.9\\ \hline
+\end{tabular}\\ \\
+The company also has a storage tank of 4K litres, and curently holds 2K litres. Objective: minimize cost while meeting demands. Let $t_i$ be the kilolitres in the storage tank, $p_j$ how much litres we bought in period $j$. Then we need to satisfy the following balance equations: $p_1+t_1=5K+t_2$, $p_2+t_2=8K+t_3$, $p_3+t_3=9K+t_4$, $p_4+t_4\geq6K$. We want to minimize $0.75p_1+0.72p_2+0.92p_3+0.9p_4$. We also need all $t_i,p_i\geq0$, $t_1=2K$, and $t_i\leq4K$. Just by inspection, we can see that $p_1=3K,p_2=12K,p_3=5K,p_4=6K, t_1=2K,t_2=0K,t_3=4K,t_4=0K$. The solution capitalizes on the fact that the second period price is so much lower, and just meets the bare minimum in the other months. Imagine changing the price of month 1. Then it is clear that if the price of month 1 is less than month 2, then you fill up the tank in month 1 as well. This type of analysis is called sensitivity analysis, where you change constants and see what happens to the solution.
+
+\paragraph{Knapsack Problem}
+Contains a weight capacity $W$, $n$ packages with weights $w_1,\ldots, w_n$ and values $c_1,\ldots,c_n$. Decision: $x_j\in\{0,1\}, j=1,\ldots,n$. We want to maximize $\sum_{j=1}^nc_jx_j$ subject to $\sum_{j=0}^nw_jx_j\leq W$, and $x_j\in\{0,1\}\quad\forall j$
+
+
+
+
+
+
+\section*{Lecture 4}
+\paragraph{Blending}
+Manufacturing a food item using two types of oil: vegatable oil(2 types) and non-vegetable oil(3 types). The hardness of the final product must be between 3 and 6.  
+\begin{tabular}{|cccccc|}\hline 
+    &Veg1&Veg2&Non-veg1&Non-veg2&Non-veg3\\\hline 
+    Cost(per ton)&110&120&130&110&115 \\\hline 
+    Hardness & 8.8&6.1&2.0&4.2&5.0\end{tabular} 
+    The product sells at 150/ton. We need to maximize profit. Let $x_1,\ldots,x_5$ be the number of tons to blend into the product. Then we need to minimize the cost, or minimize $110x_1+120x_2+130x_3+110x_4+115x_5$. If we let $x_1+x_2+x_3+x_4+x_5-y=0$, then we need to maximize $\text{profit}=-\text{cost}+150y$ (introducing y allows us to get easier restraints for the hardness) 
+    \begin{itemize}
+    \item$x_1+x_2\leq200$ 
+    \item $x_3+x_4+x_5\leq250$
+    \item $8.8x_1+6.1x_2+2.0x_3+4.2x_4+5.0x_5-6y\leq0$	 
+    \item $8.8x_1+6.1x_2+2.0x_3+4.2x_4+5.0x_5-3y\geq0$ 	
+    \item $x\geq0$ 
+    \end{itemize}
+
+We can eliminate $y$ using our for $y$ to get we need to maximize $(150-110)x_1+(150-120)x_2+(150-130)x_3+(150-110)x_4+(150-115)x_5$ subject to: 
+\begin{itemize}
+\item $x_1+x_2\leq200$ 	
+\item $x_3+x_4+x_5\leq250$	
+\item $(8.8-6)x_1+(6.1-6)x_2+(2-6)x_3+(4.2-6)x_4+(5-6)x_5\leq0$		
+\item $(3-8.8)x_1+(3-6.1)x_2+(3-2)x_3+(3-4.2)x_4+(3-5)x_5\geq0$		
+\item $x\geq0$ 
+\end{itemize} 
+
+\paragraph{Knapsack Problem}
+$n$ types of packages with weights $w_j$ and values $c_j$, for $j=1,\ldots,n$. Total weight limit is $W$, and upper bound on each type of package $M$. Decision variable: $x_j$ is the number of packages of item $j$ in knapsack. We need to maximize $\sum_{j=1}^n c_jx_j$ such that $\sum_{j=1}^n w_jx_j\leq W$, and $0\leq x_j\in\mathbb{Z}$, and $x_j\leq M$. Let's add some logical constraints. We use $x_3$ ($x_3\geq1$) only if we use $x_4$($x_4\geq1$). Then we get $x_4=0\Rightarrow x_3=0$, which is implied by $x_4\geq x_3$, which is clearly not enough. But we can put $Mx_4\geq x_3$, which suffices to fulfill the logical constraint. \textbf{Another example of logical variable}. Say we wanted $x_1+x_2\geq4$ or $x_5+x_6\geq4$. Then we add a logical auxiliary variable: $y\in\{0,1\}$. Then we change these constraints to $x_1+x_2\geq4y$ and $x_5+x_6\geq4(1-y)$. Exactly one of these has to hold, as one of them is equal to 4, and the other is 0. 
+
+\paragraph{General Format}
+\begin{itemize}
+    \item Objective function
+    \item Algebraic Constraints ($Ax=b$, etc.)
+    \item Set Restraints ($x\geq0$, etc.)
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+\end{document}

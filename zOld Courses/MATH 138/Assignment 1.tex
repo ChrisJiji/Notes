@@ -1,0 +1,109 @@
+\documentclass[10pt,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+\usepackage{enumitem}
+\newlength{\lyxlabelwidth}
+\usepackage{pgfplots}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%\usepackage{txfonts}
+
+\usepackage{microtype}
+
+\usepackage{calc}
+\usepackage{enumitem}
+\setenumerate{leftmargin=!,labelindent=0pt,itemindent=0em,labelwidth=\widthof{\ref{last-item}}}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\noindent \begin{center}
+\textbf{\large{}MATH 138 - Drop Box Assignment 1}\\
+\textbf{\large{}Chris Ji 20725415}
+\par\end{center}{\large \par}
+\medskip{}
+
+\begin{enumerate}
+\item \begin{enumerate}
+    \item Using substitution, set $u=x^3$. Then $du=3x^2dx\Rightarrow dx=\frac{1}{3x^2}du$. Subbing $u$ in, $\int x^2e^{x^3}dx=\frac{1}{3}\int e^udu=\frac{1}{3}e^u+C$. Substituting back, this equals $\frac{e^{x^3}}{3}+C$
+    
+    \item $\int\cos^3(x)dx=\int\cos(x)\cos^2(x)dx=\int\cos(x)(1-\sin^2(x))$. Using substitution, $u=\sin(x)$, then $du=\cos(x)dx\Rightarrow dx=\frac{1}{\cos(x)}du$. Subbing $u$ in, $\int\cos(x)(1-\sin^2(x))dx=\int(1-u^2)du=\int(1)du-\int(u^2)du=u-\frac{1}{3}u^3+C=\sin(x)-\frac{1}{3}\sin^3(x)+C$
+    
+    \item Integrating by parts, set $f(x)=x$, and $g'(x)=\cos(x)$. Then $f'(x)=1$, and $g(x)=\sin(x)$. Then $\int x\cos(x)=\int f(x)g'(x)=f(x)g(x)-\int f'(x)g(x)=x\sin(x)-\int\sin(x)dx=x\sin(x)-(-\cos(x))+C$. $\int_0^\pi x\cos(x)=((\pi)\sin(\pi)+\cos(\pi)+C)-((0)\sin(0))+\cos(0)+C)=-2$ 
+    
+    \item Since this is a partial fraction, $\frac{1}{(x+1)(x-2)}=\frac{A}{x+1}+\frac{B}{x-2}\Rightarrow 1=(x+1)(x-2)\left(\frac{A}{x+1}+\frac{B}{x-2}\right)\Rightarrow1=A(x-2)+B(x+1)\Rightarrow 1=Ax-2A+Bx+B$. Then $A+B=0$, and $-2A+B=1$. Subtracting equation 1 from equation 2, $-3A=1\Rightarrow A=-\frac{1}{3}$, and then subbing this in, $B=\frac{1}{3}$. Then $\int\frac{1}{(x+1)(x-2)}dx=\frac{1}{3}\ln(|x-2|)-\frac{1}{3}\ln(|x+1|)+C$
+    
+    \item Since this is a partial fraction, $\frac{x-3}{x^2(x-5)}=\frac{A_1}{x}+\frac{A_2}{x^2}+\frac{A_3}{x-5}$. Then $x-3=A_1x(x-5)+A_2(x-5)+A_3x^2$. Letting $x=0$ gives $-3=A_2(-5)\Rightarrow A_2=\frac{3}{5}$. Letting $x=5$ gives $2=A_3(5)^2\Rightarrow A_3=\frac{2}{25}$, and then solving for $A_1$ is simple, $x-3=A_1x^2-5A_1x+A_2x-5A_2+A_3x^2\Rightarrow x-3=A_1x^2-5A_1x+\frac{3}{5}x-5\left(\frac{3}{5}\right)+\frac{2}{25}x^2\Rightarrow A_1=\frac{-2}{25}$. Then $\int\frac{x-3}{x^2(x-5)}dx=\frac{-2}{25}\ln(|x|)-\frac{3}{5}x+\frac{2}{25}\ln(|x-5|)$
+    
+    \item Note that $\frac{1}{(\sqrt{x^2+1})^3}=\frac{1}{(x^2+1)^{\frac{3}{2}}}$. Using trig substition, setting $x=\tan(u)\Rightarrow u=\arctan(x)$, then $dx=\sec^2(u)du$. Subbing this in, $\int\frac{1}{(\sqrt{x^2+1})^3}dx=\int\frac{\sec^2(u)}{(\tan^2(u)+1)^{\frac{3}{2}}}du=\int\frac{sec^2(u)}{\sec^2(u)^{\frac{3}{2}}}du=\int\frac{1}{\sec(u)}du=\int\cos(u)du=\sin(u)$. Undoing the substitution, $\sin(\arctan(x))=\frac{x}{\sqrt{x^2+1}}$, so $\int\frac{1}{(x^2+1)^{\frac{3}{2}}}dx=\frac{x}{\sqrt{x^2+1}}$. Then $\int_0^1\frac{1}{(x^2+1)^\frac{3}{2}}=\frac{1}{\sqrt{1^2+1}}-\frac{0}{\sqrt{0^2+1}}=\frac{1}{\sqrt{2}}$
+\end{enumerate}
+
+\item \begin{enumerate}
+    \item Note that $F'(x)=\frac{d}{dx}\int_{-1}^x\sqrt{1-t^2}dt=\sqrt{1-x^2}$. Then for $x\in[-1,1]$, $F'(x)\geq0$, as its range is from $[0,1]$. Then $F(x)$ is increasing on $[-1,1]$, as its derivative is non-negative for that range.
+    \item The area represented by $F(0)$ is the left half of the semi-circle in the graph. As such, we can calculate $F(0)$ by finding the area of the circle of radius 1, and dividing by four. $\frac{1}{4}\pi r^2=\frac{1}{4}\pi 1^2=\frac{\pi}{4}$
+    \item Substituting $t=\sin(x)$, then $x=\arcsin(t)\Rightarrow dt=\cos(x)dx$. Then $\int\sqrt{1-t^2}dt=\int\cos(x)\sqrt{1-\sin^2(x)}dx$. Note that $1-\sin^2(x)=\cos^2(x)$, so $\int\cos(x)\sqrt{1-\sin^2(x)}dx=\int\cos(x)\sqrt{\cos^2(x)}dx=\int\cos^2(x)dx$. Note that, while we aren't done integrating, $\sin\left(\frac{-\pi}{2}\right)=-1$, so $\int_{-1}^0\sqrt{1-t^2}dt=\int_{\arcsin(-1)}^{\arcsin(0)}\cos^2(x)dx=\int_{\frac{-\pi}{2}}^{0}\cos^2(x)dx$
+    \item $\int\cos^2(x)dx=\int\frac{1+\cos(2x)}{2}=\frac{1}{2}\int1dx+\frac{1}{2}\int\cos(2x)dx$. $\frac{1}{2}\int1dx=\frac{x}{2}$. $\frac{1}{2}\int\cos(2x)dx$, setting $u=2x\Rightarrow du=2dx\Rightarrow dx=\frac{du}{2}$, $\frac{1}{2}\int\cos(2x)dx=\frac{1}{2}\int\frac{\cos(u)}{2}du=\frac{1}{2}\frac{\sin{u}}{2}=\frac{\sin(2x)}{4}=\frac{\cos(x)\sin(x)}{2}$. So the sum of these two is $\frac{\cos(x)\sin(x)+x}{2}$. Then $\int_{\frac{-\pi}{2}}^0\cos^2(x)dx=\frac{\cos(0)\sin(0)+0}{2}-\frac{\cos\left(\frac{-\pi}{2}\right)\left(\sin(\frac{-\pi}{2})\right)+\frac{-\pi}{2}}{2}=\frac{\pi}{4}$
+\end{enumerate}
+
+\item \begin{enumerate}
+    \item By the FTC1, if $F(x)=\int_0^x\sin(t^3)dt$, then $F'(x)=\frac{d}{dx}\int_0^x\sin(t^3)dt=\sin(x^3)$
+    \item By the FTC1, if $G(x)=\int_0^{x^2}\sin(t^3)dt$, setting $f(x)=\sin(x^3),a(x)=x^2,b(x)=0$, then $G'(x)=f(a(x))a'(x)-f(b(x))b'(x)=\sin((x^2)^3)\cdot2x-\sin(0^3)\cdot0=2x\sin(x^6)$
+    \item By the FTC1, if $H(x)=\int_x^{x^2}\sin(t^3)dt$, setting $f(x)=\sin(x^3), a(x)=x^2, b(x)=x$, then $H'(x)=f(a(x))a'(x)-f(b(x))b'(X)=\sin((x^2)^3)\cdot2x-\sin(x^3)\cdot1=2x\sin(x^6)-\sin(x^3)$
+\end{enumerate}
+
+\item \begin{enumerate}
+    \item $\int_1^\infty\frac{1}{x^3}dx=\lim_{b\rightarrow\infty}\int_1^b\frac{1}{x^3}dx$ Note that $\int\frac{1}{x^3}dx=-\frac{1}{2x^2}+C$. So this is equal to $\lim_{b\rightarrow\infty}\left(-\frac{1}{2b^2}-\left(-\frac{1}{2(1)^2}\right)\right)=\frac{1}{2}-\lim_{b\rightarrow\infty}-\frac{1}{2b^2}=\frac{1}{2}$. Note that we can apply the p-test for this integral, as $p=3>1$. By the p-test, $\int_1^\infty\frac{1}{x^3}dx=\lim_{b\rightarrow\infty}\int_1^b\frac{1}{x^3}dx=\frac{1}{3-1}=\frac{1}{2}$, as expected.
+    \item $\int_e^\infty\frac{1}{x\ln(x)}dx=\lim_{b\rightarrow\infty}\int_e^b\frac{1}{x\ln(x)}dx$. Note that $\int\frac{1}{x\ln(x)}dx=\ln(|\ln(x)|)+C$. So $\lim_{b\rightarrow\infty}\int_e^b\frac{1}{x\ln}(x)=\lim_{b\rightarrow\infty}\ln(|\ln(b)|)-\ln(|\ln(e)|)$. This is clearly divergent, as $\lim_{b\rightarrow\infty}\ln(b)$ is divergent. 
+\end{enumerate}
+
+
+\item $\frac{1}{x+x^2}$ is strictly less than $\frac{1}{x^2}$ for all $x\in[1,\infty)$. $\frac{1}{x^2}$ converges by the $p-$test, so therefore, by comparison test, so does $\frac{1}{x+x^2}$. 
+
+\item \begin{enumerate}
+    \item  
+    \item \begin{tikzpicture}
+            \begin{axis}[axis lines = left, xlabel = $x$, ylabel = {$f(x)$},] 
+            \addplot[domain=0:6, samples=6, color=black,]
+            {1/x};\end{axis}
+           \end{tikzpicture}
+    \item     $t_0=1,t_1=2,t_2=3,t_3=4,t_4=5$
+    $\sum_{i=1}^6f(t_i)\Delta t_i=\frac{1}{1}+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}=2.2833$
+    \item  
+    \item $t_0=2,t_1=3,t_2=4,t_3=5,t_4=6$
+    $\sum_{i=1}^6f(t_i)\Delta t_i=\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\frac{1}{6}=1.45$
+    \item note that if $f(x)=\frac{1}{x}$, then $F(x)$ such that $F'(x)=f(x)$ is $\ln(x). $ $\int_1^6\frac{1}{x}dx=F(6)-F(1)=\ln(6)-\ln(1)=\ln(\frac{6}{1})=\ln6\approx1.7918$
+    \item iv)
+\end{enumerate}
+
+
+\item Note that the integral of an odd function is even. Proof:
+    If a function, $f$, is odd, then $f(-x)=-f(x)$. Integrating both sides, $\int f(-x)dx=\int -f(x)dx=-\int f(x)dx$. Then $F(-x)=-F(x)$, the definition of an even function. \\ 
+    $\int_{-a}^af(x)dx=\int_{-a}^0f(x)dx+\int_0^af(x)dx=-\int_0^{-a}f(x)+\int_0^af(x)dx=-(F(-a)-F(0))+(F(a)-F(0))=F(a)-F(-a)$. But since $F$ is even, these two are equal, so $F(a)-F(-a)=0$. 
+    
+\item maple screenshot
+
+\item check email 
+
+\item \begin{enumerate}
+    \item \begin{enumerate}
+        \item true
+        \item true
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item $F'(2)=f(2)=2.5$
+        \item $G'(2.5)=g(2.5)=2$, as $g$ is the inverse of $f$
+    \end{enumerate}
+    \item google monte carlo method
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

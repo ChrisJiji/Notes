@@ -1,0 +1,40 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Integration Theory}
+If you were given the derivative of something, could you find out what was the derivative? 
+
+\paragraph*{Finding an area under a curve}
+Suppose $f:[a,b]\rightarrow\mathbb{R}$ is a bounded. To estimate the area under the curve, partition $[a,b]$ into small intervals $p:a=t_0<t_1<t_{i-1}<t_i<t_n=b$. This divides $[a,b]$ into subintervals $[t_{i-1},t_i]$. Let $M_i=sup\{f(x):x\in[t_{i-1},t_i]\}$, and $m_i=inf\{f(x):x\in[t_{i-1},t_i]\}$. Note: $M_i=f(c_i)$ for some $c_i\in[t_{i-1},t_i]$ if $f$ is continuous by EVT. \\ 
+\textbf{Riemann sums}: Upper Riemann sum (of f over partition P)$U(f,P)=\sum_{i=1}^nM_i(t_i-t_{i-1})$. \\ 
+Lower Riemann sum $L(f,P)$ = $U(f,P)=\sum_{i=1}^nm_i(t_i-t_{i-1})$ \\ 
+$L(f,P)\leq$ Area under f over $[a,b]\leq U(f,P)$ clearly, as $L(f,P)$ is an under estimate, and $U(f,P)$ is an over estimate.
+
+\paragraph*{Riemann sums of refinements}
+A \underline{refinement} of partition P is a partition Q which contains all the points of P (and possibly more). E.g. $p:a=t_o<t_1...<t_n=b$, $q=a:t_o<t_1<t_2<u<t_3<...<t_{n-2}<v<t_{n-1}<t_n=b$. What does a refinement do to our Riemann sums? Let $p:a=t_o<t_1...<t_n=b$, and let Q be a refinement of P with one additional point $u$ between $t_{i-1}$ and $t_i$. $U(f,P)\geq U(f,Q)$, and $L(f,P)\leq L(f,Q)$. 
+
+Let $P_1,P_2$ be any two partitions of $[a,b]$. Let Q be their common refinement ($Q=P_1\cup P_2$). $L(f,P_1)\leq L(f,Q)\leq U(f,Q)\leq U(f,P_2)$. So always, lower Riemann sums are less than upper Riemann sums regardless of the choice of partitions. Hench every upper Riemann sum is bounded below by any lower Riemann sum, and therefore has an infimum $I = \text{inf}\{U(f,P):\text{all partitions P}\}$. $S=\text{sup}\{L(f,P):\text{all partitions P}\}$ also exists. More over, $S\leq \text{Area under f on [a,b]}\leq I$. 
+
+\paragraph{Integrable}
+Say $f$ (a bounded function) is \underline{integrable} over $[a,b]$ if $S=\text{sup}\{L(f,P):\text{all partitions P}\} = I=\text{inf}\{U(f,P):\text{all partitions P}\}$. We write $\int_a^bf=I=S$. When $f\geq0$ and continuous, $\int_a^bf=\text{area under f over}[a,b]$. We define the area under f over $[a,b]$ for $f\geq0$ as $\int_a^bf$ provided $f$ is integrable. 
+
+\paragraph{Actual Riemann Sum}
+Given any partition P of $[a,b]$, say $P:a=t_o<...<t_n=b$. Pick $c_i\in[t_{i-1},t_i]$, we define $R(f,P)=\sum_{i=1}^nf(c_i)(t_i-t_{i-1})$. $L(f,P)\leq R(f,P)\leq U(f,P)$ for any choice of $c_i$ since $m_i\leq f(c_i)\leq M_i$. Since $f$ is continuous, there are choices of $c_i$ where $f(c_i)=M_i$, and $f(c_i)=m_i$. 
+
+\paragraph{Examples}
+\begin{enumerate}
+    \item $f(x)=c$ on $[a,b]$. $M_i=c=m_i$. $U(f,P)=\sum_{i=1}^nc(t_i-t_{i-1})=c(b-a)=L(f,P)=\sum_{i=1}^nc(t_i-t_{i-1})=c(b-a)$ Certainly we have $S=I=c(b-a)=\int_a^bf$. 
+    \item $f(x)=\{\text{1 on }\mathbb{Q}\text{ on }[1,2], \text{0 on }[1,2]\backslash\mathbb{Q}\}$. $M_i=\text{sup}f_{[t_{i-1},t_i]} = 1$ $\forall i$. $m_i=\text{inf}f_{[t_{i-1},t_i]} = 0$ $\forall i$. $U(f,P)=\sum_{i=1}^n1(t_i-t_{i-1})=2-1=1$ $=L(f,P)=\sum_{i=1}^n0(t_i-t_{i-1})=0$. sup$\{L(f,P): \text{all P}\} = 0$, inf$\{U(f,P): \text{all P}\} = 1$, $S\neq I$ so $f$ is not integrable. 
+\end{enumerate}
+
+
+
+\end{document}

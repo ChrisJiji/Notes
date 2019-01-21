@@ -1,0 +1,35 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Integration cont.}
+
+\paragraph*{Examples continued}
+$f(x)=\frac{1}{x}$ on $(0,1]$. Continuous, but not uniformly continuous. Proof: Suppose that $\frac{1}{x}$ satisfies the definition, for at least $\epsilon=1$. Take $x=\frac{1}{N}$, and $y=\frac{1}{2N}$. $|x-y|=\frac{1}{2N}$. Let's assume we made a choice of $N$ big enough that $\frac{1}{2N}<\delta$. But $|f(x)-f(y)|=|\frac{1}{x}|=|N-2N|=N>1$. So $\delta$ doesn't work for $\epsilon=1$. \\ \\ 
+
+If $f(a,b)\rightarrow\mathbb{R}$ has a bounded derivative, $f$ is uniformly continuous. \\ 
+Proof: Pick $C$ such that $|f'(x)|\leq C$ $\forall x\in(a,b)$. Let $\epsilon>0$. Take $\delta=\frac{\epsilon}{C}$. If $x\in(a,b)$, then by MVT $\frac{f(x)-f(y)}{x-y}=f'(t)$ for some $t\in[x,y]$. Then $\frac{f(x)-f(y)}{x-y}=f'(t)\leq C|x-y|$. Say $|x-y|<\delta$, then $|f(x)-f(y)|\leq C|x-y|\leq C\frac{\epsilon}{C}=\epsilon$, as required. 
+
+\paragraph{Theorem: closed bounded and continuous implies uniform continuity}
+If $f$ is closed and bounded (Aka $f:[a,b]\rightarrow\mathbb{R}$), and continuous, then it is uniformly continuous. \\ 
+Proof: Suppose that it is not uniformly continuous. Then some $\epsilon>0$ fails the definition. That means $\forall\delta>0$, $\exists x,y\in\mathfrak{D}(f)$ such that $|x-y|<\delta$, but $|f(x)-f(y)|\geq\epsilon$. Think about this for $\delta=\frac{1}{n}$, for all $n\in\mathbb{N}$. So $\forall n$, $\exists x_n, y_n\in[a,b]$, such that $|x_n-y_n|<\frac{1}{n}$, but $|f(x_n)-f(y_n)|\geq\epsilon$. Take sequences $(x_n)$, $(y_n)$ in $[a,b]$. These are bounded sequences, so by Bolzano Weierstrass theorem, they have convergent sequences. Let $(x_{n_k})$ be a subsequence of $(x_n)$ that converges to $x_o\in[a,b]$. $x_n-\frac{1}{n}<y_n<x_n+\frac{1}{n}$, so $x_{n_k}-\frac{1}{n}<y_{n_k}<x_{n_k}+\frac{1}{n}$. Taking the limits, $x_o<y_{n_k}<x_o$, so by squeeze theorem $(y_{n_k})\rightarrow x_o$. Since $f$ is continuous at $x_o$, since $(x_{n_k})\rightarrow x_o\Rightarrow(f(x_{n_k}))\rightarrow f(x_o)$, and $y_{n_k}\rightarrow x_o\Rightarrow(f(y_{n_k}))\rightarrow f(x_o)$. But $|f(x_{n_k})-f(y_{n_k})|\geq \epsilon$ $\forall k$, but since they are both tending to $x_o$, then we get $0\geq\epsilon$, a contradiction. 
+
+\paragraph{Theorem: Integrability of continuous functions}
+If $f:[a,b]\rightarrow\mathbb{R}$ is continuous, then $f$ is integrable. \\ 
+Proof: Notice $f$ is bounded by EVT. Strategy - show that for every $\epsilon>0$, $\exists$ partition P such that $U(f,P)-L(f,P)<\epsilon$. By algebra, $U(f,P)-L(f,P)=\sum M_i(t_i-t_{i-1})-\sum m_i(t_i-t_{i-1})=\sum (M_i-m_i)(t_i-t_{i-1})$. By continuity, $M_i$ is the max of $f$, say at $c_i$, and $m_i$ is the min of $f$, say at $d_i$. \\ 
+Let $\epsilon>0$. Since $f$ is continuous on $[a,b]$, it is uniformly continuous. Hence $\exists\delta>0$ such that if $x,y\in[a,b]$ and $|x-y|<\delta$, $|f(x)-f(y)|<\epsilon$. Let $\epsilon=\frac{\epsilon}{b-a}$. Take any partition $P$ of $[a,b]$ with the property that $t_i-t_{i-1}<\delta$. Now $M_i=\text{sup}f|_{[t_{i-1},t_i]}=f(c_i)$ for some $c_i\in[t_{i-1},t_i]$ by EVT. $m_i=\text{inf}f|_{[t_{i-1},t_i]}=f(d_i)$ for some $d_i\in[t_{i-1},t_i]$ by EVT. Hence $|c_i-d_i|\leq|t_i-t_{i-1}|<\delta$ and therefore $|f(c_i)-f(d_i)|=M_i-m_i<\frac{\epsilon}{b-1}$. So $U(f,P)-L(f,P)$, or $\sum (M_i-m_i)(t_i-t_{i-1})<\sum \frac{\epsilon}{b-a}(t_i-t_{i-1})=\frac{\epsilon}{b-a}{b-a}=\epsilon$.
+
+
+\paragraph{Theorem: Monotonic functions are integrable}
+If $f:[a,b]\rightarrow\mathbb{R}$ is monotonic then $f$ is integrable. \\ 
+Proof: Note $f$ is bounded. We'll prove when $f$ is increasing it is integrable, the proof for decreasing will be similar. Let $\epsilon>0$. Take $P:a=t_o,t_1,\ldots,t_n=b$ to be n uniform partitions (the length of each one is $\frac{b-a}{n}$). $t_j=a+j\frac{b-a}{n}$. $M_i=f(t_i)$, since $f$ is increasing. $m_i=f(t_{i-1})$, since $f$ is increasing. $U(f,P)-L(f,P) =\sum (M_i-m_i)(t_i-t_{i-1})$ Note: $(t_i-t_{i-1})=\frac{b-a}{n}$. $\sum (M_i-m_i)(t_i-t_{i-1}=\frac{b-a}{n}\sum(f(t_i)-f(t_{i-1}))=\frac{b-a}{n}(f(t_n)-f(t_o))=\frac{b-a}{n}(f(b)-f(a))=\frac{c}{n}$. Pick $n$ so that $\frac{c}{n}<\epsilon$ and then $U(f,P_n)-L(f,P_n)=\frac{c}{n}<\epsilon$, and thus $f$ is integrable by the characterization theorem.  
+
+
+\end{document}

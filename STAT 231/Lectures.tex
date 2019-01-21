@@ -1,0 +1,208 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+
+\begin{document}
+
+\section{Introduction To Statistical Sciences}
+\subsection{Empirical Studies and Statistical Sciences}
+statistics is important and different than probability
+
+\subsection{Data Collection}
+\paragraph{Definitions}
+A \textbf{population} is a collection of units. \\ 
+A \textbf{process} is a system by which units are produced. Time is implied in a process. \\ 
+A \textbf{variate} is a characteristic of a unit. Types of variates: 
+\begin{itemize}
+    \item Continuous Variate: variates that can take any real number, e.g. height and weight
+    \item Discrete Variate: variates that take a discrete set of positive values, e.g. number of deaths in a year 
+    \item Categorical Variate: variates that are categories instead of numbers, e.g. hair colour, university program 
+    \item Ordinal Variate: a subclass of categorical variates in which ordering is implied, e.g. agree, neutral, disagree
+    \item Complex Variates: an image or open-ended response
+\end{itemize}
+An \textbf{attribute} of a population or process is a function of a variate which is defined for all units in the population/process. E.g.: for all people aged 18-25, an attribute might be the proportion of population who owns a smartphone, or mean annual income.\\ 
+
+\paragraph{Approaches to Data Collection}
+\begin{enumerate}
+    \item Sample Survey - a study in which information is gathered by selecting a representative sample of units. 
+    \item Observational Study - a study in which data are collected without any attempt to change any variates.
+    \item Experimental Study - a study in which the experimenter intervenes and changes or sets the values of one or more variables for the units in the study.
+\end{enumerate}
+
+han roslings 200 countries, 200 years
+
+
+
+\section*{Lecture 2}
+\subsection{Data Summaries}
+Summaries are important to conclude studies. They must be clear and informative. The basic set-up is as follows. Suppose that you perform a study on $n$ units, or a set $\{1,\ldots,n\}$. Then, for every variate you have data for, say $x,y$, denote the data on the $i^{th}$ unit by $x_i,y_i$. We refer to $n$ as the sample size and $\{x_1,\ldots,x_n\},\{y_1,\ldots,y_n\}$ or $\{(x_1,y_1),\ldots,(x_n,y_n)\}$ as data sets. There are two classes of summaries: numerical and graphical.
+\paragraph{Numerical Summaries}
+These are useful when the variates are either continuous or discrete. Numerical summaries generally fall into three categories: measure of location, measure of variability or dispersion, and measures of shape.
+\subparagraph{Measure of Location}
+\begin{itemize}
+    \item The (sample) mean also called sample average: $\bar{y}=\frac{1}{n}\sum_{i=1}^ny_i$ 
+    \item The (sample) median $m$ is the middle value when $n$ is odd and the sample is ordered, and the average of the two middle values when $n$ is even. 
+    \item The (sample) mode is the value of $y$ which appears with the highest frequency.
+\end{itemize}
+Since the median is less affected by a few extreme observations, it is a more robust measure of location. The units for all of these are the same as the original variate. 
+\subparagraph{Measure of Dispersion or Variability}
+\begin{itemize}
+    \item The (sample) variance $s^2=\frac{1}{n-1}\sum_{i=1}^n(y_i-\bar{y})^2=\frac{1}{n-1}\left[\sum_{i=1}^ny_i^2-\frac{1}{n}\left(\sum_{i=1}^ny_i\right)^2\right]=\frac{1}{n-1}\left[\sum_{i=1}^ny_i^2-n\bar{y}^2\right]$ and the (sample) standard deviation: $s=\sqrt{s^2}$
+    \item The range $=y_{(n)}-y_{(1)}$ where $y_{(n)}=\text{max}(y_1,\ldots,y_n)$ and $y_{(1)}=\text{min}(y_1,\ldots,y_n)$. 
+    \item The interquartile range $IQR$.
+\end{itemize}
+Since the interquartile range is less affected by a few extreme observations, it is a more robust measure of variability. The units are the same as the original variate.
+
+\paragraph{Quantiles and Percentiles}
+For $0<p<1$, the $p$th quantile (or 100$p$th percentile) is a value such that approximately $p$ of the $y$ values are less than $q(p)$ and approximately $1-p$ are greater than $q(p)$. \\ 
+\textbf{Definition:} Let $\{y_{(1)},\ldots,y_{(n)}\}$ where $y_{(1)}\leq\cdots\leq y_{(n)}$ be the \textbf{order statistic} for the data set $\{y_1,\ldots,y_n\}$. For $0<p<1$, the $p$th (sample) quantile is a value, $q(p)$, determined as follows:
+\begin{itemize}
+    \item Let $m=(n+1)p$ where $n$ is the sample size.
+    \item If $m$ is an integer and $1\leq m\leq n$, then $q(p)=y_{(m)}$ 
+    \item If $m$ is not an integer but $1<m<n$ then determine the closest integer $j$ such that $j<m<j+1$ and then $q(p)=\frac{1}{2}[y_{(j)}+y_{(j+1)}]$
+\end{itemize}
+The quantiles $q(0.25),q(0.5),q(0.75)$ are often used to summarize data, and are called the lower or first quartile, the median, and the upper or third quartile respectively. The \textbf{interquartile range} (IQR) is $IQR=q(0.75)-q(0.25)$. The \textbf{five number summary} of a data set is $\{y_{(1)},q(0.25),q(0.5),q(0.75),y_{(n)}\}$. 
+
+\section*{Lecture 3}
+\subparagraph{Measure of Shape}
+\begin{itemize}
+    \item The (sample) skewness $g_1=\frac{\frac{1}{n}\sum_{i=1}^n(y_i-\bar{y})^3}{\left[\frac{1}{n}\sum_{i=1}^n(y_i-\bar{y})^2\right]^\frac{3}{2}}$ 
+    \item The (sample) kurtosis $g_2=\frac{\frac{1}{n}\sum_{i=1}^n(y_i-\bar{y})^4}{\left[\frac{1}{n}\sum_{i=1}^n(y_i-\bar{y})^2\right]^2}$ 
+\end{itemize}
+Measures of shape generally indicate how the data differ from the Normal bell-shaped curve. Skewness is a measure of the lack of symmetry in data. Positive skewness results in a long right tail, and negative skewness results in a long left tail. Kurtosis measures the heaviness of the tails and the peakedness of the data relative to the Normal bell-shaped curve. The more positive the kurtosis, the more peaked in the centre the curve is. If the data looks normal, then the kurtosis is close to 3. If it is very peaked, then the kurtosis is larger than 3. If the data is uniform, the kurtosis is around $1.2$. Skewness and kurtosis have no units. 
+
+\paragraph{Sample Correlation}
+A numerical summary of bivariate data is the sample correlation, defined as $r=\frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}$. 
+$$S_{xx}=\sum_{i=1}^n(x_i-\bar{x})^2=\sum_{i=1}^nx_i^2-\frac{1}{n}\left(\sum_{i=1}^nx_i\right)^2$$ 
+$$S_{xy}=\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})=\sum_{i=1}^nx_iy_i-\frac{1}{n}\left(\sum_{i=1}^nx_i\right)\left(\sum_{i=1}^ny_i\right)$$
+$$S_{yy}=\sum_{i=1}^n(y_i-\bar{x})^2=\sum_{i=1}^ny_i^2-\frac{1}{n}\left(\sum_{i=1}^ny_i\right)^2$$
+The sample correlation takes on values between $-1$ and $1$, and measures the linear relationship between $x$ and $y$. If $r$ is close to $-1/1$ then we say the two variates have a strong negative/positive linear relationship. If $r$ is close to 0 then there is no linear relationship. 
+
+\paragraph{Graphical Summaries}All graphs should: 
+\begin{itemize}
+    \item Displayed at an appropriate size 
+    \item Graphics should have clear titles which are fairly self explanatory 
+    \item Axes should be labeled and units given where appropriate 
+    \item The choice of scales should be made with care 
+    \item Graphics should not be used without thought; there may well be better ways of displaying the information
+\end{itemize}
+
+The following are the types of graphical summaries: 
+\begin{itemize}
+    \item Histograms 
+    \item Empirical Cumulative Distribution Function (ecdf)
+    \item Box plots
+    \item Run charts 
+    \item Bar graphs 
+    \item Scatter plots
+\end{itemize}
+
+\subparagraph{Histograms}
+The idea is to create a graphical summary that we can use to compare to a pdf for a continuous random variable, or a pf for a discrete random variable. Histograms are helpful to determine what probability model could be used later. \\ 
+Let the observed data be represented as $\{y_1,\ldots,y_n\}$. Partition the range of $y$ into $k$ non-overlapping intervals $I_j=[a_j,a_{j-1})$ for $j=1,\ldots,k$. Let $f_j$ be the number of values from $\{y_1,\ldots,y_n\}$ that are in $I_j$. The $f_j$ are called the \textbf{observed frequencies}. Note that $\sum_{j=1}^kf_j=n$. A \textbf{histogram} is a graph in which a rectangle is constructed above each interval, with the height being proportional to $f_j$. There are two main types of histograms: 
+\begin{itemize}
+    \item In a \textbf{standard histogram} the intervals are of equal width and the heights are equal to the frequencies or the relative frequencies. 
+    \item In a \textbf{relative frequency histogram} the intervals may not be of equal width. The height of the rectangle is chosen so that the area of the rectangle equals $\frac{f_j}{n}$, that is $\text{height}=\frac{\frac{f_j}{n}}{(a_j-a_{j-1})}$. In this case the sum of the areas of the rectangles equals one. When comparing to a pdf, only a relative frequency histogram can be used. 
+\end{itemize}
+
+
+
+
+\section*{Lecture 4}
+\subparagraph{Empirical CDF}
+The idea is that we want to use a graphical summary of the data that we could use to compare with a cdf. This is helpful in determining what probability model could be used to model the data. The definition of the empirical cdf is $\hat{F}(y)=\frac{\text{number of values in }\{y_1,\ldots,y_n\}\text{ which are }\leq y}{n}$, $y\in\mathbb{R}$. The area above the ecdf line is the sample mean. This is because the "height" of each horizontal rectangle is $\frac{1}{n}$, and the width is $y_{(j)}$, and so the total area is summing all of the horizontal rectangles, and hence summing all of the $\frac{1}{n}\sum_{j}^ny_{(j)}$, exactly the sample mean.
+
+\subparagraph{Box Plots}
+A boxplot gives a graphical summary about the shape of the distribution. How to draw:
+\begin{enumerate}
+    \item Draw a box that ends at the lower and upper quartiles so the box height is the IQR.
+    \item Draw a line in the box at the median.
+    \item Draw two lines of "whiskers" outside the box to the minimum and maximum. If the minimum or maximum is more than $1.5*$IQR then add whiskers at $q(0.25)-1.5*$IQR and $q(0.75)+1.5*$IQR.
+    \item Plot any additional points beyond $\pm1.5*$IQR individually using a special symbol like "$+$" or "$*$". These points are called "outliers". 
+\end{enumerate}
+
+\subparagraph{Run Chart}
+A graphical summary of data which are varying over time. 
+
+\subparagraph{Scatterplots}
+Used for when the datasets $\{(x_1,y_1),\ldots,(x_n,y_n)\}$, where $x_i$ and $y_i$ are real numbers. You simply plot the points at the coordinates $(x_i,y_i)$. 
+
+\section*{Lecture 5}
+First lecture of Dr. Banajee, he just did another introduction to the course talking about difference between STAT230/231, and some examples of interesting statistics (st.petersburg paradox, disappearance of the 400 hitter, correlation vs causation).
+
+\section*{Lecture 6}
+\paragraph{What is a Statistical Model}
+A \textbf{statistical model} is a specification of the distribution from which your data is drawn, where the attribute of interest is typically a parameter of the distribution. Gave an example of whether or not Canadians are better at Jeopardy than Americans. The data points are the number of shows each Canadian is featured in, and it is easy to see that each data point is the number of trials before the first failure, and so therefore follows a geometric distribution. \\ 
+Data has two personalities. $y_1,\ldots,y_n$ are numbers, but ALSO outcomes of some random experiment. Identifying that random experiment is setting up a statistical model. For this course, $y_1$ is actual data (numbers), and $Y_i$ are random variables. $\theta,\pi,\mu$ will all be population parameters (unknown constants). 
+
+\paragraph{Types of Statistical Inference}
+\begin{itemize}
+\item Estimation Problems: Trying to make an educated guess of the value of some population attribute based on the data.
+\item Hypothesis Testing: Based on data, is the hypothesis "reasonable"? 
+\item Prediction: How to forecast future observations from data sets? (stat 443)
+\end{itemize}
+
+
+\section*{Lecture 7}
+\paragraph{On the tutorial}
+\begin{itemize}
+    \item R commands that were on the assignment
+    \item STAT 230 
+    \begin{itemize}
+        \item Normal Distribution
+        \begin{itemize}
+            \item if $Y\sim N(\mu,\sigma^2)$, then $\frac{Y-\mu}{\sigma}=Z\sim N(0,1)$
+            \item If $Y_1,\ldots,Y_n\sim(\mu,\sigma^2)$ are independent, then $\bar{Y}\sim N(\mu,\frac{\sigma^2}{n})$
+            \item Empirical fact: If the data is normal, then 68\% of the observations lie within $\mu\pm\sigma$. 95\% of the observations lie within $\mu\pm2\sigma$, and 99\% of the observations lie within $\mu\pm3\sigma$. 
+        \end{itemize}
+    \end{itemize}
+    \item Definitions and concepts 
+    \begin{itemize}
+        \item Linear transformation problems (location stays the same, variance and standard deviation we know from stat230) 
+        \item calculate new mean and variance if you remove a data point (mean is easy, for variance use $\frac{1}{n-1}\left[\sum_{i=1}^ny_i^2-n\bar{y}^2\right]$)
+    \end{itemize}
+    \item Graphical and Numerical data summaries 
+    Types of Data:
+    \begin{itemize}
+        \item Discrete 
+        \item Continuous 
+        \item Categorical 
+        \item Ordinal
+    \end{itemize}
+    Variates of Interest: 
+    \begin{itemize}
+        \item Response Variate - variates that are usually the focus of the study
+        \item Explanatory Variate - variates used to explain the response 
+    \end{itemize}   
+    Numerical Measures: 
+    \begin{itemize}
+        \item Location: sample mean, sample median, sample mode 
+        \item Variability: range, IQR, sample variance, sample standard deviation 
+        \item Shape: sample skewness, sample kurtosis 
+    \end{itemize}
+\end{itemize}
+
+\paragraph{The Theory of Estimation}
+maximum likelyhood estimation (covered examples this time, the formal definition will be next class)
+
+ 
+
+
+
+
+\end{document}

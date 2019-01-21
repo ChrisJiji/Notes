@@ -1,0 +1,76 @@
+\documentclass[10pt,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+\usepackage{enumitem}
+\newlength{\lyxlabelwidth}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%\usepackage{txfonts}
+
+\usepackage{microtype}
+
+\usepackage{calc}
+\usepackage{enumitem}
+\setenumerate{leftmargin=!,labelindent=0pt,itemindent=0em,labelwidth=\widthof{\ref{last-item}}}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\noindent \begin{center}
+\textbf{\large{}MATH 146 - Assignment 1}\\
+\textbf{\large{}Chris Ji 20725415}
+\par\end{center}{\large \par}
+\medskip{}
+
+\begin{enumerate}
+\pagebreak
+\item By theorem 11.4.1, $\langle i\vec{w},(2-i)\vec{z}\rangle=i\langle\vec{w},(2-i)\vec{z}\rangle=i(2-i)\langle\vec{w},\vec{z}\rangle$. Then, since $\langle\vec{w},\vec{z}\rangle=\overline{\langle\vec{z},\vec{w}\rangle}=\overline{1+i}=1-i$. Then $\langle i\vec{w},(2-i)\vec{z}\rangle=i(2-i)(1-i)=3+i$. 
+
+\pagebreak
+\item If $A$ has characteristic polynomial $p(x)=x^4+(2+5i)x^3-ix+3$, then $0_{4\times 4}=A^4+(2+5i)A^3-iA+3I$. Then rearranging, 
+\begin{align*}
+3I&=-A^4-(2+5i)A^3+iA\\
+\Rightarrow I &=-\frac{1}{3}A^4-\frac{2+5i}{3}A^3+\frac{i}{3}A \\ 
+\Rightarrow I &= A(-\frac{1}{3}A^3-\frac{2+5i}{3}A^2+\frac{i}{3}I) \\ 
+\Rightarrow A^{-1} &= -\frac{1}{3}A^3-\frac{2+5i}{3}A^2+\frac{i}{3}I
+\end{align*}
+
+\pagebreak
+\item By the Gram-Schmidt procedure, an orthonormal basis for $\mathbb{S}$ is a set $\{\vec{v}_1,\vec{v}_2,\vec{v}_3\}$, where 
+$$\vec{v}_1=\begin{bmatrix}1&i\\0&0\end{bmatrix}$$ 
+\begin{align*}
+\vec{v}_2&=\begin{bmatrix}i&0\\0&i\end{bmatrix}-\frac{\left\langle\begin{bmatrix}i&0\\0&i\end{bmatrix},\begin{bmatrix}1&i\\0&0\end{bmatrix}\right\rangle}{\left|\left|\begin{bmatrix}1&i\\0&0\end{bmatrix}\right|\right|^2}\begin{bmatrix}1&i\\0&0\end{bmatrix}\\
+&=\begin{bmatrix}i&0\\0&i\end{bmatrix}-\frac{\text{tr}\left(\begin{bmatrix}1&0\\-i&0\end{bmatrix}\begin{bmatrix}i&0\\0&i\end{bmatrix}\right)}{\text{tr}\left(\begin{bmatrix}1&0\\-i&0\end{bmatrix}\begin{bmatrix}1&i\\0&0\end{bmatrix}\right)}\begin{bmatrix}1&i\\0&0\end{bmatrix}\\&=\begin{bmatrix}i&0\\0&i\end{bmatrix}-\frac{i}{2}\begin{bmatrix}1&i\\0&0\end{bmatrix}\\&=\begin{bmatrix}\frac{i}{2}&\frac{1}{2}\\0&i\end{bmatrix}
+\end{align*} 
+\begin{align*}
+\vec{v}_3&=\begin{bmatrix}0&2\\0&i\end{bmatrix}-\frac{\left\langle\begin{bmatrix}0&2\\0&i\end{bmatrix},\begin{bmatrix}1&i\\0&0\end{bmatrix}\right\rangle}{\left|\left|\begin{bmatrix}1&i\\0&0\end{bmatrix}\right|\right|^2}\begin{bmatrix}1&i\\0&0\end{bmatrix}-\frac{\left\langle\begin{bmatrix}0&2\\0&i\end{bmatrix},\begin{bmatrix}\frac{i}{2}&\frac{1}{2}\\0&i\end{bmatrix}\right\rangle}{\left|\left|\begin{bmatrix}\frac{i}{2}&\frac{1}{2}\\0&i\end{bmatrix}\right|\right|^2}\begin{bmatrix}\frac{i}{2}&\frac{1}{2}\\0&i\end{bmatrix}\\&=\begin{bmatrix}0&2\\0&i\end{bmatrix}-\frac{-2i}{2}\begin{bmatrix}1&i\\0&0\end{bmatrix}-\frac{2}{\frac{6}{4}}\begin{bmatrix}\frac{i}{2}&\frac{1}{2}\\0&i\end{bmatrix}\\&=\begin{bmatrix}\frac{i}{3}&\frac{1}{3}\\0&\frac{-i}{3}\end{bmatrix}
+\end{align*}
+Then $\text{Span}\left\{\begin{bmatrix}1&i\\0&0\end{bmatrix},\begin{bmatrix}\frac{i}{2}&\frac{1}{2}\\0&i\end{bmatrix},\begin{bmatrix}\frac{i}{3}&\frac{1}{3}\\0&\frac{-i}{3}\end{bmatrix}\right\}$ is an orthonormal basis for $\mathbb{S}$. 
+
+\pagebreak
+\item Since $A$ is unitary, we know that $A^*A=AA^*$. Since $A$ is invertible, we know $A^*$ is invertible, by property of the transpose. Then multiplying the equation by $(A^*)^{-1}$ on both sides, we get $A(A^{*})^{-1}=(A^{*})^{-1}A$. Notice that $A(A^*)^{-1}=(A^*A^{-1})^{-1}$, and $(A^*)^{-1}A=(A^*A^{-1})^*$. Then we get $(A^*A^{-1})^{-1}=(A^*A^{-1})^*$. Hence, $B=A^*A^{-1}$ satisfies the condition that $B^{-1}=B^* \Rightarrow (A^*A^{-1})^{-1}=(A^*A^{-1})^*$, and so $B$ is unitary. 
+
+\pagebreak
+\item $(AB)^*=B^*A^*$ by the definition of the conjugate transpose. But $B^*A^*=BA$, since $A$ and $B$ are both Hermitian. Then clearly, $(AB)^*=BA$, and so if $(AB)^*=AB$ (if $AB$ is Hermitian), then $AB=BA$. 
+
+\pagebreak
+\item \begin{enumerate}
+    \item First we find $C(\lambda)=\left|\begin{matrix}4i-\lambda&1+3i\\-1+3i&i-\lambda\end{matrix}\right|=\lambda^2-5\lambda i+6$. Note that $C(-i)=0$, and so we know that $\lambda=-i$ is a factor of our polynomial. By polynomial division, we get $C(\lambda)=(\lambda+i)(\lambda-6i)$, and so $\lambda_1=-i,\lambda_2=6i$ are our eigenvalues. Then the eigenvector corresponding to $\lambda_1$ is the nullspace of $\begin{bmatrix}5i&1+3i\\-1+3i&2i\end{bmatrix}\sim\begin{bmatrix}1&\frac{3}{5}-i\frac{1}{5}\\0&0\end{bmatrix}$, which is just the span of the vector $\begin{bmatrix}-\frac{3}{5}+i\frac{1}{5}\\1\end{bmatrix}$. The eigenvector corresponding to $\lambda_2$ is the nullspace of $\begin{bmatrix}-2i&1+3i\\-1+3i&-5i\end{bmatrix}\sim\begin{bmatrix}1&-\frac{3}{2}+i\frac{1}{2}\\0&0\end{bmatrix}$, which is just the span of the vector $\begin{bmatrix}\frac{3}{2}-i\frac{1}{2}\\1\end{bmatrix}$. Now we need to normalize these vectors. Note that $\left|\left|\begin{bmatrix}-\frac{3}{5}+i\frac{1}{5}\\1\end{bmatrix}\right|\right|=\sqrt{\frac{7}{5}}$, and so this vector normalized is $\begin{bmatrix}-\frac{3}{\sqrt{35}}+\frac{1}{\sqrt{35}}i\\\sqrt{\frac{5}{7}}\end{bmatrix}$. $\left|\left|\begin{bmatrix}\frac{3}{2}-i\frac{1}{2}\\1\end{bmatrix}\right|\right|=\sqrt{\frac{7}{2}}$, so this vector normalized is $\begin{bmatrix}\frac{3}{\sqrt{14}}-\frac{1}{\sqrt{14}}i\\\sqrt{\frac{2}{7}}\end{bmatrix}$. Then $\begin{bmatrix}-i&0\\0&6i\end{bmatrix}=D=U^*BU$, where $U=\begin{bmatrix}-\frac{3}{\sqrt{35}}+\frac{1}{\sqrt{35}}i&\frac{3}{\sqrt{14}}-\frac{1}{\sqrt{14}}i\\\sqrt{\frac{5}{7}}&\sqrt{\frac{2}{7}}\end{bmatrix}$
+    
+    
+    \item Note that $C(\lambda)=-\lambda^3+3\lambda^2-4=-(\lambda-2)^2(\lambda+1)$. Then $\lambda_1=2,\lambda_2=-1$. The eigenvectors corresponding to $\lambda_1$ are $\text{Null}\begin{bmatrix}-1&0&1+i\\0&0&0\\1-i&0&-2\end{bmatrix}=\text{Null}\begin{bmatrix}1&0&-1-i\\0&0&0\\0&0&0\end{bmatrix}$, which are the vectors $\begin{bmatrix}0\\1\\0\end{bmatrix},\begin{bmatrix}1+i\\0\\1\end{bmatrix}$. The eigenvector corresponding to $\lambda_2$ is $\text{Null}\begin{bmatrix}2&0&1+i\\0&3&0\\1-i&0&1\end{bmatrix}=\text{Null}\begin{bmatrix}1&0&\frac{1}{2}+i\frac{1}{2}\\0&1&0\\0&0&0\end{bmatrix}$, which is the vector $\begin{bmatrix}-\frac{1}{2}-i\frac{1}{2}\\0\\1\end{bmatrix}$. Then normalizing these vectors, we get $\begin{bmatrix}2&0&0\\0&2&0\\0&0&-1\end{bmatrix}=D=U^*CU$, where $U=\begin{bmatrix}0&\frac{1}{\sqrt{3}}+i\frac{1}{\sqrt{3}}&-\frac{1}{\sqrt{6}}-i\frac{1}{\sqrt{6}}\\1&0&0\\0&\frac{1}{\sqrt{3}}&\sqrt{\frac{2}{3}}\end{bmatrix}$
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

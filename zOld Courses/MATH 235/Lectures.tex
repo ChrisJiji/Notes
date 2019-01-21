@@ -1,0 +1,549 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Fundamental Subspaces of a Matrix}
+
+\paragraph{The Four Fundamental Subspaces of a Matrix}
+Let $A$ be an $m\times n$ matrix. The \textbf{four fundamental subspaces} of $A$ are: 
+\begin{enumerate}
+    \item The columnspace of $A$ is the set of all possible linear combinations of the columns of $A$. It is defined by Col$(A) = \{A\vec{x} | \vec{x}\in\mathbb{R}^n\}$. 
+    \item The rowspace of $A$ is the set of all possible linear combinations of the rows of $A$. It is defined by Row$(A) = \{A^T\vec{x} | \vec{x}\in\mathbb{R}^m\}=\text{Col}(A^T)$. 
+    \item The nullspace of $A$ is defined by  Null$(A)=\{\vec{x}\in\mathbb{R}^n|A\vec{x}=\vec{0}\}$ 
+    \item The left nullspace of $A$ is defined by Null$(A^T)=\{\vec{x}\in\mathbb{R}^m|A^T\vec{x}=\vec{0}\}$
+\end{enumerate}
+
+\paragraph{Theorem 7.1.1} If $A$ is an $m\times n$ matrix, then Col$(A)$ and Null$(A^T)$ are subspaces of $\mathbb{R}^m$, and Row$(A)$ and Null$(A)$ are subspaces of $\mathbb{R}^n$. 
+
+\paragraph{Theorem 7.1.2} Let $A$ be an $m\times n$ matrix. The columns of $A$ which correspond to leading ones in the reduced row echelon form of $A$ form a basis for Col$(A)$. Moreover, dim Col$(A) =$ rank$(A)$. REVIEW PROOF OF THIS
+
+\section*{Bases for Fundamental Subspaces}
+
+\paragraph{Theorem 7.1.3} Let $A$ be an $m\times n$ matrix. The set of all non-zero rows in the reduced row echelon form of $A$ form a basis for Row$(A)$. Hence, dim$($Row$(A)) = $rank$(A)$.
+
+\paragraph{Corollary 7.1.4} For any $m\times n$ matrix $A$, we have rank$(A)=$rank$(A^T)$. 
+\paragraph{EXAMPLE} Find a basis for the rowspace and columnspace of $A=\begin{bmatrix}2&-1&-3&0\\-2&1&1&-4\\4&-2&-4&4\end{bmatrix}$ \\ 
+Row reducing $A$ gives $\begin{bmatrix}2&-1&-3&0\\-2&1&1&-4\\4&-2&-4&4\end{bmatrix}\sim\begin{bmatrix}1&-1/2&0&3\\0&0&1&2\\0&0&0&0\end{bmatrix}=R$ By theorem 7.1.2, a basis for the columnspace of $A$ is the columns from the original matrix $A$, which correspond to the reduced echelon form of $A$ with leading ones. That is, since the first and third columns of $R$ have leading ones, the first and third columns of $A$ form a basis for the columnspace of $A$. Therefore, a basis for Col$(A)$ is $\left\{\begin{bmatrix}2\\-2\\4\end{bmatrix},\begin{bmatrix}-3\\1\\-4\end{bmatrix}\right\}$ By Theorem 7.1.3, a basis for the rowspace of $A$ are the rows that are non-zero from the reduced echelon form of $A$. Hence a basis for Row$(A)$ is $\left\{\begin{bmatrix}1\\-1/2\\0\\3\end{bmatrix},\begin{bmatrix}0\\0\\1\\2\end{bmatrix}\right\}$
+
+Note: \begin{itemize} 
+\item Combining the basis for Col$(A)$ and the basis for Null$(A^T)$ gives a basis for $\mathbb{R}^4$. 
+\item Combining the basis for Row$(A)$ and the basis for Null$(A)$ gives a basis for $\mathbb{R}^3$. 
+\end{itemize}
+
+\paragraph{7.1.5 - Dimension Theorem} If $A$ is an $m\times n$ matrix, then rank$(A)+$ dim$($Null$(A))=n$
+
+\section*{Linear Mappings}
+\paragraph{Definition: Linear Mappings} A mapping $L$ from $\mathbb{R}^n$ to $\mathbb{R}^m$ is said to be linear if $L(sx+ty)=sL(x)+tL(y)$ for all $x,y\in\mathbb{R}^n$ and real scalars $s,t$. 
+\paragraph{Definition: Range} The range of a linear mapping $L:\mathbb{R}^n\rightarrow\mathbb{R}^m$ is the set of all $L(x)$ such that $x\in\mathbb{R}^n$. 
+\paragraph{Definition: Kernel} The kernel of a linear mapping $L:\mathbb{R}^n\rightarrow\mathbb{R}^m$ is the set of all vectors $x\in\mathbb{R}^n$ such that $L(x)$ is the $0$ vector. 
+\paragraph{Definition: Standard Matrix of a Linear Mapping} The standard matrix of a linear mapping $L:\mathbb{R}^n\rightarrow\mathbb{R}^m$ is defined to be the matrix whose columns are the images of the standard basis vectors $e_1,\ldots,e_n$ for $\mathbb{R}^n$ under $L$. It satisfies $L(x)=$ the standard matrix of $L$ times $x$. 
+\paragraph{Theorem 7.2.1} If $L:\mathbb{R}^n\rightarrow\mathbb{R}^m$ is a linear mapping, then the range of $L$ equals the columnspace of the standard matrix of $L$. \\ 
+Proof: By definition, the range of $L$ equals the set of all $L(x)$ such that $x\in\mathbb{R}^n$. But this equals the set of all vectors such that $x\in\mathbb{R}^n$, by definition of the standard matrix of $L$. But this is exactly the definition of the columnspace of the standard matrix of $L$, and so, poof, we're done. 
+\paragraph{Theorem 7.2.2} If $L:\mathbb{R}^n\rightarrow\mathbb{R}^m$ is a linear mapping, then the kernel of $L$ equals the nullspace of the standard matrix of $L$. 
+\paragraph{Theorem 7.2.3} Let $L$ from $\mathbb{R}^n\rightarrow\mathbb{R}^m$ be a linear mapping. Then the dimension of the range of $L$ + the dimension of the kernel of $L$ = the dimension of $\mathbb{R}^n=n$. 
+
+\paragraph{Definition: Linear Mappings in Vector Spaces} Let $V$ and $W$ be vector spaces. A mapping $L:V\rightarrow W$ is said to be a linear mapping if $L(tx+sy)=tL(x)+sL(y)$ for all $x,y\in V$ and real scalars $s,t$. 
+\paragraph{Theorem 8.1.1} Let $V$ and $W$ be vector spaces, and let $L:V\rightarrow W$ be a linear mapping. Then $L$ (the 0 vector in $V$) = the $0$ vector in $W$. 
+\paragraph{Definition: Addition and Multiplication Rules}Let $L:V\rightarrow W$ and $M:V\rightarrow W$ be linear mappings. We define the mapping $L+M$ by $(L+M)(v)=L(v)+M(v)$, for all vectors $v$ in $V$. For any real number $t$, we define the mapping $tL$ by $(tL)(v)=tL(v)$ for all vectors $v$ in $V$. Notice that we have defined $L + M$ and $tL$ for every vector $v$ in $V$, so the domain of these mappings is $V$. Also, since $L(v)$ and $M(v)$ are in $W$, and $t$ is a real scalar, then $L(v) + M(v)$ and $tL(v)$ are in $W$ since $W$ is closed under addition and scalar multiplication since it is a vector space. Thus, the codomain of $L + M$ and $tL$ is $W$.
+\paragraph{Theorem 8.1.2} Let $V$ and $W$ be vector spaces. The set $L$ of all linear mappings $L$ from $V$ to $W$ is a vector space. \\ 
+Proof: To show that $L$ is a vector space, we need to show it satisfies all ten vector space axioms. V1 and V2 are in the course notes, and the rest is left as an exercise. 
+\paragraph{Theorem 8.1.3} If $L:V\rightarrow W$ and $M:W\rightarrow U$ are linear mappings, then $M\circ L$ is a linear mapping from $V$ to $U$.
+
+\section*{Rank-Nullity Theorem}
+\subsection*{Subspaces of a Linear Mapping} 
+\paragraph{Definition: Range} The range of a linear mapping $L:V\rightarrow W$ is the set of all $L(v)$ such that $v\in V$. In other words, $\text{Range}(L)=\{L(\vec{v})|\vec{v}\in\mathbb{V}\}$ 
+\paragraph{Definition: Kernel} The kernel of a linear mapping $L:V\rightarrow W$ is the set of all vectors $v\in V$ such that $L(v)$ is the $0$ vector in $W$. In other words, $\text{Ker}(L)=\{\vec{v}\in\mathbb{V}|L(\vec{v})=\vec{0}_{\mathbb{W}}\}$
+
+\paragraph{Definition: Nullity} Let $L:\mathbb{V}\rightarrow\mathbb{W}$ be a linear mapping. We define the \textbf{rank} of $L$ by $\text{rank}(L)=\text{dim}(\text{Range}(L))$. We define the \textbf{nullity} of $L$ to be $\text{nullity}(L)=\text{dim}(\text{Ker}(L))$
+
+\paragraph{Theorem 8.2.1} Let $L:V\rightarrow W$ be a linear mapping. The kernel of $L$ is a subspace of $V$, and the range of $L$ is a subspace of $W$. 
+
+\paragraph{Theorem 8.2.2: Rank-Nullity Theorem} Let $V$ be an $n-$dimensional vector space and let $W$ be a vector space. If $L:V\rightarrow W$ is linear, then the rank of $L$ plus the nullity of $L$ equals the dimension of the domain, which is $n$. Since this theorem is so similar to the dimension theorem, it should not be surprising that the proof is essentially the same as the proof of the dimension theorem. \\ 
+EXAMPLE: Let $\mathbb{U}$ be the subspace of $M_{2\times2}(\mathbb{R})$ of upper triangular matrices and let $L:\mathbb{U}\rightarrow M_{2\times2}(\mathbb{R})$ be the linear mapping defined by $L\left(\begin{bmatrix}a&a\\0&c\end{bmatrix}\right)=\begin{bmatrix}a-b&a+c\\b+c&0\end{bmatrix}$ Find the rank and nullity of $L$. \\ 
+SOLUTION: Notice we can find the rank by finding a basis for the range of $L$, and then using the rank nullity theorem to find the nullity, OR we can find the nullity by finding basis for the kernel, and then find the rank by using the rank-nullity theorem. Every matrix $B\in\text{Range}(L)$ has the form $$B=\begin{bmatrix}a-b&a+c\\b+c&0\end{bmatrix}=a\begin{bmatrix}1&1\\0&0\end{bmatrix}+b\begin{bmatrix}-1&0\\1&0\end{bmatrix}+c\begin{bmatrix}0&1\\1&0\end{bmatrix}$$ Thus, Range$(L)=\text{Span}\left\{\begin{bmatrix}1&1\\0&0\end{bmatrix},\begin{bmatrix}-1&0\\1&0\end{bmatrix},\begin{bmatrix}0&1\\1&0\end{bmatrix}\right\}=\text{Span}\left\{\begin{bmatrix}1&1\\0&0\end{bmatrix},\begin{bmatrix}-1&0\\1&0\end{bmatrix}\right\}$. Thus, rank$(L)=2$, and by the rank-nullity theorem gives nullity$(L)=\text{dim}\mathbb{U}-\text{rank}(L)=3-2=1$
+
+\section*{Matrix of a Linear Mapping}
+\paragraph{Definition: Coordinates} If $\mathcal{B}=\{\vec{v}_1,\ldots,\vec{v}_n\}$ is a basis for a vector space $\mathbb{V}$ and $\vec{v}=b_1\vec{v}_1+\ldots+b_n\vec{v}_n\in\mathbb{V}$, then the \textbf{coordinate vector} of $\vec{v}$ with respect to $\mathcal{B}$ is $[\vec{v}]_\mathcal{B}=\begin{bmatrix}b_1\\\vdots\\b_n\end{bmatrix}$. For matrix mappings in polynomial space, we will use coordinates of a vector to turn polynomials in $P_2(\mathbb{R})$ into a vector in $\mathbb{R}^3$. \\ 
+We can interpret $A[\vec{x}]_\mathcal{B}$ as the coordinate vector of the image with respect to some basis for $M_{2\times2}(\mathbb{R})$. $[L(\vec{x})]_\mathcal{C}=A[\vec{x}]_\mathcal{B}$, where $\mathcal{B}$ is a basis for $P_2(\mathbb{R})$ and $\mathcal{C}$ is a basis for $M_{2\times2}(\mathbb{R})$.
+
+\paragraph{Matrix Mappings} Let $L:\mathbb{V}\rightarrow\mathbb{W}$ be a linear mapping, let $\mathcal{B}=\{\vec{v}_1,\ldots,\vec{v}_n\}$ be a basis for $\mathbb{V}$ and $\mathcal{C}$ be a basis for $\mathbb{W}$. For any $\vec{v}\in\mathbb{V}$ we want to define a matrix $A$ such that $[L(\vec{v})]_\mathcal{C}=A[\vec{v}]_\mathcal{B}$ for all $\vec{v}\in\mathbb{V}$. Consider the left-hand side $[L(\vec{v})]_\mathcal{C}$. Using properties of linear mappings and coordinates, we get $[L(\vec{v})]_\mathcal{C}=[L(b_1\vec{v}_1+\ldots+b_n\vec{v}_n)]_\mathcal{C}=[b_1L(\vec{v}_1)+\ldots+b_nL(\vec{v}_n)]_\mathcal{C}=b_1[L(\vec{v}_1)]_\mathcal{C}+\ldots+b_n[L(\vec{v}_n)]_\mathcal{C}=\left[[L(\vec{v}_1)]_\mathcal{C}\ldots[L(\vec{v}_n)]_\mathcal{C}\right]\begin{bmatrix}b_1\\\vdots\\b_n\end{bmatrix}=A[\vec{v}]_\mathcal{B}$. Thus, we see the desired matrix is $A=\left[[L(\vec{v}_1)]_\mathcal{C}\ldots[L(\vec{v}_n)]_\mathcal{C}\right]$ 
+
+\paragraph{Definition: Matrix of a Linear Mapping}Suppose $\mathcal{B}=\{\vec{v}_1,\ldots,\vec{v}_n\}$ is any basis for a vector space $\mathbb{V}$ and $\mathcal{C}$ is any basis for a finite dimensional vector space $\mathbb{W}$. Then the \textbf{matrix of $L:\mathbb{V}\rightarrow\mathbb{W}$ with respect to bases $\mathcal{B}$ and $\mathcal{C}$} is $_\mathcal{C}[L]_\mathcal{B}=\left[[L(\vec{v}_1)]_\mathcal{C}\ldots[L(\vec{v}_n)]_\mathcal{C}\right]$. It satisfies $[L(\vec{v})]_\mathcal{C}=_\mathcal{C}[L]_\mathcal{B}[\vec{v}]_\mathcal{B}$ for all $\vec{v}\in\mathbb{V}$. Note the following: 
+\begin{itemize}
+    \item The forward subscript of the matrix of the linear mapping is the basis of the domain and the backward subscript is the basis for the codomain
+    \item if $\mathbb{V}=\mathbb{R}^n$ and $\mathbb{W}=\mathbb{R}^m$ and $\mathcal{B}$ and $\mathcal{C}$ are the respective standard bases, then this matches the definition of the standard matrix. 
+\end{itemize}
+
+
+\section*{Matrix of a Linear Mapping Continued}
+\paragraph{Definition: B-Matrix of a Linear Mapping} Let $L:\mathbb{V}\rightarrow\mathbb{V}$ be a linear operator and let $\mathcal{B}=\{\vec{v}_1,\ldots,\vec{v}_n\}$ be a basis for $\mathbb{V}$. We define the \textbf{matrix of $L$ with respect to the basis $\mathcal{B}$}, also called the $\mathcal{B}$-matrix of $L$, by $[L]_\mathcal{B}=\left[[L(\vec{v}_1)]_\mathcal{B}\ldots[L(\vec{v}_n)]_\mathcal{B}\right]$. It satisfies $[L(\vec{x})]_\mathcal{B}=[L]_\mathcal{B}[\vec{x}]_\mathcal{B}$ for all $\vec{x}\in\mathbb{V}$.
+
+\paragraph{Definition: Geometrically Natural Bases} Let $L:\mathbb{V}\rightarrow\mathbb{V}$ be a linear operator. If $\mathcal{B}$ is a basis for $\mathbb{V}$ such that $[L]_\mathcal{B}$ is diagonal, then $\mathcal{B}$ is called a \textbf{geometrically natural basis} for $L$. Note:
+\begin{itemize}
+    \item The whole point of diagonalizing the standard matrix of a linear operator $L$ is to find an associated geometrically natural basis $\mathcal{B}$ 
+    \item The vectors in $\mathcal{B}$ will always be the eigenvectors of the standard matrix $[L]$. 
+    \item We can use $[L]_\mathcal{B}$ to help us understand the mapping $L$. 
+\end{itemize}
+
+\section*{Isomorphisms} 
+\paragraph{Definitions: One-to-one and Onto} Let $\mathbb{V}$ and $\mathbb{W}$ be vector spaces and $L:\mathbb{V}\rightarrow\mathbb{W}$ be a linear mapping. 
+\begin{itemize}
+    \item If $L(\vec{v})=L(\vec{u})$ implies $\vec{v}=\vec{u}$, then $L$ is said to be \textbf{one-to-one}, or \textbf{injective}.
+    \item If for every $\vec{w}\in\mathbb{W}$ there exists a $\vec{v}\in\mathbb{V}$ such that $L(\vec{v})=\vec{w}$, then $L$ is said to be \textbf{onto}, or \textbf{surjective}. 
+\end{itemize}
+
+\paragraph{Lemma 8.4.1} Let $L:\mathbb{V}\rightarrow\mathbb{W}$ be a linear mapping. $L$ is injective if and only if Ker$(L)=\{\vec{0}\}$. 
+
+\paragraph{Definition: Isomorphic} Let $\mathbb{V}$ and $\mathbb{W}$ be vector spaces. We say that they are \textbf{isomorphic} if there exists a linear mapping $L:\mathbb{V}\rightarrow\mathbb{W}$ that is bijective. Such a mapping $L$ is called an \textbf{isomorphism}. Note that two vector spaces being isomorphic means that the two vector spaces really are the same vector space. 
+\section*{Isomorphisms Continued} 
+\paragraph{Theorem 8.4.2} If $\mathbb{V}$ and $\mathbb{W}$ are finite dimensional vector spaces, then $\mathbb{V}$ and $\mathbb{W}$ are isomorphic if and only if they have the same dimension. 
+
+\paragraph{Theorem 8.4.3} If $\mathbb{V}$ and $\mathbb{W}$ are $n$-dimensional vector spaces, and $L:\mathbb{V}\rightarrow\mathbb{W}$ is linear, then $L$ is one-to-one if and only if $L$ is onto. 
+
+\paragraph{Theorem 8.4.4} If $\mathcal{B}$ is any basis for an $n$-dimensional vector space $\mathbb{V}$, $\mathcal{C}$ is any basis for an $m$-dimensional vector space $\mathbb{W}$, and $L:\mathbb{V}\rightarrow\mathbb{W}$ is a linear mapping, then rank$(L)=\text{rank}\left(_\mathcal{C}[L]_\mathcal{B}\right)$
+
+
+\section*{Inner Products}
+\paragraph{Definition: Inner Product}
+Let $\mathbb{V}$ be a vector space. An \textbf{inner product} on $\mathbb{V}$ is a function $\langle,\rangle:\mathbb{V}\times\mathbb{V}\rightarrow\mathbb{R}$ such that for all $\vec{v},\vec{w},\vec{z}\in\mathbb{V}$, and $a,b\in\mathbb{R}$ we have \begin{enumerate}
+    \item $\langle\vec{v},\vec{v}\rangle\geq0$. Also, $\langle\vec{v},\vec{v}\rangle=0\Leftrightarrow\vec{v}=\vec{0}$. In other words, the inner product is positive definite. 
+    \item $\langle\vec{v},\vec{w}\rangle=\langle\vec{w},\vec{v}\rangle$. In other words, the inner product is symmetric. 
+    \item $\langle a\vec{v}+b\vec{w},\vec{z}\rangle=a\langle\vec{v},\vec{z}\rangle+b\langle\vec{w},\vec{z}\rangle$. In other words, the inner product is left linear. Note that since it is left linear and symmetric, it is right linear (and therefore bilinear). 
+\end{enumerate}
+A vector space with an inner product is called an \textbf{inner product space}. 
+
+Note that the \textbf{standard inner product on $M_{m\times n}(\mathbb{R})$} is $\langle A,B\rangle=a_1b_1+a_2b_2+a_3b_3+a_4b_4$, which is the dot product of two $\mathbb{R}^4$ vectors corresponding to their $M_{m\times n}(\mathbb{R})$ counterparts. \\ 
+Note that on the vector space $C[a,b]$ of continuous functions defined on $[a,b]$, we define $\langle f(x),g(x)\rangle=\int_a^bf(x)g(x)\,dx$. This inner product is the basis for Fourier series.
+
+\section*{Length and Orthogonality} 
+\paragraph{Theorem 9.1.1} 
+If $\mathbb{V}$ is an inner product space with inner product $\langle,\rangle$, then for any $\vec{v}\in\mathbb{V}$ we have $\langle\vec{v},\vec{0}\rangle=0$. 
+
+\paragraph{Definition: Length}
+Let $\mathbb{V}$ be an inner product space with inner product $\langle,\rangle$. The \textbf{length} of $\vec{v}\in\mathbb{V}$ is defined by $||\vec{v}||=\sqrt{\langle\vec{v},\vec{v}\rangle}$. 
+
+\paragraph{Definition: Unit Vector}
+Let $\mathbb{V}$ be an inner product space with inner product $\langle,\rangle$. If $\vec{v}\in\mathbb{V}$ with $||\vec{v}||=1$, then $\vec{v}$ is called a \textbf{unit vector}. Note that to find a unit vector, $\hat{v}$ in the direction of $\vec{v}$, $\hat{v}=\frac{1}{||\vec{v}||}\vec{v}$.
+
+\paragraph{Theorem 9.2.1}
+Let $\vec{v},\vec{w}$ be any two vectors in an inner product space $\mathbb{V}$ and $t\in\mathbb{R}$. Then \begin{enumerate}
+    \item $||\vec{v}||\geq0$ and $||\vec{v}||=0\Leftrightarrow\vec{v}=\vec{0}$ 
+    \item $||t\vec{v}||=|t|||\vec{v}||$ 
+    \item $\langle\vec{v},\vec{w}\rangle\leq||\vec{v}||||\vec{w}||$ 
+    \item $||\vec{v}+\vec{w}||\leq||\vec{v}||+||\vec{w}||$
+\end{enumerate}
+
+\paragraph{Definition: Orthogonal}
+Let $\mathbb{V}$ be an inner product space. If $\vec{v},\vec{w}\in\mathbb{V}$ such that $\langle\vec{v},\vec{w}\rangle=0$, then we say that $\vec{v}$ and $\vec{w}$ are \textbf{orthogonal}. If $\{\vec{v}_1,\ldots,\vec{v}_k\}$ is a set in $\mathbb{V}$ such that $\langle\vec{v}_i,\vec{v}_j\rangle=0$ for all $i\neq j$, then $\{\vec{v}_1,\ldots,\vec{v}_k\}$ is called an \textbf{orthogonal set}.
+
+\paragraph{Theorem 9.2.2}
+Let $\mathbb{V}$ be an inner product space. If $\{\vec{v}_1,\ldots,\vec{v}_k\}$ is an orthogonal set in $\mathbb{V}$, then $||\vec{v}_1+\ldots+\vec{v}_k||^2=||\vec{v}_1||^2+\ldots+||\vec{v}_k||^2$
+
+\paragraph{Theorem 9.2.3}
+Let $\mathbb{V}$ be an inner product space. If $\{\vec{v}_1,\ldots,\vec{v}_k\}$ is an orthogonal set of non-zero vectors in $\mathbb{V}$, then the set $\{\vec{v}_1,\ldots,\vec{v}_k\}$ is linearly independent. 
+
+\paragraph{Definition: Orthogonal Basis}
+Let $\mathbb{V}$ be an inner product space. If $\{\vec{v}_1,\ldots,\vec{v}_k\}$ is an orthogonal set in $\mathbb{V}$ that is a basis for $\mathbb{V}$, then we call $\{\vec{v}_1,\ldots,\vec{v}_k\}$ an \textbf{orthogonal basis} for $\mathbb{V}$. 
+\paragraph{Definition: Orthonormal basis}
+Let $\mathbb{V}$ be an inner product space. If $\{\vec{v}_1,\ldots,\vec{v}_k\}$ is an orthogonal set of unit vectors in $\mathbb{V}$ that is a basis for $\mathbb{V}$, then we call $\{\vec{v}_1,\ldots,\vec{v}_k\}$ an \textbf{orthonormal basis} for $\mathbb{V}$.
+
+\section*{Orthonormal Bases and Orthogonal Matrices}
+\paragraph{Theorem 9.2.4}
+If $\mathcal{B}=\{\vec{v}_1,\ldots,\vec{v}_n\}$ is an orthogonal basis for an inner product space $\mathbb{V}$ and $\vec{v}\in\mathbb{V}$, then the coefficient of $\vec{v}_i$ when $\vec{v}$ is written as a linear combination of the vectors in $\mathcal{B}$ is $\frac{\langle\vec{v},\vec{v}_i\rangle}{||\vec{v}_i||^2}$. In particular $\vec{v}=\frac{\langle\vec{v},\vec{v}_1\rangle}{||\vec{v}_1||^2}\vec{v}_1+\ldots+\frac{\langle\vec{v},\vec{v}_n\rangle}{||\vec{v}_n||^2}\vec{v}_n$
+
+\paragraph{Corollary 9.2.5}
+If $\mathcal{B}=\{\vec{v}_1,\ldots,\vec{v}_n\}$ is an orthonormal basis for an inner product space $\mathbb{V}$ and $\vec{v}\in\mathbb{V}$, then $\vec{v}=\langle\vec{v},\vec{v}_1\rangle\vec{v}_1+\ldots+\langle\vec{v},\vec{v}_n\rangle\vec{v}_n$
+
+\paragraph{Theorem 9.2.6}
+If $P\in M_{n\times n}(\mathbb{R})$, then the following are equivalent: \begin{enumerate}
+    \item The columns of $P$ form an orthonormal basis for $\mathbb{R}^n$ 
+    \item $P^T=P^{-1}$ 
+    \item The rows of $P$ form an orthonormal basis for $\mathbb{R}^n$
+\end{enumerate}
+
+\paragraph{Definition: Orthogonal Matrix}
+Let $P\in M_{n\times n}(\mathbb{R})$ whose columns form an orthonormal basis for $\mathbb{R}^n$. Then $P$ is called an \textbf{orthogonal matrix}. Note that the columns form an orthoNORMAL basis, but it is still called an orthogonal matrix. 
+
+\paragraph{Theorem 9.2.7}
+If $P$ and $Q$ are $n\times n$ orthogonal matrices and $\vec{x},\vec{y}\in\mathbb{R}^n$, then 
+\begin{enumerate}
+    \item $(P\vec{x})\cdot(P\vec{y})=\vec{x}\cdot\vec{y}$ 
+    \item $||P\vec{x}||=||\vec{x}||$ 
+    \item $\text{det}P=\pm1$ 
+    \item All real eigenvalues of $P$ are $1$ or $-1$ 
+    \item $PQ$ is also an orthogonal matrix 
+\end{enumerate}
+
+\section*{The Gram-Schmidt Procedure}
+\paragraph{Theorem 9.3.1- Gram-Schmidt Orthogonalization Theorem}
+Let $\{\vec{w}_1,\ldots,\vec{w}_n\}$ be a basis for an inner product space $\mathbb{W}$. If we define $\vec{v}_1,\ldots,\vec{v}_n$ successively as follows: $$\vec{v}_1=\vec{w}_1$$ $$\vec{v}_2=\vec{w}_2-\frac{\langle\vec{w}_2,\vec{v}_1\rangle}{||\vec{v}_1||^2}\vec{v}_1$$ $$\vec{v}_i=\vec{w}_i-\frac{\langle\vec{w}_i,\vec{v}_1\rangle}{||\vec{v}_1||^2}\vec{v}_1-\frac{\langle\vec{w}_i,\vec{v}_2\rangle}{||\vec{v}_2||^2}\vec{v}_2-\ldots-\frac{\langle\vec{w}_i,\vec{v}_{i-1}\rangle}{||\vec{v}_{i-1}||^2}\vec{v}_{i-1}$$ then $\{\vec{v}_1,\ldots,\vec{v}_i\}$ is an orthogonal basis for Span$\{\vec{w}_1,\ldots,\vec{w}_i\}$ for $1\leq i\leq n$. 
+
+\section*{Orthogonal Complements}
+\paragraph{Definition: Orthogonal Complement}
+Let $\mathbb{W}$ be a subspace of an inner product space $\mathbb{V}$. The \text{orthogonal complement $\mathbb{W}^\perp$} of $\mathbb{W}$ in $\mathbb{V}$ is defined by $\mathbb{W}^\perp=\{\vec{v}\in\mathbb{V}|\langle\vec{w},\vec{v}\rangle=0\text{ for all }\vec{w}\in\mathbb{W}\}$. 
+
+\paragraph{Theorem 9.4.1}
+Let $\{\vec{v}_1,\ldots,\vec{v}_k\}$ be a basis for a subspace $\mathbb{W}$ of an inner product space $\mathbb{V}$. If $\vec{x}\in\mathbb{V}$ is orthogonal to $\vec{v}_1,\ldots,\vec{v}_k$, then $\vec{x}\in\mathbb{W}^\perp$. Thus, to check if a vector $\vec{x}$ is in $\mathbb{W}^\perp$, we only need to check if $\vec{x}$ is orthogonal to the basis vectors.
+
+\paragraph{Theorem 9.4.2}
+If $\mathbb{W}$ is a finite dimensional subspace of an inner product space $\mathbb{V}$, then \begin{enumerate}
+    \item $\mathbb{W}^\perp$ is a subspace of $\mathbb{V}$ 
+    \item If $\text{dim}\mathbb{V}=n$, then $\text{dim}\mathbb{W}^\perp=n-\text{dim}\mathbb{W}$ 
+    \item If $\mathbb{V}$ is finite dimensional, then $(\mathbb{W}^\perp)^\perp=\mathbb{W}$ 
+    \item $\mathbb{W}\cap\mathbb{W}^\perp=\{\vec{0}\}$ 
+    \item If dim$\mathbb{V}=n$, $\{\vec{v}_1,\ldots,\vec{v}_k\}$ is an orthogonal basis for $\mathbb{W}$, and $\{\vec{v}_{k+1},\ldots,\vec{v}_n\}$ is an orthogonal basis for $\mathbb{W}^T$, then $\{\vec{v}_1,\ldots,\vec{v}_k,\vec{v}_{k+1},\ldots,\vec{v}_n\}$ is an orthogonal basis for $\mathbb{V}$. 
+\end{enumerate}
+
+\section*{Projections}
+\paragraph{Definition: projection and perpendicular}
+Suppose $\mathbb{W}$ is a $k-$dimensional subspace of an inner product space $\mathbb{V}$ and $\{\vec{v}_1,\ldots,\vec{v}_k\}$ is an orthogonal basis for $\mathbb{W}$. For any $\vec{v}\in\mathbb{V}$ we define the \textbf{projection} of $\vec{v}$ onto $\mathbb{W}$ by $\text{proj}_\mathbb{W}(\vec{v})=\frac{\langle\vec{v},\vec{v}_1\rangle}{||\vec{v}_1||^2}\vec{v}_1+\ldots+\frac{\langle\vec{v},\vec{v}_k\rangle}{||\vec{v}_k||^2}\vec{v}_k$ and the \textbf{perpendicular} of $\vec{v}$ onto $\mathbb{W}$ by $\text{perp}_\mathbb{W}(\vec{v})=\vec{v}-\text{proj}_\mathbb{W}(\vec{v})$
+
+\paragraph{Theorem 9.4.3}
+Suppose $\mathbb{W}$ is a $k$-dimensional subspace of an inner product space $\mathbb{V}$. For any $\vec{v}\in\mathbb{V}$, we have $\text{perp}_\mathbb{W}(\vec{v})=\vec{v}-\text{proj}_\mathbb{W}(\vec{v})\in\mathbb{W}^\perp$
+
+\paragraph{Theorem 9.4.4}
+If $\mathbb{W}$ is a $k$-dimensional subspace of an inner product space $\mathbb{V}$, then proj$_\mathbb{W}$ is a linear operator on $\mathbb{V}$ with kernel $\mathbb{W}^\perp$. 
+
+\paragraph{Theorem 9.4.5}
+If $\mathbb{W}$ is a subspace of a finite dimensional inner product space $\mathbb{V}$, then for any $\vec{v}\in\mathbb{V}$ we have $\text{proj}_{\mathbb{W}^\perp}(\vec{v})=\text{perp}_\mathbb{W}(\vec{v})$
+
+\section*{The Fundamental Theorem of Linear Algebra}
+\paragraph{Definition: Direct Sum}
+Let $\mathbb{U}$ and $\mathbb{W}$ be subspaces of a vector space $\mathbb{V}$ such that $\mathbb{U}\cap\mathbb{W}=\{\vec{0}\}$. We define the \textbf{direct sum} of $\mathbb{U}$ and $\mathbb{W}$ by $\mathbb{U}\oplus\mathbb{W}=\{\vec{u}+\vec{w}|\vec{u}\in\mathbb{U},\vec{w}\in\mathbb{W}\}$
+
+\paragraph{Theorem 9.5.1}
+If $\mathbb{U}$ and $\mathbb{W}$ are subspaces of a vector space $\mathbb{V}$, then $\mathbb{U}\oplus\mathbb{W}$ is a subspace of $\mathbb{V}$. Moreover, if $\{\vec{u}_1,\ldots,\vec{u}_k\}$ is a basis for $\mathbb{U}$ and $\{\vec{w}_1,\ldots,\vec{w}_l\}$ is a basis for $\mathbb{W}$, then $\{\vec{u}_1,\ldots,\vec{u}_k,\vec{w}_1,\ldots,\vec{w}_l\}$ is a basis for $\mathbb{U}\oplus\mathbb{W}$. 
+
+\paragraph{Theorem 9.5.2}
+If $\mathbb{V}$ is a finite dimensional product space and $\mathbb{W}$ is a subspace of $\mathbb{V}$, then $\mathbb{W}\oplus\mathbb{W}^\perp=\mathbb{V}$.
+
+\paragraph{Theorem 9.5.3- Fundamental Theorem of Linear Algebra}
+If $A$ is an $m\times n$ matrix, then $\text{Col}(A)^\perp=\text{Null}(A^T),\text{Row}(A)^\perp=\text{Null}(A)$. In particular, $\mathbb{R}^n=\text{Row}(A)\oplus\text{Null}(A)$ and $\mathbb{R}^m=\text{Col}(A)\oplus\text{Null}(A^T)$. Furthermore, $\text{dim}(\text{Null}(A))=\text{dim}((\text{Row}(A))^\perp)=n-\text{dim Row}(A)=n-\text{Rank}(A)$. Hence, the Fundamental Theorem of Linear Algebra immediately implies the Dimension Theorem.
+
+\section*{The Method of Least Squares}
+\paragraph{Theorem 9.6.1 - The Approximation Theorem}
+Let $\mathbb{W}$ be a finite dimensional subspace of an inner product space $\mathbb{V}$. If $\vec{v}\in\mathbb{V}$, then $||\vec{v}-\vec{w}||>||\vec{v}-\text{proj}_\mathbb{W}(\vec{v})||$ for all $\vec{w}\in\mathbb{W}$, $\vec{w}\neq\text{proj}_\mathbb{W}(\vec{v})$. In other words, the vector in $\mathbb{W}$ that is closest to the vector $\vec{v}$ in $\mathbb{V}$ is the projection of $\vec{v}$ onto $\mathbb{W}$. 
+
+\paragraph{Method of Least Squares}
+To get $\vec{x}$ such that $||A\vec{x}-\vec{b}||$ is minimized, solve $A^TA\vec{x}=A^T\vec{b}\Rightarrow\vec{x}=(A^TA)^{-1}A^T\vec{b}$. 
+
+\section*{Polynomials of Best Fit}
+\paragraph{Theorem 9.6.2}
+Let $n$ data points $(x_1,y_1),\ldots(x_n,y_n)$ be given, let $\vec{y}=\begin{bmatrix}y_1\\\vdots\\y_n\end{bmatrix}, X=\begin{bmatrix}1&x_1&\cdots&x_1^m\\1&x_2&\cdots&x_2^m\\\vdots&\vdots&\ddots&\vdots\\1&x_n&\cdots&x_n^m\end{bmatrix}$. If $\vec{a}=\begin{bmatrix}a_0\\\vdots\\a_m\end{bmatrix}$ is any solution to the normal system $X^TX\vec{a}=X^T\vec{y}$ then the polynomial $p(x)=a_0+a_1x+\ldots+a_mx^m$ is a best fitting polynomial of degree $m$ for the given data. Moreover, if at least $m+1$ of the numbers $x_1,\ldots,x_n$ are distinct, then the matrix $X^TX$ is invertible and hence $\vec{a}$ is unique with $\vec{a}=(X^TX)^{-1}X^T\vec{y}$
+
+\section*{Orthogonal Similarity and Triangularization}
+\paragraph{Definition: Orthogonally Similar}
+Two matrices $A,B$ are said to be \textbf{orthogonally similar} if there exists an orthogonal matrix $P$ such that $P^TAP=B$. Note: Since $P$ is orthogonal, $P^T=P^{-1}$. Hence, if $A$ and $B$ are orthogonally similar, then they are similar. Hence: all the properties of similar matrices hold: \begin{itemize}
+    \item $\text{rank }A=\text{rank }B$
+    \item $\text{tr }A=\text{tr }B$
+    \item $\text{det }A=\text{det }B$ 
+    \item $\text{det}(A-\lambda I)=\text{det}(B-\lambda I)$
+\end{itemize}
+
+\paragraph{Theorem 10.1.1- Triangularization Theorem} 
+If $A$ is an $n\times n$ matrix with all real eigenvalues, then $A$ is orthogonally similar to an upper triangular matrix $T$. Notes: If $A$ is orthogonally similar to an upper triangular matrix $T$, then $A$ and $T$ must share the same eigenvalues. Thus, since $T$ is upper triangular, the eigenvalues of $A$ must appear along the main diagonal of $T$. 
+
+\section*{Orthogonal Diagonalization}
+\paragraph{Definition: Orthogonally Diagonalizable}
+A matrix $A$ is said to be \textbf{orthogonally diagonalizable} if it is orthogonally similar to a diagonal matrix. 
+\paragraph{Theorem 10.2.1}
+If $A$ is orthogonally diagonalizable, then $A^T=A$. 
+\paragraph{Theorem 10.2.3: The Principal Axis Theorem}
+If $A$ is a matrix such that $A^T=A$, then $A$ is orthogonally diagonalizable. 
+\paragraph{Lemma 10.2.2}
+If $A$ is a matrix such that $A^T=A$, then all eigenvalues of $A$ are real. 
+\paragraph{Definition: Symmetric}
+A matrix $A$ such that $A^T=A$ is called \textbf{symmetric}. We have now proven that a matrix $A$ is orthogonally diagonalizable if and only if it is symmetric. 
+\paragraph{Theorem 10.2.4}
+A matrix $A$ is symmetric if and only if $\vec{x}\cdot(A\vec{y})=(A\vec{x})\cdot\vec{y}$ for all $\vec{x},\vec{y}\in\mathbb{R}^n$. 
+\paragraph{Theorem 10.2.5}
+If $A$ is a symmetric matrix with eigenvectors $\vec{v}_1,\vec{v}_2$ corresponding to distinct eigenvalues $\lambda_1,\lambda_2$ then $\vec{v}_1$ and $\vec{v}_2$ are orthogonal. This theorem states that eigenvectors corresponding to different eigenvalues of a symmetric matrix are orthogonal. 
+
+\section*{Quadratic Forms}
+\paragraph{Definition: Quadratic Form}
+We define a \textbf{quadratic form} on $\mathbb{R}^n$ with corresponding matrix $A$ by $Q(\vec{x})=\vec{x}^TA\vec{x},\quad\vec{x}\in\mathbb{R}^n$. Note that there is a connection between the dot product and quadratic forms: $Q(\vec{x})=\vec{x}\cdot(A\vec{x})=(A\vec{x})\cdot\vec{x}=(A\vec{x})^T\vec{x}=\vec{x}^TA^T\vec{x}$, hence $A$ and $A^T$ give the same quadratic form (but this does not imply $A\neq A^T$). However, it can be shown that every quadratic form can be written as $Q(\vec{x})=\vec{x}^TA\vec{x}$ where $A$ is symmetric. Moreover, each symmetric matrix $A$ \textit{uniquely} determines a quadratic form. 
+
+\paragraph{Definition: Diagonal Form}
+If the symmetric matrix corresponding to the quadratic form $Q(\vec{x})=\vec{x}^TA\vec{x}$ is diagonal, then we say that $Q(\vec{x})$ is in the \textbf{diagonal form}. 
+
+\paragraph{Theorem 10.3.1: Principle Axis Theorem}
+If $Q(\vec{x})=\vec{x}^TA\vec{x}$ is a quadratic form in $n$ variables with corresponding symmetric matrix $A$ and $P$ is an orthogonal matrix such that $P^TAP=D=\text{diag}(\lambda_1,\ldots,\lambda_n)$, then performing the change of variables $\vec{y}=P^T\vec{x}$ gives $Q(\vec{x})=\lambda_1y_1^2+\ldots+\lambda_ny_n^2$. Note the orthonormal eigenvectors we used to construct $P$ are called the \textbf{principle axes} of $A$. 
+
+\section*{Classifying Quadratic Forms}
+\paragraph{Classifying Quadratic Form}
+Let $Q(\vec{x})$ be a quadratic form. We say that $Q(\vec{x})$ is 
+\begin{enumerate}
+    \item \textbf{positive definite} if $Q(\vec{x})>0$ for all $\vec{x}\neq\vec{0}$
+    \item \textbf{negative definite} if $Q(\vec{x})<0$ for all $\vec{x}\neq\vec{0}$
+    \item \textbf{indefinite} if $Q(\vec{x})>0$ for some $\vec{x}$ and $Q(\vec{x})<0$ for some $\vec{x}$
+    \item \textbf{positive semidefinite} if $Q(\vec{x})\geq0$ for all $\vec{x}$
+    \item \textbf{negative semidefinite} if $Q(\vec{x})\leq0$ for all $\vec{x}$
+\end{enumerate}
+Note that we classify symmetric matrices by classifying the associated quadratic form. 
+\paragraph{Theorem 10.3.2}
+If $A$ is a symmetric matrix, then $A$ is: 
+\begin{itemize}
+    \item positive definite if and only if the eigenvalues of $A$ are all positive
+    \item negative definite if and only if the eigenvalues of $A$ are all negative.
+    \item indefinite if and only if some of the eigenvalues of $A$ are positive and some are negative.
+    \item positive definite if and only if the eigenvalues of $A$ are all non-negative.
+    \item negative definite if and only if the eigenvalues of $A$ are all non-positive.
+\end{itemize}
+
+
+\section*{Sketching Quadratic Forms}
+\paragraph{Sketching Quadratic Forms}
+In many applications of quadratic forms it is important to be able to sketch the graph of a quadratic form in $\mathbb{R}^2$, $Q(\vec{x})=k$. In general, this is not easy, but we know there is an orthogonal matrix $P$ such that the change of variables $\vec{y}=P^T\vec{x}$ will give us $k=Q(\vec{x})=\lambda_1y_1^2+\lambda_2y_2^2$. Since these are just conic sections, the possible graph shapes are demonstrated in the following table: 
+\begin{table}[!h]
+\begin{tabular}{|l|l|l|l|}
+\hline
+ &  $k>0$ & $k=0$ & $k<0$ \\ \hline
+$\lambda_1>0,\lambda_2>0$ & ellipse & point(0,0) & DNE \\ \hline
+$\lambda_1<0,\lambda_2<0$ & DNE & point(0,0) & ellipse \\ \hline
+$\lambda_1\lambda_2<0$ & hyperbola & asymptotes for hyperbola/intersecting lines & hyperbola \\ \hline
+$\lambda_1=0,\lambda_2>0$ & parallel lines & line $y_2=0$ & DNE \\ \hline
+$\lambda_1=0,\lambda_2<0$ & DNE & line $y_2=0$ & parallel lines \\ \hline
+\end{tabular}
+\end{table}
+
+\paragraph{Theorem 10.4.1}
+If $Q(x_1,x_2)=ax_1^2+bx_1x_2+cx_2^2$ where $a,b,c$ are not all zero, then there exists an orthogonal matrix $P$, which corresponds to a rotation, such that the change of variables $\vec{y}=P^T\vec{x}$ brings $Q(\vec{x})$ into diagonal form. 
+
+\section*{Optimizing Quadratic Forms}
+\paragraph{Theorem 10.5.1}
+If $Q(\vec{x})=\vec{x}^TA\vec{x}$ is a quadratic form with symmetric matrix $A$, then the maximum of $Q(\vec{x})$ subject to $||\vec{x}||=1$ is the largest eigenvalue of $A$, and the minimum of $Q(\vec{x})$ subject to $||\vec{x}||=1$ is the smallest eigenvalue of $A$. Moreover, the maximum and minimum occur at unit eigenvectors of $A$ corresponding to the respective eigenvalues. 
+
+\section*{Singular Values}
+\paragraph{Theorem 10.6.1}
+If $A$ is an $m\times n$ matrix and $\lambda_1,\ldots,\lambda_n$ are the eigenvalues of $A^TA$ with corresponding unit eigenvectors $\vec{v}_1,\ldots,\vec{v}_n$, then $\lambda_1,\ldots,\lambda_n$ are all non-negative, and $||A\vec{v}_i||=\sqrt{\lambda_i}$
+\paragraph{Definition: Singular Value}
+The singular values $\sigma_1,\ldots,\sigma_n$ of an $m\times n$ matrix $A$ are the square roots of the eigenvalues of $A^TA$ arranged so that $\sigma_1\geq\sigma_2\ldots\geq\sigma_n\geq0$
+\paragraph{Lemma 10.6.2}
+If $A$ is an $m\times n$ matrix, then $\text{Null}(A^TA)=\text{Null}(A)$
+\paragraph{Theorem 10.6.3}
+If $A$ is an $m\times n$ matrix, then $\text{rank}(A^TA)=\text{rank}(A)$
+\paragraph{Corollary 10.6.4}
+If $A$ is an $m\times n$ matrix and $\text{Rank}(A)=r$, then $A$ has $r$ non-zero singular values.
+
+
+\section*{Singular Vectors and Singular Value Decomposition}
+\paragraph{Definition: Singular Vectors}
+Let $A$ be an $m\times n$ matrix. If $\vec{v}\in\mathbb{R}^n$ and $\vec{u}\in\mathbb{R}^m$ are unit vectors and $\sigma\neq0$ is a singular value of $A$ such that $A\vec{v}=\sigma\vec{u}$ and $A^T\vec{u}=\sigma\vec{v}$, then we say that $\vec{u}$ is a \textbf{left singular vector} of $A$ and $\vec{v}$ is a \textbf{right singular vector} of $A$. Additionally, if $\vec{u}$ is a unit vector such that $A^T\vec{u}=\vec{0}$, then $\vec{u}$ is a \textbf{left singular vector} of $A$. Similarly, if $\vec{v}$ is a unit vector such that $A\vec{v}=\vec{0}$, then $\vec{v}$ is a \textbf{right singular vector} of $A$. 
+
+\paragraph{Theorem 10.6.5}
+Let $A$ be an $m\times n$ matrix. A vector $\vec{v}\in\mathbb{R}^n$ is a right singular vector of $A$ if and only if $\vec{v}$ is an eigenvector of $A^TA$. A vector $\vec{u}\in\mathbb{R}^m$ is a left singular vector of $A$ if and only if $\vec{u}$ is an eigenvector of $AA^T$. 
+\paragraph{Lemma 10.6.6}
+Let $A$ be an $m\times n$ matrix with $\text{rank}(A)=r$. If $\{\vec{v}_1,\ldots,\vec{v}_n\}$ is an orthonormal basis for $\mathbb{R}^n$ consisting of the eigenvectors of $A^TA$ arranged so that the corresponding eigenvalues $\lambda_1,\ldots,\lambda_n$ are arranged from greatest to least and $\sigma_1,\ldots,\sigma_n$ are the singular values of $A$, then $\{\frac{1}{\sigma_1}A\vec{v}_1,\ldots,\frac{1}{\sigma_r}A\vec{v}_r\}$ is an orthonormal basis for $\text{Col}\,A$
+\paragraph{Theorem 10.6.7}
+If $A$ is an $m\times n$ matrix with rank $r$, then there exists an orthonormal basis $\{\vec{v}_1,\ldots,\vec{v}_n\}$ for $\mathbb{R}^n$ of right singular vectors of $A$ and an orthonormal basis $\{\vec{u}_1,\ldots,\vec{u}_m\}$ for $\mathbb{R}^m$ of left singular vectors of $A$. 
+\paragraph{Definition: Singular Value Decomposition}
+A \textbf{singular value decomposition} of an $m\times n$ matrix $A$ is a factorization of the form $A=U\Sigma V^T$, where $U$ is an orthogonal matrix containing left singular vectors of $A$, $V$ is an orthogonal matrix containing right singular vectors of $A$, and $\Sigma$ is the $m\times n$ matrix with $\sum_{ii}=\sigma_i$ for $1\leq i\leq\text{rank}\,A$ and all other entries of $\Sigma$ are $0$. 
+
+\section*{Complex Number Review}
+\paragraph{Definition: Complex Number}
+We define $i$ to be a number such that $i^2=-1$, and define the set of \textbf{complex numbers} to be $\mathbb{C}=\{a+bi\,|\,a,b\in\mathbb{R}\}$. For a complex number $z=a+bi$, we define the \textbf{real part} of $z$ by $\text{Re}(z)=a$, and the \textbf{imaginary part} of $z$ by $\text{Im}(z)=b$. If $b=0$, then we say that $z$ is \textbf{real}. If $a=0$ and $b\neq0$, then we say that $z$ is \textbf{imaginary}. \\ 
+COMMON OPERATIONS:\begin{itemize}
+    \item We define the \textbf{addition} of two complex numbers $a+bi$ and $c+di$ by $(a+bi)+(c+di)=(a+c)+(b+d)i$ 
+    \item We also define \textbf{real scalar multiplication} of $a+bi$ by $t\in\mathbb{R}$ by $t(a+bi)=ta+tbi$ 
+    \item We define \textbf{multiplication} of two complex numbers $a+bi$ and $c+di$ by $(a+bi)(c+di)=ac+adi+bci+bdi^2=ac-bd+(ad+bc)i$
+\end{itemize}
+\paragraph{Theorem 11.1.1}
+If $z_1,z_2,z_3\in\mathbb{C}$, then 
+\begin{enumerate}
+    \item Addition is commutative ($z_1+z_2=z_2+z_1$)
+    \item Multiplication is commutative ($z_1z_2=z_2z_1$)
+    \item Addition is associative ($z_1+(z_2+z_3)=(z_1+z_2)+z_3$)
+    \item Multiplication is associative ($z_1(z_2z_3)=(z_1z_2)z_3$)
+    \item Multiplication is distributive over addition ($z_1(z_2+z_3)=z_1z_2+z_1z_3$)
+\end{enumerate}
+\paragraph{Definition: Complex conjugate}
+Let $z=a+bi\in\mathbb{C}$. The \textbf{complex conjugate} of $z$ is $\overline{z}=a-bi$. 
+\paragraph{Theorem 11.1.2}
+If $z=a+bi,z_1,z_2\in\mathbb{C}$, then \begin{enumerate}
+    \item $\overline{\overline{z}}=z$ 
+    \item $z$ is real if and only if $\overline{z}=z$ 
+    \item If $z\neq0$, then $z$ is imaginary if and only if $\overline{z}=-z$ 
+    \item $\overline{z_1+z_2}=\overline{z_1}+\overline{z_2}$ 
+    \item $\overline{z_1z_2}=\overline{z_1}\,\overline{z_2}$ 
+    \item $z+\overline{z}=2\text{Re}(z)=2a$ 
+    \item $z-\overline{z}=2i\text{Im}(z)=2bi$ 
+    \item $z\overline{z}=a^2+b^2$
+\end{enumerate}
+\paragraph{Definition: Absolute Value}
+Let $z=a+bi\in\mathbb{C}$. We define the \textbf{absolute value} of $z$ to be $|z|=\sqrt{z\overline{z}}=\sqrt{a^2+b^2}$ 
+\paragraph{Theorem 11.1.3}
+If $w,z\in\mathbb{C}$, then \begin{enumerate}
+    \item $|z|\in\mathbb{R}$ and $|z|\geq 0$ 
+    \item $|z|=0$ if and only if $z=0$ 
+    \item $|wz|=|w|\,|z|$ 
+    \item $|w+z|\leq|w|+|z|$
+\end{enumerate}
+\paragraph{Definition: Division of Complex Numbers}
+For any $w,z\in\mathbb{C}$ with $z\neq0$, we have $\frac{w}{z}=\frac{w\overline{z}}{z\overline{z}}=\frac{w\overline{z}}{|z|^2}$
+
+\section*{Complex Vector Spaces}
+\paragraph{Definition: Complex Vector Space}
+A set $\mathbb{V}$ is called a vector space of $\mathbb{C}$ or a complex vector space if there is an operation of addition and an operation of scalar multiplication such that for any $\vec{v},\vec{z},\vec{w}\in\mathbb{V}$ and $\alpha,\beta\in\mathbb{C}$, we have: \begin{enumerate}
+    \item $\vec{z}+\vec{w}\in\mathbb{V}$ 
+    \item $(\vec{z}+\vec{w})+\vec{v}=\vec{z}+(\vec{w}+\vec{v})$ 
+    \item $\vec{z}+\vec{w}=\vec{w}+\vec{z}$ 
+    \item There exists a zero vector such that $\vec{z}+\vec{0}=\vec{z}$ 
+    \item There exists an additive inverse such that $\vec{z}+(-\vec{z})=\vec{0}$ 
+    \item $\alpha\vec{z}\in\mathbb{V}$ 
+    \item $\alpha(\beta\vec{z})=(\alpha\beta)\vec{z}$ 
+    \item $(\alpha+\beta)\vec{z}=\alpha\vec{z}+\beta\vec{z}$ 
+    \item $\alpha(\vec{z}+\vec{w})=\alpha\vec{z}+\alpha\vec{w}$ 
+    \item $1\vec{z}=\vec{z}$
+\end{enumerate}
+
+\paragraph{Definition: Vector Space over Complex Numbers}
+The set $\mathbb{C}^n=\left\{\begin{bmatrix}z_1\\\vdots\\z_n\end{bmatrix}|z_i\in\mathbb{C}\right\}$ with addition defined by $\begin{bmatrix}z_1\\\vdots\\z_n\end{bmatrix}+\begin{bmatrix}w_1\\\vdots\\w_n\end{bmatrix}=\begin{bmatrix}z_1+w_1\\\vdots\\z_n+w_n\end{bmatrix}$ and scalar multiplication defined by $\alpha\begin{bmatrix}z_1\\\vdots\\z_n\end{bmatrix}=\begin{bmatrix}\alpha z_1\\\vdots\\\alpha z_n\end{bmatrix}$ for any $\alpha\in\mathbb{C}$ is a vector space over $\mathbb{C}$. 
+\paragraph{Theorem 11.2.1}
+Note that we can split a vector in $\mathbb{C}^n$ into its real and imaginary parts, just like a complex number. If $\vec{z}\in\mathbb{C}^n$, then there exists vectors $\vec{x},\vec{y}\in\mathbb{R}^n$ such that $\vec{z}=\vec{x}+i\vec{y}$.
+\paragraph{Definition: Complex Matrices}
+The set $M_{m\times n}(\mathbb{C})$ of all $m\times n$ matrices with complex entries is a complex vector space with standard addition and complex scalar multiplication of matrices. 
+\paragraph{Definition: Complex Conjugate}
+For any $\vec{z}=\begin{bmatrix}z_1\\\vdots\\z_n\end{bmatrix}\in\mathbb{C}^n$ and $Z=\begin{bmatrix}z_{11}&\cdots&z_{1n}\\\vdots&&\vdots\\z_{m1}&\cdots&z_{mn}\end{bmatrix}\in M_{m\times n}(\mathbb{C})$, we define the \textbf{complex conjugate} by $\overline{\vec{z}}=\begin{bmatrix}\overline{z_1}\\\vdots\\\overline{z_n}\end{bmatrix}$ $\overline{Z}=\begin{bmatrix}\overline{z_{11}}&\cdots&\overline{z_{1n}}\\\vdots&&\vdots\\\overline{z_{m1}}&\cdots&\overline{z_{mn}}\end{bmatrix}$
+\paragraph{Theorem 11.2.2}
+If $A\in M_{m\times n}(\mathbb{C})$ and $\vec{z}\in\mathbb{C}^n$, then $\overline{A\vec{z}}=\overline{A}\,\overline{\vec{z}}$
+
+\section*{Complex Diagonalization}
+\paragraph{Eigenpairs}
+Let $A\in M_{n\times n}(\mathbb{C})$. If there exists $\lambda\in\mathbb{C}$ and $\vec{z}\in\mathbb{C}^n$ with $\vec{z}\neq\vec{0}$ such that $A\vec{z}=\lambda\vec{z}$, then $\lambda$ is called an eigenvalue of $A$ and $\vec{z}$ is called an eigenvector of $A$ corresponding to $\lambda$. We call $(\lambda,\vec{z})$ an eigenpair. 
+\paragraph{Theorem 11.3.1}
+If $A\in M_{n\times n}(\mathbb{R})$ has a non-real eigenvalue $\lambda$ with corresponding eigenvector $\vec{z}$, then $\overline{\lambda}$ is also an eigenvalue of $A$ with corresponding eigenvalue $\overline{\vec{z}}$
+\paragraph{Corollary 11.3.2}
+If $A\in M_{n\times n}(\mathbb{R})$ and $n$ is odd, then $A$ has at least one real eigenvalue.
+
+
+\section*{Hermitian Inner Products and Unitary Matrices (Complex Inner Products)}
+\paragraph{Definition: Standard Hermitian Inner Product}
+The \textbf{standard Hermitian inner product} for $\mathbb{C}^n$ is defined by $\langle\vec{z},\vec{w}\rangle=\vec{z}\cdot\overline{\vec{w}}=z_1\overline{w_1}+\cdots+z_n\overline{w_n}$, for $\vec{w},\vec{z}\in\mathbb{C}^n$. 
+\paragraph{Theorem 11.4.1}
+If $\vec{v},\vec{w},\vec{z}\in\mathbb{C}^n$, and $\alpha\in\mathbb{C}$, then 
+\begin{enumerate}
+    \item $\langle\vec{z},\vec{z}\rangle\in\mathbb{R}$, $\langle\vec{z},\vec{z}\rangle>0$, and $\langle\vec{z},\vec{z}\rangle=0$ if and only if $\vec{z}=\vec{0}$
+    \item $\langle\vec{z},\vec{w}\rangle=\overline{\langle\vec{w},\vec{z}\rangle}$ 
+    \item $\langle\vec{v}+\vec{z},\vec{w}\rangle=\langle\vec{v},\vec{w}\rangle+\langle\vec{z},\vec{w}\rangle$
+    \item $\langle\alpha\vec{z},\vec{w}\rangle=\alpha\langle\vec{z},\vec{w}\rangle$
+\end{enumerate} 
+\paragraph{Definition: Hermitian Inner Product}
+Let $\mathbb{V}$ be a vector space over $\mathbb{C}$. A \textbf{Hermitian Inner Product} on $\mathbb{V}$ is a function $\langle,\rangle:\mathbb{V}\times\mathbb{V}\rightarrow \mathbb{C}$ such that for all $\vec{v},\vec{w},\vec{z}\in\mathbb{V}$, and $\alpha\in\mathbb{C}$ we have 
+\begin{enumerate}
+    \item $\langle\vec{z},\vec{z}\rangle\in\mathbb{R}$, $\langle\vec{z},\vec{z}\rangle>0$, and $\langle\vec{z},\vec{z}\rangle=0$ if and only if $\vec{z}=\vec{0}$
+    \item $\langle\vec{z},\vec{w}\rangle=\overline{\langle\vec{w},\vec{z}\rangle}$ 
+    \item $\langle\vec{v}+\vec{z},\vec{w}\rangle=\langle\vec{v},\vec{w}\rangle+\langle\vec{z},\vec{w}\rangle$
+    \item $\langle\alpha\vec{z},\vec{w}\rangle=\alpha\langle\vec{z},\vec{w}\rangle$
+\end{enumerate} 
+A complex vector space with a Hermitian inner product is called a Hermitian inner product space. We define the standard Hermitian inner product $\langle,\rangle$ on $M_{m\times n}(\mathbb{C})$ by $\langle Z,W\rangle =\text{tr}(\overline{W}^TZ)$ for all $W,Z\in M_{m\times n}(\mathbb{C})$. This is also the same as taking the standard Hermitian inner product on $\mathbb{C}^{mn}$ 
+
+\paragraph{Definition: Length and Orthogonality}
+Let $\mathbb{V}$ be a Hermitian inner product space with Hermitian inner product $\langle,\rangle$. For any vectors $\vec{z}\in\mathbb{V}$, we define the \textbf{length} of $\vec{z}$ by $||\vec{z}||=\sqrt{\langle\vec{z},\vec{z}\rangle}$. For any $\vec{z},\vec{v}\in\mathbb{V}$, we say that $\vec{w}$ and $\vec{v}$ are \textbf{orthogonal} if $\langle\vec{w},\vec{z}\rangle=0$. A set $\mathcal{B}=\{\vec{z}_1,\ldots,\vec{z}_l\}\subset\mathbb{V}$ is said to be \textbf{orthogonal} if $\langle\vec{z}_j,\vec{z}_k\rangle=0$ whenever $j\neq k$, and $\mathcal{B}$ is said to be \textbf{orthonormal} if it is orthogonal and $||\vec{z}_j||=1$ for all $1\leq j\leq l$. 
+\paragraph{Theorem 11.4.2}
+Let $\mathbb{V}$ be a Hermitian inner product with Hermitian inner product space $\langle,\rangle$. For any $\vec{z},\vec{w}\in\mathbb{V}$ and $\alpha\in\mathbb{C}$ we have $||\alpha\vec{z}||=|\alpha|||\vec{z}||$, and $||\vec{z}+\vec{w}||\leq||\vec{z}||+||\vec{w}||$
+\paragraph{Theorem 11.4.3}
+If $\{\vec{z}_1,\ldots,\vec{z}_k\}$ is an orthonormal set in a Hermitian inner product space, then $\{\vec{z}_1,\ldots,\vec{z}_k\}$ is linearly independent, and $||\vec{z}_1^+\cdots+\vec{z}_k||^2=||\vec{z}_1||^2+\cdots+||\vec{z}_k||^2$. 
+\paragraph{Definition: Unitary}
+A matrix $U\in M_{n\times n}(\mathbb{C})$ is said to be \textbf{unitary} if its columns form an orthogonal basis for $\mathbb{C}^n$. 
+\paragraph{Theorem 11.4.4}
+If $U\in M_{n\times n}(\mathbb(C)$, then the following are equivalent: 
+\begin{enumerate}
+    \item The columns of $U$ form an orthonormal basis for $\mathbb{C}^n$ 
+    \item $U^{-1}=\overline{U}^T$ 
+    \item The rows of $U$ form an orthonormal basis for $\mathbb{C}^n$
+\end{enumerate}
+
+\paragraph{Theorem 11.4.5}
+If $U_1$ and $U_2$ are $n\times n$ unitary matrices, then \begin{enumerate}
+    \item $||U_1\vec{z}||=||\vec{z}||$ for all $\vec{z}\in\mathbb{C}$ 
+    \item $|\text{det}U_1|=1$ 
+    \item $U_1U_2$ is unitary
+\end{enumerate}
+\paragraph{Definition: Conjugate Transpose}
+Let $A\in M_{m\times n}(\mathbb{C})$. We call $\overline{A}^T$ the \textbf{conjugate transpose} of $A$ and denote it $A^*=\overline{A}^T$. 
+\paragraph{Theorem 11.4.6}
+If $A$ and $B$ are complex matrices and $\alpha\in\mathbb{C}$, then \begin{enumerate}
+    \item $\langle A\vec{z},\vec{w}\rangle=\langle\vec{z},A^*\vec{w}\rangle$ for all $\vec{z},\vec{w}\in\mathbb{C}^n$.  
+    \item $(A^*)^*=A$ 
+    \item $(A+B)^*=A^*+B^*$ 
+    \item $(\alpha A)^*=\overline{\alpha}A^*$ 
+    \item $(AB)^*=B^*A^*$
+\end{enumerate}
+
+
+\section*{Unitary Diagonalization and Schur's Theorem}
+\paragraph{Definition: Unitarily Similar}
+If $A$ and $B$ are matrices such that $A=U^*BU$, where $U$ is a unitary matric, then we say that $A$ and $B$ are \textbf{unitarily similar}. Note that if $A$ and $B$ are unitarily similar, then they are similar and hence have the same determinant, rank, eigenvalues, and trace. 
+\paragraph{Definition: Unitarily Diagonalizable}
+If $A$ is unitarily similar to a diagonal matrix $D$, then we say $A$ is \textbf{unitarily diagonalizable}. 
+\paragraph{Definition: Hermitian}
+A matrix $A\in M_{n\times n}(\mathbb{C})$ is called \textbf{Hermitian} if $A^*=A$. Note: 
+\begin{itemize}
+    \item If $A$ is hermitian, then we have $\overline{(A)_{ij}}=A_{ji}$. Hence, the diagonal entries of $A$ must be real, and for $i\neq j$ the $ij-$th entry must be the complex conjugate of the $ji-$th entry. 
+    \item If $A\in M_{n\times n}(\mathbb{R})$ is symmetric, then $A$ is also Hermitian. 
+\end{itemize}
+\paragraph{Theorem 11.5.1}
+An $n\times n$ matrix $A$ is Hermitian if and only if $\langle \vec{z}, A\vec{w}\rangle = \langle A\vec{z},\vec{w}\rangle$ for all $\vec{z},\vec{w}\in\mathbb{C}^n$. 
+\paragraph{Theorem 11.5.2- Schur's Theorem}
+If $A$ is an $n\times n$ matrix, then $A$ is unitarily similar to an upper triangular matrix whose diagonal entries are the eigenvalues of $A$. Note:
+\begin{itemize}
+    \item We often rearrange this to write $A=UTU^*$, which is called the Schur decomposition of $A$. 
+    \item The fact that we can unitarily triangularize every matrix in $M_{n\times n}(\mathbb{C})$ is amazing and extremely useful. That is, Schur's Theorem is an extremely important theorem in linear algebra. 
+\end{itemize}
+\paragraph{Theorem 11.5.3- Spectral Theorem for Hermitian Matrices}
+If $A$ is Hermitian, then it is unitarily diagonalizable. Note that the converse is not true: there are unitarily diagonalizable matrices that are not Hermitian. 
+\paragraph{Theorem 11.5.4}
+Every eigenvalue of a Hermitian matrix is real.
+\paragraph{Definition: Skew-Hermitian}
+Let $A\in M_{n\times n}(\mathbb{C})$. If $A^*=-A$, then $A$ is called \textbf{skew-Hermitian}. Note if, for a matrix $A$, $A^T=-A$, then $A$ is called \textbf{skew-symmetric}.
+\paragraph{Theorem 11.5.5}
+Every skew-Hermitian matrix $A$ is unitarily diagonalizable. 
+\paragraph{Theorem 11.5.6}
+If $\lambda$ is an eigenvalue of a skew-Hermitian matrix $A$, then $\lambda=ti$ for some $t\in\mathbb{R}$. 
+\paragraph{Theorem 11.5.7}
+Every unitary matrix $A$ is unitarily diagonalizable. 
+
+\section*{Normal Matrices}
+\paragraph{Definition: Normal Matrix}
+An $n\times n$ matrix $A$ such that $AA^*=A^*A$ is called \textbf{normal}. 
+\paragraph{Theorem 11.5.9- Spectral Theorem for Normal Matrices}
+A matrix $A\in M_{n\times n}(\mathbb{C})$ is unitarily diagonalizable if and only if it is normal. 
+\paragraph{Theorem 11.5.10}
+If $A$ is a normal matrix, then 
+\begin{enumerate}
+    \item $||A\vec{z}||=||A^*\vec{z}||$ for all $\vec{z}\in\mathbb{C}^n$ 
+    \item $A-\lambda I$ is normal for every $\lambda \in \mathbb{C}$ 
+    \item If $A\vec{z}=\lambda\vec{z}$, then $A^*\vec{z}=\overline{\lambda}\vec{z}$ 
+    \item If $\vec{z}_1$ and $\vec{z}_2$ are eigenvectors of $A$ corresponding to distinct eigenvalues $\lambda_1$ and $\lambda_2$ of $A$, then $\vec{z}_1$ and $\vec{z}_2$ are orthogonal. 
+\end{enumerate}
+
+
+\section*{The Cayley-Hamilton Theorem}
+\paragraph{Theorem 11.6.1- The Cayley-Hamilton Theorem}
+If $C(\lambda)$ is the characteristic polynomial of an $n\times n$ matrix $A$, then $C(A)=0_{n\times n}$. Note that this gives us a formula for the inverse of an invertible matrix $A$ as a linear combination of powers of $A$. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

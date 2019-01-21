@@ -1,0 +1,490 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{1a: Areas Under Curves}
+\paragraph{Calculate Riemann Sums} 
+With $n$ subdivisions the area estimate for $f(x)=x^2$ is: $\sum_{i=1}^nR_i=\frac{1}{n^3}\sum_{i=1}^ni^2$, and $\sum_{i=1}^nL_i=\frac{1}{n^3}\sum_{i=1}^n(i-1)^2$
+
+\section*{1b: Displacement versus Velocity}
+Recall that if $s(t)$ represents displacement of an object, and $v(t)$ represents its velocity, then $\frac{ds}{dt}=s'(t)=v(t)$. Then displacement is the area under the curve of $v(t)$. 
+
+\section*{1c: Introduction to Riemann Sums}
+\paragraph{Definition: Partition} 
+A \textbf{partition} $P$ for the interval $[a,b]$ is a finite increasing sequence of numbers of the form $a=t_0<t_1<\ldots<t_{i-1}<t_i<\ldots<t_{n-1}<t_n=b$. Let $\Delta t_i=t_i-t_{i-1}$, and let the \textbf{norm} of $P$ be $||P||=\text{max}\{\Delta t_1,\Delta t_2,\ldots,\Delta t_n\}$. 
+\paragraph{Definition: Riemann Sum} 
+Given a bounded function $f$ on $[a,b]$, a partition $P$ $a=t_0<t_1<\ldots<t_{i-1}<t_i<\ldots<t_{n-1}<t_n=b$ of $[a,b]$, and a set $\{c_1,c_2,\ldots,c_n\}$ where $c_i\in[t_{i-1},t_i]$, then a \textbf{Riemann sum} for $f$ with respect to $P$ is a sum of the form $S=\sum_{i=1}^nf(c_i)\Delta t_i$. 
+\paragraph{Regular n-partition}
+Given an interval $[a,b]$ and an $n\in\mathbb{N}$, the \textbf{regular n-partition} of $[a,b]$ is the partition $P^{(n)}$ with $a=t_0<t_1<\ldots<t_{i-1}<t_i<\ldots<t_{n-1}<t_n=b$ of $[a,b]$ where each subinterval has the same length $\Delta t_i=\frac{b-a}{n}$, hence $t_i=a+i\cdot\frac{b-a}{n}$. 
+\paragraph{Right-hand Riemann Sum} 
+The \textbf{right hand Riemann sum} for $f$ with respect to the partition $P$ is the Riemann sum $R$ obtained from $P$ by choosing $c_i$ to be $t_i$, the right hand endpoint of ${t_{i-1},t_i}$. That is, $R=\sum_{i=1}^nf(t_i)\Delta t_i$. If $P^{(n)}$ is the regular $n$-partition, then we denote the right hand Riemann sum by $R_n=\sum_{i=1}^nf\left(a+i\frac{b-a}{b}\right)\left(\frac{b-a}{n}\right)$
+\paragraph{Left-hand Riemann Sum} 
+The \textbf{left hand Riemann sum} for $f$ with respect to the partition $P$ is the Riemann sum $L$ obtained from $P$ by choosing $c_i$ to be $t_{i-1}$, the left hand endpoint of ${t_{i-1},t_i}$. That is, $L=\sum_{i=1}^nf(t_{i-1})\Delta t_{i}$. If $P^{(n)}$ is the regular $n$-partition, then we denote the left hand Riemann sum by $R_n=\sum_{i=1}^nf\left(a+(i-1)\frac{b-a}{b}\right)\left(\frac{b-a}{n}\right)$
+
+\section*{1d: Definition of the Integral}
+\paragraph{Definition: Definite Integral}
+We say that a bounded function $f$ is \textbf{integrable} on $[a,b]$ if there exists a unique number $I\in\mathbb{R}$ such that if whenever $\{P_n\}$ is a sequence of partitions with $\lim_{n\rightarrow\infty}||P_n||=0$ and $\{S_n\}$ is any sequence of Riemann sums associated with the $P_n$'s we have $\lim_{n\rightarrow\infty}S_n=I$. In this case, we call $I$ the integral of $f$ over $[a,b]$ and denote it by $\int_a^bf(t)\,dt$. The points $a$ and $b$ are called the \textbf{limits of integration} and the function $f(t)$ is called the \textbf{integrand}. The variable $t$ is called the \textbf{variable of integration}. 
+\paragraph{Theorem: The Integrability Theorem for Continuous Functions}
+Let $f$ be continuous on $[a,b]$. Then $f$ is integrable on $[a,b]$. Moreover, $\int_a^bf(t)\,dt=\lim_{n\rightarrow\infty}S_n$ where $S_n=\sum_{i=1}^nf(c_i)\Delta t_i$ is any Riemann sum associated with the regular $n$-partitions. 
+\paragraph{Theorem: Properties of Definite Integrals}
+Assume that $f$ and $g$ are integrable on the interval $[a,b]$. Then 
+\begin{itemize}
+    \item For any $c\in\mathbb{R}$, $\int_a^bcf(t)\,dt=c\int_a^bf(t)\,dt$ 
+    \item $\int_a^b(f+g)(t)\,dt=\int_a^bf(t)\,dt+\int_a^bg(t)\,dt$
+    \item If $m\leq f(t)\leq M$ for all $t\in[a,b]$, then $m(b-a)\leq\int_a^bf(t)\leq M(b-a)$
+    \item If $0\leq f(t)$ for all $t\in[a,b]$, then $0\leq\int_a^bf(t)\,dt$
+    \item If $g(t)\leq f(t)$ for all $t\in[a,b]$, then $\int_a^bg(t)\,dt\leq\int_a^bf(t)\,dt$ 
+    \item The function $|f|$ is integrable on $[a,b]$ and $\left|\int_a^bf(t)\,dt\right|\leq\int_a^b|f(t)|\,dt$
+\end{itemize}
+
+\section*{1e: Properties of the Integral}
+\paragraph{More Properties of Definite Integrals} 
+\begin{itemize}
+    \item Let $f(t)$ be defined at $t=a$. Then we define $\int_a^af(t)\,dt=0$. 
+    \item Let $f$ be integrable on the interval $[a,b]$ where $a<b$. Then we define $\int_b^af(t)\,dt=-\int_a^bf(t)\,dt$
+    \item Let $f$ be integrable on an interval $I$ containing $a,b,c$. Then $\int_a^bf(t)\,dt=\int_a^cf(t)\,dt+\int_c^bf(t)\,dt$
+\end{itemize}
+
+\section*{1f: Geometric Interpretation of the Integral} 
+If $f$ is a continuous function on the interval $[a,b]$, then $\int_a^bf(x)\,dx$ represents the area of the region under the graph of $f$ that lies above the $x$-axis between $x=a$ and $x=b$ minus the area of the region above the graph of $f$ that lies below the $x$-axis between $x=a$ and $x=b$. 
+
+\section*{1g: Average Value of a Function} 
+\paragraph{Definition: Average Value of a Function}
+If $f$ is continuous on $[a,b]$, the \textbf{average value} of $f$ on $[a,b]$ is defined as $\frac{1}{b-a}\int_a^bf(t)\,dt$. 
+\paragraph{Theorem: Average Value Theorem}
+Assume that $f$ is continuous on $[a,b]$. Then there exists $a\leq c\leq b$ such that $f(c)=\frac{1}{b-1}\int_a^bf(t)\,dt$.
+
+\section*{1h: Differentiation of an Integral Function} 
+\paragraph{Definition: Integral Function}
+Assume that $f$ is continuous on $[a,b]$. We define the \textbf{integral function} $G$ on $[a,b]$ by $G(x)=\int_a^xf(t)\,dt$.  
+
+\section*{1i-1j: Fundamental Theorem of Calculus (Part 1)}
+\paragraph{Theorem: Fundamental Theorem of Calculus (Part 1)}
+Assume that $f$ is continuous on an open interval $I$ containing a point $a$. Let $G(x)=\int_a^xf(t)\,dt$. Then $G(x)$ is differentiable at each $x\in I$ and $G'(x)=f(x)$. Equivalently, $G'(x)=\frac{d}{dx}\int_a^xf(t)\,dt=f(x)$. 
+\paragraph{Theorem: Extended Version of the Fundamental Theorem of Calculus}
+Assume that $f$ is continuous and that $g$ and $h$ are differentiable. Let $H(x)=\int_{g(x)}^{h(x)}f(t)\,dt$. Then $H(x)$ is differentiable and $H'(x)=f(h(x))h'(x)-f(g(x))g'(x)$. 
+
+\section*{1k: Antiderivatives}
+\paragraph{Definition: Antiderivative}
+Given a function $f(x)$, an \textbf{antiderivative} is a function $F(x)$ such that $F'(x)=f(x)$. If $F'(x)=f(x)$ for all $x$ in an interval $I$, we say that $F(x)$ is an antiderivative for $f(x)$ on $I$. 
+\paragraph{Theorem: Constant Function Theorem} 
+Assume that $f'(x)=0$ for all $x\in I$, then there exists a $\alpha\in\mathbb{R}$ such that $f(x)=\alpha$ for every $x\in I$. 
+\paragraph{The Antiderivative Theorem} 
+Assume that $f'(x)=g'(x)$ for all $x\in I$. Then there exists an $\alpha$ such that $f(x)=g(x)+\alpha$ for every $x\in I$. 
+\paragraph{Power Rule for Antiderivatives}
+If $\alpha\neq-1$, then $\int x^a\,dx=\frac{x^{\alpha+1}}{\alpha+1}+C$
+
+\section*{1l: Fundamental Theorem of Calculus (Part 2)}
+\paragraph{Theorem: Fundamental Theorem of Calculus (Part 2)}
+Assume that $f$ is continuous and that $F$ is any antiderivative of $f$. Then $\int_a^bf(t)dt=F(b)-F(a)$. We write $F(x)|_a^b=F(b)-F(a)$
+
+
+\section*{1m: Change of Variables for the Indefinite integral}
+\paragraph{Change of Variable Formula}
+Let $u=g(x)$ be differentiable. Then $\int f(g(x))g'(x)\,dx=\int f(u)\,du$. We use the notation $h(u)|_{u=g(x)}$ to mean replace $u$ by $g(x)$ in the formula for $h(u)$. As such $\int f(u)du|_{u=g(x)}$ means replace $u$ by $g(x)$ once the antiderivative has been found. Note that the process for using this is: \begin{itemize}
+    \item Identify the possible substitution $u=g(x)$ 
+    \item Differentiate both sides $\frac{du}{dx}=g'(x)$
+    \item Rearrange to get $du=g'(x)dx$ 
+    \item Substitute $u$ for $g(x)$ and $du$ for $g'(x)dx$ to get $\int f(g(x))g'(x)dx=\int f(u)du$
+\end{itemize}
+
+
+\section*{1o: Change of Variables for the Definite Integral}
+Assume that $g'(x)$ is continuous on $[a,b]$ and $f(u)$ is continuous on $g([a,b])$. Then $\int_a^bf(g(x))g'(x)\,dx=\int_{g(a)}^{g(b)}f(u)\,du$. We will often write $\int_{x=a}^{x=b}f(g(x))g'(x)\,dx=\int_{u=g(a)}^{u=g(b)}f(u)\,du$ to emphasize which limits of integration correspond to each variable. 
+
+\section*{2a: Inverse Trig Substitutions}
+\paragraph{Important Trigonometric Identities}
+Recall the following 
+\begin{itemize}
+    \item $\sin^2(\theta)+\cos^2(\theta)=1$
+    \item $\tan^2(\theta)+1=\sec^2(\theta)$
+    \item $\cos^2(\theta)=\frac{\cos(2\theta)+1}{2}$
+\end{itemize}
+
+\paragraph{Inverse Trig Substitutions}
+\begin{itemize}
+    \item $a^2-x^2$ is substituted by $x=a\sin(\theta)$ 
+    \item $a^2+x^2$ is substituted by $x=a\tan(\theta)$ 
+    \item $x^2-a^2$ is substituted by $x=a\sec(\theta)$
+\end{itemize}
+
+\section*{2b: Integration by Parts}
+\paragraph{Integration by Parts Formula}
+$\int f(x)g'(x)\,dx=f(x)g(x)-\int f'(x)g(x)\,dx$. Use LIPET to decide which function to integrate, as these functions are harder to differentiate. 
+
+\paragraph{Integration by Parts for the Definite Integral}
+Assume that $f'(x)$ and $g'(x)$ are both continuous on $[a,b]$. Then $\int_a^bf(x)g'(x)dx=f(x)g(x)|_a^b-\int_a^bf'(x)g(x)dx$ 
+
+\section*{2d-f: Partial Fractions}
+\paragraph{Partial Fractions} Partial fractions are useful for evaluating $\int\frac{p(x)}{q(x)}dx$ where $p$ and $q$ are polynomials. 
+\begin{center}
+\begin{tabular}{|c|c|} 
+\hline
+ If the demominator has... & Then the integral is... \\ 
+ \hline
+ Distinct linear factors \\$(a_1x+b_1)(a_2x+b_2)\ldots(a_nx+b_n)$ & One constant per factor $(\frac{A_1}{a_1x+b_1}+\frac{A_2}{a_2x+b_2}\ldots+\frac{A_n}{a_nx+b_n})$ \\ 
+ \hline
+ A repeated linear factor\\ $(ax+b)^n$ & One constant per factor $(\frac{A_1}{ax+b}+\frac{A_2}{(ax+b)^2}+\ldots+\frac{A_n}{(ax+b)^n})$ \\ 
+ \hline
+ A product of distinct irreducible quadratic factors\\ $(a_1x^2+b_1x+c_1)\ldots(a_nx^2+b_nx+c_n)$ & A linear term per factor: $\frac{A_1x+B_1}{a_1x^2+b_1x+c_1} + \ldots + \frac{A_nx+B_n}{a_nx^2+b_nx+c_n}$\\ 
+\hline 
+ A repeatable irreducible quadratic factor \\$(ax^2+bx+c)^n$ & A linear term per power $\frac{A_1x+B_1}{(ax^2+bx+c)}+\ldots+\frac{A_nx+B_n}{(ax^2+bx+c)^n}$\\
+\hline
+\end{tabular}
+\end{center}
+How do we find $A$ and $B$? Cross multiply and compare coefficients! Here's an example: $\frac{x}{x^2-4x-5}=\frac{x}{(x+1)(x-5)}=\frac{A}{x+1}+\frac{B}{x-5}$. Cross multiplying, we get $x = (x+1)(x-5)\left[\frac{A}{x+1}+\frac{B}{x-5}\right]=A(x-5)+B(x+1)$. And then solve for $A$ and $B$ one of two ways: 
+\begin{enumerate}
+    \item Linear Algebra! $x=Ax-5A+Bx+5b = (A+B)X+(B-5A)$ Therefore, $A+B = 1$, and $B-5A = 0\rightarrow B=5A$. Plugging $B=5A$ into the first equation, we get $6A=1\rightarrow A=\frac{1}{6}$, and then plugging that into the second equation we get $B=5(\frac{1}{6})=\frac{5}{6}$.
+    \item Plug in "nice" values for x. Setting $x=5$, $5=A(0)+B(6)\rightarrow B=\frac{5}{6}$. Setting $x=-1$, $-1=A(-6)\rightarrow A=\frac{1}{6}$. 
+\end{enumerate}
+
+
+\section*{2g: Introduction to Improper Integrals}
+\paragraph{Type I Improper Integral}
+Let $f$ be integrable on $[a,b]$ for each $a\leq b$. Then say that the type 1 improper integral $\int_a^\infty f(x)\,dx$ converges if $\lim_{b\rightarrow\infty}\int_a^bf(x)\,dx$ exists. In this case, we write $\int_a^\infty f(x)\,dx=\lim_{b\rightarrow\infty}\int_a^bf(x)\,dx$, otherwise it diverges. Similarly, $\int_{-\infty}^a f(x)\,dx$ converges if $\lim_{b\rightarrow-\infty}\int_b^af(x)\,dx$ exists. In this case, we write $\int_{-\infty}^a f(x)\,dx=\lim_{b\rightarrow-\infty}\int_b^af(x)\,dx$, otherwise it diverges. Also similarly, $\int_{-\infty}^\infty f(x)\,dx$ converges if both $\int_{-\infty}^0f(x)dx$ and $\int_0^\infty f(x)\,dx$ converge. In this case we write $\int_{-\infty}^\infty f(x)\,dx=\int_{-\infty}^0f(x)\,dx+\int_0^\infty f(x)\,dx$, otherwise we say that it diverges. 
+
+\paragraph{p-test}
+The improper integral $\int_1^\infty\frac{1}{x^p}dx$ converges iff $p>1$. If $p>1$, then $\int_1^\infty\frac{1}{x^p}dx=\frac{1}{p-1}$.
+
+\paragraph{Properties of type I improper integrals} If $\int_a^\infty f(x)dx$ and $\int_a^\infty g(x)dx$ both converge, then \begin{enumerate}
+    \item $\int_a^\infty cf(x)dx$ converges and $\int_a^\infty cf(x)dx=c\int_a^\infty f(x)dx$ for any $c\in\mathbb{R}$ 
+    \item $\int_a^\infty f(x)+g(x)dx$ converges, and $\int_a^\infty f(x)+g(x)dx = \int_a^\infty f(x)dx + \int_a^\infty g(x)dx$ 
+    \item If $f(x)\leq g(x)$ for all $x\geq a$ then $\int_a^\infty f(x)dx \leq \int_a^\infty g(x)dx$ 
+    \item If $\int_a^\infty f(x)dx$ converges, and $a<c<\infty$, then $\int_c^\infty f(x)dx$ converges and $\int_a^\infty f(x)dx = \int_a^cf(x)dx + \int_c^\infty f(x)dx$
+\end{enumerate}
+
+\section*{2h: Monotone Convergence Theorem for Functions}
+\paragraph{Monotone Convergence Theorem for Functions}
+Assume that $f$ is nondecreasing on $[a,\infty)$. Let $S=\{f(x)|x\in[a,\infty)\}$. \begin{enumerate}
+    \item If $S$ is bounded above, then $\lim_{x\rightarrow\infty}f(x)=L=lub(S)$
+    \item If $S$ is not bounded above, then $\lim_{x\rightarrow\infty}f(x)=\infty$
+\end{enumerate}
+
+\section*{2i: Comparison Test for Integrals}
+\paragraph{Comparison Test for Integrals}
+Assume that $0\leq f(x)\leq g(x)$ for all $x\geq a$ and that both $f$ and $g$ are integrable on $[a,b]$ for all $b>a$. \begin{enumerate}
+    \item If $\int_a^\infty g(x)\,dx$ converges, then so does $\int_a^\infty f(x)\,dx$ 
+    \item If $\int_a^\infty g(x)\,dx$ diverges, then so does $\int_a^\infty g(x)\,dx$ 
+\end{enumerate}
+
+\paragraph{Absolute Convergence for Type I Improper Integrals}
+Let $f$ be integrable on $[a,b]$ for all $b\geq a$. We say that the improper integral $\int_a^\infty f(x)\,dx$ \textbf{converges absolutely} if $\int_a^\infty |f(x)|\,dx$ converges.
+
+\paragraph{Absolute convergence Theorem for Improper Integrals}
+Let $f$ be integrable on $[a,b]$ for all $b>a$. Then $|f|$ is also integrable on $[a,b]$ for all $b>a$. Moreover, if we assume that $\int_a^\infty|f(x)|\,dx$ converges, then so does $\int_a^\infty f(x)\,dx$. In particular, if $0\leq|f(x)|\leq g(x)$ for all $x\geq a$, both $f$ and $g$ are integrable on $[a,b]$ for all $b\geq a$, and if $\int_a^\infty g(x)\,dx$ converges, then so does $\int_a^\infty f(x)\,dx$. 
+
+\section*{2j: The Gamma Function}
+\paragraph{The Gamma Function}
+For each $x\in\mathbb{R}$ define $\Gamma(x)=\int_0^\infty t^{x-1}e^{-t}dt$. This is called the Gamma Function. $\Gamma(n)=(n-1)!$
+
+\section*{2k:Type II Improper Integrals}
+\paragraph{Type II Improper Integrals}
+Let $f$ be integrable on $[t,b]$ for every $t\in(a,b]$ with either $\lim_{x\rightarrow a^+}f(x)=\infty$ or $\lim_{x\rightarrow a^+}f(x)=-\infty$. We say that the Type II Improper Integral $\int_a^bf(x)dx$ converges if $\lim_{t\rightarrow a^+}\int_t^bf(x)dx$ exists. In this case, we write $\int_a^bf(x)dx=\lim_{t\rightarrow a^+}\int_t^bf(x)dx$. Otherwise, we say it diverges. Similarly, if $\lim_{x\rightarrow b^-}f(x)=\infty$ or $\lim_{x\rightarrow b^-}f(x)=-\infty$, we say that the integral $\int_a^bf(x)dx$ converges if $\lim_{t\rightarrow b^-}\int_a^tf(x)dx$ exists. In this case, we write $\int_a^bf(x)dx=\lim_{t\rightarrow b^-}\int_a^tf(x)dx$. Otherwise, we say it diverges. 
+
+\paragraph{p-test for Type II Improper Integrals}
+The improper integral $\int_0^1\frac{1}{x^p}dx$ converges if and only if $p<1$. If $p<1$, then $\int_0^1\frac{1}{x^p}dx=\frac{1}{1-p}$ 
+
+\section*{3a-b: Areas Between Curves}
+\paragraph{Area between Curves}
+Let $f$ and $g$ be continuous functions on $[a,b]$. Let $A$ be the region bounded by the graphs of $f$ and $g$, the line $t=a$ and the line $t=b$. Then the area of the region $A$ is given by $A=\int_a^b|g(t)-f(t)|dt$
+
+\section*{3c-e: Volumes of Revolution}
+\paragraph{Volumes of Revolution: Disk Method I}
+Let $f$ be continuous on $[a,b]$ with $f(x)\geq0$ for all $x\in[a,b]$. Let $W$ be the region bounded by the graphs of $f$, the $x-$axis and the lines $x=a$ and $x=b$. Then the volume $V$ of the solid of revolution obtained by rotating the region $W$ around the $x$-axis is given by $V=\int_a^b\pi f(x)^2dx$
+
+\paragraph{Volumes of Revolution: Disk Method II}
+Let $f$ and $g$ be continuous on $[a,b]$ with $0\geq f(x)\geq g(x)$ for all $x\in[a,b]$. Let $W$ be the region bounded by the graphs of $f$ and $g$, and the lines $x=a$ and $x=b$. Then the volume $V$ of the solid of revolution obtained by rotating the region $W$ around the $x-$axis is given by $V=\int_a^b\pi(g(x)^2-f(x)^2)dx$. 
+
+\paragraph{Volumes of Revolution: Shell Method}
+Let $a\geq0$. Let $f$ and $g$ be continuous on $[a,b]$ with $f(x)\leq g(x)$ for all $x\in[a,b]$. Let $W$ be the region bounded by the graphs of $f$ and $g$, and the lines $x=a$ and $x=b$. Then the volume $V$ of the solid of revolution obtained by rotating the region $W$ around the $y$-axis is given by $V=\int_a^b2\pi x(g(x)-f(x))dx$
+
+\section*{3f: Arc Length}
+\paragraph{Arc Length}
+Let $f$ be continuously differentiable on $[a,b]$. Then the arc length $S$ of the graph of $f$ over the interval $[a,b]$ is given by $S=\int_a^b\sqrt{1+(f'(x))^2}dx$. 
+
+\section*{4a: Introduction to Differential Equations}
+\paragraph{Differential Equation} 
+A \textbf{differential equation} is an equation involving an independent variable such as $x$, a function $y=y(x)$ and various derivatives of $y$. We often write $F(x,y,y',\ldots,y^{(n)})=0$. A \textbf{solution} to the differential equation is a function $\varphi$ such that $F(x,\varphi(x),\varphi'(x),\ldots\varphi^{(n)}(x))=0$. The highest order of a derivative appearing in the equation is called the \textbf{order} of the differential equation. 
+
+\section*{4b: Separable Differential Equations}
+\paragraph{Separable Differential Equation} 
+We say that a first order differentiable equation is \textbf{separable} if there exists functions $f=f(x)$ and $g=g(y)$ such that the equation can be written in the form $y'=f(x)g(y)$. 
+\paragraph{Constant Solutions to Separable Differential Equations}
+If $y'=f(x)g(y)$ is a separable differential equation and if $y_0\in\mathbb{R}$ is such that $g(y_0)=0$, then $\phi(x)=y_0$ is called a \textbf{constant or equilibrium solution} to the differential equation. 
+\paragraph{Solving Separable Differential Equations}
+For a separable differential equation $y'=f(x)g(y)$, \\ 
+\textbf{Step 1:} Determine whether the DE is separable. You may have to factor the DE to identify $f(x)$ and $g(y)$. \\
+\textbf{Step 2:} Determine the constant solutions by finding all the values $y_0$ such that $g(y_0)=0$. For each such $y_0$, the constant function $y=y(x)=y_0$ is a solution. \\ 
+\textbf{Step 3:} If $g(y)\neq0$, integrate both sides of the following equation $\int\frac{1}{g(y)}dy=\int f(x)dx$ to solve the differential equation implicitly. \\ 
+\textbf{Step 4:} Solve the implicit equation from Step 3 explicitly (using algebra) for $y$ in terms of $x$. 
+
+
+\section*{4c: Linear Differential Equations}
+\paragraph{Linear Differential Equation} 
+A first order differential equation is said to be \textbf{linear} if it can be written in the form $y'=f(x)y+g(x)$. 
+\paragraph{Solving Linear Differential Equations}
+For a linear differential equation $y'=f(x)y+g(x)$, \\ 
+\textbf{Step 1:} Write the equation as $y'-f(x)y=g(x)$ and identify $f(x)$ and $g(x)$. \\ 
+\textbf{Step 2:} Calculate the integrating factor $I(x)$ with $I(x)\neq0$. Solve for $I$ using $I=e^{-\int f(x)dx}$. \\ 
+\textbf{Step 3:} Since $I(x)\neq0$, the solution is $y=\frac{\int g(x)I(x)dx}{I(x)}$
+
+\section*{4d: Initial Value Problems}
+\paragraph{Existence and Uniqueness for First Order Linear DE's}
+Assume that $f$ and $g$ are continuous functions on an interval $I$. Then for each $x_0\in I$ and for all $y_0\in \mathbb{R}$, the initial value problem $y'=f(x)y+g(x)$, where $y(x_0)=y_0$ has exactly one solution $y=\varphi(x)$ on the interval $I$. 
+
+\paragraph{A Mixing Problem}
+Set $s(t)$ as the amount of salt in the tank at a time $t$, and $r_{\text{in}}(t),r_{\text{out}}(t)$ to be the rate at which salt enters and leaves the tank, respectively. $r_\text{in}(t)=(\text{amount pumped in})\times(\text{rate pumped in})$ is given by the question, and $r_{\text{out}}=\frac{s(t)}{\text{initial content}}\times(\text{rate water leaves})$. Then $s'(t)=r_\text{in}(t)-r_\text{out}(t)$. 
+
+\section*{4e: Graphical and Numerical Solutions of Differential Equations}
+\paragraph{Euler's Method}
+This is an algorithm for building a numerical approximation on a closed interval $[a,b]$ to a solution to an initial value problem $y'=f(x,y)$ with $y(a)=y_0$. \\
+\textbf{Step 1:} Determine a partition $P=\{a=x_0<x_1<\cdots<x_n=b\}$ of $[a,b]$.\\ 
+\textbf{Step 2:} Assume that $\phi$ is a solution to $y'=f(x,y)$ with $\phi(x_0)=y_0$. Then $L_{x_0}(x)=y_0+f(x_0,y_0)(x-x_0)$ so we can assume that $\phi(x)=y_0+f(x_0,y_0)(x-x_0)$ on $[x_0,x_1]$. \\
+\textbf{Step 3:} Let $y_1=L_{x_0}(x_1)=y_0+f(x_0,y_0)(x_1-x_0)$ and define $\phi(x)=L_{x_1}(x)=y_1+f(x_1,y_1)(x-x_1)$ on $[x_1,x_2]$. Let $y_2=L_{x_1}(x_2)=y_1+f(x_1,y_1)(x_2-x_1)$ and define $\phi(x)=L_{x_2}(x)=y_2+f(x_2,y_2)(x-x_2)$ on $[x_2,x_3]$, and continue this process until you reach $x_n=b$. 
+
+\section*{4f: Exponential Growth and Decay}
+\paragraph{Exponential Growth and Decay Model}
+Let $Q(t)$ denote either the size of a bacterial population at time $t$, or the quantity of a radioactive substance at time $t$. Then in both cases it is known that the rate of the quantity $Q(t)$ is proportional fo $Q(t)$ itself. That is, $Q'=kQ$ where $k$ is a fixed constant. An equation for population growth/decay, $Q(t)=Ce^{kt}$. $C$ is equal to the initial value, and $k$ can be found by plugging in $C$, and a value from the question. 
+
+\section*{4g: Newton's Law of Cooling}
+\paragraph{Newton's Law of Cooling Model}
+Newton's Law of cooling states that an object will cool (or wam) at a rate that is proportional to the difference between the temperature of the object and the ambient temperature $T_a$ of its surroundings. Therefore, if we let $T(t)$ denote the temperature at a time $t$, we get that there is a constant $k$ such that $T'=k(T-T_a)$. If we let $D=D(t)=T(t)-T_a$, then $D'=T'=k(T-T_a)=kD$, so $D$ satisfies the equation of the exponential growth/decay. From this, we can see that $T(t)=(T_0-T_a)e^{kt}+T_a$.
+
+\section*{4h: Logistic Growth}
+\paragraph{Logistic Growth Model}
+A population with unlimited resources grows at a rate that is proportional to its size. That is $P'=kP$. If there is a maximum population $M$ that the resources can support then typically $P'=kP(M=P)$. This population satisfies a logistic growth model and $y'=ky(M-y)$ is called a logistic equation. Note that this is separable with constant solutions $P(t)=0$ and $P(t)=M$. Then this can be solved by $P(t)=M\frac{Ce^{Mkt}}{1+Ce^{Mkt}}$, where $C=\frac{P_0}{M-P_0}$. 
+
+
+\section*{5a: Introduction to Series}
+\paragraph{Series}
+Given a sequence $\{a_n\}$, the formal sum $a_1+a_2+\ldots+a_n+\ldots$ is called a series. (The series is caleld formal because we have not given it a meaning numerically). Then $a_n$'s are called the terms, for each term $a_i$, $i$ is called the index. We denote the serise by $\sum_{n=1}^\infty$. 
+\paragraph{Convergent Series}
+Given a sequence $\{a_n\}$, we define the $k$'th partial sum $S_k$ of the series $\sum_{n=1}^\infty a_n$ by $S_k=\sum_{n=1}^k a_n$. We say that the series $\sum_{n=1}^\infty a_n$ converges if the sequence of partial sums $\{S_k\}$ converges. In this case, we write $\sum_{n=1}^\infty a_n=\lim_{k\rightarrow\infty}S_k$. Otherwise, we say the series diverges. 
+
+\section*{5b: Geometric Series}
+\paragraph{Geometric Series}
+Let $r\in\mathbb{R}$. Then $\sum_{n=0}^\infty r^n=1+r+r^2+\ldots$ is called a geometric series of radius $r$.
+\paragraph{Geometric Series Test}
+A geometric series $\sum_{n=0}^\infty r^n$ converges if and only if $|r|<1$. Moreover, if $|r|<1$, $\sum_{n=0}^\infty r^n=\frac{1}{1-r}$ if 
+
+\section*{5c: Divergence Test}
+\paragraph{Divergence Test}
+Assume that $\sum_{n=1}^\infty a_n$ converges. Then $\lim_{n\rightarrow\infty}a_n=0$. In particular, if $\lim_{n\rightarrow\infty}a_n$ does not exist, or $\lim_{n\rightarrow\infty}a_n\neq0$, then $\sum_{n=1}^\infty a_n$ diverges. 
+\paragraph{Harmonic Series}
+The series $\sum_{n=1}^\infty \frac{1}{n}$ is called the harmonic series.
+
+
+\section*{5d: Arithmetic of Series}
+\paragraph{Arithmetic Rules for Series I}
+Assume that $\sum_{n=1}^\infty a_n$ and $\sum_{n=1}^\infty b_n$ both converge. 
+\begin{enumerate}
+    \item The series $\sum_{n=1}^\infty ca_n$ converges for every $c\in\mathbb{R}$, and $\sum_{n=1}^\infty ca_n=c\sum_{n=1}^\infty a_n$ 
+    \item The series $\sum_{n=1}^\infty(a_n+b_n)$ converges and $\sum_{n=1}^\infty(a_n+b_n)=\sum_{n=1}^\infty a_n+\sum_{n=1}^\infty b_n$ 
+    \item If $\sum_{n=1}^\infty a_n$ converges, then $\sum_{n=j}^\infty a_n$ also converges for each $j$.
+    \item If $\sum_{n=j}^\infty a_n$ converges for some $j$, then $\sum_{n=1}^\infty a_n$ converges. 
+\end{enumerate}
+
+
+\section*{5e: Monotone Convergence Theorem}
+\paragraph{Monotonic Sequences}
+We say that a sequence $\{a_n\}$ is: 
+\begin{itemize}
+    \item \textbf{increasing} if $a_n<a_{n+1}$ for all $n\in\mathbb{N}$ 
+    \item \textbf{non-increasing} if $a_n\leq a_{n+1}$ for all $n\in\mathbb{N}$
+    \item \textbf{decreasing} if $a_n>a_{n+1}$ for all $n\in\mathbb{N}$
+    \item \textbf{non-decreasing} if $a_n\geq a_{n+1}$ for all $n\in\mathbb{N}$ 
+    \item \textbf{monotonic} if $\{a_n\}$ is either non-decreasing or non-increasing
+\end{itemize}
+\paragraph{Monotone Convergence Theorem (MCT)}
+\begin{enumerate}
+    \item If $\{a_n\}$ is non-decreasing and bounded above, then $\{a_n\}$ converges to $L=lub\{a_n\}$. If $\{a_n\}$ is non-decreasing and unbounded, then $\{a_n\}$ diverges to $\infty$. 
+    \item If $\{a_n\}$ is non-increasing and bounded below, then $\{a_n\}$ converges to $L=glb\{a_n\}$. If $\{a_n\}$ is non-increasing and unbounded, then $\{a_n\}$ diverges to $-\infty$. 
+\end{enumerate}
+
+
+\section*{5f: Positive Series}
+\paragraph{Positive Series}
+A series $\sum_{n=1}^\infty a_n$ is called \textbf{positive} if $a_n\geq0$ for all $n\in\mathbb{N}$. Note that the partial sums for all positive series are non-decreasing. Then by MCT, $\sum_{n=1}^\infty a_n$ converges if and only if $\{S_k\}$ is bounded, and diverges to $\infty$ otherwise. 
+
+\section*{5g: The Comparison Test for Series}
+\paragraph{Comparison Test for Series}
+Assume that $0\leq a_n\leq b_n$ for each $n\in\mathbb{N}$. 
+\begin{enumerate}
+    \item If $\sum_{n=1}^\infty b_n$ converges, then $\sum_{n=1}^\infty a_n$ converges.
+    \item If $\sum_{n=1}^\infty a_n$ diverges, then $\sum_{n=1}^\infty b_n$ diverges. 
+\end{enumerate}
+
+
+\section*{5h: The Limit Comparison Test for Series}
+Assume $a_n>0$ and $b_n>0$ for each $n\in\mathbb{N}$. Assume also that $\lim_{n\rightarrow\infty}\frac{a_n}{b_n}=L$, where either $L\in\mathbb{R}$ or $L=\infty$. 
+\begin{enumerate}
+    \item If $0<L<\infty$, then $\sum_{n=1}^\infty a_n$ converges if and only if $\sum_{n=1}^\infty b_n$ converges. 
+    \item If $L=0$, and $\sum_{n=1}^\infty b_n$ converges, then $\sum_{n=1}^\infty a_n$ converges. Equivalently, if $\sum_{n=1}^\infty a_n$ diverges, then so does $\sum_{n=1}^\infty b_n$ 
+    \item If $L=\infty$ and $\sum_{n=1}^\infty a_n$ converges, then $\sum_{n=1}^\infty b_n$ converges. Equivalently, if $\sum_{n=1}^\infty b_n$ diverges, then so does $\sum_{n=1}^\infty a_n$. 
+\end{enumerate}
+
+
+\section*{5i: Integral Test: Introduction}
+\paragraph{The Integral Test}
+Assume that: \begin{itemize}
+    \item $f$ is continuous on $[1,\infty)$ 
+    \item $f(x)>0$ on $[1,\infty)$ 
+    \item $f$ is decreasing on $[1,\infty)$ 
+    \item $a_k=f(k)$ 
+\end{itemize}
+Then: 
+\begin{enumerate}
+    \item If $S_n=\sum_{k=1}^n a_k$, then for all $n\in\mathbb{N}$, $\int_1^{n+1}f(x)dx\leq S_n\leq a_1+\int_1^nf(x)dx$ 
+    \item $\sum_{k=1}^\infty a_k$ converges if and only if $\int_1^\infty f(x)dx$ converges. 
+    \item If $\sum_{n=1}^\infty a_k$ converges, with $S=\sum_{n=1}^\infty a_k$, then $\int_1^\infty f(x)dx\leq \sum_{k=1}^\infty a_k\leq a_1+\int_{1}^\infty f(x)dx$ and $\int_{n+1}^\infty f(x)dx\leq S-S_n\leq \int_n^\infty f(x)dx$
+\end{enumerate}
+
+\section*{5j: Integral Test: P-series}
+\paragraph{p-Series Test}
+The series $\sum_{n=1}^\infty \frac{1}{n^p}$ converges if and only if $p>1$. 
+
+
+\section*{5k: Integral Test: Estimation of Sums and Errors}
+\paragraph{Estimation of Sums}
+We can use the integral to estimate $|S-S_n|$ for a series $S$, by evaluating $\int_{n+1}^\infty f(x)dx\leq S-S_n\leq \int_n^\infty f(x)dx$, for a function $f(x)$such that $a_x=f(x)$. 
+
+
+\section*{5l-m: Alternating Series Test}
+\paragraph{Alternating Series Test}
+If: \begin{enumerate}
+    \item $a_n>0$ for all $n\in\mathbb{N}$ 
+    \item $a_{n+1}<a_n$ for all $n\in\mathbb{N}$ 
+    \item $\lim_{n\rightarrow\infty} a_n=0$
+\end{enumerate}
+Then the series $\sum_{n=1}^\infty(-1)^{n+1}a_n$ converges. Moreover, if $S_k=\sum_{n=1}^k(-1)^{n+1}a_n$ and $S=\sum_{n=1}^\infty(-1)^{n+1}a_n$, then $|S_k-S|< a_{k+1}$
+
+\section*{5n: Absolute vs Conditional Convergence}
+\paragraph{Definition: Absolute Convergence}
+We say that a series $\sum_{n=1}^\infty a_n$ \textbf{converges absolutely} or is \textbf{absolutely convergent} if the series $\sum_{n=1}^\infty |a_n|$ converges.
+\paragraph{Absolute Convergence Theorem}
+Assume that the series $\sum_{n=1}^\infty a_n$ converges absolutely. Then $\sum_{n=1}^\infty a_n$ converges. 
+\paragraph{Definition: Conditional Convergence}
+A series $\sum_{n=1}^\infty a_n$ is said to be \textbf{conditionally convergent} if it converges, but it is not absolutely convergent. 
+\paragraph{Definition: Rearrangement of a Series}
+Given a sequence $\{a_n\}$ and a bijective function $\phi:\mathbb{N}\rightarrow\mathbb{N}$, if we let $b_n=a_{\phi(n)}$, then the series $\sum_{n=1}^\infty b_n=\sum_{n=1}^\infty a_{\phi(n)}$ is called a rearrangement of the series $\sum_{n=1}^\infty a_n$. Rearrangements of absolutely convergent series are convergent, whereas rearrangements of conditionally convergent series are not. 
+
+
+\section*{5o: Ratio Test}
+\paragraph{Ratio Test}
+Given a series $\sum_{n=0}^\infty a_n$, assume that $\lim_{n\rightarrow\infty}\left|\frac{a_{n+1}}{a_n}\right|=L$, where $L\in\mathbb{R}$ or $L=\infty$. \begin{enumerate}
+    \item If $0\leq L<1$, then $\sum_{n=0}^\infty a_n$ converges absolutely. 
+    \item If $L>1$, then $\sum_{n=0}^\infty a_n$ diverges. 
+    \item If $L=1$, then no conclusion is possible. 
+\end{enumerate}
+
+\section*{6a: Introduction to Power Series}
+\paragraph{Definition: Power Series}
+A \textbf{power series centered at $x=a$} is a formal series of the form $\sum_{n=0}^\infty a_n(x-a)^n$ where $x$ is viewed as a variable. The value $a_n$ is called the coefficient of the term $(x-a)^n$. 
+\paragraph{Interval and Radius of Convergence}
+Given a power series of the form $\sum_{n=0}^\infty a_n(x-a)^n$, the set $I=\{x_0\in\mathbb{R}|\sum_{n=0}^\infty a_n(x_0-a)^n \text{ converges}\}$ is an interval centered at $x=a$ which we call the \textbf{interval of convergence} for the power series. Let $R=\begin{cases}lub(\{|x_0-a||x_0\in I)\quad\text{if }I\text{ is bounded}\\\infty \quad\quad\quad\quad\text{if }I\text{ is not bounded}\end{cases}$ Then $R$ is called the \textbf{radius of convergence} of the power series. 
+\paragraph{Fundamental Convergence Theorem for Power Series}
+Given a power series $\sum_{n=0}^\infty a_n(x-a)^n$ centered at $x=a$, let $R$ be the radius of convergence. 
+\begin{enumerate}
+    \item If $R=0$, then $\sum_{n=0}^\infty a_n(x-a)^n$ converges for $x=a$, but it diverges for all other values of $x$. 
+    \item If $0<R<\infty$, then the series $\sum_{n=0}^\infty a_n(x-a)^n$ converges absolutely for every $x\in(a-R,a+R)$ and diverges if $|x-a|>R$.
+    \item If $R=\infty$, then the series $\sum_{n=0}^\infty a_n(x-a)^n$ converges absolutely for every $x\in\mathbb{R}$. 
+\end{enumerate}
+
+
+\section*{6b: Finding Radius of Convergence}
+\paragraph{Test for the Radius of Convergence}
+Let $\sum_{n=0}^\infty a_n(x-a)^n$ be a power series for which $\lim_{n\rightarrow\infty}\left|\frac{a_{n+1}}{a_n}\right|=L$, where $0\leq L<\infty$ or $L=\infty$. Let $R$ be the radius of convergence of the power series. \begin{enumerate}
+    \item If $0<L<\infty$, then $R=\frac{1}{L}$. 
+    \item If $L=0$, then $R=\infty$. 
+    \item If $L=\infty$, then $R=0$. 
+\end{enumerate}
+
+
+\section*{6c: Functions Represented by Power Series}
+\paragraph{Functions Represented by Power Series}
+Let $\sum_{n=0}^\infty a_n(x-a)^n$ be a power series with radius of convergence $R>0$. Let $I$ be the interval of convergence for $\sum_{n=0}^\infty a_n(x-a)^n$. Let $f$ be the function defined on the interval $I$ by the formula $f(x_0)=\sum_{n=0}^\infty a_n(x_0-a)^n$ for each $x_0\in I$. We say that the function $f$ is represented by the power series $\sum_{n=0}^\infty a_n(x-a)^n$ on $I$. 
+\paragraph{Abel's Theorem: Continuity of Power Series}
+Assume that the power series $\sum_{n=0}^\infty a_n(x-a)^n$ has interval of convergence $I$. Let $f(x_0)=\sum_{n=0}^\infty a_n(x-a)^n$ for each $x_0\in I$. Then $f$ is continuous on $I$. 
+
+
+\section*{6d: Differentiation of Power Series}
+\paragraph{Formal Derivative of a Power Series}
+Given a power series $\sum_{n=0}^\infty a_n(x-a)^n$, the formal derivative is the series $\sum_{n=1}^\infty na_n(x-a)^{n-1}$. 
+\paragraph{Theorem: Differentiation of Power Series}
+Assume that the power series $\sum_{n=0}^\infty a_n(x-a)^n$ has a radius of convergence $R>0$. Let $f(x)=\sum_{n=0}^\infty a_n(x-a)^n$ for all $x\in(a-R,a+R)$. Then $f$ is differentiable on $(a-R,a+R)$ fand for each $x\in(a-R,a+R)$, $f'(x)=\sum_{n=1}^\infty na_n(x-a)^{n-1}$
+
+
+\section*{6e: Uniqueness of Power Series Representations}
+\paragraph{Uniqueness of Power Series Representations}
+Suppose that $f(x)=\sum_{n=0}^\infty a_n(x-a)^n$ for all $x\in(a-R,a+R)$ where $R>0$. Then $a_n=\frac{f^{(n)}(a)}{n!}$. In particular, if we also had that $f(x)=\sum_{n=0}^\infty b_n(x-a)^n$ then we must have that $b_n=a_n$ for each $n=0,1,\ldots$. 
+
+
+
+\section*{6f: Integration of Power Series}
+\paragraph{Term-by-Term Integration of a Power Series}
+Assume that the power series $\sum_{n=0}^\infty a_n(x-a)^n$ has radius of convergence $R>0$. Let $f(x)=\sum_{n=0}^\infty a_n(x-a)^n$ for every $x\in(a-R,a+R)$. Then the series $\sum_{n=0}^\infty\int a_n(x-a)^ndx=C+\sum_{n=0}^\infty\frac{a_n}{n+1}(x-a)^{n+1}$ also has radius of convergence $R$ and if $F(x)=C+\sum_{n=0}^\infty\frac{a_n}{n+1}(x-a)^{n+1}$, then $F'(x)=f(x)$. Furthermore, if $[c,b]\subset (a-R,a+R)$, then $\int_c^bf(x)dx=\int_c^b\sum_{n=0}^\infty a_n(x-a)^ndx=\sum_{n=0}^\infty\int_c^b a_n(x-a)^ndx$. 
+
+\section*{6g-i: Taylor Polynomials}
+\paragraph{Linear Approximation}
+If $f(x)$ is differentiable at $x=a$, then $L_a^f(x)=f(a)+f'(a)(x-a)$ is called the linear approximation to $f(x)$ centered at $x=a$. PROPERTIES:
+\begin{enumerate}
+    \item $L_a^f(a)=f(a)$ 
+    \item $(L_a^f)'(a)=f'(a)$
+    \item $L_a^f(x)$ is the unique function of the form $y=c_0+c_1(x-a)$ satisfying 1 and 2 
+    \item If $x\cong a$, then $L_a^f(x)\cong f(x)$
+\end{enumerate}
+\paragraph{Taylor Polynomials}
+Assume that $f(x)$ is $n-$times differentiable at $x=a$. The $n-$th degree Taylor polynomial for $f(x)$ centered at $x=a$ is the polynomial $T_{n,a}(x)=\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\cdots+\frac{f^{(n)}(a)}{n!}(x-a)^n$. Note that $T_{n,a}(x)$ encodes not only the value of $f(x)$ at $x=a$, but all of its first $n$ derivatives as well. Moreover, this is the only polynomial of degree $n$ or less that does so. 
+
+\section*{6j: Taylor's Theorem}
+\paragraph{Taylor Remainder}
+Assume that $f(x)$ is $n$ times differentiable at $x=a$. Let $R_{n,a}(x)=f(x)-T_{n,a}(x)$. $R_{n,a}(x)$ is called the $n-$th degree Taylor remainder function centered at $x=a$. 
+\paragraph{Taylor's Theorem}
+Assum that $f(x)$ is $n+1$-times differentiable on an interval $I$ containing $x=a$. Let $x\in I$. Then there exists a point $c$ between $x$ and $a$ such that $f(x)-T_{n,a}(x)=R_{n,a}(x)=\frac{f^{(n+1)}(x)}{(n+1)!}(x-a)^{n+1}$
+
+
+\section*{6k: Introduction to Taylor Series}
+\paragraph{Taylor Series}
+Assume that $f$ has derivatives of all orders at $a\in \mathbb{R}$. The formal series $\sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x-a)^n$ is called the \textbf{Taylor series} for $f$ centered at $x=a$. We write $f(x)\sim\sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x-a)^n$. In the special case where $a=0$, the series is often referred to as the Maclaurin series for $f$. 
+
+\section*{6l: Taylor Series for Cosine and Sine}
+\paragraph{Taylor Series for Cosine}
+$\cos(x)\sim\sum_{k=0}^\infty(-1)^k\frac{x^{2k}}{(2k)!}$
+\paragraph{Taylor Series for Sine}
+$\sin(x)\sim\sum_{k=0}^\infty(-1)^k\frac{x^{2k+1}}{(2k+1)!}$
+\paragraph{Partial Sum of Taylor Series}
+Note that $k-$th partial sum of the Taylor Series is $T_{k,a}(x)=\sum_{n=0}^k\frac{f^{(n)}(a)}{n!}(x-a)^n$, which is the $k-$th degree Taylor polynomial for $f$ centered at $x=a$. Then $f(x_0)=\lim_{k\rightarrow\infty}T_{k,a}(x_0)$ if and only if $\lim_{k\rightarrow\infty}R_{k,a}(x_0)=0$. 
+
+
+\section*{6m: Convergence of Taylor Series}
+\paragraph{Convergence Theorem for Taylor Series}
+Assume that $f$ has derivatives of all orders on an interval $I$ containing $x=a$. Assume also that there exists an $M$ such that $|f^{(k)}(x)|\leq M$ for all $k$ and for all $x\in I$. Then $f(x)=\sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x-a)^n$ for all $x\in I$.
+
+
+\section*{6n: Binomial Series}
+\paragraph{Binomial Theorem}
+Let $a\in\mathbb{R}$ and $n\in\mathbb{N}$. Then for each $x\in\mathbb{R}$ we have $(a+x)^n=\sum_{k=0}^n{n\choose k}a^{n-k}x^k$ where ${n\choose k}=\frac{n!}{k!(n-k)!}$. In particular, when $a=1$ we have $(1+x)^n=1+\sum_{k=1}^n\frac{n(n-1)\ldots(n-k+1)}{k!}x^k$
+\paragraph{Generalized Binomial Coefficients and Binomial Series}
+Let $\alpha\in\mathbb{R}$ and let $k\in\{0,1,\ldots\}$. Then we define the generalized binomial coefficient $\alpha$ choose $k$ by ${\alpha\choose k}=\frac{\alpha(\alpha-1)\ldots(\alpha-k+1)}{k!}$ if $k\neq0$ and ${\alpha\choose 0}=1$. We also define the generalized binomial series for $\alpha$ to be the power series $1+\sum_{k=1}^\infty\frac{\alpha(\alpha-)\ldots(\alpha-k+1)}{k!}x^k=\sum_{k=0}^\infty{\alpha\choose k}x^k$. Note that this series converges absolutely on the interval $(-1,1)$. 
+\paragraph{Generalized Binomial Theorem}
+Let $\alpha\in\mathbb{R}$. Then for each $x\in(-1,1)$ we have that $(1+x)^\alpha=1+\sum_{k=1}^\infty\frac{\alpha(\alpha-1)\ldots(\alpha-k+1)}{k!}x^k=\sum_{k=0}^\infty{\alpha\choose k}x^k$
+
+\section*{6o: More Examples of Power Series}
+Examples
+
+
+$$0<\frac{a_{n+1}}{a_n}\leq\frac{1}{2}$$
+
+$$0<2a_{n+1}\leq a_n$$
+
+
+
+
+\end{document}

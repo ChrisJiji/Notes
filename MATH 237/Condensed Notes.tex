@@ -1,0 +1,38 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+
+\begin{document}
+\paragraph{Graphs of Second Degree Equations}\mbox{}\newline
+
+\begin{tabular}{|p{2cm}|p{4cm}|p{7cm}|}\\
+\hline
+\textbf{Graph}     & \textbf{Formula} & \textbf{Notes} \\ \hline
+\textbf{Circle}    & $(x-h)^2+(y-k)^2=r^2$               & Centre is $(h,k)$ and radius is $r$  \\\hline
+\textbf{Parabola}  & $y=ax^2+bx+c$                       & Can find roots with quadratic equation, vertex by completing the square\\\hline   
+\textbf{Ellipse}   & $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ & $x$ intercepts are found by setting $y=0$, $y$ intercepts are found by setting $x=0$\\\hline
+\textbf{Hyperbola} & $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ & Find $x$ intercepts by setting $y=0$. Its asymptotes are $y=\pm\left(\frac{b}{a}\right)x$  \\
+\hline
+\end{tabular}\\ \\
+\paragraph{Level Set} Set $f(x,y)=k$ for some constant $k$, draw a set of $f(x,y)$ for a number of $k$.
+\paragraph{Cross-section} Similar as above, but keep $x$ or $y$ as a constant, and draw the set of $f(x,c)=z$ or $f(c,y)=z$ for some $c$. 
+\paragraph{Limits} Replace $y$ with an equation for $y$ (ie. $y=mx$), and then prove that it will be different depending on the choice of $m$. 
+
+
+
+\end{document}

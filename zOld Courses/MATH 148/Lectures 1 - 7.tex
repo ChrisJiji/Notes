@@ -1,0 +1,194 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+TA office hours: Tuesday 2-3 MC 5418, Wednesday 12-1 MC 5415, Thursday 11-12 MC 5416, Friday 2:30-3:30 MC 5406
+
+\section*{Completeness Property of R}
+$\mathbb{R}$ is an ordered (every $x \in \mathbb{R}$ is either $<$ or $>$ than another) field containing $\mathbb{N}$ (and therefore containing $\mathbb{Q}$) with the property that every non-empty subset of $\mathbb{R}$ that is bounded above has a LUB. 
+
+\paragraph*{Terminology}
+\subparagraph*{Upper Bound}
+$S\subseteq\mathbb{R}$ is bounded above if there exists a real number r, such that $s \leq r$ for every $s\in S$. Any number r is the upper bound for S. 
+
+\subparagraph*{Least Upper Bound}
+$S\subseteq\mathbb{R}$ is a number r that is: (1) an upper bound for S, and (2) if $\exists q\in\mathbb{R}$ which is an upper bound for S, then $q \geq r$. Then LUB(S) = r = sup(S). 
+
+\subparagraph*{Greatest Lower Bound}
+GLB(S) is defined similarly. 
+
+\paragraph*{Examples}\mbox{}\\
+(1) $S = \{1-\frac{1}{n}:n = 1,2,...\}$ One UB (upper bound) is 1. One LB (lower bound) is 0. LUB(S) = 1. (note LUB(S) $\notin S$). GLB(S) = 0 (note GLB(S) $\in S$) \\
+(2) $S = \mathbb{N}$. LB is 0. GLB = 1. Not bounded above, so no LUB. \\ \\ 
+
+Think about if $\mathbb{Q}$ was our universe of numbers. The completeness property does not hold, e.g. $S = \{x\in\mathbb{Q}:x^2 <2\}$. The LUB would be $\sqrt{2}$, but that does not exist in $\mathbb{Q}$. 
+
+\section*{Sequences}
+A Sequence is a list of real numbers $x_1$, $x_2$, etc.
+
+\paragraph*{Convergence}
+A sequence $(x_n)$ converges to a real number L if $\forall\epsilon>0$ $\exists N\in \mathbb{N}$ such that $\forall n\geq N$, $|x_n - L| < \epsilon$. We write $lim_{n\rightarrow\infty}x_n = L$, or $(x_n)\rightarrow L$.
+
+\paragraph*{Examples}\mbox{}\\
+(1) $x_n = \frac{1}{n} \rightarrow 0$\\
+(2) $x_n = (-1)^n$ diverges \\ 
+(3) $x_n = \frac{2^n}{n!} \rightarrow 0$\\
+
+\paragraph*{Convergence and Bounds}
+Say a sequence $(x_n)$ is bounded if the set $\{x_n: n=1,2,3...\}\subseteq\mathbb{R}$ is bounded. If $x_n$ converges, then it is bounded. And the converse of that is false. 
+
+\paragraph*{Bolzano-Weierstrass Theorem}
+Every bounded sequence has a convergent subsequence. (This is a consequence of completeness, and can be used to prove completeness)
+
+\paragraph*{Subsequence}
+A subsequence of $(x_n)$ is a sequence $(y_k)$ where $y_k = x_{n_k}$. 
+
+\section*{Continuation of Lecture 1}
+
+\paragraph*{Definition: Density}
+Say $A\subseteq\mathbb{R}$ is \underline{dense} if $\forall p<q\in\mathbb{R}$, $\exists a\in A$ with $p<a<q$. In other words, $A\cap(p,q)\neq\phi$. 
+
+\paragraph*{Monotone Convergence Theorem}
+If $(x_n)$ is an increasing sequence that is bounded above, then it converges to the LUB. If it is decreasing and bounded below, then it converges to the GLB. \\ 
+\textbf{Proof}: Since the sequence is bounded above, $sup\{x_n:n=1,2,3,\ldots\}$ exists, call it L. RTP (required to prove) that for every $\epsilon>0$, there is $N$ such that $<L-\epsilon<x_n<L+\epsilon$ $\forall n\geq N$. Since L is the LUB, $x_n\leq L$ $\forall n$, so it is obvious that $x_n<L+\epsilon$ $\forall\epsilon>0$. Since L is the LUB, and $L-\epsilon<L$, $L-\epsilon$ is not an upper bound. So $\exists N$ such that $x_n>L-\epsilon$. Since $(x_n)$ is increasing, $x_n\geq x_N$ if $n\geq N$, therefore, if $n\geq N$ $L-\epsilon<x_N\leq x_n\leq L<L+\epsilon$, as required. 
+
+\paragraph*{Definition: Cauchy Sequence}
+$(x_n)$ is a Cauchy sequence if $\forall\epsilon>0$, $\exists N$ such that if $n,n\geq N$, then $|x_n-x_m|<\epsilon$. Convergent sequences are Cauchy, and Cauchy sequences are always bounded. 
+\paragraph*{Theorem}
+\textbf{Cauchy sequences converge}. 
+
+\paragraph*{Limits}
+$f:A\subseteq\mathbb{R}\rightarrow\mathbb{R}$. $lim_{x\rightarrow a}f(x)=L$ means $\forall\epsilon>0$, $\exists\delta>0$ such that if $0<|x-a|<\delta$, then $|f(x)-L|<\epsilon$. 
+
+\paragraph*{Continuity}
+$f:A\rightarrow\mathbb{R}$ is continuous at $a\in A$ if $\forall\epsilon>0$, $\exists\delta>0$ such that whenever $x\in A$, and $|x-a|<\delta$, then $|f(x)-f(a)|<\epsilon$. Same as saying $lim_{x\rightarrow a}f(x) = f(a)$ if $A=\{(a,b), a,b\in\mathbb{R} \quad (a,\infty)\quad  (-\infty,a)\quad \mathbb{R})$. Then $f$ is continuous at $a\in A$ if whenever $(x_n)\subseteq A$  and $(x_n)\rirghtarrow a$ then $(f(x_n))\rightarrow f(a)$. 
+
+\paragraph*{Intermediate Value Theorem}
+If $f:[a,b]\rightarrow\mathbb{R}$ is continuous and $f(a)<z<f(b)$, then $\exists x\in(a,b)$ such that $f(x)=z$. 
+
+\paragraph*{Extreme Value Theorem}
+If $f:[a,b]\rightarrow\mathbb{R}$ is continuous then $\exists c,d \in [a,b]$ such that $f(c)\leq f(x)\leq f(d)$ $\forall x\in[a,b]$. \\ 
+\textbf{Proof}: First check that $\{f(t):t\in[a,b]\}$ is a bounded set. Suppose $f(t)$ is not bounded above. Then $\forall n$, $\exists t_n\in[a,b]$ such that $f(t_n)=n$. Look at the sequence $(t_n)$. This s bounded as $a\leq t_n\leq b$ $\forall n$. By Bolzano Weierstrass theorem, there is a convergent subsequence $(t_{n_k})\rightarrow t_o$, $t_o\in[a,b]$ so $f$ is continuous at $t_o$. Hence $f(t_{n_k})\rightarrow f(t_o)$. But $f(t_{n_k})>n_k\geq k \rightarrow\infty$, a contradiction. The proof is similar to prove it is bounded below. 
+Let $L = sup\{f(t):t\in[a,b]\}$ which we know exists since the set is bounded. We know $\forall n\in\mathbb{N}$, $L-\frac{1}{n}$ is not an upper bound, so $\exists f(s_n)>L-\frac{1}{n}$ for some $s_n\in[a,b]$. So then we have $L-\frac{1}{n}<f(s_n)\leq L < L + \frac{1}{n}$, $\forall n$. By squeeze theorem, $(f(s_n))\rightarrow L$. But $(s_n)\subseteq[a,b]$ is a bounded sequence, so it has a convergent subsequence by Bolzano Weierstrass theorem, say $(s_{n_k})\rightarrow s_o\in[a,b]$. Therefore $f$ is continuous at $s_o$. $f(s_{n_k})\rightarrow f(s_o)$ but $f(s_{n_k})\rightarrow L$, so then $f(s_o)=L$. Thus $f(s_o)=L\geq f(x)$ $\forall x\in[a,b]$, so $d = s_o$. The proof is similar to prove the GLB. 
+
+\section*{Integration Theory}
+If you were given the derivative of something, could you find out what was the derivative? 
+
+\paragraph*{Finding an area under a curve}
+Suppose $f:[a,b]\rightarrow\mathbb{R}$ is a bounded. To estimate the area under the curve, partition $[a,b]$ into small intervals $p:a=t_0<t_1<t_{i-1}<t_i<t_n=b$. This divides $[a,b]$ into subintervals $[t_{i-1},t_i]$. Let $M_i=sup\{f(x):x\in[t_{i-1},t_i]\}$, and $m_i=inf\{f(x):x\in[t_{i-1},t_i]\}$. Note: $M_i=f(c_i)$ for some $c_i\in[t_{i-1},t_i]$ if $f$ is continuous by EVT. \\ 
+\textbf{Riemann sums}: Upper Riemann sum (of f over partition P)$U(f,P)=\sum_{i=1}^nM_i(t_i-t_{i-1})$. \\ 
+Lower Riemann sum $L(f,P)$ = $U(f,P)=\sum_{i=1}^nm_i(t_i-t_{i-1})$ \\ 
+$L(f,P)\leq$ Area under f over $[a,b]\leq U(f,P)$ clearly, as $L(f,P)$ is an under estimate, and $U(f,P)$ is an over estimate.
+
+\paragraph*{Riemann sums of refinements}
+A \underline{refinement} of partition P is a partition Q which contains all the points of P (and possibly more). E.g. $p:a=t_o<t_1...<t_n=b$, $q=a:t_o<t_1<t_2<u<t_3<...<t_{n-2}<v<t_{n-1}<t_n=b$. What does a refinement do to our Riemann sums? Let $p:a=t_o<t_1...<t_n=b$, and let Q be a refinement of P with one additional point $u$ between $t_{i-1}$ and $t_i$. $U(f,P)\geq U(f,Q)$, and $L(f,P)\leq L(f,Q)$. 
+
+Let $P_1,P_2$ be any two partitions of $[a,b]$. Let Q be their common refinement ($Q=P_1\cup P_2$). $L(f,P_1)\leq L(f,Q)\leq U(f,Q)\leq U(f,P_2)$. So always, lower Riemann sums are less than upper Riemann sums regardless of the choice of partitions. Hench every upper Riemann sum is bounded below by any lower Riemann sum, and therefore has an infimum $I = \text{inf}\{U(f,P):\text{all partitions P}\}$. $S=\text{sup}\{L(f,P):\text{all partitions P}\}$ also exists. More over, $S\leq \text{Area under f on [a,b]}\leq I$. 
+
+\paragraph{Integrable}
+Say $f$ (a bounded function) is \underline{integrable} over $[a,b]$ if $S=\text{sup}\{L(f,P):\text{all partitions P}\} = I=\text{inf}\{U(f,P):\text{all partitions P}\}$. We write $\int_a^bf=I=S$. When $f\geq0$ and continuous, $\int_a^bf=\text{area under f over}[a,b]$. We define the area under f over $[a,b]$ for $f\geq0$ as $\int_a^bf$ provided $f$ is integrable. 
+
+\paragraph{Actual Riemann Sum}
+Given any partition P of $[a,b]$, say $P:a=t_o<...<t_n=b$. Pick $c_i\in[t_{i-1},t_i]$, we define $R(f,P)=\sum_{i=1}^nf(c_i)(t_i-t_{i-1})$. $L(f,P)\leq R(f,P)\leq U(f,P)$ for any choice of $c_i$ since $m_i\leq f(c_i)\leq M_i$. Since $f$ is continuous, there are choices of $c_i$ where $f(c_i)=M_i$, and $f(c_i)=m_i$. 
+
+\paragraph{Examples}
+\begin{enumerate}
+    \item $f(x)=c$ on $[a,b]$. $M_i=c=m_i$. $U(f,P)=\sum_{i=1}^nc(t_i-t_{i-1})=c(b-a)=L(f,P)=\sum_{i=1}^nc(t_i-t_{i-1})=c(b-a)$ Certainly we have $S=I=c(b-a)=\int_a^bf$. 
+    \item $f(x)=\{\text{1 on }\mathbb{Q}\text{ on }[1,2], \text{0 on }[1,2]\backslash\mathbb{Q}\}$. $M_i=\text{sup}f_{[t_{i-1},t_i]} = 1$ $\forall i$. $m_i=\text{inf}f_{[t_{i-1},t_i]} = 0$ $\forall i$. $U(f,P)=\sum_{i=1}^n1(t_i-t_{i-1})=2-1=1$ $=L(f,P)=\sum_{i=1}^n0(t_i-t_{i-1})=0$. sup$\{L(f,P): \text{all P}\} = 0$, inf$\{U(f,P): \text{all P}\} = 1$, $S\neq I$ so $f$ is not integrable. 
+\end{enumerate}
+
+\paragraph{Characterization Theorem}
+Suppose $f$ is a bounded function from $[a,b]\rightarrow\mathbb{R}$. Then $f$ is integrable if and only if for every $\epsilon>0$ there is a partition $P$ such that $0\leq U(f,P)-L(f,P)<\epsilon$.\\ 
+Proof: $(\Leftarrow)$ Suppose that for every $\epsilon>0$ there is a partition $P_\epsilon$ such that $0\leq U(f,P_\epsilon)-L(f,P_\epsilon)<\epsilon$. We need to prove that $I=S$. Note: $I=\text{inf}\{U(f,P):\text{all }P\}\leq U(f,P_\epsilon)$, and $S=\text{sup}\{L(f,P):\text{all }P\}\geq L(f,P_\epsilon)$. So $0\leq I-S\leq U(f,P_\epsilon)-L(f,P_\epsilon)<\epsilon$. This is true for every $\epsilon>0$, so $I=S$, and $f$ is integrable. 
+
+$(\Rightarrow)$ Now assume $f$ is integrable. Let $\epsilon>0$. We know $I=S$.  $I=\text{inf}\{U(f,P):\text{all }P\}$, so we can pick a partition $P_1$ such that $I\leq U(f,P_1)<I+\frac{\epsilon}{2}$. $S=\text{sup}\{L(f,P):\text{all }P\}$, so similarly we can pick a partition $P_2$ such that $S-\frac{\epsilon}{2}<L(f,P_2)\leq S$. Since $f$ is integrable, and $I=S$, $S-\frac{\epsilon}{2}<L(f,P_2)<S<U(f,P_2)<I+\frac{\epsilon}{2}$. Let P be the common refinement of $P_1$ and $P_2$ $(P = P_1\cup P_2)$. We know by definition $U(f,P)\leq U(f,P_1)$ and $L(f,P)\geq L(f,P_2)$. Thus $U(f,P)-L(f,P)\leq U(f,P_1)-L(f,P_2)\leq I+\frac{\epsilon}{2}-(S-\frac{\epsilon}{2})=\epsilon$, the last equality is due to $I=S$. \\ 
+
+E.g. $f(x)=x^2$ on $[0,1]$. Divide $[0,1]$ into an $n$ number of equal length partitions. Let $\epsilon>0$, and choose $n$ such that $\frac{1}{n}<\epsilon$. Let $P_n:0=t_0<t_1<\ldots<t_n=1$ where $t_i=\frac{i}{n}$. $M_i=\text{sup}f|_{[t_{i-1},t_i)}=f(t_i)=f(\frac{i}{n})=(\frac{i}{n})^2$. $m_i=\text{inf}f|_{[t_{i-1},t_i)}=f(t_{i-1})=f(\frac{i-1}{n})=(\frac{i-1}{n})^2$. $U(f,P_n)=\sum_{i=1}^n(\frac{i}{n})^2(t_i-t_{i-1})=\frac{1}{n^3}\sum_{i=1}^ni^2=\frac{1}{n^3}\frac{n(n+1)(2n+1)}{6}$, because $(t_i-t_{i-1}=\frac{1}{n})$. $L(f,P_n)=\sum_{i=1}^n(\frac{i-1}{n})^2\frac{1}{n}=\frac{1}{n^3}\sum_{i=1}^n(i-1)^2=\frac{1}{n^3}\sum_{i=0}^{n-1}i^2=\frac{1}{n^3}\frac{n(n-1)(2(n-1)+1)}{6}$. $U(f,P_n)-L(f,P_n) = \frac{1}{n}$. Thus by the characterization theorem, $f(x)=x^2$ is integrable over $[0,1]$.  \\ 
+Find $\int_o^1x^2$. We know $\int_o^1x^2=S=I$. Since $f$ is integrable, $\int_0^1x^2=I=\text{inf}\{I(f,P): \text{all }P\}\leq\text{inf}\{U(f,P_n): \text{all }P\}\leq U(f,P_N)$ for any $N$. $\int_0^1x^2=S=\text{sup}\{L(f,P): \text{all }P\}\geq\text{sup}\{L(f,P_n): \text{all }P\}\geq L(f,P_N)$ for any $N$. Let $N\rightarrow\infty$. $L(f,P_N)\leq\int_0^1x^2\leq U(f,P_N)$, $L(f,P_N)\rightarrow\frac{1}{3}=U(f,P_N)$, hence by squeeze theorem $\int_0^1x^2=\frac{1}{3}$. 
+
+\paragraph{}
+Reminder about uniform continuity. A function $f$ is continuous if it's continuous at every $x\in \mathbb{D}(f)$, and $f$ is continuous at x means $\forall\epsilon>0$ $\exists\delta>0$ such that $|y-x|<\delta$ implies $|f(y)-f(x)|<\epsilon$. We say $f$ is uniformly continuous if for every $\epsilon>0$ $\exists\delta>0$ such that $|x-y|<\delta$ then $|f(x)-f(y)|<\epsilon$, and there is a same choice of $\delta$ $\forall x,y\in\mathbb{D}(f)$. Uniform continuity implies continuity, but not the other way around. E.g. $f(x)=x^2$ on $\mathbb{R}$. It is continuous, but not uniformly continuous. Take $\epsilon=1$, and let's say $\exists\delta>0$ works. Consider the point $x=a>0$, and $y=a+\frac{\delta}{2}$. $|f(x)-f(y)|=|a^2-(a+\frac{\delta}{2})^2|=a\delta+\frac{\delta^2}{4}>a\delta\rightarrow\infty$ as $a\rightarrow\infty$, so it is not true that $|f(x)-f(y)|<1$ for all $a$. 
+
+Want to show all continuous functions are integrable over $[a,b]$.  
+
+\paragraph*{Examples continued}
+$f(x)=\frac{1}{x}$ on $(0,1]$. Continuous, but not uniformly continuous. Proof: Suppose that $\frac{1}{x}$ satisfies the definition, for at least $\epsilon=1$. Take $x=\frac{1}{N}$, and $y=\frac{1}{2N}$. $|x-y|=\frac{1}{2N}$. Let's assume we made a choice of $N$ big enough that $\frac{1}{2N}<\delta$. But $|f(x)-f(y)|=|\frac{1}{x}|=|N-2N|=N>1$. So $\delta$ doesn't work for $\epsilon=1$. \\ \\ 
+
+If $f(a,b)\rightarrow\mathbb{R}$ has a bounded derivative, $f$ is uniformly continuous. \\ 
+Proof: Pick $C$ such that $|f'(x)|\leq C$ $\forall x\in(a,b)$. Let $\epsilon>0$. Take $\delta=\frac{\epsilon}{C}$. If $x\in(a,b)$, then by MVT $\frac{f(x)-f(y)}{x-y}=f'(t)$ for some $t\in[x,y]$. Then $\frac{f(x)-f(y)}{x-y}=f'(t)\leq C|x-y|$. Say $|x-y|<\delta$, then $|f(x)-f(y)|\leq C|x-y|\leq C\frac{\epsilon}{C}=\epsilon$, as required. 
+
+\paragraph{Theorem: closed bounded and continuous implies uniform continuity}
+If $f$ is closed and bounded (Aka $f:[a,b]\rightarrow\mathbb{R}$), and continuous, then it is uniformly continuous. \\ 
+Proof: Suppose that it is not uniformly continuous. Then some $\epsilon>0$ fails the definition. That means $\forall\delta>0$, $\exists x,y\in\mathfrak{D}(f)$ such that $|x-y|<\delta$, but $|f(x)-f(y)|\geq\epsilon$. Think about this for $\delta=\frac{1}{n}$, for all $n\in\mathbb{N}$. So $\forall n$, $\exists x_n, y_n\in[a,b]$, such that $|x_n-y_n|<\frac{1}{n}$, but $|f(x_n)-f(y_n)|\geq\epsilon$. Take sequences $(x_n)$, $(y_n)$ in $[a,b]$. These are bounded sequences, so by Bolzano Weierstrass theorem, they have convergent sequences. Let $(x_{n_k})$ be a subsequence of $(x_n)$ that converges to $x_o\in[a,b]$. $x_n-\frac{1}{n}<y_n<x_n+\frac{1}{n}$, so $x_{n_k}-\frac{1}{n}<y_{n_k}<x_{n_k}+\frac{1}{n}$. Taking the limits, $x_o<y_{n_k}<x_o$, so by squeeze theorem $(y_{n_k})\rightarrow x_o$. Since $f$ is continuous at $x_o$, since $(x_{n_k})\rightarrow x_o\Rightarrow(f(x_{n_k}))\rightarrow f(x_o)$, and $y_{n_k}\rightarrow x_o\Rightarrow(f(y_{n_k}))\rightarrow f(x_o)$. But $|f(x_{n_k})-f(y_{n_k})|\geq \epsilon$ $\forall k$, but since they are both tending to $x_o$, then we get $0\geq\epsilon$, a contradiction. 
+
+\paragraph{Theorem: Integrability of continuous functions}
+If $f:[a,b]\rightarrow\mathbb{R}$ is continuous, then $f$ is integrable. \\ 
+Proof: Notice $f$ is bounded by EVT. Strategy - show that for every $\epsilon>0$, $\exists$ partition P such that $U(f,P)-L(f,P)<\epsilon$. By algebra, $U(f,P)-L(f,P)=\sum M_i(t_i-t_{i-1})-\sum m_i(t_i-t_{i-1})=\sum (M_i-m_i)(t_i-t_{i-1})$. By continuity, $M_i$ is the max of $f$, say at $c_i$, and $m_i$ is the min of $f$, say at $d_i$. \\ 
+Let $\epsilon>0$. Since $f$ is continuous on $[a,b]$, it is uniformly continuous. Hence $\exists\delta>0$ such that if $x,y\in[a,b]$ and $|x-y|<\delta$, $|f(x)-f(y)|<\epsilon$. Let $\epsilon=\frac{\epsilon}{b-a}$. Take any partition $P$ of $[a,b]$ with the property that $t_i-t_{i-1}<\delta$. Now $M_i=\text{sup}f|_{[t_{i-1},t_i]}=f(c_i)$ for some $c_i\in[t_{i-1},t_i]$ by EVT. $m_i=\text{inf}f|_{[t_{i-1},t_i]}=f(d_i)$ for some $d_i\in[t_{i-1},t_i]$ by EVT. Hence $|c_i-d_i|\leq|t_i-t_{i-1}|<\delta$ and therefore $|f(c_i)-f(d_i)|=M_i-m_i<\frac{\epsilon}{b-1}$. So $U(f,P)-L(f,P)$, or $\sum (M_i-m_i)(t_i-t_{i-1})<\sum \frac{\epsilon}{b-a}(t_i-t_{i-1})=\frac{\epsilon}{b-a}{b-a}=\epsilon$.
+
+
+\paragraph{Theorem: Monotonic functions are integrable}
+If $f:[a,b]\rightarrow\mathbb{R}$ is monotonic then $f$ is integrable. \\ 
+Proof: Note $f$ is bounded. We'll prove when $f$ is increasing it is integrable, the proof for decreasing will be similar. Let $\epsilon>0$. Take $P:a=t_o,t_1,\ldots,t_n=b$ to be n uniform partitions (the length of each one is $\frac{b-a}{n}$). $t_j=a+j\frac{b-a}{n}$. $M_i=f(t_i)$, since $f$ is increasing. $m_i=f(t_{i-1})$, since $f$ is increasing. $U(f,P)-L(f,P) =\sum (M_i-m_i)(t_i-t_{i-1})$ Note: $(t_i-t_{i-1})=\frac{b-a}{n}$. $\sum (M_i-m_i)(t_i-t_{i-1}=\frac{b-a}{n}\sum(f(t_i)-f(t_{i-1}))=\frac{b-a}{n}(f(t_n)-f(t_o))=\frac{b-a}{n}(f(b)-f(a))=\frac{c}{n}$. Pick $n$ so that $\frac{c}{n}<\epsilon$ and then $U(f,P_n)-L(f,P_n)=\frac{c}{n}<\epsilon$, and thus $f$ is integrable by the characterization theorem.  
+
+\paragraph{Theorem: Functions with Finite Discontinuities are integrable}
+Suppose $f:[a,b]\rightarrow\mathbb{R}$ is a bounded and continuous except at finitely many points. Then $f$ is integrable. \\ 
+Proof: Suppose the discontinuities are at $c_1<c_2<\ldots<c_T$. Let there exists points $r_1,r_2,\ldots r_{2t-1},r_{2t}$ such that each $c_j\in(r_{2j-1},r_{2j})$, and $\sum_{k=1}^T()r_{2j}-r_{2j-1})<\frac{\epsilon}{4\text{ sup}|f|}$. Let $a=r_o,b=r_{2T+1}$. On each sub interval of the form $[r_{2j},r_{2j+1}]$ for $j=0,\ldots, T$, $f$ is continuous. Thus for each $[r_{2j},r_{2j+1}]$, we can find $\delta_j>0$ so that if $x,y\in[r_{2j},r_{2j+1}]$ and $|x-y|<\delta$, then $|f(x)-f(y)|<\frac{\epsilon}{2(b-a)}$. Partition each $[r_{2},r_{2j+1}]$ to finitely many sub-intervals of length $\leq\delta_j$. 
+Our partition P of $[a,b]$ consists of all $r_j$ and all the points we used to divide the intervals $[r_{2j},r_{2j+1}]$, so the total amount of intervals are finite. $$U(f,P)-L(f,P)=\sum_{i=1}^N(M_i-m_i)(t_i-t_{i-1})=\sum_{i\text{ where }[t_{i-1},t_i]=[r_{2j},r_{2j+1}]}\ldots \sum_{\text{all other }i}(M_i-m_i)(t_i-t_{i-1})$$
+Recall $f$ is bounded, so $|f|\leq \text{sup}|f|=C$, hence $M_i\leq C$ $\forall i$, and $m_i\geq -C$ $\forall i$, so $M_i-m_i\leq C-(-C)=2C$. The left sum is:
+$$\leq\sum_{i\text{ where }[t_{i-1},t_i]=[r_{2j},r_{2j+1}]}2C\leq \sum_{j=1}^T2C(r_{2j}-r_{2j-1})\leq 2C\cdot\frac{\epsilon}{4C}=\frac{\epsilon}{2}$$
+The right sum is:
+$$\sum_{j=0}^T\sum_{\text{all other }i}(M_i-m_i)(t_i-t_{i-1})\leq\sum_{j=0}^T\frac{\epsilon}{2(b-a)}\sum_{t_i\text{ partition }[r_{2j},r_{2j+1}]}(t_i-t_{i-1})\leq\frac{\epsilon}{2(b-a)}\sum_{\text{all }t_i}(t_i-t_{i-1})=\frac{\epsilon}{2(b-a)}(b-a)=\frac{\epsilon}{2}$$
+Hence $U(f,P)-L(f,P)=\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon$, thus $f$ is integrable. 
+
+\paragraph{Measure Zero}
+Say $E\subseteq\mathbb{R}$ has \underline{measure zero} if $\forall\epsilon>0$ there are countably many intervals $I_j,j=1,2,3,\ldots$ such that $E\subseteq\cup_1^\infty I_j$ and $\sum_{j=1}^\infty\text{length }I_j\leq\epsilon$, ie. $\sum_{j=1}^N\text{length }I_j\leq\epsilon$ $\forall N$. 
+\subparagraph{Examples}
+\begin{enumerate}
+    \item $E=$finite set say $\{c_1,\ldots,c_T\}$. $I_j=(c_j-\frac{\epsilon}{2T},c_j+\frac{\epsilon}{2T})$ for $j=1,\ldots,T$. $I_j=\phi$ for $j>T$. Certainly $E\subseteq\cup_{j=1}^TI_j=\cup_1^\infty I_j$. $\sum_1^\infty\text{length }I_j=\sum_{1}^T\text{length }I_j=\sum_1^T\frac{E}{T}=\epsilon$.
+    \item $E=$ a countable set, or $E=\{r_j\}_{j=1}^\infty$. Take $I_j=(r_j-\frac{\epsilon}{2^{j+1}},r_j+\frac{\epsilon}{2^{j+1}})$. $E\subset\cup_{j=1}^\infty I_j$. $\sum_j\text{length }I_j=\sum_{j=1}^\infty\frac{2\epsilon}{2^{j+1}}=\epsilon\sum_{j=1}^\infty 2^{-j}=\epsilon$. 
+    \item $E=[0,1]$, E is not measure zero
+    \item $E=$ irrational numbers in $[0,1]$ is not measure 0.
+    \item There are some uncountable sets of measure zero 
+\end{enumerate}
+
+\paragraph{Theorem: Riemann integrable and Measure Zero}
+A bounded function $f:[a,b]\rightarrow\mathbb{R}$ is integrable if and only if the set of discontinuities of $f$ has measure zero. CANT USE IT: IT IS BONUS for jan 19
+
+\paragraph{Elementary Properties of Integrals}
+Suppose $f,g\in[a,b]\rightarrow\mathbb{R}$ are integrable. The following are true: 
+\begin{enumerate}
+    \item $f+g$ and $cf$ for any $c\in\mathbb{R}$ are integrable. $\int_a^bcf=c\int_a^bf$ and $\int_a^b(f+g)=\int_a^bf+\int_a^bg$
+    \item If $a<c<b$, then $\int_a^bf=\int_a^cf+\int_c^bf$ (in particular, $f$ is integrable over $[a,c]$ and $[c,b]$)
+    \item \underline{Monotonicity} If $f(x)\leq g(x)$ $\forall x\in[a,b]$, then $\int_a^bf\leq\int_a^bg$.
+\end{enumerate}
+(1.) says if we define a map $T:$Integrable functions$\rightarrow\mathbb{R}$ over $[a,b]$. $T(f)=\int_a^bf$. Then $T$ is a linear map. \\ 
+
+Proof of $f+g$ is integrable. Key point: $f+g(x)\leq \text{sup}f|_{[t_{i-1},t_i]}+\text{sup}g|_{[t_{i-1},t_i]}$ $\forall x\in[t_{i-1},t_i]=J_i$. This implies sup$f+g|_{J_i}\leq \text{sup}f|_{J_i}+\text{sup}g|_{J_i}$ and $U(f+g,P)\leq U(f,P) + U(g,P)$ $\forall p$. Similarly, $L(f+g,P)\geq L(f,P)+L(g,P)$ $\forall P$. \\ 
+Proof: Let $\epsilon>0$ and get partitions $P_1,P_2$ so $U(f,P_1)-L(f,P_1)<\epsilon$ and $U(g,P_2)-L(g,P_2)<\epsilon$. Let $P_0$ be the common refinement between $P_1$ and $P_2$. Look at $U(f+g,P_0)-L(f+g,P_0)\leq U(f,P_0)+U(g,P_0)-(L(f,P_0)+L(g,P_0))\leq U(f,P_1)-L(f,P_1)+U(g,P_2)-L(g,P_2)< 2\epsilon$. Therefore, $f+g$ is integrable. 
+% proof that the integral of the sum is equal to the sum of the integrals
+$L(f,P_0)+L(g,P_0)\leq L(f+g,P_0)\leq \int_a^b(f+g)\leq U(f+g,P_0)\leq U(f,P_0)+U(g,P_0)$, with the bounds being between $2\epsilon$ from above. $L(f,P_0)+L(g,P_0)\leq \int_a^bf \int_a^bg\leq U(f,P_0)+U(g,P_0)$. This implies $|\int_a^bf+g - (\int_a^bf+\int_a^bg)<2\epsilon$ $\forall\epsilon>0$, which implies $\int_a^bf+g=\int_a^bf+\int_a^bg$. \\ \\ 
+
+Proof of $(2)$. Let $a<c<b$, and $\epsilon>0$. Know there is a partition P of $[a,b]$ such that $U(f,P)-L(f,P)<\epsilon$. We can assume $c$ is already in $P$ because if it's not, you can just throw it in with refinements, and the statement will still be true. Let $P_1$ be a partition from $[a,c]$ and $P_2$ be a partition from $[c,b]$. $U(f,P)=U(f,P_1)+U(f,P_2)$ and $L(f,P)=L(f,P_1)+L(f,P_2)$ by definition, and $\epsilon>U(f,P)-L(f,P)=(U(f,P_1)-L(f,P_1))+(U(f,P_2)-L(f,P_2))$ This implies that both $U(f,P_j)-L(f,P_j)<\epsilon$ for $j=1,2$. This implies $f$ is integrable over $[a,c]$, and $[c,b]$. $L(f,P_1)+L(f,P_2)\leq L(f,P)\leq\int_a^bf\leq U(f,P)=U(f,P_1)+U(f,P_2)$. $\int_a^cf+\int_c^bf$ also sits between $U(f,P_1)+U(f,P_2)$ and $L(f,P_1)+L(f,P_2)$ so similar to above, they must be equal as they are between epsilon. We defined the integral over intervals $[a,b]$ ($a<b$). We can also define $\int_b^af=-\int_a^bf$. The addition rules continue to hold. \\ \\ 
+
+Proof of $(3)$. If $f(x)\leq g(x)$ $\forall x$. sup$f|_{J_i}\leq \text{sup}f|_{J_i}$ and inf$f|_{J_i}\leq \text{inf}g|_{J_i}$. $U(f,P)\leq U(g,P)$ and $L(f,P)\leq L(g,P)$. $\int_a^bf=\text{inf}U(f,P)\leq\text{inf}U(g,P)=\int_a^bg$ $\forall P$. Corollary: if $m\leq f(x)\leq M$ $\forall x$, then $m(b-a)\leq\int_a^bf\leq \int_a^bM=M(b-a)$\\ \\ 
+
+More properties: \begin{enumerate}
+    \item $f$ is integrable over $[a,b]$ then is $|f|$. Corollary: $|\int_a^bf|\leq \int_a^b|f|$. 
+\end{enumerate}
+PRoof: Compare sup$|f||_{J_i}-\text{inf}|f||_{J_i}$ and sup$f|_{J_i}-\text{inf}f|_{J_i}$. Cases: \begin{enumerate}
+    \item if $f\geq0$ on $J_i$, then $|f|=f$ on $J_i$, and clearly these two differences are identical.   
+    \item $f\leq0$ on $J_i$, then $|f|=-f$ on $J_i$, and clearly the differences are the same.
+    \item $f$ switches sign. Then the sup is positive, and the inf is negative. Here, sup$|f||_{J_1}-\text{inf}|f||_{J_i}\leq \text{sup}f|_{J_i}-\text{inf}f|_{J_i}$.
+\end{enumerate}
+Hence $U(|f|,P)-L(|f|,P)\leq U(f,P)-L(f,P)$. This implies that $|f|$ is integrable.\\ 
+Proof of corollary: $-|f|\leq f\leq |f|$. By monotonicity, $\int_a^b-|f|\leq \int_a^bf\leq \int_a^b|f|\Rightarrow-\int_a^b|f|\leq \int_a^bf\leq \int_a^b|f|\Rightarrow |\int_a^bf|\leq\int_a^b|f|$. 
+
+
+\end{document}

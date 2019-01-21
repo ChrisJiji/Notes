@@ -1,0 +1,83 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Elementary Row Operations}
+Let A be a nxn matrix. The elementary row operations are:
+\begin{enumerate}
+    \item Multiply a row by a non-zero scalar
+    \item Add a scalar multiple of one row to another row 
+    \item Interchange two rows 
+\end{enumerate}
+Note: The resulting rows are linear combinations of the original rows. \\ 
+Note: Each elementary row operation can be undone (inverted) with an elem row op. of the same kind. 
+
+\paragraph*{Definitions: Row Equivalency}
+Two matrices (mxn) A and B are row equivalent if B can be obtained from A using a finite number of elementary row operations and vice versa. 
+
+\paragraph*{Theorem}
+Two mxn matricies A and B, Ax=0 and Bx=0 have the same solutions if A and B are row equivalent. \\ 
+\textbf{Proof}: Suppose B is obtained from A using a finite number of elementary row operations. $A=A_0\rightarrow A_1\rightarrow A_2\rightarrow\ldots\rightarrow A_k = B$ (where $A_{n+1}=A_n +$ an elementary row operation). It suffices to show $A_ix=0$ and $A_{i+1}x=0$ have the same solutions for $0\leq i\leq k-1$. In another words, we can assume B is obtained from A by a single elementary row operation. In this case, the rows of B are linear combinations of the rows of A. By the fact that elementary row operations are invertible, the rows of A are linear combinations of the rows of B. So $Ax=0$ and $Bx=0$ are equivalent so they have the same solutions. \\ 
+\textbf{Idea}: Solve $Ax=0$, apply elementary row operations to replace A with a "simpler" matrix B. 
+
+\paragraph*{Definition: Row Reduced}
+Let A be a mxn matrix where $A=[a_{ij}]$ is \textbf{row reduced} if:
+\begin{enumerate}
+    \item The first non-zero entry in each row (if it exists) to be 1
+    \item Each column with a leading non-zero entry of some row has all the other entries leading to 0. 
+\end{enumerate}
+
+\paragraph*{Examples}
+\begin{enumerate}
+    \item $\begin{bmatrix}
+    1 & 2 & 0 & 0 \\
+    0 & 1 & 1 & 0 \\
+    0 & 0 & 1 & 0  
+\end{bmatrix}$ This is NOT row reduced. 
+\item $\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0  
+\end{bmatrix}$ This IS row reduced. 
+\item $\begin{bmatrix}
+    0 & 1 & 0 & 0 \\
+    1 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0  
+\end{bmatrix}$ This IS row reduced. 
+\end{enumerate}
+
+\paragraph*{Theorem}
+Every matrix is row equivalent to a row reduced matrix. \\ 
+\textbf{Proof:} We must show that for any matrix A we can apply elementary row operations and arrive at a row reduced matrix R. Let's consider the first row of A. If the entry is 0, then condition (1) of the definition of row reduced holds trivially. Otherwise it has a first non-zero entry $a_{1j}$. Multiply row 1 by $a_{1j}^{-1}$. Then row 1 satisfies (1). For each row $i\neq 1$, add $-a_{ij}*$row 1 to row $i$. Then row 1 will also satisfy (2). Now do the same thing beginning with rows $2,3,\ldots,j$. Note row 1 does not change. Continuing in this way we reach a row reduced matrix. Since we applied only elementary row operations, this matrix will be row equivalent to A. 
+
+\paragraph*{Definition: Row Reduced Echelon}
+An mxn matrix A is \underline{row reduced echelon} if:
+\begin{enumerate}
+    \item it is row reduced
+    \item zero rows occur below non-zero rows
+    \item if rows 1, \dots, r are nonzero with leading 1s at columns $k_1$, \dots, $k_r$ respectively, then $k_1<k_2<\ldots<k_r$. 
+\end{enumerate}
+
+\paragraph*{Examples}
+\begin{enumerate}
+    \item $\begin{bmatrix}
+    1 & 0 & 0 &  \\
+    0 & 1 & 0 &  \\
+    0 & 0 & \ddots &   
+\end{bmatrix}$ The identity matrix  
+\item $\begin{bmatrix}
+    0 & 1 & 2 & 0 & 1 \\
+    0 & 0 & 0 & 1 & 3 \\
+    0 & 0 & 0 & 0 & 0 \\  
+\end{bmatrix}$ This is row reduced echelon
+\end{enumerate}
+Note: Every row reduced matrix is row equivalent to a row reduced echelon matrix using only row interchanges. 
+
+\end{document}

@@ -1,0 +1,132 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\paragraph{The 10 Properties} \begin{enumerate}
+    \item $x+y\in\mathbb{F}$ (closed under addition) 
+    \item $(x+y)+w=x+(y+w)$ (addition is associative)
+    \item $x+y=y+x$ (addition is commutative) 
+    \item There exists a $0$ 
+    \item There exists an additive inverse 
+    \item $cx\in\mathbb{F}$ (closed under multiplication)
+    \item $c(dx)=(cd)x$ (multiplication is associative) 
+    \item $(c+d)x=cx+dx$ (multiplication is distributive)
+    \item $c(x+y)=cx+cy$ (multiplication is still distributive)
+    \item $1x=x$ (multiplicative identity) 
+\end{enumerate}
+
+\paragraph{Span} A span of a set is the set of all possible linear combinations of the set. Note that when a vector in the span is a linear combination of the others, you can remove it. \\ 
+To find if something is in the span of something, set that something to equal every element in the span multiplied by a coefficient, then solve. 
+
+\paragraph{Linear Independence} A set is linearly independent if none of the vectors are linear combinations of the others. To find if a set is linearly independent or not, set it equal to $\vec{0}$ and solve. 
+
+\paragraph{Basis} A basis is a spanning set that is linearly independent. \\ 
+To find a basis: Find a vector equation, make that the set of the basis, and then simplify the spanning set. 
+
+\paragraph{Subspace} A subset $\mathbb{S}$ is called a subspace if, for all $\vec{x},\vec{y}\in\mathbb{S}$, and $c\in\mathbb{R}$ \begin{enumerate}
+    \item It is non-empty (prove that $\vec{0}$ exists)
+    \item $\vec{x}+\vec{y}\in\mathbb{S}$ 
+    \item $c\vec{x}\in\mathbb{S}$
+\end{enumerate} Any span of vectors is a subspace. 
+
+\paragraph{Dot product} For two vectors $\vec{x}$ and $\vec{y}$, the dot product is defined as $x_1y_1+\ldots+x_ny_n$. Note: It's commutative and associative, and when $\vec{x}\cdot\vec{y}=0$, then $\vec{x}$ and $\vec{y}$ are orthogonal. 
+
+\paragraph{Length} $\|\vec{x}\|=\sqrt{x_1^2+\ldots+x_n^2}$
+
+\paragraph{Cross product} Let $\vec{v},\vec{w}\in\mathbb{R}^3$. Then the \textbf{cross product} of $\vec{v}=\begin{bmatrix}v_1\\v_2\\v_3\end{bmatrix}$ and $\vec{w}=\begin{bmatrix}w_1\\w_2\\w_3\end{bmatrix}$ is $\vec{v}\times\vec{w}=\begin{bmatrix}v_2w_3-v_3w_2\\v_3w_1-v_1w_3\\v_1w_2-v_2w_1\end{bmatrix}$. The resulting matrix is orthogonal to $\vec{v}$ and $\vec{w}$. 
+
+\paragraph{Scalar Equation of a Plane} $n_1x_1+n_2x_2+n_3x_3=b_1n_1+b_2n_2+b_3n_3$, where $\vec{v}$ is a normal for the plane, and $\vec{b}$ is a point which the plane passes through. 
+
+\paragraph{Projection} Let $\vec{a},\vec{b}\in\mathbb{R}^n$ with $\vec{a}\neq\vec{0}$. The \textbf{projection} of $\vec{b}$ onto $\vec{a}$ is defined by $\text{proj}_{\vec{a}}\vec{b}=\frac{\vec{b}\cdot\vec{a}}{||\vec{a}||^2}\vec{a}$. The \textbf{perpendicular} of $\vec{b}$ onto $\vec{a}$ is defined by $\text{perp}_{\vec{a}}\vec{b}=\vec{b}-\text{proj}_{\vec{a}}\vec{b}$. The projection of $\vec{u}\in\mathbb{R}^3$ onto a plane $P$ with normal vector $\vec{n}$ is defined by $\text{proj}_P\vec{u}=\text{perp}_{\vec{n}}\vec{u}$.
+
+\paragraph{Rank} The rank of a matrix is the number of leading ones in the RREF of the matrix. 
+
+\paragraph{Linearity Property} To prove something is linear, you must prove that $f(s\vec{x}+t\vec{y})=sf(\vec{x})+tf(\vec{y})$. 
+
+\paragraph{Standard Matrix} Let $L:\mathbb{R}^n\rightarrow\mathbb{R}^m$ be a linear mapping. The matrix $[L] = [L(\vec{e}_1)\quad L(\vec{e}_2)\ldots L(\vec{e}_n)]$ is called the \textbf{standard matrix of $L$} and has the property that $L(\vec{x})=[L]\vec{x}$.
+
+\paragraph{Rotation} The standard matrix of $R_{\theta}=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}$
+
+\paragraph{Reflections} Let refl$_P:\mathbb{R}^n\rightarrow\mathbb{R}^n$ denote the function which maps a vector $\vec{x}$ to its mirror image in a hyperplane $P$. We define refl$_P(\vec{x})=\vec{x}-2\text{perp}_P(\vec{x})=\vec{x}-2\text{proj}_{\vec{n}}(\vec{x})$.
+
+\paragraph{Range} Let $L:\mathbb{R}^n\rightarrow\mathbb{R}^m$. We define the \textbf{range} of $L$ to be the set of all images that $L$ produces for $\vec{x}\in\mathbb{R}^n$. That is, $\text{Range}(L)=\{L(\vec{x})|\vec{x}\in\mathbb{R}^n\}$. The range of $(L)$ is a subspace of the codomain, $\mathbb{R}^m$. 
+
+\paragraph{Kernel} Let $L:\mathbb{R}^n\rightarrow\mathbb{R}^m$ be a linear mapping. The \textbf{kernel} (sometimes called the \textbf{null space}) is the set of all vectors in the domain that have image $\vec{0}$ under $L$. In set notation, $ker(L)=\{\vec{x}\in\mathbb{R}^n|L(\vec{x})=\vec{0}\}$.
+
+\paragraph{Null Space} Same as a Kernel, but Null$(A)=\{\vec{x}\in\mathbb{R}^n|A\vec{x}=\vec{0}\}$. The left nullspace is the nullspace of $A^T$
+
+\paragraph{Column Space} Figure out if a column is a linear combinations of the columns of a matrix, $A$. 
+
+\paragraph{Composition of Mappings} $(M\circ L)(\vec{x})=M(L(\vec{x}))$. Also, $[M\circ L]=[M][L]$. 
+
+\paragraph{Vector Space} To prove something is a vector space, just prove all 10 properties. If $\mathbb{S}$ is a non-empty subset of a vector space $\mathbb{V}$, and $\mathbb{S}$ is also a vector space using te same operations as $\mathbb{V}$, then $\mathbb{S}$ is called a \textbf{subspace} of $\mathbb{V}$. To prove this, use the subspace test! (prove that it is non-empty, closed under addition, and closed scalar multiplication)
+
+\paragraph{Coordinates} Let $\mathcal{B} =\{\vec{v}_1,\ldots,\vec{v}_k\}$ be any basis for a vector space $\mathbb{V}$. If $\vec{v}=c_1\vec{v}_1+\ldots+c_n\vec{v}_n\in\mathbb{V}$, then we call $c_1,\ldots,c_n$ the \textbf{coordinates of $\vec{v}$ with respect to the basis $\mathcal{B}$}. We define the \textbf{coordinate vector of $\vec{v}$ with respect to the basis $\mathcal{B}$} by $[\vec{v}]_\mathcal{B}=\begin{bmatrix}c_1\\\vdots\\c_n\end{bmatrix}$. To find the vector given the basis, multiply each element of the vector with its corresponding basis vector. 
+
+\paragraph{Change of Coordinates} To find the change of coordinates from $B$ to $C$, we make a multiple augmented including each vector from $B$ on the left, and each vector from $C$ on the right. 
+
+\paragraph{Invertibility} Here is the Invertible Matrix Theorem: \begin{enumerate}
+    \item $A$ is invertible 
+    \item The RREF of $A$ is the identity matrix 
+    \item rank$A=n$ (the number of rows/columns) 
+    \item The system of equations $A\vec{x}=\vec{b}$ is consistent with a unique solution for all $\vec{b}$ 
+    \item The nullspace of $A$ is $\{\vec{0}\}$ 
+    \item The columns of $A$ form a basis for $\mathbb{R}^n$ 
+    \item The rows of $A$ form a basis for $\mathbb{R}^n$ 
+    \item $A^T$ is invertible 
+    \item det$\,A\neq0$
+\end{enumerate}
+The inverse of a $2\times 2$ matrix $A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$ is $A^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$
+
+\paragraph{Elementary Matrices} To find a matrix's elementary matrices, reduce the matrix and keep track of the row operations used. Then, form elementary matrices using those row operations. Note: The elementary matrices are $n\times n$, where $n$ is the number of rows. 
+
+\paragraph{Cofactors} The cofactor of $a_{ij}$ is $C_{ij}=(-1)^{i+j}\text{det}\,A(i,j)$. In other words, to find the cofactor of an index, remove the index's row and column, and find the determinant of the resulting matrix. Multiply this by $(-1)^{i+j}$ 
+
+\paragraph{Determinant Shortcuts} We can find the determinant by finding the cofactor expansion across any row or column. If the matrix is upper or lower triangular, we can multiply the diagonals to find the determinant. Furthermore, we can perform elementary row operations to get the following results: \begin{enumerate}
+    \item Multiplying a row by a constant multiplies the determinant by the same constant 
+    \item Swapping rows multiplies the determinant by $(-1)$ 
+    \item Adding any multiple of a row to another does not change the determinant 
+    \item det$\,A=$det$\,A^T$
+\end{enumerate}
+
+\paragraph{Adjugate} The adjugate of $A$ is defined by $\text{adj}\,A_{ij}=C_{ji}$. In other words, adj$\,A=(\text{cof}\,A)^T$. If $A$ is invertible, then $A^{-1}=\frac{1}{\text{det}\,A}\text{adj}\,A$. This is called the cofactor method of finding the inverse. 
+
+\paragraph{Cramer's Rule} If $A$ is an $n\times n$ invertible matrix, then the solution $\vec{x}$ of $A\vec{x}=\vec{b}$ is given by $x_i=\frac{detA_i}{detA},1\leq i\leq n$, where $A_i$ is the matrix obtained from $A$ by replacing the $i^{th}$ column of $A$ by $\vec{b}$. 
+
+\paragraph{Area and Volume} The area and volume can be found as $A=\left|\text{det}\,[\vec{v}_1\;\ldots\;\vec{v}_n]\right|$ 
+
+\paragraph{Matrix of a Linear Mapping}  If $\mathcal{B}=\{\vec{v}_1,\ldots,\vec{v}_n\}$ is a basis for $\mathbb{R}^n$ and Let $L:\mathbb{R}^n\rightarrow\mathbb{R}^n$ is a linear operator, then the \textbf{matrix of $L$ with respect to the basis $\mathcal{B}$} is defined to be $[L]_\mathcal{B}=\left[[L(\vec{v}_1)]_\mathcal{B}\cdots[L(\vec{v}_n)]_\mathcal{B}\right]$. It satisfies $[L(\vec{x})]_\mathcal{B}=[L]_\mathcal{B}[\vec{x}]_\mathcal{B}$. For short we may call the matrix of $L$ with respect to the basis $\mathcal{B}$ the \textbf{B-matrix} of $L$. \\ 
+To find $L(\vec{x})$ where $[\vec{x}]_\mathcal{B}$ is something, create the matrix consisting of $[[L(\vec{v}_1)]_\mathcal{B}\;\ldots\;[L(\vec{v}_n)]_\mathcal{B}]$. Then, plug that into $[L(\vec{x})]_\mathcal{B}=[L]_\mathcal{B}[\vec{x}]_\mathcal{B}$ \\ 
+To find the $\mathcal{B}$-matrix of some function, find the linear combination of that function using the basis, and then plug those vectors into the matrix. 
+
+\paragraph{Similar Matrices} If there exists an invertible matrix $P$ such that $P^{-1}AP=B$, then \begin{enumerate}
+    \item rankA=rankB 
+    \item detA=detB
+    \item trA=trB
+    \item A and B are similar 
+\end{enumerate}
+When given $A$ is a standard matrix of a linear mapping, and a basis, to find $[L]_\mathcal{B}$, set $P=[\mathcal{B}]$, and plug $[L]_\mathcal{B}=P^{-1}AP$ 
+
+\paragraph{Eigenvalue} When $A\vec{v}=\lambda\vec{v}$, then $\lambda$ is the eigenvalue of $A$, and $\vec{v}$ is an eigenvector of $A$ corresponding to $\lambda$. To find an eigenvalue, $C(\lambda)=$det$(A-\lambda I)=0$. Then, the corresponding eigenvectors are given by row reducing $A-\lambda I$, and solving. Note that $\vec{0}$ cannot be an eigenvector. $a_\lambda$ is the amount of times $\lambda$ appears as a root of $C(\lambda)$, and $g_\lambda$ is the amount of vectors in the basis of the corresponding eigenspace. 
+
+\paragraph{Diagonalization} To diagonalize, find the basis of the eigenspace of the matrix, and then use the basis as $P$, then $P^{-1}AP=diag(\lambda_1,\ldots,\lambda_n)$. Note: $g_{\lambda_i}=a_{\lambda_1}$ for all $i$, or else $A$ is not diagonalizable. 
+
+\paragraph{Powers of Matrices} To calculate powers, $A^{n}=PD^{n}P^{-1}$
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,55 @@
+\documentclass[10pt,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+\usepackage{enumitem}
+\newlength{\lyxlabelwidth}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%\usepackage{txfonts}
+
+\usepackage{microtype}
+
+\usepackage{calc}
+\usepackage{enumitem}
+\setenumerate{leftmargin=!,labelindent=0pt,itemindent=0em,labelwidth=\widthof{\ref{last-item}}}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\noindent \begin{center}
+\textbf{\large{}MATH 239 - Assignment 8}\\
+\textbf{\large{}Chris Ji 20725415}
+\par\end{center}{\large \par}
+\medskip{}
+
+\begin{enumerate}
+\item If $|V(G)|<2$, then then $G$ has no edges, and hence no vertices of any degree. Therefore $0\geq 2+0$, which is clearly false. So we can assume $|V(G)|\geq2$. Since $G$ is a tree, $|E(G)|=|V(G)|-1=(x+y+n)-1$, where $n$ is the number of vertices of degree 2 (not 1 or at least 3). By handshake lemma, $\sum_{v\in G}\text{deg}(v)=2|E(G)|=2(x+y+n-1)$, from our above equation for $|E(G)|$. Since the $y$ vertices have degree at least three, then $\sum_{v\in G}\text{deg}(v)$ is at least $x+3y+2n$. Then \begin{align*}x+3y+2n&\leq\sum_{v\in G}\text{deg}(v)=2(x+y+n-1)\\\Rightarrow x+3y+2n&\leq 2x+2y+2n-2\\\Rightarrow 2+y&\leq x\end{align*} As required. 
+
+
+\item Let $e=\{u,v\}$ be one of the edges in the cut induced by $A$ that has the least weight (we can do this because $G$ is finite), where $u$ is the vertex in $A$, and $v$ is the vertex not in $A$. Assume that $e$ is not in $S$. Since $S$ spans $G$, there must be some $uv-$path in $S$ that doesn't contain $e$. Furthermore, it contains vertices both in $A$ and in the cut induced by $A$. Let $e'$ be the edge in $S$ that connects $A$ and the cut induced by $A$ in $S$. By our assumption, the weight of $e'$ is at least the weight of $e$. Notice that $S-e'+e$ gives us another spanning tree (since they both connect $A$ and the cut induced by $A$ in $G$), and since $wt(e)\leq wt(e')$, $wt(S-e'+e)\leq wt(S)$, contradicting our original assumption. Therefore, $S$ has to contain $e$. 
+
+
+\item $G$ is a tree $\Rightarrow$ there are no cycles, and adding the edge $uv$ creates a cycle: By definition, if $G$ is a tree, there are no cycles. Furthermore, for every vertices $u,v\in V(G)$, there is a $u,v$ path, $P$. If $u,v$ are not adjacent, then adding the edge $\{u,v\}=e$ to $G$ will result in there being $2$ $uv-$paths that clearly don't share any edges (since $e$ was not in the graph when $P$ is chosen), $P$ and $e$. Then $P+e$ is a cycle. \\
+There are no cycles in $G$, and adding the edge $uv$ creates a cycle $\Rightarrow$ $G$ is a tree: Let $C$ be the cycle obtained by adding the edge $e=\{u,v\}$. Then clearly $C-e$ is a $u,v$ path for every non-adjacent $u,v\in G$. Therefore, all non-adjacent vertices $u,v$ are connected by the path $C-e$. If two vertices are adjacent, then they are clearly connected by the edge that defines their adjacency. Then, all vertices are connected, and by our premise there are no cycles in $G$, therefore $G$ is a tree.\\
+Since we have proved both directions, then $G$ is a tree $\Leftrightarrow$ $G$ has no cycles and for every non adjacent pair of vertices, adding an edge connecting them creates a cycle. 
+
+
+\item By contradiction, let's assume all of $G$'s vertices have degree at least 4, and all of the faces have degree at least 4. Then we know $\sum_{v\in G}\text{deg}(V)=2|E(G)|\geq 4|V(G)|$, and $\sum_{F\in f}d^*(F)=2|E(G)|\geq 4|f|$. Adding these two equations we get $4|E(G)|\geq 4(|V(G)|+|f|)\Rightarrow |E(G)|\geq |V(G)|+|f|\Rightarrow 0\geq |V(G)|+|f|-|E(G)|$. But Euler's formula gives $|V(G)|-|E(G)|+|f|=2$, which is clearly not less than or equal to 0, a contradiction. So $G$ must have either a vertex with degree less than 4, or a face with degree less than 4. 
+
+
+\item Let $d^*_3$ be the number of faces of degree 3, and $d^*_6$ be the number of faces with degree 6. Handshake lemma for faces gives us $3d^*_3+6d^*_6=2|E(G)|\Rightarrow |E(G)|=\frac{3d^*_3+6d^*_6}{2}$. Since every vertex has degree 4, and $G$ is planar, then every vertex is shared by 4 faces. Hence $|V(G)|=\frac{3d^*_3+6d^*_6}{4}$ (Also can be shown by handshake lemma: $4|V(G)|=2|E(G)|$, and using the above formula for $|E(G)|$). However, we also know every vertex is on the boundary of exactly one face of degree 6, so $|V(G)|=6d^*_6$. Then $\frac{3d^*_3+6d^*_6}{4}=|V(G)|=6d^*_6\Rightarrow d_3^*=6d^*_6$. Euler's Formula gives $|V(G)|-|E(G)|+|f|=\frac{3d^*_3+6d^*_6}{4}-\frac{3d^*_3+6d^*_6}{2}+(d^*_3+d^*_6)=2\Rightarrow d^*_3=8+2d^*_6$. Plugging in $d_3^*=6d^*_6$, we get $6d^*_6=8+2d^*_6$, so $d^*_6=2$. Then from calculations on the above formulas, $d^*_3=12, |V(G)|=2, |E(G)|=24$.  
+
+
+\end{enumerate}
+
+\end{document}

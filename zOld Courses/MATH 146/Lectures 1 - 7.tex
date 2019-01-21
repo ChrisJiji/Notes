@@ -1,0 +1,355 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Systems of Linear Equations}
+Let $\mathbb{F}$ be a field (typically $\mathbb{R}$ or $\mathbb{C}$). Consider a system of linear equations.\\  $a_{11}x_1 + ... +a_{1n}x_n = y_1$ \\ 
+$a_{21}x_1 + ... +a_{2n}x_n = y_2$\\ 
+... \\ 
+$a_{m1}x_1 + ... +a_{mn}x_n = y_m$ \\ 
+There are $m$ linear equations in $n$ unknowns. $a_{ij}\in\mathbb{F}$. $x_i$ are unknowns, $y_i\in\mathbb{F}$.A tuple of numbers $(x_1,...x_n)$ in $\mathbb{F}$ is a solution. If they satisfy the above equations. If $y_1=y_1=...y_n=0$ we say the system is homogeneous. 
+
+\paragraph{Example}\mbox{}\\ 
+(i) $2x+y-z = 0$, (ii) $x-y+z=0$. Solve by elimination: \\ 
+1. Add (-2)*(ii) to (i). This equals (i) $3y - 3z = 0$, and (ii) $x-y+z=0$. \\ 
+2. Divide (i) by 3. (i) $y-z =0$, (ii) $x-y+z=0$.\\ 
+3. Add (i) to (ii). (i) $y-z=0$, (ii) $x=0$ \\ 
+This tells me any solution to the original system $(x,y,z)$ satisfies $x=0$, and $y=z$. Conversely, any tuple $(x,y,z)$ with these properties is a solution. So a complete set of solutions is: $\{(x,y,z): x=0, y=z\} = \{(0,t,t): t\in\mathbb{F}\}$.\\ 
+
+Consider again \\
+(1) $a_{11}x_1 + ... +a_{1n}x_n = y_1$ \\ 
+(2) $a_{21}x_1 + ... +a_{2n}x_n = y_2$\\ 
+... \\ 
+(m) $a_{m1}x_1 + ... +a_{mn}x_n = y_m$ \\ \\
+For $c_1,...,c_m\in\mathbb{F}$, we can multiply equation (1) by $c_i$ and add them all together to get: $(c_1a_{1n}+...+c_ma_m1)x_1+...+(c_1a_{1n}+...+c_ma_{mn})x_n = c_1y_1+...+c_my_m$ (*)\\ 
+\textbf{Any solution of our original system is also a solution of (*).}
+\paragraph*{Definition: Linear Combination} Any equation of the form (*) is a \underline{linear combination} of the equations in our original system. \\ 
+Note: The process of elimination amounts to replacing a system of linear equations with a new system of linear equations that are linear combinations of the originals. Any solution of the original system will still be a solution of our new system. \\ \\ 
+Suppose we start with a system. \\ 
+(1) $a_{11}x_1 + ... +a_{1n}x_n = y_1$ \\ 
+(2) $a_{21}x_1 + ... +a_{2n}x_n = y_2$\\ 
+... \\ 
+(m) $a_{m1}x_1 + ... +a_{mn}x_n = y_m$ \\ \\ 
+And by taking linear combinations, we get a new system\\ 
+$b_11x_1+...+b_{1n}x_n = z_1$\\ 
+... \\ 
+$b_k1x_1+...+b_{kn}x_n=z_k$\\ \\ 
+We know that any solution of the first is also a solution of the second. If  we can also obtain the first system by taking linear combinations of the second, then solutions of the second will be solutions of the first. Hence in this case they will have the same solutions. 
+
+\paragraph*{Definition: Equivalence} Two linear systems are \underline{equivalent} if each equation in one of the systems is a linear combination of equations from the other system. 
+
+\paragraph*{Theorem} Equivalent systems of linear equations have exactly the same solutions. \\ 
+\textbf{Given a system of linear equations, find an equivalent system that is easier to solve.} This is exactly what happens in process of elimination. \\ \\ 
+Consider the system 
+(1) $a_{11}x_1 + ... +a_{1n}x_n = y_1$ \\ 
+(2) $a_{21}x_1 + ... +a_{2n}x_n = y_2$\\ 
+... \\ 
+(m) $a_{m1}x_1 + ... +a_{mn}x_n = y_m$ \\\\ 
+We write Ax=y where A is the mxn matrix $\begin{bmatrix}
+    a_{11}       & \ldots & a_{1n} \\
+    \ldots       & \ldots & \ldots \\
+    a_{m1}       & \ldots & a_{mn}
+\end{bmatrix}$
+
+. x is the vector $x = \begin{bmatrix}
+x_1 \\
+\ldots \\ 
+x_n
+\end{bmatrix}$n, y is the vector $y = \begin{bmatrix}
+y_1 \\
+\ldots \\ 
+y_m
+\end{bmatrix}$m. We say that A is the matrix of coefficients of the system. Note: A and y completely "encode" our system. \\ 
+For a field $\mathbb{F}$, we write $\mathbb{F}^n$ for the vectors of size n over $\mathbb{F}$. \\ 
+$\mathbb{F}^n = \{\begin{bmatrix}
+a_1 \\
+\ldots \\ 
+a_n
+\end{bmatrix} : a_i \in \mathbb{F}\}$\\ 
+Write $\mathbb{F}^{mxn} = M_{m,n}(\mathbb{F})$\\ 
+$=\{ \begin{bmatrix}
+    a_{11}       & \ldots & a_{1n} \\
+    \ldots       & \ldots & \ldots \\
+    a_{m1}       & \ldots & a_{mn}
+\end{bmatrix}:a_{ij}\in\mathbb{F}\}$\\ \\ 
+Often we write $A \subset M_{m,n}(\mathbb{F})$ as $A=[a_{ij}]= [a_{ij}]_{1\leq i\leq m and 1\leq i\leq n}$.
+
+Convention: an mxn matrix means m rows and n columns. 
+
+
+\section*{Elementary Row Operations}
+Let A be a nxn matrix. The elementary row operations are:
+\begin{enumerate}
+    \item Multiply a row by a non-zero scalar
+    \item Add a scalar multiple of one row to another row 
+    \item Interchange two rows 
+\end{enumerate}
+Note: The resulting rows are linear combinations of the original rows. \\ 
+Note: Each elementary row operation can be undone (inverted) with an elem row op. of the same kind. 
+
+\paragraph*{Definitions: Row Equivalency}
+Two matrices (mxn) A and B are row equivalent if B can be obtained from A using a finite number of elementary row operations and vice versa. 
+
+\paragraph*{Theorem}
+Two mxn matricies A and B, Ax=0 and Bx=0 have the same solutions if A and B are row equivalent. \\ 
+\textbf{Proof}: Suppose B is obtained from A using a finite number of elementary row operations. $A=A_0\rightarrow A_1\rightarrow A_2\rightarrow\ldots\rightarrow A_k = B$ (where $A_{n+1}=A_n +$ an elementary row operation). It suffices to show $A_ix=0$ and $A_{i+1}x=0$ have the same solutions for $0\leq i\leq k-1$. In another words, we can assume B is obtained from A by a single elementary row operation. In this case, the rows of B are linear combinations of the rows of A. By the fact that elementary row operations are invertible, the rows of A are linear combinations of the rows of B. So $Ax=0$ and $Bx=0$ are equivalent so they have the same solutions. \\ 
+\textbf{Idea}: Solve $Ax=0$, apply elementary row operations to replace A with a "simpler" matrix B. 
+
+\paragraph*{Definition: Row Reduced}
+Let A be a mxn matrix where $A=[a_{ij}]$ is \textbf{row reduced} if:
+\begin{enumerate}
+    \item The first non-zero entry in each row (if it exists) to be 1
+    \item Each column with a leading non-zero entry of some row has all the other entries leading to 0. 
+\end{enumerate}
+
+\paragraph*{Examples}
+\begin{enumerate}
+    \item $\begin{bmatrix}
+    1 & 2 & 0 & 0 \\
+    0 & 1 & 1 & 0 \\
+    0 & 0 & 1 & 0  
+\end{bmatrix}$ This is NOT row reduced. 
+\item $\begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0  
+\end{bmatrix}$ This IS row reduced. 
+\item $\begin{bmatrix}
+    0 & 1 & 0 & 0 \\
+    1 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0  
+\end{bmatrix}$ This IS row reduced. 
+\end{enumerate}
+
+\paragraph*{Theorem}
+Every matrix is row equivalent to a row reduced matrix. \\ 
+\textbf{Proof:} We must show that for any matrix A we can apply elementary row operations and arrive at a row reduced matrix R. Let's consider the first row of A. If the entry is 0, then condition (1) of the definition of row reduced holds trivially. Otherwise it has a first non-zero entry $a_{1j}$. Multiply row 1 by $a_{1j}^{-1}$. Then row 1 satisfies (1). For each row $i\neq 1$, add $-a_{ij}*$row 1 to row $i$. Then row 1 will also satisfy (2). Now do the same thing beginning with rows $2,3,\ldots,j$. Note row 1 does not change. Continuing in this way we reach a row reduced matrix. Since we applied only elementary row operations, this matrix will be row equivalent to A. 
+
+\paragraph*{Definition: Row Reduced Echelon}
+An mxn matrix A is \underline{row reduced echelon} if:
+\begin{enumerate}
+    \item it is row reduced
+    \item zero rows occur below non-zero rows
+    \item if rows 1, \dots, r are nonzero with leading 1s at columns $k_1$, \dots, $k_r$ respectively, then $k_1<k_2<\ldots<k_r$. 
+\end{enumerate}
+
+\paragraph*{Examples}
+\begin{enumerate}
+    \item $\begin{bmatrix}
+    1 & 0 & 0 &  \\
+    0 & 1 & 0 &  \\
+    0 & 0 & \ddots &   
+\end{bmatrix}$ The identity matrix  
+\item $\begin{bmatrix}
+    0 & 1 & 2 & 0 & 1 \\
+    0 & 0 & 0 & 1 & 3 \\
+    0 & 0 & 0 & 0 & 0 \\  
+\end{bmatrix}$ This is row reduced echelon
+\end{enumerate}
+Note: Every row reduced matrix is row equivalent to a row reduced echelon matrix using only row interchanges. 
+
+
+\section*{Just Row Reduced Echelon Things}
+
+\paragraph*{Examples}
+ $\begin{bmatrix}
+    0 & 1 & 2 & 0 & 1 \\
+    0 & 0 & 0 & 1 & 3 \\
+    0 & 0 & 0 & 0 & 0 \\  
+\end{bmatrix}$ \\ 
+$x_2+2x_3+x_5=0$, and $x_4+3x_5=0$. $x_2 = -2x_3-x_5$, and $x_4 = -3x_5$. $x_3,x_5,x_1$ are free variables. Setting $x_1=u$, $x_3=v$, $x_5=w$, the solutions are $\{(u,-2v-3w,v,-3w,w):u,v,w\in\mathbb{R}\}$ 
+
+\paragraph{}
+In general if A is RRE then you will have as many equations as non-zero rows, and they will be in terms of the remaining $x_i$, so $\{x_j: j \neq k_1,k_2,\ldots,k_r\}$. (where r is the amount of non-zero rows). Note: Ax=0 always has a trivial solution, $x=0=\begin{bmatrix}0\\ \vdots \\ 0\end{bmatrix}$. Fact: Every matrix is row equivalent to a unique RRE matrix. 
+
+\paragraph{Theorem}
+If A is an mxn with $n<m$, then $Ax=0$ has a non-trivial solution. \\Proof: If we have any free variables, there are an infinite amount of solutions. Every row isolates at most 1 variable, so every variable needs 1 row in a RRE matrix. If we have less rows than columns, we have less isolated variables than we have variables, so we have free variables, and so there is a non-trivial solution.
+\\ his Proof
+Let R be RRE that is now equivalent to A. Then $Ax=0$ and $Rx=0$ have the same solutions. From above, there are at most m isolated variables. Since $n>m$, there are at least $n-m>0$ free variables. 
+
+
+Note: 
+$\mathbb{F}=\mathbb{R}$ $Ax=0$ Solutions: $x=0, x=u\neq0$. Then it has infinite amount of solutions. Proof: If $Au=0$, then $a_{11}u_1+...+a_{1n}u_n=0$. $\lambda u=0$ (where $\lambda u := \begin{matrix}\lambda u_1\\\vdots\\\lambda u_n\end{matrix}$) 
+
+
+\paragraph{Theorem}
+If A is square (ie. nxn) then $Ax=0$ has a unique solution (namely $x=0$) if and only if A is row equivalent to the identity matrix In. \\ Proof: Suppose A is row equivalent to In. Then $Ax=0$ and $Inx=0$ have the same solutions. $Inx=0\Leftrightarrow x_1=0, x_2=0, \ldots, x_n=0$. Clearly $x=0$ is the only solution to $Inx=0$. Conversely, if $Ax=0$ has a unique solution $x=0$, letting R be the RRE matrix equivalent to A, $Rx=0$ has a unique solution. So there are no free variables. So there are n leading 1's in R. Since there are n rows and columns, $R=In$. 
+
+Note: If $R$ is equivalent to $In$, then $R$ is invertible. 
+
+\paragraph{non-homogeneous equations}
+Consider $Ax=y$ for $y\neq0$. Unlike the homogeneous case(which can have 1 or infinitely many solutions), there may be no solutions(so non-homogenuous equations can have 0, 1, or infinitely many solutions). example: $x_1+x_2=1$, $0x_1+0x_2=1$ has no solutions. 
+
+\section*{}
+
+\paragraph*{non-homogeneous systems cont.}
+For $A=[a_{ij}], x=[x_j], y=[y_i]$. Form the augmented matrix $[A|y]=\begin{bmatrix}
+a_{11} & \ldots & a_{1n} | y_1 \\ 
+\vdots & \vdots & \vdots | \vdots \\
+a_{m1} & \ldots & a_{mn} | y_m
+\end{bmatrix}
+$
+Suppose we can reduce this matrix: $[A|y]$ becomes $[R|z]$ through elementary row operations, where R is a row reduced echelon. Then any solution to the system $Ax=y$ will be a solution to $Rx=z$. And since elementary row operations can be inverted, solutions to $Rx=z$ will be solutions to $Ax=y$. \\ 
+
+Consider $Rx=z$ if R is row reduced echelon. So $x_{k1}\ldots x_{kr}$ (where $r$ is the last non-zero row) can be expressed in terms of the remaining $x_{ji}$, e.g. $x_{k1}=\text{in terms of remaining }x_j\text{'s}+z_1$, $x_{k2}=\text{in terms of remaining }x_j\text{'s}+z_2$, etc. So $x_j$, for $j\neq k_1,\ldots, k_r$ are free. 
+Consider the last $m-r$ equations (the zero rows). $0*x_1+0*x_2+\ldots+0*x_n=z_i$, where $m-r+1\leq i\leq m$. This tells us a necessary condition for a solution is that $z_{m-r+1},\ldots, z_n = 0$. But this is also sufficient, since in this case for any values of the $n-r$ free variables, the equation will be satisfied. \\
+
+E.g. $x_1+3x_2+2x_3=1$, $2x_1+6x_2+4x_3=3$. $\begin{bmatrix}
+1 & 3 & 2 &| 1 \\ 
+2 & 6 & 4 &| 3 
+\end{bmatrix}
+$. $(2)=(2)+(-2)*1 = \begin{bmatrix}
+1 & 3 & 2 &| 1 \\ 
+0 & 0 & 0 &| 1 
+\end{bmatrix}$, so our system has no solutions. \\ \\ 
+
+$\begin{bmatrix}
+1 & 3 & 2 &| 1 \\ 
+2 & 6 & 4 &| 2 \end{bmatrix}$. $(2)=(2)+(-2)*1 = \begin{bmatrix}
+1 & 3 & 2 &| 1 \\ 
+0 & 0 & 0 &| 0 
+\end{bmatrix}$ This translates to $x_1+3x_2+2x_3=1$. so $x_1 = -3x_2-2x_3+1$, so the free variables are $x_2, x_3$. Set $x_2=u,x_3=v$. The solutions are $\{(-3u-2v+1), u, v): u,v\in\mathbb{R}$.\\ \\ 
+
+$3x+4y=-3$, $2x+5y=5$, $-2x-3y=1$\\ 
+$\begin{bmatrix}
+3 & 4 &| -3\\ 
+2 & 5 &| 5\\
+-2 & -3 &| 1\end{bmatrix}$\\ 
+$(1)= 2(1)$, $(2)=3(2)$, $(3)=-3(3)$. This leaves us with $\begin{bmatrix}
+6 & 8 &| -6\\ 
+6 & 15 &| 15\\
+6 & 9 &| -3\end{bmatrix}$
+\\ $(2)=(2)-(1)$, $(3)=(3)-(1)$. $\begin{bmatrix}
+6 & 8 &| -6\\ 
+0 & 7 &| 21\\
+0 & 1 &| 3\end{bmatrix}$
+\\ $(2)=\frac{1}{7}*(2)$, $\begin{bmatrix}
+6 & 8 &| -6\\ 
+0 & 1 &| 3\\
+0 & 1 &| 3\end{bmatrix}$
+\\ $(3)=(3)-(2)$, $\begin{bmatrix}
+6 & 8 &| -6\\ 
+0 & 1 &| 3\\
+0 & 0 &| 0\end{bmatrix}$
+\\ $(1)=(1)-8*(2)$, $\begin{bmatrix}
+6 & 0 &| -30\\ 
+0 & 1 &| 3\\
+0 & 0 &| 0\end{bmatrix}$
+\\ $(1)=\frac{1}{6}(1)$, $\begin{bmatrix}
+1 & 0 &| -5\\ 
+0 & 1 &| 3\\
+0 & 0 &| 0\end{bmatrix}$, so $x=-5$, and $y=3$, or $(x,y)=(-5,3)$. 
+
+\paragraph{Matrices as transformations}
+Consider a linear system of equations. We write it as $Ax=y$. We view A as a transformation $A:\mathbb{F}^n\rightarrow\mathbb{F}^m$, or $Ax:=A(x):=\begin{bmatrix}a_{11}x_1+&\ldots&+a_{1n}x_n\\ \vdots & \vdots & \vdots \\ a_{mn}x_1+& \ldots & +a_{mn}x_n\end{bmatrix}$ , so $Ax=y$ has a solution if and only if $y=\text{Range}A$. Observe: for $x,u\in\mathbb{F}^n$, \begin{enumerate}
+    \item $A(x+u) = \begin{bmatrix}a_{11}(x_1+u_1)+&\ldots&+a_{1n}(x_n+u_n)\\ \vdots & \vdots & \vdots \\ a_{mn}(x_1+u_1)+& \ldots & +a_{mn}(x_n+u_n)\end{bmatrix} = (a_{11}x_1+\ldots+a_{1n}x_n)+(a_{11}u_1+\ldots+a_{1n}u_n)\ldots(a_{m1}x_1+\ldots+a_{mn}x_n)+(a_{m1}u_1+\ldots+a_{mn}u_n)=Ax+Au$
+    \item For $C\in\mathbb{F}$, $x\in\mathbb{F}^n$, a similar computation shows that $A(cx)=c(Ax)$
+\end{enumerate}
+
+\paragraph{Preliminary Definition}
+A transformation $T:\mathbb{F}^n\rightarrow\mathbb{F}^m$ is \underline{linear} if 
+\begin{enumerate}
+    \item For $x,u\in\mathbb{F}^n$, $T(x+u)=Tx+Tu$
+    \item For $c\in\mathbb{F}$, $x\in\mathbb{F}^n$, $T(cx)=c(Tx)$
+\end{enumerate}
+Fact: Every linear transformation $\mathbb{F}^n\rightarrow\mathbb{F}^m$ is of the form $Tx=Ax$ for some mxn matrix A. 
+
+\section*{}
+
+\paragraph{Matrices as Linear Transformations}
+Notation: for a vector $x=\begin{bmatrix}x_1\\\vdots\\x_n\end{bmatrix}\subset\mathbb{F}^n$, write $[x]_j=x_j$. For example, for $y\in\mathbb{F}^n$, define the sum of $x$ and $y$ to be $[x+y]_j=[x]_j+[y]_j$. For $c\in\mathbb{F}$ (some scalar), define $cx\in\mathbb{F}^n$ by $[cx]_j=c[x]_j$. \\ 
+From last lecture, for $A\in Mm,n(\mathbb{F})$ (A is an mxn matrix), $A(x+y)=Ax+Ay$, and $A(cx)=cAx$. This says that A is a linear transformation. 
+
+\paragraph{Matrix Multiplication}
+Suppose $A\in Mm,n(\mathbb{F})$ and $B\in Mn,p(\mathbb{F})$. Then $A:\mathbb{F}^n\rightarrow\mathbb{F}^m$ and $B:\mathbb{F}^p\rightarrow\mathbb{F}^n$. So we can consider the composition $A\circ B:\mathbb{F}^p\rightarrow\mathbb{F}^m$. $(A\circ B)(x)=A(B(x))$. For $A=[a_{ij}]$ and $B=[b_{ij}]$. \\ 
+Note: for $x\in\mathbb{F}^n$, $[Ax]_i=[\sum_{j=1}^na_{ij}x_j]$. Similarly, for $x\in\mathbb{F}^p$, $[Bx]_i=[\sum_{k=1}^{p}b_{ik}x_k]$. \\ 
+Let $y=Bx$. $[y]_j=[\sum_{k=1}^{p}b_{jk}x_{k}]$, so $[A(Bx)]_i=[Ay]_i=[\sum_{j=1}^{n}a_{ij}y_{j}]=[\sum_{j=1}^na_{ij}(\sum_{k=1}^pb_{jk}x_k)]=\sum_{j=1}^{n}\sum_{k=1}^pa_{ij}b_{jk}x_k$. Define $C\in Mm,p(\mathbb{F})$ by $C_{ik}=\sum_{j=1}^{n}a_{ij}b_{jk}$. Then for $x\in\mathbb{F}^p$, $[Cx]_i=\sum_{k=1}^pc_{ik}x_k=\sum_{k=1}^{p}\sum_{j=1}^{n}a_{ij}b_{jk}x_k=\sum_{j=1}^n\sum_{k=1}^pa_{ij}b_{jk}x_k=[(A\circ B)(x)]_i$. \\ 
+Conclusion: For $A\in Mm,n(\mathbb{F})$, $B\in Mn,p(\mathbb{F})$, then the composition $A\circ B: \mathbb{F}^p\rightarrow\mathbb{F}^m$ agrees with the transformation give by the matrix $C\in Mn,p(\mathbb{F})$ given be $C=[c_{ik}]$ where $C_{ik}=\sum_{j=1}^{n}a_{ij}b_{jk}$
+
+\paragraph{Definition}
+For $A\in Mm,n$, $B\in Mn,p$, the \underline{matrix product} $AB=[c_{ik}]\in Mm,p$ by $c_{ik}=\sum_{j=1}^na_{ij}b_{jk}$. Note: $AB$ is only defined if the dimensions of $A$ and $B$ match up, that is, $A$ is mxn, and $B$ is nxp, for some values of $m,n,p$. We often write $AB=AxB=A\cdot B=A\circ B$. 
+
+\paragraph{Examples}
+$A = \begin{bmatrix} 1 & 2 & 1 \\ 0 & -1 & 3 \end{bmatrix}$ and $B = \begin{bmatrix} 1 & -1 \\ -1 & 2 \\ 3 & 0\end{bmatrix}$. The product AB makes sense, since $A$ is 2x3, and $B$ is 3x2. The resulting matrix is $\begin{bmatrix}(1*1)+(2*-1)+(3*1)=2 & (1*-1)+(2*2)+(1*0)=3 \\ (0*1)+(-1*-1)+(3*3)= 10 & (0*-1)+(-1*2)+(3*0)=-2 \end{bmatrix}$ \\ \\ 
+
+$A = \begin{bmatrix} a & b  \\ c & d \end{bmatrix}$ and $B = \begin{bmatrix} x & y \\ z & w \end{bmatrix}$. $AB = \begin{bmatrix} ax+bz & ay + bw \\ cx+dz & cy+dw\end{bmatrix}$.  \\ \\ 
+
+$A = \begin{bmatrix} a_{11} & \ldots & a_{1n} \\ &\vdots\\ a_{m1} & \ldots & a_{mn} \end{bmatrix}$ and $B = \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix}$. $AB = \begin{bmatrix} a_{11}x_1 & \ldots & a_{1n}x_n \\ &\vdots\\ a_{m1}x_1 & \ldots & a_{mn}x_n \end{bmatrix}$. 
+
+\paragraph{Definition}
+If A is a square matrix, $A\in Mn,n(\mathbb{F})$, we can take products $A\cdot A$, $A\cdot A\cdot A$, etc. Write $A^0=In, A^1=A, A^2=A\cdot A$, etc. Questions: Can you define $A^{\frac{1}{2}}$? When is there a matrix $B\in Mn,n(\mathbb{F})$ such that $B^2=A$? 
+
+
+\section*{}
+
+\paragraph{Matrix multiplication cont.}
+$A=m\times n
+\begin{bmatrix}
+a_{11} & \ldots & a_{1n} \\
+ & \vdots \\
+a_{m1} & \ldots & a_{mn}
+\end{bmatrix}, B=n\times p. 
+\begin{bmatrix}
+b_{11} & \ldots & b_{1p} \\
+ & \vdots \\
+b_{n1} & \ldots & a_{np}
+\end{bmatrix}$ 
+$A\cdot B = 
+\begin{bmatrix}c_{ij}
+\end{bmatrix}, c_{ij}=a_{i1}b_{1j}+a_{i2}b_{2}+\ldots+a_{in}b_{nj}$ \\ 
+Facts: If $A$ is $m\times n$, then $I_n\cdot A = A$, and $A\cdot I_n=A$. \\
+$A\cdot 0_n=0_{m,n}$, and $0_n\cdot A = 0_{m,n}$ \\ 
+Very important fact: Matrix multiplication is not commutative in general. There are many examples of $A,B$ such that $A\cdot B\neq B\cdot A$. $A=\begin{bmatrix}
+1\\2
+\end{bmatrix}, B = \begin{bmatrix}-1&3\end{bmatrix}$. $A\cdot B = \begin{bmatrix}-1 & 3 \\ -2 & 6\end{bmatrix}$, where as $B\cdot A = -1 + 6 = 5$ (dot product). 
+
+\paragraph{Theorem: Matrix multiplication is associative}
+If $A,B,C$ are appropriate sized matrices, $(A\cdot B\cdot) C=A\cdot(B\cdot C)$.\\ 
+Proof: Suppose $A$ is $n\times n$, $B$ is $n\times p$, and C is $p\times q$. $A=[a_{ij}],B=[b_{ij}],C=[c_{ij}]$. We check $[A(BC)]_{ij}=[(AB)C]_{ij}$. $[A(BC)]_{ij}=\sum_{k=1}^na_{ik}[BC]_{kj}=\sum_{k=1}^na_{ik}\sum_{l=1}^pb_{kl}c_{lj} = \sum_{k=1}^n\sum_{l=1}^p(a_{ik}b_{kl})c_{lj}=\sum_{l=1}^p(\sum_{k=1}^na_{ik}b_{kl})c_{lj}=\sum_{l=1}^p[AB]_{il}c_{lj}=[(AB)C]_{ij}$
+
+\paragraph{definition}
+Say an $m\times m$ matrix is \underline{elementary} if it is obtained from $I_m$ by applying a single elementary row operation. 
+
+\paragraph{Theorem}
+Let E be an $m\times m$ elementary matrix, let A be $m\times n$, then $E\cdot A$ is the matrix obtained by applying the elementary row operation that defines E to A. \\ 
+Proof: For the second and third types of elementary row operations, the proof is easy and left as an exercise to the reader. \ \ 
+Consider $E=m\times m$, $A=m\times n$, and $E$ is obtained by multiplying row $s$ by $c$, and adding to row $r$, where $r\neq s$. Then $[E]_{ij}=\{\delta_{ij}, \text{if }i\neq r| \delta_{rj}+c\delta_{sj}, i=r\}$. Then $[EA]_{ij}=\sum_{k=1}^n[E]_{ik}[A]_{kj}$. If $i\neq r$, $=\sum_{k=1}^n\delta_{ik}[A]_{kj}=[A]_{ij}$. Otherwise ($i=r$), $=\sum(\delta_{ik}+c\delta_{sj})[A]_{kj}=[A]_{rj}+c[A]_{sj}$ This is exactly what we would obtain by multiplying the s'th row of $A$ by $c$, and adding it to the r'th row. 
+
+\paragraph{Corollary} 
+A and B are row equivalent if and only if there are elementary matrices $E_1,\ldots,E_k$ such that $B=E_k,\ldots,E_1A$. The proof is simply if we take elementary row operations $A=A_o\mapsto A_1\mapsto\ldots\mapsto A_n=B$, where in between each $A$ is an $E_i$, then $A_1=E_1A$ $A_2=E_2E_1A$,$\ldots, B=A_k=E_kE_{k=1}\ldots E_1A$
+
+\section*{}
+
+\paragraph{elementary matrices}
+For A $m\times n$. $E\cdot A\leftrightarrow$elementary row operation. Then there is an element $E'$ such that $E'\cdot E\cdot A=A$. \\ 
+\paragraph{matrix inverses}
+Let A be $n\times n$. A \underline{left inverse} for A is an $n\times n$ B if $B\cdot A=I_n$. Similarly, an $n\times n$ matrix C is a \underline{right inverse} if $A\cdot C=I_n$. If there is a left inverse, we say A is \underline{left invertible}, and if there exists a right inverse, A is \underline{right invertible}. A is \underline{invertible} if $BA=I_n=AB$. We say B is an inverse for A. \\ 
+Lemma: If $A$ is $n\times n$ and has a left inverse $B$ and a right inverse $C$, then $B=C$. \\ 
+Proof: We have $BA = I = AC$. So $B=B\cdot I=B(AC)=(BA)C=I\cdot C = C$. \\ \\ 
+Fact: If A is $n\times n$ then it is left invertible if and only if it is right invertible. \\ 
+Corollary(of lemma): If A is both left and right invertible, then it's invertible, and the inverse is unique. \\ 
+Proof of corollary: There is $B,C$ such that $BA=I=AC$. By the lemma, $B=C$, so $BA=I=AB$. So $B$ (and hence $C$) are both left and right inverses. Suppose $D$ is a two sided inverse for $A$. Now $BA=I=AD$, and by the lemma $B=D$. 
+
+\paragraph{definition}
+If $A$ is $n\times n$ and invertible, we write $A^{-1}$ for the unique two-sided inverse of A. \\ \\ 
+Fact: matrices M_{n}(\mathbb{F}) form a ring with addition ($[a_{ij}]+[b_{ij}]=[a_{ij}+b_{ij}]$) and multiplication (matrix multiplication). 
+
+\paragraph{Theorem}
+Let A and B be $n\times n$ matrices. \begin{enumerate}
+    \item If A is invertible then so is $A_{-1}$, and $(A^{-1})^{-1}=A$. 
+    \item If A and B are invertible, then so is $AB$ and $(AB)^{-1}=B^{-1}\cdot A^{-1}$. 
+\end{enumerate}
+Note: Elementary matrices are invertible with inverses that are elementary matrices, since elementary row operations can be inverted with elementary row operations. \\ 
+\subparagraph{Examples}
+\begin{enumerate}
+    \item $E=\begin{bmatrix}1&C\\0&1\end{bmatrix}$ corresponds to setting $(1)=(1)+(2)*C$, and $E^{-1}=\begin{bmatrix}1&-C\\0&1\end{bmatrix}$, which corresponds to setting $(1)=(1)+(2)*(-C)$. 
+\end{enumerate}
+
+\end{document}

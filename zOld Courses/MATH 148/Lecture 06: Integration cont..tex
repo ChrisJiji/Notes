@@ -1,0 +1,39 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Integration cont.}
+
+\paragraph{Theorem: Functions with Finite Discontinuities are integrable}
+Suppose $f:[a,b]\rightarrow\mathbb{R}$ is a bounded and continuous except at finitely many points. Then $f$ is integrable. \\ 
+Proof: Suppose the discontinuities are at $c_1<c_2<\ldots<c_T$. Let there exists points $r_1,r_2,\ldots r_{2t-1},r_{2t}$ such that each $c_j\in(r_{2j-1},r_{2j})$, and $\sum_{k=1}^T()r_{2j}-r_{2j-1})<\frac{\epsilon}{4\text{ sup}|f|}$. Let $a=r_o,b=r_{2T+1}$. On each sub interval of the form $[r_{2j},r_{2j+1}]$ for $j=0,\ldots, T$, $f$ is continuous. Thus for each $[r_{2j},r_{2j+1}]$, we can find $\delta_j>0$ so that if $x,y\in[r_{2j},r_{2j+1}]$ and $|x-y|<\delta$, then $|f(x)-f(y)|<\frac{\epsilon}{2(b-a)}$. Partition each $[r_{2},r_{2j+1}]$ to finitely many sub-intervals of length $\leq\delta_j$. 
+Our partition P of $[a,b]$ consists of all $r_j$ and all the points we used to divide the intervals $[r_{2j},r_{2j+1}]$, so the total amount of intervals are finite. $$U(f,P)-L(f,P)=\sum_{i=1}^N(M_i-m_i)(t_i-t_{i-1})=\sum_{i\text{ where }[t_{i-1},t_i]=[r_{2j},r_{2j+1}]}\ldots \sum_{\text{all other }i}(M_i-m_i)(t_i-t_{i-1})$$
+Recall $f$ is bounded, so $|f|\leq \text{sup}|f|=C$, hence $M_i\leq C$ $\forall i$, and $m_i\geq -C$ $\forall i$, so $M_i-m_i\leq C-(-C)=2C$. The left sum is:
+$$\leq\sum_{i\text{ where }[t_{i-1},t_i]=[r_{2j},r_{2j+1}]}2C\leq \sum_{j=1}^T2C(r_{2j}-r_{2j-1})\leq 2C\cdot\frac{\epsilon}{4C}=\frac{\epsilon}{2}$$
+The right sum is:
+$$\sum_{j=0}^T\sum_{\text{all other }i}(M_i-m_i)(t_i-t_{i-1})\leq\sum_{j=0}^T\frac{\epsilon}{2(b-a)}\sum_{t_i\text{ partition }[r_{2j},r_{2j+1}]}(t_i-t_{i-1})\leq\frac{\epsilon}{2(b-a)}\sum_{\text{all }t_i}(t_i-t_{i-1})=\frac{\epsilon}{2(b-a)}(b-a)=\frac{\epsilon}{2}$$
+Hence $U(f,P)-L(f,P)=\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon$, thus $f$ is integrable. 
+
+\paragraph{Measure Zero}
+Say $E\subseteq\mathbb{R}$ has \underline{measure zero} if $\forall\epsilon>0$ there are countably many intervals $I_j,j=1,2,3,\ldots$ such that $E\subseteq\cup_1^\infty I_j$ and $\sum_{j=1}^\infty\text{length }I_j\leq\epsilon$, ie. $\sum_{j=1}^N\text{length }I_j\leq\epsilon$ $\forall N$. 
+\subparagraph{Examples}
+\begin{enumerate}
+    \item $E=$finite set say $\{c_1,\ldots,c_T\}$. $I_j=(c_j-\frac{\epsilon}{2T},c_j+\frac{\epsilon}{2T})$ for $j=1,\ldots,T$. $I_j=\phi$ for $j>T$. Certainly $E\subseteq\cup_{j=1}^TI_j=\cup_1^\infty I_j$. $\sum_1^\infty\text{length }I_j=\sum_{1}^T\text{length }I_j=\sum_1^T\frac{E}{T}=\epsilon$.
+    \item $E=$ a countable set, or $E=\{r_j\}_{j=1}^\infty$. Take $I_j=(r_j-\frac{\epsilon}{2^{j+1}},r_j+\frac{\epsilon}{2^{j+1}})$. $E\subset\cup_{j=1}^\infty I_j$. $\sum_j\text{length }I_j=\sum_{j=1}^\infty\frac{2\epsilon}{2^{j+1}}=\epsilon\sum_{j=1}^\infty 2^{-j}=\epsilon$. 
+    \item $E=[0,1]$, E is not measure zero
+    \item $E=$ irrational numbers in $[0,1]$ is not measure 0.
+    \item There are some uncountable sets of measure zero 
+\end{enumerate}
+
+\paragraph{Theorem: Riemann integrable and Measure Zero}
+A bounded function $f:[a,b]\rightarrow\mathbb{R}$ is integrable if and only if the set of discontinuities of $f$ has measure zero. CANT USE IT: IT IS BONUS for jan 19
+
+
+\end{document}

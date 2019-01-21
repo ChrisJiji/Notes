@@ -1,0 +1,126 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\begin{document}
+
+\section*{Lecture 1}
+hes teaching pmath332 in summer
+\paragraph{Definition: Scalar Function}
+A scalar function $f(x,y)$ is a rule which assigns each ordered pair $(x,y)$ (of real numbers) in a set $D\subseteq\,\mathbb{R}^2$ a unique real number $z$. $D$ is called the domain of $f$. The set $\{z|z=f(x,y), (x,y)\in D\}$ is the range of $f$.  
+\paragraph{Interpretations of f(x,y)}
+\begin{itemize}
+    \item Geometrical: $z=f(x,y)$ you get a surface in $\mathbb{R}^3$. $z$ would be the height above the $xy-$plane. 
+    \item Physical Interpretations: $f(x,y)$ could be temperature at some two dimensional object in $(x,y)$. $\rho(x,y)=\text{aerial density}$ at $(x,y)$.  
+\end{itemize}
+
+\section*{Lecture 2}
+\paragraph{Definition: Level Curve}
+The \textbf{level curves} (for functions with 2 variables, with $n$ variables it is called a level set) of a function $f(x,y)$ are the curves in the $xy$-plane with equation $f(x,y)=k$, where $k$ is a constant in the range of $f$. The \textbf{cross-section} of a function is similar, but keeping $x,y$ as constants instead of $z$. \\ 
+We looked at drawing paraboloids and saddle surfaces/hyperbolic paraboloids, hemispheres($f(x,y)=\sqrt{x^2-y^2-4}$), hyperboloid of one sheet ($\frac{x^2}{4}+y^2-\frac{z^2}{4}=1$). It is important to remember general equations of circles, ellipses, hyperbola. 
+
+\section*{Lecture 3}
+\paragraph{Limits}
+Recall in single variables, we had to check 2 directions ($\lim_{x\rightarrow a^+}f(x)=\lim_{x\rightarrow a^-}f(x)$). For $f(x,y)$ we can approach every point $(a,b)$ from infinitely many paths. 
+\begin{definition*}
+     A \textbf{neighbourhood} of a point $(a,b)\in\mathbb{R}^2$ of radius $r>0$ is a subset of $\mathbb{R}^2$ defined by $N_r(a,b)=\{(x,y)|\norm{(x,y)-(a,b)}<r\}$. Recall $\norm{(x,y)-(a,b)}=\sqrt{(x-a)^2+(y-b)^2}$
+\end{definition*}
+\begin{definition*}
+Suppose $f(x,y)$ is defined in some neighbourhood of $(a,b)$, except possibly at point $(a,b)$. If for every $\epsilon>0$, there exists $\delta>0$ such that $|f(x,y)-L|<\epsilon$ whenever $0<\norm{(x,y)-(a,b)}<\delta$, then we say the limit as $(x,y)$ approaches $(a,b)$ exists and equals $L$ and write $\lim_{(x,y)\rightarrow(a,b)}=L$. Alternatively, we can write $f(x,y)\rightarrow L$ as $(x,y)\rightarrow(a,b)$. 
+\end{definition*}
+\paragraph{Proving limits do not exist}
+Key idea: try different paths to get different values. 
+\subparagraph{Example 1}
+Prove that $\lim_{(x,y)\rightarrow(0,0)}\frac{x^2-y^2}{x^2+y^2}$ DNE. Try approaching along the lines $y=mx$. We have $\lim_{x\rightarrow0}\frac{x^2-(mx)^2}{x^2+(mx)^2}$. Factoring we get $\lim_{x\rightarrow0}\frac{x^2(1-m^2)}{x^2(1+m^2)}=\frac{1-m^2}{1+m^2}$, which depends on $m$, so we can say $\lim_{(x,y)\rightarrow(0,0)}\frac{x^2-y^2}{x^2+y^2}$ DNE. 
+
+\section*{Lecture 4}
+Cancelled due to professor being ill
+
+\section*{Lecture 5}
+subbed by Alex Nica (pure math)
+\paragraph{Example: proving limit does not exist}
+Prove that $\lim_{(x,y)\rightarrow(0,0)}\frac{x^3y}{x^7+y^2}$ DNE. \\ 
+If we let $y=mx$ then we always get a limit of 0. Let's let $y=x^3$. Then we get $\lim_{(x,y)\rightarrow(0,0)}\frac{x^3(x^3)}{x^7+(x^3)^2}=\lim_{(x,y)\rightarrow(0,0)}\frac{1}{x+1}$. Hence $\lim_{(x,y)\rightarrow(0,0)}\frac{x^3y}{x^7+y^2}=\lim_{x\rightarrow0}\frac{1}{x+1}=1$. Then this shows that the limit does not exist, as we got a limit of $0$ with $y=mx$, but $1$ when we approached the limit with $y=x^3$. Alternatively just approach with $y=ax^3$ and then you get different limits depending on the choice of $a$. 
+\paragraph{How do we prove a limit exists?}
+Easy possibility: "plug and chug" in several variables. Example: $\lim_{(x,y)\rightarrow(1,2)}\frac{x^3y}{x^7+y^2}=\frac{1^3\cdot2}{1^7+2^2}=\frac{2}{5}$. Another more interesting possibility: squeeze theorem. 
+
+\paragraph{Squeeze theorem}
+In order to prove $\lim_{(x,y)\rightarrow(a,b)}f(x,y)=L$ by squeeze theorem we need a bound function $B(x,y)$ such that \begin{enumerate}
+    \item $|f(x,y)-L|<B(x,y)$ (for $(x,y)$ in a neighbourhood of $(a,b)$) 
+    \item $\lim_{(x,y)\rightarrow(a,b)}B(x,y)=0$
+\end{enumerate}
+If both of these are fulfilled, then the limit of $\lim_{(x,y)\rightarrow(a,b)}f(x,y)$ is $L$. 
+
+
+\paragraph{Example of sqUEEZE}
+Prove $\lim_{(x,y)\rightarrow(0,0)}\frac{x^3y}{x^4+y^2}=0$. First we calculate $|f(x,y)-L|=\left|\frac{x^3y}{x^4+y^2}\right|=\frac{|x^3|\cdot|y|}{x^4+y^2}$. We need this super useful inequality: $ab\leq\frac{1}{2}(a^2+b^2)$ (this can be derived by isolating variables from $(a-b)^2\geq0$). The original fraction is equal to $\frac{|x|\cdot x^2\cdot|y|}{x^4+y^2}$. Letting $a=x^2$ and $b=|y|$ and using the super useful inequality, we get $x^2\cdot|y|\leq\frac{1}{2}(x^4+y^2)$, then $\frac{|x|x^2|y|}{x^4+y^2}\leq\frac{|x|\frac{1}{2}(x^4+y^2)}{x^4+y^2}=\frac{1}{2}|x|$. If we put $B(x,y)=\frac{|x|}{2}$, then condition 1. of using the squeeze theorem is fulfilled. Note that the limit of this function is $0$, so condition 2 is also fulfilled. Then we are done. 
+
+\paragraph{Exercise}
+Prove $\lim_{(x,y)\rightarrow(0,0)}\frac{x^2(y+1)+y^2}{x^2+y^2}=1$. The bound function Alex Nica found was $B(x,y)=|y|$. 
+
+
+
+\section*{Lecture 6}
+subbed by Alex Nica
+\paragraph{Continuity}
+We say $f$ is continuous at $(a,b)$ if 
+\begin{itemize}
+    \item $\lim_{(x,y)\rightarrow(a,b)}=L$ exists 
+    \item $f$ is defined at $(a,b)$ 
+    \item $L=f(a,b)$ 
+\end{itemize}
+
+\paragraph{How to Build Continuous Functions} \mbox{}\\ 
+\subparagraph{Simple}
+If $f(x,y)$ only depends on $x$ OR $y$, then it is really only a function depending on one variable, and so we should be able to solve it using MATH137 knowledge. 
+\subparagraph{Continuity Theorem}
+Continuity is preserved by operations: $f+g,f\cdot g,$etc. (continuity theorems on pages 22-24) \\ 
+Example: $h(x,y)=\frac{\sin(x)\cdot\cos(y)+x^{23}}{e^{-y^2}}$ is continuous at all points $(x,y)\in\mathbb{R}^2$ \\ 
+Important case: composite functions. Say we have $g:D\rightarrow\mathbb{R},U:\mathbb{R}\rightarrow\mathbb{R}$. Let $f=u\circ g$. Then $f(x,y)=u(g(x,y)),(x,y)\in D$. Then $f$ is continuous as well. \\ 
+Example: Say we have $g$, continuous on $D$. Put $f(x,y)=e^{g(x,y)}$, then $f$ is continuous as well. 
+
+\paragraph{Example}
+Define $f:D\rightarrow\mathbb{R}$ as $f(x,y)=x^y$. Then $D=(0,\infty)\times\mathbb{R}=\{(x,y)|x>0,y\in\mathbb{R}\}$. Claim: $f$ is continuous on $D$. Why? Idea: Write $x=e^{\ln(x)}$. Then $f(x,y)=(e^{\ln(x)})^y=e^{(\ln(x))y}=e^{g(x,y)}$, if we let $g(x,y)=\ln(x)\cdot y$. Then $g$ is continuous by continuity theorem, and then by composite theorem, $f$ is continuous. (see the above example) 
+
+\paragraph{Partial Derivatives}
+Idea: in $(x,y)\in D$, we fix $y$ and do the derivative with respect to $x$. We get a new function denoted $\frac{\partial f}{\partial x}, f_x,D_1f$ (all 3 names are equivalent). 
+\paragraph{Example}
+Recall $f:D\rightarrow\mathbb{R}$ as $f(x,y)=x^y$, with $D=(0,\infty)\times\mathbb{R}=\{(x,y)|x>0,y\in\mathbb{R}\}$. Fix $y=\frac{3}{2}$. Look at $u(x)=f\left(x,\frac{3}{2}\right)=x^{\frac{3}{2}}$. Then $u'(x)=\frac{3}{2}x^{\frac{1}{2}}$. Hence $\frac{\partial f}{\partial x}(x,\frac{3}{2})=\frac{3}{2}x^{\frac{1}{2}}$. In general, we have $\frac{\partial f}{\partial x}(x,y)=yx^{y-1},(x,y)\in D$. \\ 
+Symmetric idea: Calculate $\frac{\partial f}{\partial y}$ (also called $f_y$ or $D_2f$). We fix $x$ and do derivative with respect to $y$. Fix $x=5$, then we can look at the function $v(y)=f(5,y)=5^y$. Then $v'(y)=5^y\cdot\ln(5)$. Hence $\frac{\partial f}{\partial y}(5,y)=5^y\cdot\ln(5)$. Then we can see in general $\frac{\partial f}{\partial y}(x,y)=x^y\cdot\ln(x)$
+
+\paragraph{Challenge (done in next lecture)}
+Fact: we can also do in 3 variables, and $n$ variables. With $f(x,y,z)=z^{x^y}$, what are the partial derivatives? 
+
+\section*{Lecture 7}
+\paragraph{Example 1(warm up)} 
+$D=\{(x,y)|x\in\mathbb{R},y>0\}$, $f:D\rightarrow\mathbb{R}, f(x,y)=\left[\sin(x)+\sin(y)\right]\ln(y)$. Then $\frac{\partial f}{\partial x}(x,y)$ can be found by setting $\sin(y)=c_1,\ln(y)=c_2$. Derive $((\sin(x)+c_1)c_2)'=(\sin(x)+c_1)'c_2=\cos(x)c_2=\cos(x)\ln(y)$. $\frac{\partial f}{\partial y}(x,y)$ can be found by setting $\sin(x)=c$, then we need $[(c+\sin(y))\cdot\ln(y)]'=(c+\sin(y))\cdot\ln(y)'+(c+\sin(y))'\ln(y)=\sin(x)+\sin(y)\frac{1}{y}+\cos(x)\ln(y)$. 
+
+\paragraph{Example 2}
+$D=\{(x,y,z)|x,z>0, y\in\mathbb{R}\}$, $f(x,y,z)=z^{x^y}$. What is $\frac{\partial f}{\partial x}(1,2,3)$? We fix $y=2,z=3$, look at $u(x)=f(x,2,3)=3^{x^2}$. Then $\frac{\partial f}{\partial x}(x,2,3)=u'(x)$. We can take $\frac{u'(x)}{u(x)}=(\ln(u(x))'$ by chain rule, and $(\ln(u(x))'=(x^2\ln(3))'=2x\ln(3)$. Then $u'(x)=u(x)\cdot\frac{u'(x)}{u(x)}=3^{x^2}\cdot2x\cdot\ln(3)$. Then $\frac{\partial f}{\partial x}(1,2,3)=3^{(1)^2}2\cdot(1)\cdot\ln(3)=6\ln3$.  
+
+\paragraph{Example 3}
+$D=\mathbb{R}^2$, $f(x,y)=\begin{cases}\frac{\sin(x+y)}{x-y},\quad\text{if }x\neq y\\1,\quad\text{if }x=y\end{cases}$. Does $\frac{\partial f}{\partial x}$ exist at $(0,0)$? We fix $y=0$, then we have $u(x)=f(x,0)=\begin{cases}\frac{\sin(x)}{x}\quad\text{if }x\neq0\\1,\quad\text{if }x=0\end{cases}$. Then $\frac{\partial f}{\partial x}(0,0)=u'(0)$ if $u'(0)$ exists. $u'(0)=\lim_{x\rightarrow0}\frac{u(x)-u(0)}{x-0}$ if the limit exists. This equals $\lim_{x\rightarrow 0}\frac{\frac{\sin(x)}{x}-1}{x}=\lim_{x\rightarrow0}\frac{\sin(x)-x}{x^2}$. Applying l'Hopital's rule (twice), we get $\lim_{x\rightarrow0}\frac{\cos(x)-1}{2x}=\lim_{x\rightarrow0}\frac{-\sin(x)}{2}=0$. Then therefore $u'(0)$ exists, and is equal to $0$, and so $\frac{\partial f}{\partial x}(0,0)$ exists, and is equal to $0$. something to think about: what about $\frac{\partial f}{\partial y}(0,0)?$ 
+
+\paragraph{Tangent Plane and Linear Approximation}
+Recap stuff from MATH137: $f:I\rightarrow\mathbb{R}$, fix $a\in I$. Let $b=f(a)$, and try to draw a tangent line to the graph, at point $(a,b)$ (writing it in point-slope form, or $y=m(x-a)+b$). Pick $x$ nearby $a$, draw vertical line at $x$. There are two important points on the vertical: $(x,f(x))$, and $(x,L_a(x))$, where $L_a(x)$ is when $x$ hits the tangent line. $L_a(x)=m(x-a)+b$. Important: If $f$ is nice (differentiable at $a$), then for $x\approx a$, we have $f(x)\approx L_a(x)=m(x-a)+b=f'(a)(x-a)+f(a)$. This is the linear approximation of the function $f$ around the point $a$. \\ 
+For MATH237: we just add one dimension. $D\subseteq\mathbb{R}^2$, $f:D\rightarrow\mathbb{R}$. Fix $(a,b)\in D$, and we look at the point $(a,b,c)$ on the graph, where $c=f(a,b)$. Consider the tangent plane to the graph of $f$, at the point $(a,b,c)$(?). Write this tangent plane in point-slope form (??). The equation of the tangent plane will give the linearization $L_{(a,b)}(x,y)$ at function $f$ around $(a,b)$ (???). The plane has two slopes, and the point-slope equation is $z=m_1(x-a)+m_2(y-b)+c$ 
+
+
+
+\end{document}

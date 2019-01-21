@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amsfonts,amsbsy,amssymb,fullpage,array,fancyheadings,epsfig,graphicx}
+%\usepackage{amsmath,amsfonts,amsbsy,amssymb,fullpage,array,epsfig,graphicx}
+\usepackage[margin=0.4in]{geometry}
+
+%\topmargin-.5in
+%\textheight9.5in
+\pagestyle{empty}
+
+\begin{document}
+\noindent
+{\bf MATH 138\hfill ASSIGNMENT 9  \hfill Due at 6pm on Friday March 23rd}\\
+\begin{enumerate}
+
+\item Find the radius and interval of convergence for each series.
+
+\begin{enumerate}
+\item Using ratio test, $\text{lim}_{n\rightarrow\infty}(\frac{a_{n+1}}{a_n}) = \text{lim}_{n\rightarrow\infty}\left(\dfrac{\frac{(n+1)^2x^{n+1}}{2\cdot 4\cdot 6\cdot \cdots \cdot (2n)\cdot (2(n+1))}}{\frac{n^2x^n}{2\cdot 4\cdot 6\cdot \cdots \cdot (2n)}}\right) = \text{lim}_{n\rightarrow\infty}\left(\frac{(n+1)^2x^{n+1}}{2(n+1)n^2x^n}\right)$ \\ $ = \text{lim}_{n\rightarrow\infty}\left(\frac{x}{2}\cdot\frac{n+1}{n^2}\right)$. By squeeze theorem, $\frac{n+1}{n^2}$ converges to 0, and so $\frac{x}{2}\cdot\frac{n+1}{n^2}$ converges to 0. By the ratio test, the series converges absolutely, and so the interval of convergence is $\mathbb{R}$, and the radius of convergence doesn't exist. \\
+\\
+\item Applying the ratio test, lim$_{n\rightarrow\infty}\left(\frac{2^{n+1}(n+1)^2x^{n+1}}{2^n n^2 x^n}\right) = \text{lim}_{n\rightarrow\infty}\left(\frac{2x(n+1)^2}{n^2}\right) = 2x \cdot \text{lim}_{n\rightarrow\infty}\left(\frac{(n+1)^2}{n^2}\right) = 2x \cdot 1$. Since we want $|2x| < 1$, $|x|<0.5$, so the radius of convergence is $0.5$. Testing the endpoints: Note that $0.5 = \frac{1}{2}$, so for $x = \frac{1}{2}$, $\text{lim}_{n\rightarrow\infty}2^nn^2\frac{1}{2}^n$ clearly doesn't exist, as $2^n \cdot \frac{1}{2}^n = 1$ $\forall n\in\mathbb{N}$, so the sum diverges. Similarly, the sum diverges for $x = -\frac{1}{2}$, and so the interval of convergence is $(-0.5, 0.5)$.\\
+\\
+\item Applying the ratio test, lim$_{n\rightarrow\infty} \left(\frac{\frac{(-1)^{n+1}x^{n+1}}{(n+1)^2}}{\frac{(-1)^nx^n}{n^2}}\right) = \text{lim}_{n\rightarrow\infty}\frac{-xn^2}{(n+1)^2} = -x$. Since we want $|-x|<1$, clearly the radius of convergence is 1. Testing the endpoints: By squeeze theorem, $\text{lim}_{n\rightarrow\infty}\frac{(-1)^n1^n}{n^2}$ and $\text{lim}_{n\rightarrow\infty}\frac{(-1)^n(-1)^n}{n^2}$ both are 0, so the interval of convergence is $[-1, 1]$.\\
+\\
+\item Applying the ratio test, lim$_{n\rightarrow\infty}\left(\frac{\frac{(2x-1)^{n+1}}{5^{n+1}\sqrt{n+1}}}{\frac{(2x-1)^n}{5^n\sqrt{n}}}\right) = \text{lim}_{n\rightarrow\infty}\frac{(2x-1)\sqrt{n}}{5\sqrt{n+1}} = \frac{2x-1}{5}$. Since we want $|\frac{2x-1}{5}| < 1$, the radius of convergence is $\frac{5}{2}$. Testing the endpoints: $\frac{(2(3)-1)^n}{5^n\sqrt{n}} = \frac{1}{\sqrt{n}}$, and $\text{lim}_{n\rightarrow\infty}\frac{1}{\sqrt{n}}$ is clearly 0, and so the sequence converges when $ x = 3$. Similarly, when $x = -2$, $\text{lim}_{n\rightarrow\infty}\frac{-1}{\sqrt{n}}$ is also 0, so the sequence converges when $x = -2$, so the interval of convergence is $[-2, 3]$.\\
+\end{enumerate}
+
+\pagebreak
+
+\item Let $f_n(x)=\dfrac{\sin(nx)}{n^2}$.  
+\begin{enumerate}
+\item Because $sin(nx)\leq 1$ for all $x\in\mathbb{R}$, $\frac{\text{sin}(nx)}{n^2}\leq\frac{1}{n^2}$. $\frac{1}{n^2}$ because it is a p-series with $p>1$, and so by the comparison test, $f_n(x)$ converges for all values of $x$.
+\\
+\item $f'_n(x) = \frac{n\text{cos}(nx)}{n^2} = \frac{\text{cos}(nx)}{n}$. Because $n$ will always be an integer, and $x$ is a multiple of $2\pi$, and taking $\text{cos}(a2\pi)=1$ for all $a\in\mathbb{Z}$, Because $n$ and $k$ will be integers, $n \cdot k = a$, and so cos$(nx)=1$ for all $n$ and $x$. Therefore, $f'_n(x) = \frac{1}{n}$ when $x=2k\pi$, and so $\sum_{n=1}^\infty f'_n(x)$ is just the harmonic series, which diverges.
+\\
+\item $f''_n(x) = \frac{n-\text{sin}(nx)}{n} = -\text{sin}(nx)$. Set $x=k\pi$, when $k \in \mathbb{Z}$. This is because when \textbf{$x=k\pi$}, $f''_n(x) = 0$ for all $n$. 
+\\Note: if you believe $\sum (-1)^n$ converges, then $x$ can be $\frac{k\pi}{2}$. This is because when $k$ is an even integer, it is essentially above. When $k$ is an odd integer, when $f''_n(x) = 1$, $f''_{n+1}(x) = 0$, $f''_{n+2}(x) = -1$, and $f''_{n+3}(x) = 0$, and the elements are periodic following those. We can see here that when $k$ is odd, $\sum f''_{n}(x) = \sum (-1)^n$. Therefore, $\sum_{n=1}^\infty f''_n(x)$ converges when $x = \frac{k\pi}{2}$ for all $k\in\mathbb{Z}$. 
+
+\end{enumerate}
+
+\pagebreak
+
+\item Find a power series representation (centered at $x=0$) for the following functions and determine the radius and interval of convergence.  You may use any method.
+\begin{enumerate}
+\item $\frac{x}{2x^2+1}= x \cdot \frac{1}{1-(-{2x^2})} = x\sum_{n=0}^\infty(-2x^2)^n\Rightarrow |2x^2| < 1$. Therefore, $x<\sqrt{\frac{1}{2}}$, and so the radius of convergence is $\frac{1}{\sqrt{2}}$, and the interval of convergence is $(-\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})$. $x\sum_{n=0}^\infty(-2x^2)^n = x\sum_{n=0}^\infty(-2)^nx^{2n} = \sum_{n=0}^\infty (-2)^nx^{2n+1}$ is the power series representation. 
+\\
+\item $\frac{dy}{dx}\ln(x^2+4) = \frac{2x}{x^2+4} = \frac{2x}{4}(\frac{1}{1-(-\frac{x^2}{4})}) = \frac{x}{2}\sum_{n=0}^\infty-\frac{x^2}{4}\Rightarrow |-\frac{x^2}{4}|<1$. Therefore, $x<2$, and the radius of convergence is 2. $\frac{x}{2}\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{4^n}=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{2^{2n+1}}$. $\int\frac{2x}{x^2+4} = \sum_{n=0}^\infty\int\frac{(-1)^nx^{2n+1}}{2^{2n+1}}$, so $\text{ln}(x^2+4) = \sum_{n=0}^\infty\frac{(-1)^nx^{2n+2}}{2^{2n+1}(2n+2)} + C$. When $x=0$, $ln(4)=0+C\Rightarrow C = ln(4)$. Therefore, $ln(x^2+4) = \sum_{n=0}^\infty\frac{(-1)^nx^{2n+2}}{2^{2n+1}(2n+2)} + ln4$. Checking endpoints: when $x=2$, $\sum_{n=0}^\infty\frac{(-1)^n2^{2n+2}}{2^{2n+1}(2n+2)} + ln4 = \sum_{n=0}^\infty\frac{(-1)^n2}{2n+2} + ln4$, which converges by LCT. Similarly, $x=-2$ also converges, so the interval of convergence is $[-2,2]$. 
+\\
+\item $f(x)=\left(\frac{x}{2-x}\right)^3 = x^3\left(\frac{1}{2-x}\right)^3$. The power series for $\frac{1}{2-x}=\frac{1}{2}\cdot\frac{1}{1-\frac{x}{2}}$ is $\sum\frac{x^n}{2^{n+1}}$. Note that $|\frac{x}{2}|<1$, so $R=2$. The power series for $\frac{1}{(2-x)^2}=\sum\frac{nx^{n-1}}{2^{n+1}}$, and the power series for $\frac{2}{(2-x)^3} = \sum\frac{n(n-1)x^{n-2}}{2^{n+1}}$. Therefore, $\frac{x^3}{2}\frac{1}{(2-x)^3} = \sum\frac{n(n-1)x^{n+1}}{2^{n+2}}$. Checking endpoints: when $x=2$, $f(x) = \sum\frac{n(n-1)2^{n+1}}{2^{n+2}} = \sum\frac{n(n-1)}{2}$, which diverges by the divergence test. Similarly, $f(-2)$ diverges, so $I = (-2, 2)$. 
+\\
+\item Note $\frac{1}{(1-x)^3} = \sum\frac{n(n-1)x^{n-2}}{2}$. $\frac{x^2+x}{(1-x)^3} = \frac{x^2}{(1-x)^3} + \frac{x}{(1-x)^3} = \sum_{n=2}^\infty\frac{n(n-1)x^n}{2} + \sum_{n=2}^\infty\frac{n(n-1)x^{n-1}}{2}=\sum_{n=2}^\infty\frac{n(n-1)x^n}{2} + \sum_{n=2}^\infty\frac{(n+1)x^{n}}{2}+x  = \sum_{n=2}^\infty\frac{x^n(n(n-1)+n(n+1))}{2}+x = \sum_{n=1}^\infty x^nn^2$. $R=1$. Checking $x=1$, $\sum n^2$ diverges by the divergence test, and $\sum (-1)^n n^2$ also diverges. Therefore, $I = (-1, 1)$. 
+
+
+
+\end{enumerate}
+
+\newpage
+
+\item Use the power series for $arctan(x)$ to derive the following expression for $\pi$: $$\pi=2\sqrt{3}\ \displaystyle{\sum_{n=0}^\infty \dfrac{(-1)^n}{(2n+1)3^n}}$$
+\begin{enumerate}
+    \item We know arctan$(x)=\sum\frac{(-1)^nx^{2n+1}}{2n+1}$ when $p = 1$. Let $x = \frac{1}{\sqrt{3}}$, then arctan$\left(\frac{1}{\sqrt{3}}\right)=\frac{\pi}{6}$. Then $$\frac{\pi}{6}=\sum\frac{(-1)^n\left(\frac{1}{\sqrt{3}}\right)^{2n+1}}{2n+1}$$ $$\pi = 6\sum\frac{(-1)^n\left(\frac{1}{\sqrt{3}}\right)^{2n}\left(\frac{1}{\sqrt{3}}\right)}{2n+1}$$ $$\pi = \frac{6}{\sqrt{3}}\sum\frac{(-1)^n\left(\frac{1}{3^n}\right)}{2n+1}$$ $$\pi = 2\sqrt{3}\sum\frac{(-1)^n}{(2n+1)3^n}$$
+\end{enumerate}
+
+\pagebreak
+
+\item Suppose the power series $\sum c_n(x-3)^n$ converges at $x=5$ and diverges at $x=0$.  Decide if each of the following statements are true, false, or impossible to determine given this information.  Justify your answers.
+
+\begin{enumerate}
+\item Since the series converges at $\sum c_n2^n$, it must also converge at $\sum c_n1^n$ because it's also in the radius, and $\sum c_n1^n = \sum c_n$. Since $|\sum c_n| < |\sum c_n2^n|$, by comparison theorem this statement is \textbf{true}.
+\\
+\item Because the centre is at $x=3$, and the series diverges at $x=0$, the radius of convergence is at most 3. Thus, $x=-8$ is out of the radius, and so this statement is \textbf{false}. 
+\\
+\item $\sum |(-1)^nc_n| = \sum |c_n|$, which converges absolutely, so this statement is \textbf{false}.
+\\
+\item We only know some limits of the radius of convergence, and so this statement is \textbf{impossible to determine}.
+\\
+\item We know the radius is at most 3, and since $x=5$ converges, it is at least 2, so $\frac{5}{2}$ is valid, and so this statement is \textbf{true}.
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+\end{document}

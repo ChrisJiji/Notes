@@ -1,0 +1,175 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Module 1}
+
+\paragraph{Dimensional Analysis} Everything in mechanics can be represented by mass, length, or time. Note: The base units for mass is kg, length is m, time is s. 
+\begin{center}
+\begin{tabular}{c|c|c}
+ Physical Quantities & Symbol & Dimensions \\
+ \hline
+ Distance & $d$ & $[d]=L$\\  
+ Time & $t$ & $[t]=T$ \\ 
+ Mass & $m$ & $[m]=M$\\ 
+ Speed & $v$ & $[v]=\frac{L}{T}$\\ 
+ Acceleration & $a$ & $[a]=\frac{L}{T^2}$\\ 
+ Force & $F$ & $[F]=[ma]=M\frac{L}{T^2}$\\ 
+ Area & $A$ & $[A]=L^2$
+\end{tabular}
+\end{center}
+This helps us check the "validity" of the derived equation. All terms must have the same dimension. 
+
+\paragraph{Significant Digits}
+\begin{enumerate}
+    \item All non-zeros are significant 
+    \item Zeroes appearing anywhere between two non-zero digits are significant 
+    \item Leading zeros are NOT significant 
+    \item Trailing zeros ARE significant 
+\end{enumerate}
+
+\paragraph{Working with Numbers}
+\begin{itemize}
+    \item For multiplication and division, the result should have as many \textbf{significant figures} as the number that has the smallest number of \textbf{significant figures}.  
+    \item For addition and subtraction, the result should have as many \textbf{decimal places} as the number with the smallest number of \textbf{decimal places}.
+\end{itemize}
+
+\pagebreak
+\section*{Module 2 - 1D Kinematics}
+1d kinematics and shit
+
+\pagebreak
+
+\section*{Module 3 - 2D Kinematics}
+
+\paragraph{Projectile Motion} 
+$v_x=v_{\text{intial }x}\cos\theta_0$ \quad $v_y(t) = v_{\text{initial }y}-gt$ Acceleration is gravity. Steps: \begin{enumerate}
+    \item solve for initial y velocity
+    \item solve for time in air
+    \item tada
+\end{enumerate}
+
+\paragraph{Relative Motion} 
+Plane and Boat thingies Steps: 
+\begin{enumerate}
+    \item Solve for initial x and y velocities
+    \item vector addition/subtraction
+\end{enumerate}
+
+\paragraph{Uniform Circular Motion} 
+$\frac{\Delta r}{r} = \frac{\Delta v}{v}$ \quad $\text{Period} = T = \frac{2\pi r}{v}$ \quad $f = \frac{1}{T}$
+
+\pagebreak
+\section*{Module 4 - Newton's Laws}
+\paragraph{Newton's First Law} A body in uniform motion remains in uniform motion, and a body at rest remains at reset, unless acted on by a non-zero net force. Valid only for inertial reference frames. 
+
+\paragraph{Newton's Second Law} Note that momentum $\vec{p}=m\vec{v}$. The second law is: $\vec{F}_{net}=\frac{d\vec{p}}{dt}=m\vec{a}$
+
+\paragraph{Newton's Third Law} If two objects interact, the force exerted by object 1 on object 2 is equal in magnitude and opposite in direction to the force exerted by object 2 on object 1. 
+
+\pagebreak
+
+\section*{Module 5}
+\paragraph{Normal Force} When the weight is on a ramp, the normal force is equal to $mg\cos\alpha$, where $\alpha$ is the incline of the ramp. Otherwise, it is just equal in magnitude to the force pushing down, but it is in the opposite direction. 
+
+\paragraph{Tension} Tension also has action-reaction force pairs. In a pulley, with a massless system, the tension in the rope is equal. 
+
+\paragraph{Centripetal Force} Centripetal force is the same as the radial force: $F_r=\frac{Mv^2}{r}$ 
+
+\paragraph{Hooke's Law} $F_s(x)=-kx$, where $x$ is the extension of the spring from the equilibrium. 
+
+\paragraph{Friction} $F_f=\mu N$. Steps: 
+\begin{enumerate}
+    \item Find the normal force from the weight of the object. 
+    \item Find the remaining variable
+\end{enumerate}
+There are two $\mu$, one for static and one for kinetic. For when its moving, use the kinetic one, and when its still, use the static one. 
+
+\pagebreak 
+\section*{Module 6}
+\paragraph{Work} Work is the amount of force entered into the system. Net work is the change in kinetic energy in the system. It is the area under the force/distance graph. Non-conservative force (friction), the work depends on the path taken. For a conservative force (gravity and springs), the path does not matter to the force.
+\paragraph{Power} Power is the rate of work over time. $P=\vec{F}\cdot\vec{v}$ 
+
+
+\pagebreak
+
+\section*{Module 6}
+\paragraph{Centre of Mass} The centre of mass of a system is $\frac{1}{M}\sum m_ix_i$. It is the sum of all of the particles multiplied by their displacement, all over the total mass. 
+\paragraph{Collisions} \begin{itemize}
+    \item Elastic: The total mechanical energy is conserved. 
+    \item Inelastic: Total mechanical energy is not conserved. Heating, sound waves, etc. 
+    \item Completely inelastic: Maximum possible mechanical energy is lost (objects stick to each other). 
+\end{itemize}
+\paragraph{Impulse} Momentum transfer on a short time scale. 
+\textbf{TOTAL MOMENTUM IS ALWAYS CONSERVED} 
+
+
+\pagebreak
+
+\section*{Module 7}
+$\alpha$ is angular acceleration, and $\omega$ is the angular velocity. The moment of inertia, $I$, is $I=\sum m_ir_i^2=\int_V r^2dm$, or the rotational kenetic energy $K=\frac{1}{2}I\omega^2$ 
+\paragraph{Parallel Axis Theorem} $I = I_{CM}+Md^2$. The moment of inertia is the moment of inertia about the centre of mass plus the mass multiplied by the distance from the centre squared. 
+\paragraph{Torque} Is the rotational force. It is the tendency of an applied force to rotate an object. $|\vec{\tau}|=r(F\sin\theta)=dF$, where $d$ is the moment arm of $F$. In general, $\vec{\tau}=\vec{r}\times\vec{F}$. 
+\paragraph{Rolling Motion} The middle of the wheel is the horizontal speed, the contact point is 0, and the top is twice the horizontal speed. $\vec{v}=R\omega$. Rolling is the sum of rotation and translation. Most times it is more convenient to describe the rolling motion as pure rotation about its instantaneously fixed axis- the contact point. With this, $v=\omega r$. 
+
+\pagebreak
+
+\section*{Module 9} 
+\paragraph{Angular velocity} To find the direction of angular velocity and angular acceleration, use your right hand and curl your fingers along the direction of rotation. The thumb will point in the direction of the angular velocity vector. Velocity, acceleration, and torque are all parallel to this axis. 
+\paragraph{Torque} Torque is the cross product between the force and the thing between rotated: $\tau=rF\sin\theta$ 
+\paragraph{Momentum} Momentum ($\vec{l}$ or $\vec{L}$) is $\vec{l}=\vec{r}\times\vec{p}=rp\sin\theta$, where $\vec{p}=m\vec{v}$ is the particle's momentum. Note that $\theta$ is the outside angle between $r$ and $p$. $\frac{d\vec{l}}{dt}=\vec{\tau}$. The rate of change of momentum is the torque. 
+
+\pagebreak
+\section*{Module 10}
+\paragraph{Trajectories} Separate the x and y velocities, use y to solve for time in air. 
+\paragraph{Contact Forces} $\mu_s$ is the coefficient of friction for static systems, $\mu_k$ is for when they are moving. 
+\paragraph{Cars on ramp} Solve for x and y directions, equation $N's$ 
+\paragraph{Sliding Blocks} Solve for x and y 
+\paragraph{Ballistic Pendulum} $p_i=p_f$. $p_i$ can be found using the bullet's weight and mass. $v_f$ then can be found easily. Use that to find the initial and final kinetic energies, and the final kinetic energy is equal to the potential energy (as it starts swinging downwards). 
+
+
+
+
+
+\pagebreak 
+
+\section*{Units}
+\begin{center}
+\begin{tabular}{c|c}
+ Name & Units\\
+ \hline
+ Distance & $m$ \\ 
+ Speed & $m/s$ \\ 
+ Force & $kg\,m/s$ \\
+ Work & $J=F\,m=\frac{kg\cdot m^2}{s^2}$ \\ 
+ Power & $P=\frac{J}{s}=\frac{kg\cdot m^2}{s^3}$ \\ 
+ Momentum and Impulse & $\vec{p}=\frac{kg\cdot m}{s}$ \\ 
+ 
+\end{tabular}
+\end{center}
+
+\pagebreak
+\section*{Formulas} 
+\paragraph{Kinematics}
+$v(t)=v_0 + a\Delta t$ \quad $x(t) = x_0 + v_0\Delta t + \frac{1}{2}a\Delta t^2$ \quad $\Delta x = \frac{v^2-v_0^2}{2a}$ \quad $v^2 = v_0^2+2a(\Delta x)$\quad $\vec{A}\cdot\vec{B}=|\vec{A}||\vec{B}|\cos\theta = A_xB_x+A_yB_y$
+
+\paragraph{Forces}
+$F=ma$ \\ 
+Centripetal force: $F_r=\frac{Mv^2}{r}$, $a_r=\frac{v^2}{r}$\\ 
+Gravity: $F_g=G\frac{m_1m_2}{r^2}$ \\ 
+Hooke's Law: $F_s(x)=-kx$ \\ 
+Friction: $F_f=\mu N$
+
+\paragraph{Energy}
+Work: $W = \frac{1}{2}mv^2_f-\frac{1}{2}mv^2_i$\quad $W = \vec{F}\cdot \Delta\vec{r}$, where $r$ is the displacement. $W_g=mgh$, where $m$ is mass of the object, $g = 0.8m/s^2$, and $h$ is the height. 
+Kinetic Energy: $K=\frac{1}{2}mv^2$
+Power: $P=\frac{dW}{dt}$, is the rate at which work is being done. Average power is $P=\frac{\Delta W}{\Delta t}$ $P = \vec{F}\cdot\vec{v}$. Power is in Joules/second = watt
+
+\end{document}

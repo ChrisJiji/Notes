@@ -1,0 +1,214 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+
+\begin{document}
+
+\section*{Lecture 1}
+30\% assignments, 20\% midterm, 50\% exam. TA: Ertan Elma MC 5321. Rubinstein: MC 5423. \\ 
+
+\paragraph{Divisibility}
+Let $d,n\in\mathbb{Z}$. We say that $d$ divides $n$, $d|n$, or that $n$ is a multiple of $d$ if there exists $m\in\mathbb{Z}$ such that $n=md$. \\ 
+\textbf{Properties:} 
+\begin{enumerate}
+    \item If $a|b$ and $b|c$ then $a|c$ \begin{proof}$a|b\Rightarrow b=m_1a$, $b|c\Rightarrow c=m_2b$. Then $c=m_1m_2a$, or $a|c$\end{proof}
+    \item If $a|b$ and $a|c$ then $a|bx+cy$ for any $x,y\in\mathbb{Z}$. In particular, $a|b+c$ and $a|b-c$ \begin{proof} $b=m_1a$, and $c=m_2a$. Then $bx+cy=m_1ax+m_2ay=a(m_1x+m_2y)$, or $a|bx+cy$ \end{proof}
+    \item If $a|b$ and $b|a$ then $a=\pm b$ \begin{proof} $b=m_1a$, $a=m_2b$, then $a=m_1m_2a\Rightarrow (m_2m_1-1)a=0$. Then either $a=0$ or $m_2m_1-1=0$. If $a=0$, then $b=0$, then $a=\pm b$. Otherwise, $m_2m_1=1$, but they are integers, so they are either both $1$ or both $-1$, and $a=\pm b$\end{proof}
+    \item If $a|b$ and $b\neq0$ then $|a|\leq|b|$ \begin{proof}$b=ma$, since $b\neq0$, then $|m|\geq1$, then $|b|=|m||a|\Rightarrow |b|>|a|$\end{proof}
+\end{enumerate}
+
+\paragraph{Primes}
+An integer $p>1$ is said to be prime if its only positive divisors are $1$ and $p$. An integer $n>1$ that is not prime is said to be composite. \\ 
+\begin{lemma*}(proposition 31/32 in Book VII of Euclid): Any integer $n>1$ is divisible by at least one prime. 
+\begin{proof}Proof by induction: True for $n=2$, which is prime, and divsible by a prime (2). Next assume the statement is true for all integers $\geq2$ and $\leq n-1$. Either $n$ is prime, in which case $n$ is divisible by $n$, or $n$ is composite. If $n$ is composite, $\exists a\in\mathbb{Z}$ such that $1<a<n$ by property 4. Since $n=ma$ note that $1<m<n$. Apply the inductive hypothesis to $a$, since $1<a<n$, namely $2\leq a\leq n-1$, then $a$ is divisible by a prime $p$. But $p|a$ and $a|n$, so $p|n$ by property 1.
+\end{proof}
+\end{lemma*}
+\begin{lemma*}
+Any integer $n>1$ is either prime or a product of primes. 
+\begin{proof}
+essentially the same induction. True for $n=2$. Now either $n$ is prime or composite. If it is prime, it is true. If it is composite, then $n=ba$, for some $a,b\in (1,n)$. By inductive hypothesis, $a,b$ are either prime or product of primes. Let $a=cp_1$, $b=dp_2$. Then since $a,b|n$, $cp_1,dp_2|n$, and by the inductive hypothesis, $n$ is a product of primes.
+\end{proof}
+\end{lemma*}
+
+\section*{Lecture 2}
+\paragraph{Lemmas from above}
+Let $n\geq2$. Then $n$ is divisible by at least one prime, and $n$ is prime or a product of primes.
+
+\paragraph{Infinite Primes}
+\begin{theorem*}
+Euclid stated there are infinitely many primes.
+\end{theorem*}
+\begin{proof}
+Suppose there are only finitely many primes. Denote them as $p_1,\ldots,p_k$. Consider $p_1p_2\ldots p_k+1$. By lemma 1, there exists at least one prime $p$ that divides $n$. Assume, without loss of generality, that $p=p_1$. So $p_1|n$, but also $p_1|p_1\ldots p_k$ thus $p_1|n-p_1\ldots p_k$ (property 2 of divisibility from above). But then $p_1|1$, which implies that $p_1\leq1$ (property 4 of divisibility), which is a contradiction because primes are at least 2. Hence there cannot just be finitely many primes. 
+\end{proof}
+This actually gives a method to generate new primes, but it doesn't always generate a prime. Prof is offering \$100 for the first person who will tell him who was thinking about this proof before he was executed. 
+
+\paragraph{Euclidean Algorithm}
+This algorithm finds the gcd of two integers. You simply repeatedly subtract the smaller number from the larger one, and when you reach 0, the remaining number is the gcd. 
+\subparagraph{Greatest Common Divisor}
+Let $a,b\in\mathbb{Z}$. Define gcd$(a,b)$ to be the greatest common divisor of $a$ and $b$. Define gcd$(0,0)=0$. Note gcd$(0,n)=n$. 
+
+\section*{Lecture 3}
+\paragraph{Division Theorem}
+\begin{theorem*}
+Given $a,b\in\mathbb{Z}$, $a\neq0$, then there exists unique integers $r,q$, such that $b=qa+r$, with $0\leq r<|a|$. 
+\end{theorem*}
+\textbf{Uniqueness:} 
+\begin{proof}
+Say $b=q_1a+r_1$, and $b=q_2a+r_2$, with $0\leq r_1,r_2<|a|$. Subtracting, we get $0=(q_1-q_2)a+(r_1-r_2)\Rightarrow (q_2-q_1)a=(r_1-r_2)$, and from the restriction above we know $(r_1-r_2)<|a|$, and $(r_1-r_2)=(q_2-q_1)a>-|a|$. But $a$ divides $(q_2-q_1)a$, hence $(r_1-r_2)=0$, since there is only one multiple of $a$ between $-|a|$ and $|a|$. Also, $(q_2-q_1)=0$, and so $r_1=r_2,q_1=q_2$, and therefore $r,q$ are unique. 
+\end{proof}
+\textbf{Existence:}
+\begin{proof}
+($b\geq0$ case) Assume $a>0$. Using induction, if $b=0$ then $q=r=0$ works. Assume true for $b$ (ie. $\exists q,r\in\mathbb{Z}$ such that $b=qa+r$, with $0\leq r<|a|$). Consider $b+1$. If $r+1<|a|$, then $b+1=q'a+r'$, with $q'=q$, and $0\leq r'=r+1<|a|$. If $r+1=|a|$, then set $q'=q+1$, and $r'=0$, and still we have $0\leq r'<|a|$, and we still have $b=q'a+r'$. 
+\end{proof}
+
+\paragraph{Euclidean Algorithm (again?)}
+Let $a,b\in\mathbb{Z}$. The following procedure returns gcd$(a,b)$. 
+\begin{enumerate}
+    \item If $a=0$, return $b$
+    \item Compute $q,r\in\mathbb{Z}$ such that $b=qa+r$ and $0\leq r<|a|$ 
+    \item Replace $a,b$ with $r,a$ and repeat from 1.
+\end{enumerate}
+\subparagraph{Why this works:}
+\begin{lemma*}
+Let $a,b,q,r\in\mathbb{Z}$, with $b=qa+r$. Then gcd$(a,b)=\text{gcd}(r,a)$. 
+\end{lemma*}
+\begin{proof}
+Let $g=\text{gcd}(a,b)$. If $d|a,b$, let $b=qa+r$. Then $d|b-qa$ by property 2 of divisibility. Note $b-qa=r$, so $d$ also divides $r$. Furthermore, if $c|a,r$, then $c|qa+r=b$, so $c|b$. Hence $c\leq d$. Thus, $\text{gcd}(r,a)=d$.
+\end{proof}
+A consequence of this algorithm is that $\forall a,b\in\mathbb{Z},\exists x,y\in\mathbb{Z}$ such that $\text{gcd}(a,b)=xa+yb$. The proof involves applying the Euclidean algorithm and back-substitution. 
+
+\paragraph{Unique Factorization}
+Let $n\in\mathbb{Z},n\geq2$. Then $n$ can be uniquely expressed as a product (where one prime factor is a product) of primes (up to order). 
+\begin{lemma*}
+Let $b,c,p\in\mathbb{Z}$, with $p$ being prime. Assume $p|bc$, then $p|b$ or $p|c$. 
+\end{lemma*}
+
+\section*{Lecture 4}
+\paragraph{Applications of the Euclidean Algorithm}
+Given $a,b\in\mathbb{Z}$, $\exists x,y\in\mathbb{Z}$ such that $\text{gcd}(a,b)=xa+yb$. Why is this useful? 
+\paragraph{Euclid VII.30}
+Let $b,c\in\mathbb{Z}$, $p$ prime. Assume $p|bc$. Then $p|b$ or $p|c$. 
+\begin{proof}
+     Case 1: either $p|b$ or not. If not, then the goal is $p|c$. $p\nmid b\Rightarrow \text{gcd}(p,b)=1$, as $p$ is prime. Therefore, $\exists x,y\in\mathbb{Z}$: $1=xp+yb$. Multiplying by $c$, we get $c=xpc+ybc$. But $p|p$, and $p|bc$, hence $p|xpc+ybc$ and so $p|c$. 
+\end{proof}
+
+\paragraph{Unique Factorization}
+\begin{proof}
+     Argue by contradiction. Assume there is at least one counter example. Let $m$ be the smallest counter example. We will show there is a smaller counter example. Let $m=p_1\ldots p_k=q_1\ldots q_l$, where $p_1\ldots p_k$ and $q_1\ldots q_l$ are two distinct prime factorizations of $m$. By the above lemma, $p_1$ divides either $q_1$ or $q_2$, etc. Assume WLOG that $p_1|q_1$, but $q_1$ is prime so $p_1=q_1$. Cancel $p_1$ on both sides, Then we get $p_2\ldots p_k=q_2\ldots q_l$ is a smaller counter example, contradicting our assumption that $m$ was the smallest counter example. 
+\end{proof}
+
+\paragraph{Euler's Identity}
+Let $s>1$. Then $\sum_{n=1}^\infty\frac{1}{n^s}=\Pi_{p}(1+\frac{1}{p^s}+\frac{1}{p^{2s}}+\frac{1}{p^{3s}}+\cdots)$. This is true since each factor can be uniquely factored by primes, and so it will be found exactly once in the expanded product. Note that by the geometric series, the product is equal to $\Pi_p\frac{1}{1-\frac{1}{p^2}}$, which is called Euler's product. 
+
+\paragraph{Euler's proof that there are infinitely many primes}
+Substitute $s=1$ into Euler's identity. Then we get the harmonic series, which diverges. Hence there must be infinitely many primes, or else Euler's product will be a finite rational number. This was Euler's proof. Modern proof: Let $s\rightarrow 1^+$. $\sum\frac{1}{n^s}$ is unbounded as $s\rightarrow1^+$ by comparison with the harmonic series. But $\lim_{s\rightarrow1^+}\Pi\frac{1}{1-\frac{1}{p^s}}$ would be bounded if there were finitely many primes. 
+
+
+\section*{Lecture 5}
+\paragraph{Slight generalization Euclid VII.30}
+Let $a,b,c\in\mathbb{Z}$, $\text{gcd}(a,b)=1$, $a|bc$, then $a|c$.  
+\begin{proof}
+     If $\text{gcd}(a,b)=1\Rightarrow\exists x,y\in\mathbb{Z}\ni 1=xa+yb$. Multiplying by $c$: $c=xca+ybc$, but $a|a$, $a|bc$, so $a|xca+ybc=c$. 
+\end{proof}
+
+\paragraph{Applications of Unique Factorization}
+\begin{theorem*}
+     $\sqrt{2}$ is irrational
+\end{theorem*}
+\begin{proof}
+     Say $\sqrt{2}$ is rational. Then it can be expressed as $\frac{a}{b}$, where $a,b\in\mathbb{Z}$, $b\neq0$. Squaring, we get $2=\frac{a^2}{b^2}\Rightarrow 2b^2=a^2$. Consider the prime factorization of both sides. Consider the prime 2. It appears an even number of times in $a^2$, as when you square $a$ all of the powers of primes will be doubled (and hence even). In $2b^2$, however, there is an odd number of $2$'s, this contradicts unique factorization. Hence our initial assumption was false. 
+\end{proof}
+\paragraph{Divisors}
+Let $n=p_1^{\alpha_1}\cdots p_k^{\alpha_k}$, where $p_j$'s are distinct primes, $\alpha_j\geq1$. Let $d|n,d\geq1$. Then $d=p_1^{\beta_1}\cdots p_k^{\beta_k},0\leq\beta_j\leq\alpha_j$.
+\begin{proof}
+     Let $d|n,d\geq1$. $n=d\cdot d'$. Comparing prime factorizations of $n,dd'$, we get $d=p_1^{\beta_1}\ldots p_k^{\beta_k},d'=p_1^{\gamma_1}\ldots p_k^{\gamma_k}$ with $\beta_j+\gamma_j=\alpha_j,0\leq\beta_j,\gamma_j\leq\alpha_j$. 
+\end{proof}
+How many positive divisors does $n$ have? $d(n)=\Pi_{j=1}^k(\alpha_j+1)=\Pi_{j=1}^kd(p_j^{\alpha_j})$. Note that $d(n)$ is multiplicative if $\text{gcd}(m,n)=1$. If $\text{gcd}(m,n)=1$, then $d(mn)=d(m)d(n)$. 
+
+\section*{Lecture 6}
+\paragraph{Least Common Multiple}
+Let $a,b\in\mathbb{Z}$. The lcm of $a,b$ is the smallest possible number such that $a$ and $b$ both divide it. 
+\paragraph{Divisor Sums}
+Define $\sigma(n)=\sum_{d|n}d$. $\sigma$ is also multiplicative. If $n,m$ are coprime, then $\sigma(nm)=\sigma(n)\sigma(m)$. Let $p$ be prime, and $\alpha\geq1$. Then $\sigma(p^\alpha)=1+p+\cdots+p^\alpha$. If $n=p_1^{\alpha_1}\ldots p_k^{\alpha_k}$, with $p_j$ being distinct primes and $\alpha_j\geq1$, then $\sigma(n)=\Pi_{j=1}^k\sigma(p_j^{\alpha_j})=\Pi_{j=1}^k\frac{p_j^{\alpha_j+1}-1}{p_j-1}$
+
+\paragraph{Perfect Numbers}
+Euclid defines a perfect number to be a positive integer $n$ that is equal to the sum of its proper positive divisors. 
+\paragraph{Euclid IX.36} 
+Let $n=2^{q-1}(2^q-1)$ with $2^q-1=p$ is prime. Then $n$ is perfect. 
+\begin{proof}
+     Notice $\text{gcd}(2^{q-1},2^q-1)=1$. Since if $d|2^{q-1}$ and $d|2^q-1$, then $d|2\cdot 2^{q-1}-(2^q-1)=1$, and $d$ must be $1$. Then $\sigma(n)=2^{q-1}(2^q-1)=\sigma(2^{q-1})\sigma(2^q-1)=(2^q-1)(1+(2^q-1))=(2^q-1)2^q=2(2^{q-1}(2^q-1))=2n$
+\end{proof}
+
+\paragraph{Mersenne Primes}
+Primes of the form $2^q-1$ are called Mersenne primes. Proposition: If $2^q-1$ is prime, then $q$ is prime. Note the converse is not true. 
+\begin{proof}
+     Say $q=ab$ with $a,b>1$. Then $2^q-1=2^{ab}-1=(2^a-1)(2^{ab-a}+\cdots+2^{2a}+2^a+1)$, and so therefore $2^q-1$ factors, and is not prime. 
+\end{proof}
+
+
+\paragraph{Prime powers are not odd perfect numbers}
+$\sigma(p^\alpha)=\frac{p^{\alpha+1}}{p-1}\leq\frac{p^{\alpha+1}}{p-1}=p^\alpha\frac{p}{p-1}<2p^\alpha$, so $p^\alpha$ is not perfect. 
+
+
+
+
+\section*{Lecture 7}
+\paragraph{Euler's converse to Euclid's IX.36}
+If $n$ is even and perfect then $n=2^k(2^{k+1}-1)$ with $2^{k+1}-1$ prime. 
+\begin{proof}
+     If n is even, then $n=2^km$ for some $k\geq1$, $m$ odd. If $n$ is perfect, then $\sigma(n)=2n$, in particular $2^{k+1}m=\sigma(2^km)=\sigma(2^k)\sigma(m)=(1+2+\cdots+2^k)\sigma(m)=(2^{k+1}-1)\sigma(m)$. But gcd$(2^{k+1},2^{k+1}-1)=1$, hence by some Euclid proposition (if $a|bc$, and gcd$(a,b)=1$, then $a|c$), we have $2^{k+1}|\sigma(m)$. Hence $\sigma(m)=2^{k+1}c$, where $c\geq1$. Substituting back, $2^{k+1}m=(2^{k+1}-1)2^{k+1}c\Rightarrow m =(2^{k+1}-1)c$. If $c>1$, then $\sigma(m)\geq1+c+(2^{k+1}-1)c$ because $1|m,c|m,(2^{k+1}-1)c|m$. Then $1+c+(2^{k+1}-1)c=2^{k+1}c+1$, which contradicts the fact that $\sigma(m)=2^{k+1}c$, and hence $c=1$. Since $c=1$, from above we get $\sigma(m)=\sigma(2^{k-1}-1)=2^{k+1}$. Note that $\sigma(p)=p+1$ implies $p$ is prime, so $m$ is prime, and so we are done. 
+\end{proof}
+
+\paragraph{Congruences}
+Let $m\geq1$, and $a,b\in\mathbb{Z}$. We say $a\equiv b\mod{m}$ if $m|a-b$. ie. if $a-b=km$ for some $k\in\mathbb{Z}$. Congruence is an equivalence relationship: 
+\begin{enumerate}
+    \item $a\equiv a\mod{m}$ 
+    \begin{proof}
+    $m|a-a=0$
+    \end{proof}
+    \item If $a\equiv b\mod{m}$ then $b\equiv a\mod{m}$ 
+    \begin{proof}
+    If $m|(a-b)$ then $a-b=km$ for some $k\in\mathbb{Z}$, so $b-a=(-k)m$, hence $m|b-a\Rightarrow b\equiv a\mod{m}$
+    \end{proof}
+    \item If $a\equiv b\mod{m}$ and $b\equiv c\mod{m}$ then $a\equiv c\mod{m}$ 
+    \begin{proof}
+    $m|(a-b)\Rightarrow a-b=k_1m$, and $m|(b-c)\Rightarrow b-c=k_2m$, $k_1,k_2\in\mathbb{Z}$. Adding them, we get $a-c=(k_1+k_2)m$, hence $m|a-c$, and $a\equiv c\mod{m}$.
+    \end{proof}
+\end{enumerate}
+Other properties: 
+\begin{enumerate}
+    \item If $a\equiv a'\mod{m}$ and $b\equiv b'\mod{m}$, then 
+    \begin{enumerate}
+        \item $a+b\equiv a'+b'\mod{m}$ 
+        \begin{proof}
+        $a-a'=k_1m\Rightarrow a=a'+k_1m$, $b-b'=k_2m\Rightarrow b=b'+k_2m$, $k_1,k_2\in\mathbb{Z}$. Thus $a+b=a'+b'+(k_1+k_2)m$, so $a+b\equiv a'+b'\mod{m}$ 
+        \end{proof}
+        \item $ab=a'b'\mod{m}$
+        \begin{proof}
+        $ab=(a'+k_1m)(b'+k_2m)\Rightarrow ab=a'b'+m(a'k_2+b'k_1+k_1k_2m)$, hence $ab\equiv a'b'\mod{m}$ 
+        \end{proof}
+    \end{enumerate}
+\end{enumerate}
+
+
+
+
+\end{document}

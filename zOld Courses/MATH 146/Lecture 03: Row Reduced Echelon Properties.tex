@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Just Row Reduced Echelon Things}
+
+\paragraph*{Examples}
+ $\begin{bmatrix}
+    0 & 1 & 2 & 0 & 1 \\
+    0 & 0 & 0 & 1 & 3 \\
+    0 & 0 & 0 & 0 & 0 \\  
+\end{bmatrix}$ \\ 
+$x_2+2x_3+x_5=0$, and $x_4+3x_5=0$. $x_2 = -2x_3-x_5$, and $x_4 = -3x_5$. $x_3,x_5,x_1$ are free variables. Setting $x_1=u$, $x_3=v$, $x_5=w$, the solutions are $\{(u,-2v-3w,v,-3w,w):u,v,w\in\mathbb{R}\}$ 
+
+\paragraph{}
+In general if A is RRE then you will have as many equations as non-zero rows, and they will be in terms of the remaining $x_i$, so $\{x_j: j \neq k_1,k_2,\ldots,k_r\}$. (where r is the amount of non-zero rows). Note: Ax=0 always has a trivial solution, $x=0=\begin{bmatrix}0\\ \vdots \\ 0\end{bmatrix}$. Fact: Every matrix is row equivalent to a unique RRE matrix. 
+
+\paragraph{Theorem}
+If A is an mxn with $m<n$, then $Ax=0$ has a non-trivial solution. Proof: If we have any free variables, there are an infinite amount of solutions. Every row isolates at most 1 variable, so every variable needs 1 row in a RRE matrix. If we have less rows than columns, we have less isolated variables than we have variables, so we have free variables, and so there is a non-trivial solution.
+% his Proof
+Let R be RRE that is now equivalent to A. Then $Ax=0$ and $Rx=0$ have the same solutions. From above, there are at most m isolated variables. Since $n>m$, there are at least $n-m>0$ free variables. 
+
+
+Note: 
+$\mathbb{F}=\mathbb{R}$ $Ax=0$ Solutions: $x=0, x=u\neq0$. Then it has infinite amount of solutions. Proof: If $Au=0$, then $a_{11}u_1+...+a_{1n}u_n=0$. $\lambda u=0$ (where $\lambda u := \begin{matrix}\lambda u_1\\\vdots\\\lambda u_n\end{matrix}$) 
+
+
+\paragraph{Theorem}
+If A is square (ie. nxn) then $Ax=0$ has a unique solution (namely $x=0$) if and only if A is row equivalent to the identity matrix In. Proof: Suppose A is row equivalent to In. Then $Ax=0$ and $Inx=0$ have the same solutions. $Inx=0\Leftrightarrow x_1=0, x_2=0, \ldots, x_n=0$. Clearly $x=0$ is the only solution to $Inx=0$. Conversely, if $Ax=0$ has a unique solution $x=0$, letting R be the RRE matrix equivalent to A, $Rx=0$ has a unique solution. So there are no free variables. So there are n leading 1's in R. Since there are n rows and columns, $R=In$. 
+
+Note: If $R$ is equivalent to $In$, then $R$ is invertible. 
+
+\paragraph{non-homogeneous equations}
+Consider $Ax=y$ for $y\neq0$. Unlike the homogeneous case(which can have 1 or infinitely many solutions), there may be no solutions(so non-homogenuous equations can have 0, 1, or infinitely many solutions). example: $x_1+x_2=1$, $0x_1+0x_2=1$ has no solutions. 
+
+\end{document}

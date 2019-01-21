@@ -1,0 +1,283 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\paragraph{Design Recipe} Design recipe requires: \begin{enumerate}
+    \item Function Description
+    \item Requires section (for parameters)
+    \item Side effects
+\end{enumerate}
+
+\paragraph{Identifiers} Variable names. Must start with a letter, and can only contain letters, numbers, and underscores.
+
+\paragraph{Types of typing} Racket uses dynamic typing, where the types of variables are determined while the program is running. C uses static typing, where the types of each variable are determined before the program is run. 
+
+\paragraph{Entry Point} The entry point in functional programs is the top of the program. In C, the entry point is main.
+
+\paragraph{Racket Begin} Racket implicitly always uses the begin special form. In the begin function, \begin{enumerate}
+    \item Each expression is evaluated in order
+    \item The value of each expression is \textit{discarded}, except for the last expression
+    \item begin produces the value of the last expression
+\end{enumerate}
+
+\paragraph{Side effects} There are three types of side effects in this course: input, output, and mutation. 
+
+\paragraph{Statements} There are three types of statements in C: \begin{enumerate}
+    \item Compound statements (blocks)
+    \item Expression statements (generating side effects)
+    \item Control Flow statements (returns, loops, ifs)
+\end{enumerate}
+
+\paragraph{Variables} To define a variable in C, we need: type, identifier, initial value. 
+
+\paragraph{Variable Scope} A variable can either have a global scope, or a local scope. 
+
+\paragraph{Const} Use const in front of a variable to make it a constant. Constants are good because they: \begin{enumerate}
+    \item Communicate the intended use of the variable
+    \item prevents 'accidental' mutation
+    \item may help optimize the code
+\end{enumerate}
+
+\paragraph{Control Flow} There are three types of control flow:
+\begin{enumerate}
+    \item Function Calls
+    \item Conditionals
+    \item Iteration
+\end{enumerate}
+
+\paragraph{sizeof} \begin{enumerate}
+    \item Int: 4 bytes
+    \item Char: 1 bytes
+    \item Struct: at least the sum of each field
+    \item Pointer: 8 bytes
+\end{enumerate}
+
+\paragraph{Sections of memory}
+\begin{enumerate}
+    \item code
+    \item Read-only Data
+    \item Global Data
+    \item Heap
+    \item Stack
+\end{enumerate}
+Before the main function is called, all global variables are identified and space for each global variable is reserved. 
+
+\paragraph{Pointers} Whenever a pointer is a parameter you must require it is a non-NULL pointer.
+
+\paragraph{Advantages of Modularization}
+\begin{enumerate}
+    \item Re-usability: A good module can be re-used by many clients. Once
+we have a “repository” of re-usable modules, we can construct large
+programs more easily.
+    \item Maintainability: It is much easier to test and debug a single module
+instead of a large program. If a bug is found, only the module that
+contains the bug needs to be fixed. We can even replace an entire
+module with a more efficient or more robust implementation.
+    \item Abstraction: To use a module, the client needs to understand what
+functionality it provides, but it does not need to understand how it is
+implemented. In other words, the client only needs an “abstraction”
+of how it works. This allows us to write large programs without
+having to understand how every piece works
+\end{enumerate}
+
+\paragraph{Global Scopes} There are two types of global scopes: \begin{enumerate}
+    \item module (scope) identifiers are only available inside of the module (file)
+they are defined in
+\item program (scope) identifiers are available to any file in the program
+\end{enumerate}
+Static can be used in a module to make any variable module scope. Private should have been the keyword, but dave thompkins is silly.
+
+\paragraph{Modules} Quotes are used for regular modules, angle brackets are used for standard modules. stdio.h provides printf and scanf, limits.h provides \verb|INT_MAX| and \verb|INT_MIN|, stdbool.h provides bool and true and false, stdlib.h provides NULL, assert.h provides assert
+
+\paragraph{Cohesion and Coupling} When designing module interfaces, we want to achieve high cohesion and low coupling.
+\begin{itemize}
+    \item High cohesion means that all of the interface functions are related
+and working toward a “common goal”. A module with many
+unrelated interface functions is poorly designed.
+\item Low coupling means that there is little interaction between
+modules. It is impossible to completely eliminate module interaction,
+but it should be minimized.
+\end{itemize}
+
+\paragraph{Information Hiding} The two key advantages of information hiding are security and
+flexibility.
+\begin{itemize}
+    \item Security is important because we may want to prevent the client
+from tampering with data used by the module. Even if the tampering
+is not malicious, we may want to ensure that the only way the client
+can interact with the module is through the interface. We may need
+to protect the client from themselves.
+\item By hiding the implementation details from the client, we gain the
+flexibility to change the implementation in the future.
+\end{itemize}
+
+\paragraph{Abstract Data Types} ADTs are implemented as data storage modules that only allow access to the data through interface functions. 
+
+\paragraph{Array size} The \textbf{length} of an array refers to the number of elements in the array. The \textbf{size} of an array is the number of bytes it occupies in memory. An array of \textit{k} elements, each of size \textit{s} requires exactly \textit{k $\times$ s} bytes.
+
+\paragraph{Array Identifier} The \textbf{value} of an array (a) is the same as the \textbf{address} of the array (\&a), which is also the address of the first element (\&a[0]). Dereferencing an array (*a) is equivalent to referencing the first elements (a[0])
+
+\paragraph{Pointer Arithmetic} when adding an integer i to a pointer p, the address computed by (p + i) in C is given in "normal" arithmetic by: p + i $\times$ sizeof(*p). Subtraction works similarly. Addition between two pointers is illegal, but subtraction is allowed if they point to the same type. The result of pointer subtraction is $\frac{p-q}{\text{sizeof}(*p)}$
+
+\paragraph{Big O Arithmetic} When adding orders, the result is just the largest of the two orders. When multiplying orders, the result is the product of the two orders. 
+
+\paragraph{Racket Running Times} \begin{itemize}
+    \item Lists: Elementary list functions (cons, cons?, empty, empty?, rest, first, second, tenth) are O(1). List functions that proccess the full list are typically O(n).
+    \item Equality: We can assume numeric equality is O(1). Symbol=? is also O(1). string=? is O($n$), where $n$ is the length of the smallest string.
+\end{itemize}
+
+\paragraph{Array Efficiency} One of the significant differences between arrays and lists is that any element of an array can be accessed in constant time regardless of the index or the length of the array. To access the $i$-th element in an array (e.g., a[i]) is always O(1). To access the $i$-th element in a list (e.g., list-ref) is O(i).
+
+\paragraph{Procedure for Iterative Analysis} \begin{enumerate}
+    \item Work from the innermost loop to the outermost
+    \item Determine the number of iterations in the loop (in the worst case) in relation to the size of the data (n) or an outer loop counter
+\item Determine the running time per iteration
+\item Write the summation(s) and simplify the expression
+\end{enumerate}
+Common summations: \begin{itemize}
+    \item $\sum_{i=1}^{\text{log }n}O(1)=O(\text{log }n)$
+    \item $\sum_{i=1}^{n}O(1)=O(n)$
+    \item $\sum_{i=1}^{n}O(n)=O(n^2)$
+    \item $\sum_{i=1}^{n}O(i)=O(n^2)$
+    \item $\sum_{i=1}^{n}O(i^2)=O(n^3)$
+\end{itemize}
+
+\paragraph{Procedure for Recursive Functions}\begin{enumerate}
+    \item Identify the order of the function excluding any recursion
+    \item Determine the size of the data for the next recursive call(s)
+    \item Write the full recurrence relation (combine step 1 \& 2)
+    \item Look up the closed-form solution in a table
+\end{enumerate}
+
+\paragraph{String Initialization} The following strings are all equivalent: 
+\begin{itemize}
+    \item char a[] = \{'c','a','t','$\backslash$0'\};
+    \item char b[] = \{'c','a','t', 0\};
+    \item char c[4] = \{'c','a','t'\};
+    \item char d[] = \{99, 97, 116, 0\};
+    \item char e[4] = "cat";
+    \item char f[] = "cat";
+\end{itemize}
+
+\paragraph{String Functions}
+\begin{itemize}
+    \item \textbf{strlen(s)} returns the length of the string (NOT including the null character). It has an O(n) runtime.
+    \item \textbf{strcmp(s1, s2)} returns 0 if s1 and s2 are identical. If s1 precedes s2 lexicographically, it returns a negative integer. Otherwise, it returns a positive integer. It has an O(n) runtime, with n being the size of the smaller string.
+    \item \textbf{strcpy(s1, const s2)} overwrites s1 with s2. It has an O(n) runtime.
+    \item \textbf{strcat(s1, const s2)} con\textbf{cat}enates s2 onto the end of s1. It has an O(n) runtime.
+    \item \textbf{strdup(const s1)} makes a duplicate of a string. 
+\end{itemize}
+
+\paragraph{String I/O} \%s is the placeholder for strings. printf(\%s) prints out characters until the null character is encountered. scanf(\%s) stops reading when a white space is encountered. The runtime of printf and scanf with strings is O(n).
+
+\paragraph{String Literals} Strings that in an expression (and not part of an array intialization) are called string literals. They are stored in the read-only section.
+
+\paragraph{Heap} When memory is "borrowed" (dynamically) from the heap, we call it allocation. When it is "returned", it is deallocation. 
+
+\paragraph{malloc} \textbf{m}emory \textbf{alloc}ation (malloc(s)) function obtains s bytes of memory from the heap dynamically. It is provided in $<$stdlib.h$>$. For example, if you want enough space for an array of 100 ints: \\int *my\_array = malloc(100 * sizeof(int)); \\An unsuccessful call to malloc returns NULL, and it's good practice to check every malloc call if it returned NULL. 
+
+\paragraph{free} free frees the memory allocated by malloc. It is invalid to free memory that was not returned by a malloc. It is good style to assign NULL to a freed pointer variable. If allocated memory is not freed, memory leaks occur. 
+
+\paragraph{realloc} realloc(p, newsize) resizes the memory block at p to be newsize bytes of memory, and returns a pointer to the new location, or NULL if unsuccessful. It has an O(n) runtime. 
+
+\paragraph{Amortized analysis} Pls know how the following readstr function works. \\
+char *readstr(void) \{\\
+\hspace*{5pt} char c;\\ 
+\hspace*{5pt} if (scanf(" \%c", \&c) != 1) return NULL; // ignore initial WS\\
+\hspace*{5pt} int maxlen = 1;\\
+\hspace*{5pt} int len = 1;\\
+\hspace*{5pt} char *str = malloc(maxlen * sizeof(char));\\
+\hspace*{5pt} str[0] = c;\\
+\hspace*{5pt} while (1) \{\\
+\hspace*{10pt} if (scanf("\%c", \&c) != 1) break;\\
+\hspace*{10pt} if (c == ' ' $||$ c == '\textbackslash n') break;\\
+\hspace*{10pt} if (len == maxlen) {\\
+\hspace*{15pt} maxlen *= 2;\\
+\hspace*{15pt} str = realloc(str, maxlen * sizeof(char));\\
+\hspace*{10pt} \}\\
+\hspace*{10pt} ++len;\\
+\hspace*{10pt} str[len - 1] = c;\\
+\hspace*{5pt} \}\\
+\hspace*{5pt} str = realloc(str, (len + 1) * sizeof(char));\\
+\hspace*{5pt} str[len] = '\textbackslash0';\\
+\hspace*{5pt} return str;\\
+\}
+Note how it dynamically changes the maxlen of the string as more characters are read in. 
+
+\paragraph{ADTs} Pretty self explanatory, just make sure you use the dynamic reallocation of array sizes from the paragraph above. When you create ADTs, use malloc(sizeof(struct $<$ADT NAME$>$)), and initialize all variables. When you destroy it, make sure you free all the pointers. 
+
+\paragraph{Linked Lists} Lists that are similar to racket lists, each contains an item and a pointer to the next item. The last pointer in the list is NULL. Note that the link to the first node is typically inside another structure. \\ 
+\textbf{Destroying a Linked list}\\ 
+Requires two node pointers. Consider the following: \\ 
+void list\_destroy(struct llist *lst) \{ \\ 
+\hspace*{5pt} struct llnode *curnode = lst->front; \\  
+\hspace*{5pt} struct llnode *backup = NULL; \\ 
+\hspace*{5pt} while (curnode) \{ \\
+\hspace*{10pt} backup = curnode; \\ 
+\hspace*{10pt} curnode = curnode->next; \\ 
+\hspace*{10pt} free(backup);\\ 
+\hspace*{5pt} \}\\ 
+\hspace*{5pt} free(lst);\\
+\}\\ \\ 
+\textbf{Insert and Remove} The format of these two functions are the same (note that the insert function is on a sorted list): \begin{enumerate}
+    \item check for the first item in the list 
+    \item initialize a pointer to the front item that will run down the list 
+    \item when the correct spot is found, either create (malloc , initializing values, and edit the previous pointer to now point to the new node) or remove (create a new pointer that is the node that is being removed, edit the pointer to point to the next node, free the created pointer) 
+\end{enumerate}
+
+\paragraph{Trees} Terminology: \begin{itemize}
+    \item the \textbf{root node} has no \textbf{parent}, all others have exactly one
+    \item nodes can have multiple \textbf{children}
+    \item in a \textbf{binary tree}, each node has at most two children
+    \item a \textbf{leaf node} has no children
+    \item the \textbf{height} of a tree is the maximum possible number of nodes from the root to a leaf (inclusive)
+    \item the height of an empty tree is zero
+    \item the \textbf{size} of a tree is the number of nodes
+\end{itemize}
+
+\paragraph{Removing a Node from a BST} They implement the following steps: \begin{enumerate}
+    \item If the node with the key ("key node") is a leaf, we remove it. 
+    \item If one child of the key node is empty (NULL), the other child is "promoted" to replace the key node. 
+    \item Otherwise, we find the node with the \textit{next largest key} in the tree (ie. the smallest key in the right subtree). We replace the key/value of the key node with the key/value of the next node, and then remove the next node from the right subtree. 
+\end{enumerate}
+
+\paragraph{Data Structures} Every data structure is some combination of the following "core" structures: 
+\begin{itemize}
+    \item Primitives (e.g., an int)
+    \item Structures 
+    \item Arrays 
+    \item Linked Lists 
+    \item Trees 
+    \item Graphs 
+\end{itemize}
+
+\paragraph{Design Decisions} There are two types of data: when order doesn't matter (grocery list, invite list ) the data is \textbf{unsequenced}. If the order does matter ,it is \textbf{sequenced}. When to use which data structure? \begin{itemize}
+    \item An \textbf{array} is a good choice if you frequently access elements at specific positions (random access)
+    \item A \textbf{linked list} is a good choice for sequenced data if you frequently add and remove elements at the start 
+    \item A \textbf{self-balancing BST} is a good choice for unsequenced data if you frequently search for, add, and remove items 
+    \item A \textbf{sorted array} is a good choice if you rarely add/remove elements, but frequently search for elements and select the data in sorted order. 
+\end{itemize}
+
+\paragraph{typedef} The C typedef keyword allows you to create your own “type” from previously existing types. This is typically done to improve the readability of the code, or to hide the type (for security or flexibility). Using this, we can provide the client with a header file in which they can provide the itemtype, and then we can make collection ADTs with any item type. 
+
+\paragraph{void pointers} void pointers can point to "any" type, and are essentially just memory addresses. However, they cannot be directly dereferenced. You must create a pointer to the correct type, and then derefence that pointer to access the value at the pointer. \\ 
+\textbf{Implementing ADTs with void pointers} \\ 
+\hspace*{5pt} There are two complications that arise from this: \begin{itemize}
+    \item \textbf{Memory management} is a problem because a protocol must be established to determine if the client or the ADT is responsible for freeing item data 
+    \item \textbf{Comparisons} are a problem because many ADTs must be able to compare items when searching and sorting
+\end{itemize}
+The solution to the memory management problem is easy: Just make the ADT interface explicitly clear whose responsibility it is: ie. A precondition to the destroy operation could be that the ADT is empty.  \\ 
+The solution to the comparison problem is also easy: we can provide the ADT with a comparison function when the ADT is created. 
+
+\paragraph{qsort} qsort is part of $<$stdlib.h$>$ and can sort an array of any type. qsort requires (in order): An array of any type, the length of the array, the size of each element, and a comparison function. 
+
+\paragraph{bsearch} bsearch searches any sorted array for a key, and either returns a pointer to the element if found, or NULL if not found. It is as follows: void *bsearch(void *key, void *arr, int len, size\_t size, CompFuncPtr f) 
+
+\end{document}

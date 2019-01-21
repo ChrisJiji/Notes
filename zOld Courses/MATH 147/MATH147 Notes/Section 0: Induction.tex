@@ -1,0 +1,95 @@
+\documentclass{article}     % Specifies the document class 
+
+\title{MATH147 Section 0: Induction}  % Declares the document's title.
+\author{Chris Ji}      % Declares the author's name.
+\date{September 8, 2017}      % Deleting this command produces today's date.
+
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\newcommand{\ip}[2]{(#1, #2)}
+                             % Defines \ip{arg1}{arg2} to mean
+                             % (arg1, arg2).
+
+\begin{document}             % End of preamble and beginning of text.
+
+\maketitle     % Produces the title.
+
+\section*{0.1 Purpose}      % Produces section heading.  Lower-level
+                             % sections are begun with similar
+                             % \subsection and \subsubsection commands.
+The purpose of this course is two-fold. First, we shall review some of the mechanics of the calculus you have seen before- including differentiation, graphing curves, etc. The second component (and the most important) is that we will do everything in as much rigor and detail as possible; we will prove as much as we can, and to induce precise definitions of limits, continuity, derivatives, etc. 
+
+\section*{0.2 Notation}
+\href{https://learn.uwaterloo.ca/d2l/le/content/335487/viewContent/1934236/View?ou=335487}{Notation contained on the learn website}
+
+\section*{0.3 The well ordering principle for $\mathBB{N}$}
+If $\Phi \neq S \subset\mathBB{N}$, then S admits a minimum element (has a minimum element)
+i.e. there exists some m_o $\in$ S so that m_o $\leq$ t for all t $\in$ S
+
+\section*{0.4 The First Principle Of Mathematical Induction}
+Let S $\subset$ $\mathBB{N}$ If:
+
+\\
+(a) 1 $\in$ S
+
+\\
+(b) k $\in$ S implies that (k+1) $\in$ S 
+\\
+Then S $\in$ $\mathBB{N}$
+\\
+
+\underline{Proof}
+\\
+We shall use \underline{proof by contradiction}
+\\
+
+\textbf
+{\underline{NOTE} the idea behind a proof by contradiction is the following.
+Suppose P is a true statement and that after applying correct logical reasoning, you end up with a statement Q. Then Q must also be true.
+e.g. 5>4 if you add 3 to both sides, it should still be true
+\\
+\underline{We use this as follows}
+Suppose P is a statement, but you don’t know if P is true of false. Suppose that after applying correct reasoning, and suppose that after applying correct reasoning, you end up with a statement Q that you can recognize is false. Therefore, P is false must have been false as well. 
+\\
+\underline{NOTE:} If Q is true- then this tells you nothing about whether P is true or false
+e.g.
+\\
+P: 5=4
+\\
+Q: multiply both sides by 0 to get 0=0
+\\
+Q is true but P is false}
+
+\breakline
+\breakline
+Let P be the statement S $\neq$ $\mathbb{N}$
+\\
+Let T = N\textbackslash S
+\\
+Then T $\neq$ $\Phi$ as S $\neq$ $\mathbb{N}$ and T $\subset$ $\mathbb{N}$
+\\
+By the well-ordering principle for $\math{N}$, T has a minimum element $m_o$  so that m_o $\leq$ t for all t $\in$ T. Since 1 $\in$ S by (a) and m_o $\in$ T = $\mathbb{N}$ \textbackslash S, we see that m_o $\neq$ 1. Thus m_o - 1 $\in$ $\math{N}$. Also m_o - 1 $<$ m_o and m_o $\leq$ t for all t$\in$T. This implies that m_o - 1 $\notin$ T. Hence m_o - 1 $\in$ S
+
+Thus m_o - 1 $\in$ $\math{N}$. Also $m_o - 1 < m_o$ and $m_o \leq$ t for all t$\in$T. This implies that m_o - 1 $\notin$ T. Hence m_o - 1 $\in$ S
+But then by (b) (m_o - 1) $\in$ S implies that (m_o = (m_o - 1) + 1) $\in$ S
+But then m_o $\in$ S $\cup$ T = $\phi$, a contradiction
+This shows that P was false, therefore S = $\math{N}$
+
+\end{document}               % End of document.
+
+
+
+
+
+
+
+
+
+

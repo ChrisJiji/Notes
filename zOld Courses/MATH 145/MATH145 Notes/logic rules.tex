@@ -1,0 +1,144 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\begin{document}
+
+\textit{1.55 - BASIC VALIDITY RULES}\\
+V4\\
+If S $\cup$ \{F\} $\models$ G and S $\cup$ \{$\neg$F\} $\models$ G, then S $\models$ G
+\\\\
+V5\\
+To prove a statement F using proof by contradiction, choose any formula G, then suppose for a contradiction that F is false, then prove G and $\neg$G.\\\\
+V7\\
+If from F you can prove a contradiction(G and $\neg$G), then from F you can prove anything.\\\\
+
+V8 (what is "AND")\\
+To prove F $\wedge$ G, we prove F and we prove G.\\\\
+
+V9 (how to use "AND")\\
+If you S$\cup$\{F,G\} $\models$ H then S$\cup$\{F$\wedge$G\} $\models$ H.
+Suppose F, and we suppose G. Then we prove H
+
+V11\\
+If S $\models$ F$\wedge$ G, then S$\models$ F and S$\models$G\\\\
+
+V13 (to prove "OR")\\ 
+S $\models$ (F$\vee$G) $\longleftrightarrow$ S $\cup$\{$\neg$F\} $\models$ G\\
+                        $\longleftrightarrow$ S $\cup$\{$\neg$G\} $\models$ F
+To prove F $\vee$ G, we suppose $\neg$ F then prove G (alternatively suppose $\neg$G then prove F)\\\\
+
+V14\\
+If you can use F to prove H, and then you suppose G and prove H, then H is true\\
+F$\cup$\{F\} $\models$ H\\
+F$\cup$\{G\} $\models$ H\\
+F$\cup$\{F$\vee$G\} $\models$ H\\\\
+
+V15\\
+If S$\models$F then S$\models$F$\vee$G\\\\
+
+V19 (how to prove if,then)\\ 
+S$\models$(F$\rightarrow$G) $\longleftrightarrow$ S$\cup$\{F\}$\models$G\\
+F$\rightarrow$G $\equiv$ $\neg$G$\rightarrow\neg$F\\\\
+
+V20 (how to use if,then to prove something)\\
+(recall F$\rightarrow$G $\equiv$ $\neg$G$\rightarrow\neg$F)\\
+If S$\cup\neg$F$\models$H and S$\cup$G $\models$H, then S$\cup$\{F$\rightarrow$G\} $\models$H\\\\
+
+V25\\
+S $\models$ (F$\leftrightarrow$G) $\longleftrightarrow$ )S $\models$(F$\rightarrow$G) and S $\models$(G$\rightarrow$F))\\\\
+
+V45\\
+If F $\equiv$ G, then S $\models$ F $\longleftrightarrow$ S $\models$ G\\\\
+V46\\
+If F $\equiv$ G, then S$\cup$\{F\}$\models$ H $\longleftrightarrow$ S$\cup$\{G\} $\models$ H\\\\
+
+DEFINITION
+A formal symbolic proof is often called a derivation. A derivation of valid arguments is a list of valid arguments, $S_1$ $\models$ $F_1$, ..., $S_l$ $\models$ $F_l$, in which each valid argument $S_k$ $\models$ $F_k$ follows from previous valid arguments ($S_i$ $\models$ $F_i$ with i$<$k) using one of the Basic Validity Rules.
+
+\paragraph{EXAMPLE}
+Make a derivation of valid arguments to show that (F$\vee$G)$\rightarrow$H, G $\rightarrow$ (K$\wedge\neg$H) $\models$ (F$\vee\neg$K) $\rightarrow$ $\neg$G, where F, G, H and K are formulas. \\ 
+Assume the first two statements are true. Suppose G is true, then using the second statement K is true and $\neg$H. Then using the first statement, $\neg$(F$\vee$G), which is $\equiv$ $\neg$F$\wedge\neg$G. We have a contradiction: G and $\neg$G. \\
+MORE FORMAL\\
+(we need to prove F$\vee\neg$K) $\rightarrow$ $\neg$G\\
+1. Suppose (F$\vee$G) $\rightarrow$ H\\ 
+2. Suppose G $\rightarrow$ (K$\wedge\neg$H)\\
+3. Suppose F$\vee\neg$K\\
+4. Suppose, for a contradiction, that G\\
+5. Since G and G $\rightarrow$ (K$\wedge\neg$H) (we have K$\wedge\neg$H)\\
+6. Since K$\wedge\neg$H, we have K and $\neg$H\\
+7. Since (F$\vee$G) $\rightarrow$ H and $\neg$H, we have $\neg$(F$\vee$G)\\
+8. Since $\neg$(F$\vee$G) we have $\neg$F $\wedge$ $\neg$G\\
+9. From $\neg$F $\wedge$ $\neg$G\\
+10. Since we have G and $\neg$G we have obtained the desired contradiction, so we have $\neg$G\\
+11. Since we assumed F$\vee\neg$K and proved $\neg$ G, we have proved that (F$\vee\neg$K) $\rightarrow$ $\neg$G\\
+
+List of assumptions
+\{(F$\vee$G) $\rightarrow$ H, G$\rightarrow$ (K$\wedge\neg$H), F$\vee\neg$K\} $\models$ (F$\vee$G) $\rightarrow$ H
+
+\paragraph{EXAMPLE} Show that\\
+1. \{(P$\rightarrow$Q)$\rightarrow\neg$R, ($\neg$P$\wedge$R)$\vee$Q, $\neg\neg$R\} $\models$ (P$\rightarrow$Q) $\rightarrow\neg$R \hfill V1\\
+2. S $\models$ $\neg\neg$R \hfill V1\\
+3. S $\models$ $\neg$(P$\rightarrow$Q) \hfill V24 on 1,2\\
+4. S $\models$ P$\wedge\neg$Q \hfill V45\\
+5. S $\models$ P \hfill V11 on 4\\
+6. S $\models$ $\neg$Q \hfill V12 on 4\\
+7. S $\models$ ($\neg$P$\wedge$R) $\vee$ Q \hfill V1\\
+8. S $\models$ ($\neg$P$\wedge$R) \hfill V18 on 7,6\\
+9. S $\models$ $\neg$P \hfill V11 on 8\\
+10. \{(P$\rightarrow$Q)$\rightarrow\neg$R, ($\neg$P$\wedge$R)$\vee$Q\} $\models$ $\neg$ R \hfill V5 on 5,9\\
+11. $\models$ $\neg$R $\vee$ $\neg\neg$P \hfill using V16\\
+12. $\models$ $\neg$(R$\vee\neg$P) \hfill V45 using $\neg$(F$\vee$G) $\equiv$ $\neg$P$\vee\neg$G\\
+13. \{(P$\rightarrow$Q)$\rightarrow\neg$R, ($\neg$P$\wedge$R)$\vee$Q\} $\models$ ($\neg$P$\wedge$R)$\vee$ Q \hfill V1\\
+14. \{(P$\rightarrow$Q)$\rightarrow\neg$R, ($\neg$P$\wedge$R)$\vee$Q\} $\models$ Q\hfill V17 on 13,12\\
+15. \{(P$\rightarrow$Q)$\rightarrow\neg$R, ($\neg$P$\wedge$R)$\vee$Q\} $\models$ Q$\wedge\neg$R \hfill V8 on 14,10\\\\
+
+DEF: When F is a formula, x is a variable symbol, and t is a term, we define a formula $[F]_{x\rightarrow t}$, which we call the formula obtained from F by \underline{substitution} of x by t. In order that in any interpretation the formula $[F]_{x\rightarrow t}$, means the same thing about t that the original formula [F] means about x. AKA recursive\\
+RULES: \\ 
+F1: When P is a unary relation and s is a term, [P(s)]_{x$\rightarrow$t} is obtained by replacing each occurrence of x by t.\\
+F2: When R is a binary relation and r and s are terms, [R(r,s)]_{x$\rightarrow$t} is obtained by replacing each occurrence of x by t.
+F3: When F is a formula $[$\neg$F]_{x$\rightarrow$t}$ := $\neg[F]_{x$\rightarrow$t}$\\
+F4: when F and G are formulas, and * $\in$ \{$\wedge\vee\rightarrow\leftrightarrow$\} [F*G]_{x$\rightarrow$t} := ([F]_{x$\rightarrow$t} * [G]_{x$\rightarrow$t})\\
+
+[F]_(x$\mapsto$t) is the formula obtained from F by substitution of x by t\\
+($\neg$[F_(x$\mapsto$t)] = $\neg$[F]_(x$\mapsto$t)\\
+[(F$\wedge$G)]_(x$\mapsto$t) = [([F]_(x$\mapsto$t)$\wedge$[G]_(x$\mapsto$t))\\
+If F is a formula  x and y are variable symbols and t is a term and if k $\in$ \{$\forall$,$\exists$\} [KxF]_(x$\mapsto$t) : KxF\\
+and if y is different than x\\
+[KyF]_(x$\mapsto$t) = ky[F]_(x$\mapsto$t) if y does not occur in t\\
+                    = ku[[F]_(y$\mapsto$u)]_(x$\mapsto$t) if y does occur in t, and u is the first unused variable symbol which does not occur in F or in t.\\
+e.g In $\mathbb{Z}$, we can express the statement "x is a factor of y", written as $x|y$, byb the formula F:= $\exists$z $y = x * z$\\
+[F]_{x$\mapsto$(x+1)} := $\exists$z \| y = (x+1) * z, which, in $\mathbb{Z}$, means $(x+1)|y$.\\
+[F]_{x$\mapsto$y} : $\exists$z \| $y = y * z$, which means $y|y$ (which is true for all y $\in \mathbb{Z}$)\\ 
+[F]_{x$\mapsto$z} is not $\exists$ z \| y = z * z, which means $z|y$ (it means "y is a square")\\
+Instead,\\ 
+[F]_{x$\mapsto$z} := [$\exists$z \|  y = x * z]_{x$\mapsto$z}\\
+                := $\exists$u[y = x * u]_{x$\mapsto$z}\\
+                := $\exists$u \| y = z * u, which does mean z \| y\\
+
+e.g. Show that $$\models (\exists x \exists y | f(x)Ry \vee \forall x \existsy \neg yRx)$$
+proof:\\
+let's suppose the first half of the or statement is false. ($\neg \exists x \exists y | f(x)Ry$).\\ 
+Then by truth equivalence, $\forall x \neg\exists y | f(x)Ry$\\
+Then by truth equivalence, $\forall x \forall y \neg(f(x)Ry)$\\
+let x be arbitrary\\
+Since $\forall x \forall y$, $\negf(x)Ry$, in particular, we can choose an arbitrary x, and say that $\forall y \negf(x)Ry$.\\
+Since $\forall y \negf(x)Ry$, in particular, we can choose x such that y = x so that $\neg f(x)Rx$.\\ 
+Choose y = f(x) then we have $\neg yRx$. \\
+We have shown that $\exists y \neg yRx$. \\
+Since x was arbitrary, we have shown that $\forall x \exists y \neg yRx$.\\\\
+Here is a derivation:\\ 
+1. \{$\neg\exists x \exists y f(x)Ry$\} $\models \neg\exists x \exists y f(x)Ry$ \hfill V1\\
+2. \{$\neg\exists x \exists y f(x)Ry$\} $\models \forall x \neg\existsy f(x)Ry$ \hfill V45 using $\neg\exists xF = \forall x\neg F$\\
+3. \{$\neg\exists x \exists y f(x)Ry$\} $\models \forall x \forall y \neg f(x)Ry$ \hfill V45\\
+4. \{$\neg\exists x \exists y f(x)Ry$\} $\models \forall y \neg f(x)Ry$ \hfill V38 (replacing x by itself)\\
+5. \{$\neg\exists x \exists y f(x)Ry$\} $\models \neg f(x)Rx$ \hfill V38 (replacing y by x) \\
+6. \{$\neg\exists x \exists y f(x)Ry$\} $\models \exists y \neg yRx$ \hfill V40 (with F:= $\neg yRx$ and $[F]_{y\mapsto f(x)}:= \neg f(x)Rx$)  
+7. \{$\neg\exists x \exists y f(x)Ry$\} $\models \forall x\exists y \neg yRx$ \hfill V37 (since x is not free in the premise)\\)
+8. We have proven \{$\neg\exists x \exists y f(x)Ry$\} $\models (\exists x\exists y f(x)Ry \vee \forall x\exists y \neg yRx)$ \hfill v13 on line 7\\
+
+
+\end{document}

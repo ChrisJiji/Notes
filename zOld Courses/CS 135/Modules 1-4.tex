@@ -1,0 +1,85 @@
+\documentclass[12pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+%\date{\vspace{-5ex}}
+\begin{document}
+\section*{Module 1}
+Translating functions into racket, understanding what DrRacket would do when encountering an error. \\ 
+\textbf{You should be comfortable with these terms:} 
+\begin{itemize}
+    \item Function: A list of instructions that can be run  
+    \item Parameter: Variables used by a function
+    \item Application: When you pass constants to a function, and it is run
+    \item Argument: The constant parameters passed by an application
+    \item Constant: A value stored to a particular variable name
+    \item Expression: Lines of code
+\end{itemize}
+
+\section*{Module 2}
+\textbf{The design recipe includes the following:}
+\begin{itemize}
+    \item Purpose: Describes what the function does 
+    \item Contract: Describes the types of arguments the function consumes and produces
+    \item Examples: Illustrates a usage of the function 
+    \item Definition: The function 
+    \item Tests: A set of function applications that include test all lines of the code, and include all possible ranges of function values
+\end{itemize}\\ 
+Programs should be written in the following order: draft the purpose, write examples, write definition header and contract, finalize purpose, definition body, tests. \\ 
+Understand boolean values, predicates, and and/or/not. Understand symbols and how to use "symbol=?". Understand how to use check-expect. \\ 
+Conds follow the form [question1 answer1] ... [questionk answerk], where questionk is usually "else". They are evaluated in top-bottom order, and as soon as one question is evaluated to true, it outputs that answer, disregarding all other questions. \\ 
+Constants should replace any number used in any functions, and helper functions should replace any long calculations used in the main function.
+
+\section*{Module 3}
+Identifiers can't use any of the following: any brackets, or punctuations, ie ( ) \{ \} [ ] , . ; " '\\ 
+Understand stepper problems: Big Sub, AIBM (as if by magic), cond expressions, and/or
+\begin{itemize}
+    \item Substitution: When a function's parameters are simple values, substitute in the function (Big Sub). If it is a built in function, then just substitute in the answer (AIBM). -
+    \item Cond Expressions: Evaluate the "question" part of the cond, and if it is true, evaluate the "answer". If not, then keep going down until the "else" is reached, and then just evaluate that "answer". \\ e.g. \\
+(cond [false exp] . . . ) $\Rightarrow$ (cond . . . )\\
+(cond [true exp] . . . ) $\Rightarrow$ exp\\
+(cond [else exp]) $\Rightarrow$ exp
+    \item and/or: Evaluate each part of the boolean function one by one, if anything in an "and" function is false, it evaluates to false. (and) evaluates to true. If anything in an "or" function is true, it evaluates to true. (or) evaluates to false. \\ e.g. \\ 
+(and false . . . ) $\Rightarrow$ false\\
+(and true . . . ) $\Rightarrow$ (and . . . )\\
+(and) $\Rightarrow$ true\\
+(or true . . . ) $\Rightarrow$ true\\
+(or false . . . ) $\Rightarrow$ (or . . . )\\
+(or) $\Rightarrow$ false
+\end{itemize}
+
+\section*{Module 4}
+A posn is a built in structure in DrRacket. The following is an example of a structure and everything you need to know about structures, using posn as an example. \\ 
+(define-struct posn (x y))\\
+;; A Posn is a (make-posn Num Num)\\ 
+Each structure definition creates the following functions: 
+\begin{itemize}
+    \item Constructor: make-posn
+    \item Selectors: posn-x, posn-y
+    \item Predicate: posn?
+\end{itemize}
+A template for a posn would be: \\ 
+(define (my-posn-fn posn)\\ 
+\indent(...(posn-x posn)...\\
+\indent\indent(posn-y posn)...))\\\\
+Here is an example of a function that multiplies a posn by a given factor: \\ 
+;; (scale point factor) scales point by a factor\\ 
+;; scale: Posn Num -$>$ Posn \\ 
+;; Example:\\ 
+(check-expect (scale (make-posn 3 4) 0.5)\\ 
+\indent\indent\indent\indent\indent\:\:\:\:\:\: (make-posn 1.5 2))\\\\
+(define (scale point factor)\\
+\indent(make-posn (* factor (posn-x point))\\
+\indent\indent\indent\indent\:\:\:\:(* factor (posn-y point))))\\
+
+The data definition of a structure is the contract (;; A Posn is a (make-posn Num Num)). Each selector counts as 1 variable for stepping. \\ 
+
+
+
+
+\end{document}

@@ -1,0 +1,66 @@
+\documentclass[10pt,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+\usepackage{enumitem}
+\newlength{\lyxlabelwidth}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%\usepackage{txfonts}
+
+\usepackage{microtype}
+
+\usepackage{calc}
+\usepackage{enumitem}
+\setenumerate{leftmargin=!,labelindent=0pt,itemindent=0em,labelwidth=\widthof{\ref{last-item}}}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\noindent \begin{center}
+\textbf{\large{}MATH 235 - Assignment 10}\\
+\textbf{\large{}Chris Ji 20725415}
+\par\end{center}{\large \par}
+\medskip{}
+
+\begin{enumerate}
+\item \begin{enumerate}
+    \item The characteristic polynomial is $\left|\begin{matrix}-\lambda &-1\\1&-\lambda\end{matrix}\right|=\lambda^2+1$. Then the eigenvalues are $\lambda_1=i,\lambda_2=-i$. Then we want to find the nullspace of $\begin{bmatrix}-i&-1\\1&-i\end{bmatrix}\sim\begin{bmatrix}1&-i\\0&0\end{bmatrix}$ and $\begin{bmatrix}i&-1\\1&i\end{bmatrix}\sim\begin{bmatrix}1&i\\0&0\end{bmatrix}$. $\begin{bmatrix}1&-i\\0&0\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}=\vec{0}$. Then $x_1=ix_2$, and so a basis for this null space is $\left\{\begin{bmatrix}i\\1\end{bmatrix}\right\}$. A similar calculation shows the nullspace for $\begin{bmatrix}1&i\\0&0\end{bmatrix}$ is $\left\{\begin{bmatrix}-i\\1\end{bmatrix}\right\}$. Then $P=\begin{bmatrix}i&-i\\1&1\end{bmatrix}$ gives $P^{-1}AP=D=\begin{bmatrix}i&0\\0&-i\end{bmatrix}$ 
+    \item The characteristic polynomial is $\left|\begin{matrix}i-\lambda &-1\\2&2i-\lambda\end{matrix}\right|=(i-\lambda)(2i-\lambda)-2(-1)=\lambda(\lambda-3i)$. Then the eigenvalues are $\lambda_1=0,\lambda_2=3i$. Then eigenvector for $\lambda_1$ is $\begin{bmatrix}-i\\1\end{bmatrix}$, and the eigenvector for $\lambda_2$ is $\begin{bmatrix}\frac{i}{2}\\1\end{bmatrix}$, and so taking the matrix $P=\begin{bmatrix}-i&\frac{i}{2}\\1&1\end{bmatrix}$ gives $P^{-1}AP=D=\begin{bmatrix}0&0\\0&3i\end{bmatrix}$
+\end{enumerate}
+
+\item Comparing entries in $z_1-iz_2-z_3-(1+i)z_4=(z_1-z_3-z_4)-i(z_2+z_4)=0$, we get $z_1=z_3+z_4$, and $z_4=-z_2$. Setting $z_3=s,z_4=t$, we get that every vector in $\mathbb{V}$ can be represented by $\begin{bmatrix}s+t\\-t\\s\\t\end{bmatrix}=s\begin{bmatrix}1\\0\\1\\0\end{bmatrix}+t\begin{bmatrix}1\\-1\\0\\1\end{bmatrix}$, and hence a basis for $\mathbb{V}=\left\{\begin{bmatrix}1\\0\\1\\0\end{bmatrix},\begin{bmatrix}1\\-1\\0\\1\end{bmatrix}\right\}$ 
+
+\pagebreak
+\item Let $z_1=a+bi,z_2=c+di$. Then because $\text{Re}(z_1)=2\text{Im}(z_2)$, then $z_1=2d+bi, z_2=c+di$. Then for $\mathbb{S}$ to be a subspace, the following properties need to be true: \begin{enumerate}
+    \item $\vec{x}+\vec{y}\in\mathbb{S}$ 
+    \item $(\vec{x}+\vec{y})+\vec{w}=\vec{x}+(\vec{y}+\vec{w})$ 
+    \item $\vec{x}+\vec{y}=\vec{y}+\vec{x}$ 
+    \item There exists a vector $\vec{0}\in\mathbb{S}$ called the \textbf{zero vector}, such that $\vec{x}+\vec{0}=\vec{x}$ for all $\vec{x}\in\mathbb{S}$. 
+    \item There exists a vector $(-\vec{x})\in\mathbb{S}$ such that $\vec{x}+(-\vec{x})=\vec{0}$ 
+    \item $c\vec{x}\in\mathbb{S}$ 
+    \item $c(d\vec{x})=(cd)\vec{x}$ 
+    \item $(c+d)\vec{x}=c\vec{x}+d\vec{x}$ 
+    \item $c(\vec{x}+\vec{y})=c\vec{x}+c\vec{y}$
+    \item $1\vec{x}=\vec{x}$
+\end{enumerate} 
+Let $\begin{bmatrix}2a+bi\\c+ai\end{bmatrix},\begin{bmatrix}2d+ei\\f+di\end{bmatrix}\in\mathbb{S}$, then by the subspace test (theorem 1.2.1), we only need to check (a) and (f). \\
+(a) $\begin{bmatrix}2a+bi\\c+ai\end{bmatrix}+\begin{bmatrix}2d+ei\\f+di\end{bmatrix}=\begin{bmatrix}2a+2d+ib+ie\\a+c+ia+id\end{bmatrix}\in\mathbb{S}$, since $2a+2d=2(a+d)$. \\
+(f) $s\begin{bmatrix}2a+bi\\c+ai\end{bmatrix}=\begin{bmatrix}2sa+sbi\\2c+sai\end{bmatrix}\in\mathbb{S}$, since $2sa=2(sa)$ \\ 
+Since these properties hold, by theorem 1.2.1, $\mathbb{S}$ is a subspace of $\mathbb{C}^2$. 
+
+\item Let $A=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}$. By the definition of an eigenpair, $\begin{bmatrix}a_1(1-i)+a_2\\a_3(1-i)+a_4\end{bmatrix}=\begin{bmatrix}a_1&a_2\\a_3&a_4\end{bmatrix}\begin{bmatrix}1-i\\1\end{bmatrix}=A\begin{bmatrix}1-i\\1\end{bmatrix}=-2i\begin{bmatrix}1-i\\1\end{bmatrix}=\begin{bmatrix}-2i-2\\-2i\end{bmatrix}$. Then comparing entries, we get $a_1=2, a_2=-4, a_3=2, a_4=2$. Then $A=\begin{bmatrix}2&-4\\2&2\end{bmatrix}$.
+
+\item By theorem 11.3.1, we know that $1-i$ and $3+2i$ are also eigenvalues of $A$. Then $\text{det}(A)=\prod_i^n\lambda_i$, where $n$ is the number of eigenvalues of $A$. Then $78=(1-i)(1+i)(3-2i)(3+2i)\lambda$, and solving we get the last eigenvalue (and the only real one) is $\lambda=3$. Then we know $\text{tr}(A)=\sum_{i}^n\lambda_i=(1-i)+(1+i)+(3-2i)+(3+2i)+3=11$. 
+\end{enumerate}
+
+\end{document}

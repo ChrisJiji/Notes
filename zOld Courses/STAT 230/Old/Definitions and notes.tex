@@ -1,0 +1,263 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\paragraph{Some Useful Combinatorial Symbols}
+\begin{itemize}
+    \item $n^{(k)} = n*(n-1)*\ldots * (n-k+1)$ called "n to k factors". It is the number of arrangements of $n$ different elements taken $k$ at a time. 
+    \item $n!=n^{(n)}$. It is the number of arrangements (permutations) of $n$ different elements taken $n$ at a time.
+    \item $n^k$ is the number of arrangements of $n$ elements taken $k$ at a time allowing repeats.
+    \item ${n\choose k} = \frac{n^{(k)}}{k!}$ called "n choose k". If $n$ is a positive integer and $k$ is a non-negative integer such that $k\leq n$ then ${n\choose k}$ is the number of subsets (combinations) of $k$ elements which may be selected from a set containing $n$ elements. 
+\end{itemize}
+
+\paragraph{Multinomial Coefficients}
+${n\choose n_1,n_2,\ldots,n_k}=\frac{n!}{n_1!,n_2!,\ldots,n_k!}$ is the number of arrangements of $n$ elements of $k$ different types, there being $n_1$ of the first type, $n_2$ of the second type, etc.
+
+\paragraph{De Morgan's Laws}
+$\overline{A\cup B}=\bar A \cap \bar B$, and $\overline{A\cap B}=\bar A\cup \bar B$.
+
+\paragraph{Mutually Exclusive}
+Two events $A$ and $B$ are mutually exclusive if $A\cap B=\phi$. $P(A\cup B) = P(A) + P(B)$. 
+
+\paragraph{Probability Set Function}
+Suppose the function $P$ associates a real value, $P(A)$ with each event $A$ defined on a sample space $S$ such that: \begin{enumerate}
+    \item $0\leq P(A)$ for every event $A$
+    \item $P(S)=1$
+    \item if $A_1,A_2,\ldots$ is a sequence of mutually exclusive events, then $P(A_1\cup A_2\cup \ldots \cup A_n)=\sum_{i=1}^n P(A_i)$
+\end{enumerate}
+Then $P$ is called a probability set function and $P(A)$ is called the probability of $A$.
+
+\paragraph{Independent events}
+Two events are independent if $P(A\cap B)=P(A)P(B)$. Also, if $\bar A$ and $B$, $A$ and $\bar B$, and $\bar A$ and $\bar B$ are independent. 
+
+\paragraph{Conditional Probability}
+The conditional probability of event A, given the event B occurs, is defined by $P(A|B)=\frac{P(A\cap B)}{P(B)}$.
+
+\paragraph{Properties of Probabilities}
+\begin{enumerate}
+    \item $0\leq P(A)\leq 1$
+    \item $P(\bar A)=1 - P(A)$
+    \item If $A\subset B$, then $P(A)\leq P(B)$
+    \item $P(A\cup B)=P(A)+P(B)-P(A\cap B)$, unless $A$ and $B$ are mutually exclusive. 
+    \item $P(A\cup B\cup C)=P(A)+P(B)+P(C)-P(A\cap B)-P(A\cap C)-P(B\cap C)+P(A\cap B\cap C)$
+    \item $P(A\cap B)=P(A|B)P(B)=P(B|A)P(A)$
+\end{enumerate}
+
+\paragraph{Law of Total Probability}
+Let the sample space, $S$, be partitioned into $k$ mutually exclusive sets $B_1,B_2,\ldots,B_k$ such that $P(B_i)>0$, for $i=1,2,\ldots,k$ and $S=B_1\cup B_2\cup \ldots \cup B_k$. Then for any event $A$, $P(A)=\sum_{i=1}^kP(A\cap B_i)$. 
+
+\paragraph{Bayes' Theorem}
+Let the sample space, $S$, be partitioned into $k$ mutually exclusive sets $B_1,B_2,\ldots,B_k$ such that $P(B_i)>0$, for $i=1,2,\ldots,k$ and $S=B_1\cup B_2\cup \ldots \cup B_k$. Then for any event $A$, and for $j=1,2,\ldots,k$, we have $P(B_j|A)=\frac{P(A|B_j)P(B_j)}{\sum_{i=1}^kP(A|B_i)P(B_i)}$
+
+\paragraph{Random Variables}
+A random variable (e.g. $X$) is a function that assigns a real number to each point in a sample space $S$. 
+
+\paragraph{Discrete Random Variable}
+The random variable, $X$, takes a finite or countably infinite number of distinct values (the range of $X$ is countable). 
+
+\paragraph{Continuous Random Variable}
+$X$ can take any value in a non-degenerate interval (range of $X$ is not countable). 
+
+\paragraph{Probability function}
+The function $f(x)=P(X=x)$, for all $x$ in the set of possible values of $X$. It has two properties: \begin{enumerate}
+    \item $f(x)\geq 0$ for all values of $x$ 
+    \item $\sum_{\text{all }x}f(x)=1$
+\end{enumerate}
+
+\paragraph{Cumulative Distribution Function}
+The function $F(x)=P(X\leq x)$, for all $x$ in the set of possible values of $x$. It has the following properties: \begin{enumerate}
+    \item $F(x)$ is a non-decreasing function.
+    \item $0\leq F(x)\leq 1$ for all x.
+    \item lim$_{x\rightarrow-\infty}F(x)=0$, and lim$_{x\rightarrow\infty}F(x)=1$
+\end{enumerate}
+
+\paragraph{Relationship between F(x) and f(x)}
+\begin{enumerate}
+    \item If a random variable, $X$, takes only non-negative integer values, then $F(x)$ is the probability of the values less than or equal to $x$.
+    \item $f(x)=F(x)-F(x-1)$ is the size of the jump in F at the point x
+    \item $F(x)=\sum_{z\leq x}f(z)$
+\end{enumerate}
+
+\paragraph{Discrete Uniform Distribution}
+Suppose $X$ takes values $a, a+1, a+2, \ldots, b$ with all values being equally likely. Then $X$ has a discrete uniform distribution on $a,a+1,\ldots, b$. The probability function of the discrete uniform is $f(x)\begin{cases} \frac{1}{b-a+1} & x = a,a+1,\ldots,b \\ 0 & \text{otherwise} \end{cases}$
+
+\paragraph{Hypergeometric Distribution}
+Suppose a population of size $N$ consists of two types of items: \begin{itemize}
+    \item r items of the 1st type
+    \item $N-r$ items of the 2nd type
+\end{itemize}
+Pick a sample $n<N$ objects at random without replacement. Let $X$ be the number of type 1 in the sample. Then $X$ has a hypergeometric Distribution with probability function is $f(x)=\frac{(\text{ways to choose }x\text{ type 1})\times(\text{ways to choose }n-x\text{ type 2})}{(\text{ways to choose sample of }n)}=\frac{{r \choose x}{N-r \choose n-x}}{{N\choose n}}$. The range for $X$ is $max(0,n-N+r)\leq x\leq min(r,n)$
+
+\paragraph{Hypergeometric Identity}
+$\sum_{\text{all } x}{a\choose x}{b\choose n-x}={a+b\choose n}$
+
+\paragraph{Acceptance Sampling and Hypergeometric Distribution}
+Acceptance sampling is a method which is used to decide whether a batch of items produced by a company is acceptable or not for distribution. 
+
+\paragraph{Bernoulli Trials and Binomial Distribution}
+Suppose we have an experiment with 2 possible outcomes which, for convenience, we call Success $(S)$ and Failure $(F)$. Suppose also that $P(S)=p$. Repeat the experiment (called a trial). Such a a sequence of independent trials are called \textbf{Bernoulli trials}. Let the random variable $X$ be the number of successes in $n$ Bernoulli trials. Key assumptions: \begin{itemize}
+    \item the probability of success $p$ must be constant over $n$ trials
+    \item the $n$ trials must be independent
+\end{itemize}
+
+\paragraph{Binomial Distribution}
+The probability function of X is $f(x)=P(X=x)={n\choose x}p^x(1-p)^{n-x}$ for $x = 0,1,2,\ldots n$. For large amounts of $N$ and small amounts of $n$, a hypergeometric distribution can be approximated by a binomial distribution. 
+
+\paragraph{Binomial Theorem}
+$\sum_{x=0}^n{n\choose x}a^xb^{n-x}=(a+b)^n$
+
+\paragraph{Negative Binomial Distribution}
+Suppose we have a sequence of Bernoulli trials with $P(S)=p$. Let the random variable $X$ be the number of failures observed before obtaining the $k'$th success. $f(x)=P(X=x)={x+k-1\choose x}p^k(1-p)^x$. We write $X\sim NB(k,p)$. Alternatively, NB(negative binomial) can be defined to count the number of trials (X+k) needed to get the $k^{th}$ success.
+
+\paragraph{Binomial vs Negative Binomial}
+\textbf{Binomial:}\begin{enumerate}
+    \item Total \textbf{number of trials is specified} in advance, as $n$ 
+    \item the \textbf{number of successes is unknown} and can only be determined after the experiment
+\end{enumerate}
+\textbf{Negative Binomial:}\begin{enumerate}
+    \item Total \textbf{number of trials is not specified} in advance because we do not know how many trials will be needed
+    \item the \textbf{number of successes is specified} to be $k$
+\end{enumerate}
+
+\paragraph{Geometric Distribution} Geometric distribution is the special case of the negative binomial, where $k=1$. Then the random variable, Y,Y is the waiting time or the number of failures until the first success. The p.f. of Y is $f(y)=P(Y=y)=p(1-p)^y$.
+
+\paragraph{CDF of Geometric Distribution} The CDF of $Y\sim Geo(p)$ is $P(Y\leq y)=1-(1-p)^{p+1}$.
+
+\paragraph{Approximating the Binomial for Large n, Small p} Let $\mu=np$ then let $p = \frac{\mu}{n}$. Then $P(X=x)\rightarrow \frac{\mu^x}{x!}e^{-\mu}$ as $n\rightarrow\infty$, and $p=\frac{\mu}{n}\rightarrow\infty$.
+
+\paragraph{Poisson Distribution} Suppose that $X$ represents the number of events of some type, occurring at a rate of $\lambda>0$. Then a random variable $X$ has a Poisson distribution if the probability function of $X$ is: $f(x)=\frac{e^{-\lambda}\lambda^x}{x!}$. We write $X\sim Poisson(\lambda)$. It is used for: 
+\begin{itemize}
+    \item \# of phone calls to a call centre in 1 hour
+    \item \# of new connections on wireless network in 1 unit time
+    \item \# of cars on a highway passing a given point per hour
+\end{itemize}
+
+\paragraph{Conditions Defining a Poisson Process} \begin{itemize}
+    \item \textbf{Independence: }the number of occurrences in non-overlapping time intervals are independent.
+    \item \textbf{Individuality: }the probablility of 2 or more events in a sufficiently short period of time is approximately zero. ie. $P(\text{2 or more events in}(t,t+\Delta t))=o(\Delta t)$ as $\Delta t\rightarrow0$. Note: $o(\Delta t)$ is called the 'order' notation. When a function $g(\Delta t)=o(\Delta t)$ as $\Delta t\rightarrow0$, it means that $\frac{g(\Delta t)}{\Delta t}\rightarrow 0$ as $\Delta t\rightarrow0$
+    \item \textbf{Homogeneity: } events occur at a uniform rate, $\lambda$, over time. ie. $P(\text{one event in }(t,t+\Delta t))=\lambda\Delta t + o(\Delta t)$.
+\end{itemize}
+Suppose a process satisfies the three conditions above. Assume events occur at the average rate of $\lambda$ per unit time. Let $X$ be the number of events in a time interval of length $t$ units. Then $X\sim Poisson(\mu=\lambda t)$. 
+
+\paragraph{Poisson Process in Space} Poisson process can also apply to 'events' that occur randomly in space. 
+
+\paragraph{Average of a Sample} Consider a sample of $n=1,000,000$ random variables $X_i,i=1,2,\ldots,n$ obtained from a distribution with probability function $f(x)$, for example Poisson random variables. In a sample of $n$ values of the random variable $X$, relative frequencies: freq$(x)=\frac{\#\text{ of times }X = x}{n}$. Similar to the probabilities: $P(X=x)=f(x)$ if $n$ is large. Then the average of $X$'s is: $0\times freq(0) + 1\times freq(1)+\ldots$. 
+
+\paragraph{Expected Value} Since for $n$ large, freq$(x)\simeq P(X=x)=f(x)$. Average of $X$'s $= \sum_{\text{all }x}x\cdot f(x)$. If a discrete random variable $X$ has a p.f. $f(x)$, then the number $E(X)=\sum_{\text{all }x}x\cdot f(x)$ is the expected value of $X$, denoted by $E(X)$ (also referred to as mean or expectation). 
+
+\paragraph{Significance of Expected Value} \begin{itemize}
+    \item $E(X)= $ sum of ('Values of X'$\times$ 'Probability of these values')
+    \item $E(X)= $ the 'fair' price to pay to play a game whose payoff is $X$ 
+    \item $E(X)= $ the 'centre of gravity' of the distribution of $X$ 
+\end{itemize}
+
+\paragraph{Expected Value of a Function of X} The expectation of some function $g(X)$ of a random variable $X$ with probability function $f(x)$ is $E(g(X)) = \sum_{\text{all }x}$(value of g(x))$\cdot$(probability of x)$=\sum_{\text{all }x}g(x)f(x)$. Expected values $E(X)$ and $E(g(X))$ are always constants. 
+
+\paragraph{Law of Expectation} For any random variable $X$ and constants $a,b$, $E(aX+b)=aE(X)+b$. 
+
+\paragraph{Linearity} For two functions $h(x)$ and $g(x)$, then $E[g(X)+h(X)]=E[g(X)]+E[h(X)]$
+
+\paragraph{Variance} If a random variable $X$ has an expected value of $E(X)=\mu$, then the average squared distance between $X$ and $\mu$ is $E[(X-\mu)^2]$ and is called the the variance of $X$ or $Var(X)$, often denoted $\sigma^2$. Note: $Var(X)$ is also equal to $E(X^2)-\mu^2$ and $E[X(X-1)]+\mu-\mu^2$. Also, $Var(aX+b)=a^2Var(X)$. 
+
+\paragraph{Standard Deviation} The square root of variance is called the standard deviation, denoted by $\sigma$ or $SD(X)$. Note: $SD(aX+b)=a\times SD(X)$.
+
+\paragraph{Continuous Distributions} a random variable, $X$, is continuous if there is a function $f(x)$ called the \textbf{probability density function (pdf)} of $X$ such that for any $a<b$, $P(a<X<b)=\int_a^bf(x)dx$. In this case, $f(x)$ is the derivative of the cumulative distribution function (cdf) $F(x)$ of X. Notes: \begin{itemize}
+    \item $P(X=a)=\int_a^af(x)dx = 0$ for all $a$ 
+    \item $F(b) = \int_{-\infty}^b f(x)dx$ for all $b$ 
+    \item $P(a<X<b)=P(a\leq X\leq b) = \int_a^bf(x)dx$
+    \item $F(b) - F(a) = \int_a^b f(x)dx$. 
+    \item $f(x)\geq 0$
+    \item $\int_{-\infty}^\infty f(x)dx = 1$
+    \item $F(y)=\int_{-\infty}^y f(x)dx$
+    \item $F'(y)=f(y)$
+\end{itemize}
+
+\paragraph{Rounding a Continuous Random Variable} Suppose $F(x)$ is the cdf of a continuous random variable, $X$. Suppose we don't actually observe $X$, but we observe $Y=$ the value of $X$ rounded to the nearest $\frac{\Delta}{2}$ units (with small $\Delta$). So $P[Y=y]=P[y-\frac{\Delta}{2}<X\leq y+\frac{\Delta}{2}] = F(y+\frac{\Delta}{2}) - F(y-\frac{\Delta}{2})\approx f(y)\Delta$.
+
+\paragraph{Exponential Distribution} The continuous random variable $X$ is said to have an \textbf{exponential distribution} if its p.d.f is of the form $f(x)=\lambda e^{-\lambda x}$ for $x>0$ where $\lambda>0$ is a real parameter value. Exponential distribution is often used as a model for random time until some event occurs. In a Poisson process for events in time, let $X$ be the length of time we wait for the first event occurence. Then $X$ has an exponential distribution. For example, the length of time between 911 phone calls approximated by an exponential distribution. 
+
+\paragraph{Exponential Distribution cdf} The cdf of an exponential random variable is $F(x) = 1 - e^{-\lambda x}$ for $x\geq 0$, and $F(x) = 0$ for $x<0$. If $X\text{~}exp(\lambda)$, then E$(X)=\frac{1}{\lambda}$, and Var$(X)=\frac{1}{\lambda^2}$.
+
+\paragraph{Gamma Function} $\Gamma(\alpha)=\int_{0}^{\infty}x^{\alpha-1}e^{-x}dx$ is called the gamma function of $a$, where $\alpha>0$. For all $\alpha>1$,
+\begin{itemize}
+    \item $\Gamma(\alpha)=(\alpha-1)\Gamma(\alpha-1)$
+    \item $\Gamma(\frac{1}{2})=\sqrt{\pi}$
+    \item If $\alpha$ is a positive integer, $\Gamma(\alpha)=(\alpha-1)!$
+\end{itemize}
+
+\paragraph{Memoryless Property of Exponential Distribution} If $X$ has an exponential distribution, for all $a,b>0$, $P(X>a+b|X>b)=P(X>a)$. 
+
+\paragraph{A Generalized Inverse CDF} For arbitrary c.d.f $F(x)$, define $F^{-1}(y)=\text{min}\{x;F(x)\geq y\}$. It is a real inverse iff cdf is continuous and strictly increasing. 
+
+\paragraph{General Case of Computer Generated Random Variables} If $F$ is an arbritrary cdf and $U$ is uniform on $[0,1]$ then the random variable defined by $X=F^{-}(U)$ has cdf $F(x)$.
+
+\paragraph{Normal (Gaussian) Distribution} A random variable $X$ defined on $(-\infty, \infty)$ has a normal distribution denoted $N(\mu, \sigma^2)$ if the pdf is of the form $f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ for $x,\mu \in(-\infty, \infty)$ and $\sigma>0$. 
+
+\paragraph{Properties of F(-x)} $F(-x)=P(X\leq-x)=P(X\geq x)=1-P(X\leq x) = 1 - F(x)$
+
+\paragraph{Joint Probability Function of (X,Y)} For two random variables $X$ and $Y$, the function $f(x,y)=P(X=x\text{ and }Y = y)=P(X=x, Y=y)$. For $n$ random variables, $X_1,\ldots,X_n$, the joint probability function is $f(x_1,\ldots,x_n)=P(X_1=x_1,\ldots,X_n=x_n)$. The case where $n=2$ has the following properties: 
+\begin{itemize}
+    \item $f(x,y)\geq0$ for all $(x,y)$ ($f$ is nonnegative)
+    \item $\sum_{\text{all }(x,y)}f(x,y)=1$ (sum over all possible pairs is one)
+    \item Consequence of point 2: $f(x,y)\leq1$ for all $(x,y)$
+\end{itemize}
+
+\paragraph{Marginal Probability Functions} The marginal probability function for $X$ is the probability function for $X$ obtained from the joint probability function, i.e. $f_1(x)$ or $f_x(x)=\sum_{\text{all }y}f(x,y)$ is the marginal probability function for $X$. Similarly, $f_1(y)$ or $f_y(y)=\sum_{\text{all }x}f(x,y)$ is the marginal probability function for $Y$.
+
+\paragraph{Multinomial Distribution} Suppose on each trial of an experiment there are $k$ possible outcomes, where $k\geq3$. \begin{itemize}
+    \item Experiments are repeated independently $n$ times with $k$ distinct types of outcomes each time.
+    \item Let the probabilities of these $k$ types be $p_1,\ldots,p_k$ each time.
+    \item Count $X_1=$ the number of times the $1^{\text{st}}$ type occurs, \ldots, $X_k=$ the number of times the $k^{\text{th}}$ type occurs
+    \item Then $(X_1,\ldots,X_k)$ has a multinomial distribution
+\end{itemize} Note: \begin{itemize}
+    \item $p_1+\ldots+p_k=1$
+    \item $X_1+\ldots+X_k=n$
+    \item We can drop one of the variables (say the last), and just note that $X_k$ equals $n-X_1-X_2-\ldots-X_{k-1}$
+\end{itemize}
+
+\paragraph{Multinomial Joint Probability Function} The joint probability function of $(X_1,\ldots, X_k)$ for the multinomial is given by $P(X_1=x_1,\ldots, X_k=x_k)=f(x_1,\ldots,x_k)=\frac{n!}{x_1!\ldots x_k!}p_1^{x_1}\ldots p_k^{x_k}$.
+
+\paragraph{Expected Value for Discrete Random Variables} If we have a function $g(Y,Y)$ of two or more random variables, say $X,Y$, then the expected value is defined analogously: $E[g(X,Y)]=\sum_{\text{all }(x,y)}g(x,y)(\text{probability of pair}(x,y)) = \sum_{\text{all }(x,y)}g(x,y)f(x,y)$. If $X$ and $Y$ are independent random variables, then $E(XY)=E(X)E(Y)$. The converse DOES NOT hold, ie. there are two random dependent variables such that $E(XY)=E(X)E(Y)$. 
+
+\paragraph{Covariance} For brevity, denote $E(X)=\mu_x$, $E(Y)=\mu_y$. The difference $E(XY) - \mu_x\mu_y$ is the \textbf{covariance} between $X$ and $Y$. $E(XY)-\mu_x\mu_y=E[(X-\mu_x)(Y-\mu_y)]$. These are both denoted Cov$(X,Y)$, and it is a measure of association between two random variables, or whether they tend to move in similar direction. \begin{itemize}
+    \item Large positive covariance indicates a \textbf{strong positive} linear relationship between $X$ and $Y$. This means there is a tendency for large $X$ to be associated with large $Y$, and small $X$ with small $Y$.
+    \item Large negative covariance indicates a \textbf{strong negative} linear relationship between $X$ and $Y$.
+    \item Covariance near 0 seems to imply \textbf{little or no} linear relationship between the two.
+\end{itemize} Here are some laws of covariance: 
+\begin{itemize}
+    \item Cov$(X,X)$ = Var$(X)$
+    \item Cov$(X,Y)$ = Cov$(Y,X)$
+    \item Cov$(aX+b, Y)$ = $a\cdot$Cov$(X,Y)$
+    \item $\text{Var}(aX+bY) = a^2\text{Var}(X) + b^2\text{Var}(Y) + 2ab\text{Cov}(X, Y)$
+    \item $|\text{Cov}(X,Y)|\leq SD(X)SD(Y)$
+    \item if $X,Y$ are independent, then Cov$(X,Y) =  0$
+\end{itemize}
+
+\paragraph{Correlation Coefficient} The correlation coefficient $\rho_{xy}$ between two random variables $X,Y$ is given by $\rho_{xy}=\frac{Cov(X,Y)}{SD(X)SD(Y)}$. If $\rho_{xy}$ is the correlation coefficient betweeen two random variables $X,Y$, then $-1\leq\rho_{xy}\leq1$ and $\rho_{xy}=\pm1$ if and only if $Y$ is exactly a linear function of $X$ with positive (or negative) slope.
+
+\paragraph{Indicator Random Variables} Suppose we have an experiment with sample space $S$ and an event $A\subset S$, which has probability $P(A)=p$. An indicator random variable, $X$, is a random variable which takes only two possible values: $X = \begin{cases} 0 \quad\text{if }A\text{ does not occur} \\ 1 \quad\text{if } A \text{ does occur} \end{cases}$. Note that: \begin{itemize}
+    \item $P(X=1)=p$
+    \item $P(X=0) = 1-p$
+    \item $E(X) = 0\cdot (1-p) + 1\cdot p = p$
+\end{itemize}
+Since $X$ has Bin$(1,p)$ distribution, $E(X) = p$, and Var$(X) = p(1-p)$. 
+
+\paragraph{Linear Combinations of Independent Normal Random Variables} Recall that if $X\backsim N(\mu, \sigma^2)$ then a linear function of $X$, such as $aX+b$, is also normally distributed. \\ 
+If $a$ and $b$ are constant real numbers and $Y=aX+b$, then $Y\backsim N(a\mu+b, a^2\sigma^2)$. \\ 
+If $X\backsim N(\mu_1, \sigma_1^2)$ and $Y\backsim N(\mu_2, \sigma_2^2)$ are independent, and $a$ and $b$ are constants, then $aX + bY \backsim N(a\mu_1+b\mu_2, a    ^2\sigma_1^2+b^2\sigma_2^2)$
+
+\paragraph{Central Limit Theorem} Let $X_1,X_2,\ldots,X_n$ be independent random variables all having the same distribution. Then as $n\rightarrow\infty$, the cdf of the random variable $\frac{\sum_{i=1}^nX_i-n\mu}{\sigma\sqrt{n}}$ approaches the $N(0,1)$ cdf. Similarly, the cdf of $\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}$
+
+\paragraph{Continuity Correction} You can improve on the central limit theorem by finding the area under the normal curve from the first and last values of the summation, and increase the bounds by 0.5. Continuity correction should not be applied when approximating a continuous distribution by the normal. 
+
+\paragraph{Normal Approximation to the Poisson} Suppose $X\sim \text{Poisson}(\mu)$. Then the cdf of the standardized random variable $Z=\frac{X-\mu}{\sqrt{\mu}}$ approaches that of a standard normal random variable as $\mu\rightarrow\infty$. 
+
+
+\end{document}

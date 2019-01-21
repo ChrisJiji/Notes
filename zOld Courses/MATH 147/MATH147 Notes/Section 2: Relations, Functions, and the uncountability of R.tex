@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\title{MATH147 Section 0: Induction}  % Declares the document's title.
+\author{Chris Ji}      % Declares the author's name.
+\date{September 8, 2017}      % Deleting this command produces today's date.
+
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\newcommand{\ip}[2]{(#1, #2)}
+
+\begin{document}            
+
+\maketitle     % Produces the title.
+
+\paragraph{2.1: Definition}
+Let A and B be sets. The Cartesian product of A and B is \\ 
+$A x B = {(a,b): a \in A, b \in B}$
+
+\paragraph{2.3: Definition}
+A relation between two sets A and B is a subset $\mathbb{R}$ of A x B. That is, $\mathbb{R} \subsetez A x B$. We also want aRb to mean that $(a,b) \in \mathbb{R}$.
+
+\paragraph{2.5: Definition}
+A function f from set A to set B is a relation $f \subseteq A x B$ satisfying the condition that if ($a_1, b_1$) and ($a_1, b_2$) $\in f$, then $b_1 = b_2$. Furthermore, for each $a \in A$ there exists $b \in B$ so that (a,b) $\in f$. We say that A is the domain of f, and that B is the co-domain of f. \\
+The set $Y:= {f(a): a \in A}$ is called the range, or the image of f and we write ran$f$ of f(A) for the range of f. \\
+We say that f is injective, or 1:1, if $f(a_1) = f(a_2)$ implies that $a_1 = a_2$. \\ 
+We say that f is surjective, or onto, if ran$f$ = B; that is, for each b$\in B$ there exists $a \in A$ so that f(a) = b. \\ 
+Finally we say that f is bijective if f is both injective and surjective.
+
+\paragraph{2.8: Definition}
+Let X be a non-empty set. A sequence in X is a function $f: \mathbb{N} \rightarrow X$. By setting $x_n = f(n), n \geq 1$, we adopt the notation $(x_n)_{n=1}^\infty$ for a sequence instead of just writing f.
+
+\paragraph{2.10: Definition}
+A set A is said to be
+(a) finite if either A = $\phi$, or there exists $n \in \mathbb{N}$ and a bijection $f: \mathbb{N} \rightarrow A$ \\
+(b) denumerable if there exists a bijection $g: \mathbb{N} \rightarrow A$.\\ 
+(c) countable if A is either finite or denumerable \\ 
+(d) uncountable if A is not countable. \\ 
+We refer to $|A|$ as the cardinality of A. 
+
+\paragraph{2.12: Proposition}
+(a) if A $\subseteq \mathbb{N}$, then A is countable.\\ 
+(b) Any subset of a countable set is countable. 
+
+\end{document}               

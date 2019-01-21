@@ -1,0 +1,69 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\usepackage[T1]{fontenc}
+\usepackage{titling}
+\newtheorem*{remark}{Remark}
+\setlength{\droptitle}{-10em}
+%\date{\vspace{-5ex}}
+\begin{document}
+
+\title{MATH148 Assignment 1}
+\author{Chris Ji 20725415}
+\maketitle
+
+\section*{Question 1}
+$x_0 = a$\\ 
+$x_1 = \frac{1}{a^{-1}+b} = \frac{1}{\frac{1}{a}+\frac{ba}{a}} = \frac{a}{1+ab}$\\ 
+$x_2 = \frac{1}{(\frac{a}{1+ab})^{-1}+b} = \frac{a}{1+2ab}$\\ 
+$x_3 = \frac{1}{(\frac{a}{1+2ab})^{-1}+b} = \frac{a}{1+3ab}$\\ 
+It is clear from this that $x_n = \frac{a}{1+(n)ab}$, and if a and b are both positive, then   $lim_{n\rightarrow\infty}\frac{a}{1+(n)ab} = lim_{n\rightarrow\infty}x_n = 0$ by the Archimedean Property of $\mathbb{N}$. \\ 
+Therefore, for all $\epsilon>0$ there exists $N\in\mathbb{N}$ such that $n\geq N$ implies $|x_n-0|<\epsilon$. Setting $N = \frac{a-\epsilon}{\epsilon ab}$ will ensure this statement is true for all $\epsilon$.  
+
+
+\section*{Question 2}
+
+\paragraph{(a)} If we can show that in between any $x,y\in\mathbb{R}$, there exists a multiple of $\sqrt{2}$, then in every interval in $\mathbb{R}$ there exists at least one multiple of $\sqrt{2}$, and so the irrationals are dense in $\mathbb{R}$. Suppose that there exists a rational $a$(ie. $a = \frac{p}{q}$, where p and q are any integer) such that for all $x,y\in\mathbb{R}$ $x<a\sqrt{2}<y$. $x<a\sqrt{2}<y\Leftrightarrow \frac{x}{a}<\sqrt{2}<\frac{y}{a}$, as required. 
+
+\paragraph{(b)} Let there exist $x_o$ such that $x_o\in\mathbb{R}\backslash A$. Since $f$ is continuous, and A is dense in $\mathbb{R}$, $\text{lim}_{x\rightarrow x_o}f(x)=f(x_o)\Leftrightarrow \text{lim}_{x\rightarrow x_o^+}f(x)=\text{lim}_{x\rightarrow x_o^-}f(x)=f(x_o)$. This implies that for some $\delta$, $f(x_o)=f(x_o+\delta)$. Additionally, $f(x_o)=f(y)$ for all $y\in(x_o,x_o+\delta)$. Similarly, $g(x_o)=g(y)=g(x_1)$ for all $y\in(x_o,x_o+\delta)$. By the definition of density, there exists some $a\in A$ such that $x_o<a<x_o+\delta$ (that obviously satisfies $f(a)\geq g(a)$). Setting $y=a$, $f(x_o)=f(a)\geq g(a)=g(x_o)$, as required. 
+
+
+\paragraph{(c)} The only part of this proof that would change is the conclusion, as the rest of the proof does not use the fact that the inequality is strict. Therefore, the statement is true if $\geq$ is replaced in both places by $>$. 
+
+
+\section*{Question 3}
+\paragraph{(a)} Let $(x_k)$ be the sequence of all numbers in $E$. Then $(x_k)$ is bounded by the same infimum and supremum of $E$. Let there be a subsequence of $(x_k)$: $(x_{k_n})$ such that $1<a<b$ implies $x_{k_a}<x_{k_b}$. Then $(x_{k_n})$ is strictly increasing, and converges to $\text{sup}E$, as it is a subsequence of a convergent sequence. Setting $(x_n)$ to be $(x_{k_n})$ gives us $(x_n)$ as required.  
+
+\paragraph{(b)} Let $\text{sup} E = a$. Suppose, for contradiction, that $a\notin E$. Then, by definition of the integers, the largest number in E would be $a-1$. But then, $a-1$ would be the supremum, contradicting the fact that $a=\text{sup}E$. 
+
+
+\section*{Question 4} 
+If $g$ has no local maximum or local minimum at any point, then for all $x\in(a,b)$, either $g'(x)\geq0$ or $g'(x)\leq0$. If $g'(x)$ changes from positive to negative, or the other way around, then the point where $g'(x)=0$ would be a local maximum or local minimum. If $g'(x)\geq0$ for all $x\in(a,b)$, then $g(x)$ is non-decreasing for all $x\in(a,b)$. If $g'(x)\leq0$ for all $x\in(a,b)$, then $g(x)$ is non-increasing for all $x\in(a,b)$. Either way, $g(x)$ is monotonic. 
+
+
+\section*{Question 5}
+If $|f'(x)|\leq5$ for all $x\in(0,1)$, then it is continuous and differentiable on the interval $(0,1)$. Then by MVT, there exists $x_o \in (0,1)$ such that $f'(x_o)=\frac{f(1)-f(0)}{1-0}$. Or, more importantly, that $f(0)$ exists and, even more importantly, $lim_{x\rightarrow0}f(x)$ exists, and so $lim_{x\rightarrow0^+}f(x)$ exists. 
+
+
+\section*{Question 6}
+
+\paragraph{(a)(i)} If $(x_n)_{n=1}^\infty$ is bounded, then $\text{sup}\{x_n:n\in\mathbb{N}\}$ and $\text{inf}\{x_n:n\in\mathbb{N}\}$ exists. By definition, $\text{inf }x_n\leq(x_n)\leq \text{sup }x_n$ for all $n\in\mathbb{N}$. Suppose $\exists m_1$ such that $y_{m_1}\leq y_n$ for all $n\in\mathbb{N}$. $y_{m_1}\geq\text{inf }x_n$ by the definition of the infimum. Suppose $\exists m_2$ such that $y_{m_2}\leq y_n$ for all $n\in\mathbb{N}$. $y_{m_2}\leq\text{sup }x_n$ by definition of the supremum. Then $y_{m_1}\leq y_n\leq y_{m_2}$ for all $n\in\mathbb{N}$, which implies $\text{inf }x_n\leq y_n\leq \text{sup }x_n$. $(y_n)$ is monotonic, as if $y_n = x_n$, then $y_{n+1} \leq y_n$, or $(y_n)$ is non-increasing. If $y_n=\text{sup }x_n$ for all $n\in\mathbb{N}$, then $y_{n+1}=y_n$, or $(y_n)$ is non-decreasing. Because $(y_n)$ is a bounded monotonic sequence, it must converge to one of the bounds. 
+
+\paragraph{(ii)} The supremum of $(-1)^n$ is $1$, and it does not converge. lim$_{n\rightarrow\infty}(1+\frac{1}{n})=$lim sup$_{n\rightarrow\infty}(1+\frac{1}{n})=1$. Therefore, lim sup$_{n\rightarrow\infty}x_n= 1* 1 = 1$.
+
+\paragraph{(ii)} The infimum of $(-1)^n$ is $-1$, and it does not converge. lim$_{n\rightarrow\infty}(1+\frac{1}{n})=$lim inf$_{n\rightarrow\infty}(1+\frac{1}{n})=1$. Therefore, lim inf$_{n\rightarrow\infty}x_n= -1* 1 = -1$.
+
+\paragraph{(b)} Let $y_n=\text{sup}\{x_n,x_{n+1},\ldots\}$, and $z_n=\text{inf}\{x_n,x_{n+1},\ldots\}$. By definition of the supremum and the infimum, $y_n\geq z_n$ for all $n\in\mathbb{N}$. By 6(a)(i), $\text{lim sup}_{n\rightarrow\infty} x_n$ converges to some $\beta_2$. Similarly, say $\text{lim inf}_{n\rightarrow\infty} x_n$ converges to some $\beta_1$. Because $y_n\geq z_n$ for all $n\in\mathbb{N}$, then $\beta_1\leq\beta_2$, or $\text{lim inf}_{n\rightarrow\infty} x_n\leq\text{lim sup}_{n\rightarrow\infty} x_n$. 
+
+\paragraph{(c)} Let $\beta=\text{lim}_{n\rightarrow\infty}x_n$. Let $(x_{n_k})$ be a subsequence of $(x_n)$ such that $(x_{n_k})$ converges to $\text{lim sup}_{n\rightarrow\infty}x_n$. But since $(x_{n_k})$ is a subsequence of $(x_n)$, it converges to $\beta$, or $\text{lim sup}_{n\rightarrow\infty}x_n=\text{lim}_{n\rightarrow\infty}x_n$. Similarly, let $(x_{n_m})$ be a subsequence of $(x_n)$ such that $(x_{n_m})$ converges to $\text{lim inf}_{n\rightarrow\infty}x_n$. But since $(x_{n_m})$ is a subsequence of $(x_n)$, it converges to $\beta$, or $\text{lim inf}_{n\rightarrow\infty}x_n=\text{lim}_{n\rightarrow\infty}x_n$
+
+\paragraph{(d)} By definition, $\text{lim inf}_{n\rightarrow\infty}x_n\leq\text{lim}_{n\rightarrow\infty}x_n\leq\text{lim sup}_{n\rightarrow\infty}x_n$. If $\text{lim inf}_{n\rightarrow\infty}x_n=\text{lim sup}_{n\rightarrow\infty}x_n$, then by squeeze theorem, $\text{lim}_{n\rightarrow\infty}x_n$ exists, and moreover, $\text{lim inf}_{n\rightarrow\infty}x_n=\text{lim}_{n\rightarrow\infty}x_n=\text{lim sup}_{n\rightarrow\infty}x_n$. 
+
+
+
+\end{document}

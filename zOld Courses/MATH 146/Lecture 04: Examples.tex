@@ -1,0 +1,87 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{}
+
+\paragraph*{non-homogeneous systems cont.}
+For $A=[a_{ij}], x=[x_j], y=[y_i]$. Form the augmented matrix $[A|y]=\begin{bmatrix}
+a_{11} & \ldots & a_{1n} | y_1 \\ 
+\vdots & \vdots & \vdots | \vdots \\
+a_{m1} & \ldots & a_{mn} | y_m
+\end{bmatrix}
+$
+Suppose we can reduce this matrix: $[A|y]$ becomes $[R|z]$ through elementary row operations, where R is a row reduced echelon. Then any solution to the system $Ax=y$ will be a solution to $Rx=z$. And since elementary row operations can be inverted, solutions to $Rx=z$ will be solutions to $Ax=y$. \\ 
+
+Consider $Rx=z$ if R is row reduced echelon. So $x_{k1}\ldots x_{kr}$ (where $r$ is the last non-zero row) can be expressed in terms of the remaining $x_{ji}$, e.g. $x_{k1}=\text{in terms of remaining }x_j\text{'s}+z_1$, $x_{k2}=\text{in terms of remaining }x_j\text{'s}+z_2$, etc. So $x_j$, for $j\neq k_1,\ldots, k_r$ are free. 
+Consider the last $m-r$ equations (the zero rows). $0*x_1+0*x_2+\ldots+0*x_n=z_i$, where $m-r+1\leq i\leq m$. This tells us a necessary condition for a solution is that $z_{m-r+1},\ldots, z_n = 0$. But this is also sufficient, since in this case for any values of the $n-r$ free variables, the equation will be satisfied. \\
+
+E.g. $x_1+3x_2+2x_3=1$, $2x_1+6x_2+4x_3=3$. $\begin{bmatrix}
+1 & 3 & 2 &| 1 \\ 
+2 & 6 & 4 &| 3 
+\end{bmatrix}
+$. $(2)=(2)+(-2)*1 = \begin{bmatrix}
+1 & 3 & 2 &| 1 \\ 
+0 & 0 & 0 &| 1 
+\end{bmatrix}$, so our system has no solutions. \\ \\ 
+
+$\begin{bmatrix}
+1 & 3 & 2 &| 1 \\ 
+2 & 6 & 4 &| 2 \end{bmatrix}$. $(2)=(2)+(-2)*1 = \begin{bmatrix}
+1 & 3 & 2 &| 1 \\ 
+0 & 0 & 0 &| 0 
+\end{bmatrix}$ This translates to $x_1+3x_2+2x_3=1$. so $x_1 = -3x_2-2x_3+1$, so the free variables are $x_2, x_3$. Set $x_2=u,x_3=v$. The solutions are $\{(-3u-2v+1), u, v): u,v\in\mathbb{R}$.\\ \\ 
+
+$3x+4y=-3$, $2x+5y=5$, $-2x-3y=1$\\ 
+$\begin{bmatrix}
+3 & 4 &| -3\\ 
+2 & 5 &| 5\\
+-2 & -3 &| 1\end{bmatrix}$\\ 
+$(1)= 2(1)$, $(2)=3(2)$, $(3)=-3(3)$. This leaves us with $\begin{bmatrix}
+6 & 8 &| -6\\ 
+6 & 15 &| 15\\
+6 & 9 &| -3\end{bmatrix}$
+\\ $(2)=(2)-(1)$, $(3)=(3)-(1)$. $\begin{bmatrix}
+6 & 8 &| -6\\ 
+0 & 7 &| 21\\
+0 & 1 &| 3\end{bmatrix}$
+\\ $(2)=\frac{1}{7}*(2)$, $\begin{bmatrix}
+6 & 8 &| -6\\ 
+0 & 1 &| 3\\
+0 & 1 &| 3\end{bmatrix}$
+\\ $(3)=(3)-(2)$, $\begin{bmatrix}
+6 & 8 &| -6\\ 
+0 & 1 &| 3\\
+0 & 0 &| 0\end{bmatrix}$
+\\ $(1)=(1)-8*(2)$, $\begin{bmatrix}
+6 & 0 &| -30\\ 
+0 & 1 &| 3\\
+0 & 0 &| 0\end{bmatrix}$
+\\ $(1)=\frac{1}{6}(1)$, $\begin{bmatrix}
+1 & 0 &| -5\\ 
+0 & 1 &| 3\\
+0 & 0 &| 0\end{bmatrix}$, so $x=-5$, and $y=3$, or $(x,y)=(-5,3)$. 
+
+\paragraph{Matrices as transformations}
+Consider a linear system of equations. We write it as $Ax=y$. We view A as a transformation $A:\mathbb{F}^n\rightarrow\mathbb{F}^m$, or $Ax:=A(x):=\begin{bmatrix}a_{11}x_1+&\ldots&+a_{1n}x_n\\ \vdots & \vdots & \vdots \\ a_{mn}x_1+& \ldots & +a_{mn}x_n\end{bmatrix}$ , so $Ax=y$ has a solution if and only if $y=\text{Range}A$. Observe: for $x,u\in\mathbb{F}^n$, \begin{enumerate}
+    \item $A(x+u) = \begin{bmatrix}a_{11}(x_1+u_1)+&\ldots&+a_{1n}(x_n+u_n)\\ \vdots & \vdots & \vdots \\ a_{mn}(x_1+u_1)+& \ldots & +a_{mn}(x_n+u_n)\end{bmatrix} = (a_{11}x_1+\ldots+a_{1n}x_n)+(a_{11}u_1+\ldots+a_{1n}u_n)\ldots(a_{m1}x_1+\ldots+a_{mn}x_n)+(a_{m1}u_1+\ldots+a_{mn}u_n)=Ax+Au$
+    \item For $C\in\mathbb{F}$, $x\in\mathbb{F}^n$, a similar computation shows that $A(cx)=c(Ax)$
+\end{enumerate}
+
+\paragraph{Preliminary Definition}
+A transformation $T:\mathbb{F}^n\rightarrow\mathbb{F}^m$ is \underline{linear} if 
+\begin{enumerate}
+    \item For $x,u\in\mtahbb{F}^n$, $T(x+u)=Tx+Tu$
+    \item For $c\in\mathbb{F}$, $x\in\mathbb{F}^n$, $T(cx)=c(Tx)$
+\end{enumerate}
+Fact: Every linear transformation $\mathbb{F}^n\rightarrow\mathbb{F}^m$ is of the form $Tx=Ax$ for some mxn matrix A. 
+
+
+\end{document}

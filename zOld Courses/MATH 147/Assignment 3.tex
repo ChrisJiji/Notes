@@ -1,0 +1,109 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\title{MATH147 Assignment 3}
+\author{Chris Ji 20725415}
+
+\maketitle 
+
+\section*{Question 1}
+The definition of a countable set is that it has a bijection to $\mathbb{N}$, or a subset of $\mathbb{N}$. If S is countable, there is obviously an injection to $\mathbb{N}$, as $\mathbb{N}$ is countable as well. If S isn't countable, then there can't be an injection from S $\rightarrow\mathbb{N}$, as an injection from the uncountable to the countable is impossible. Therefore, (a) $\leftrightarrow$ (b). \\
+If S is countable, then by definition there exists a bijection $\mathbb{N}\rightarrow$ S. Therefore there must be a surjection from $\mathbb{N}\rightarrow$ S, as $\mathbb{N}$ is countable, and S would be countable. If S is uncountable, then a surjection from $\mathbb{N}\rightarrow$ S can't exist, as S has uncountably many more elements, and it can not be fully mapped from a countable set. 
+(b) $\leftrightarrow$ (a) $\leftrightarrow$ (c), therefore (b) $\leftrightarrow$ (c), and all three are equivalent. 
+
+\section*{Question 2}
+
+\paragraph{(a)} 
+To prove that a countable union of countable sets is countable, we can look at each element, and decide whether or not we can map it to $\mathbb{N}$. Countable sets is easily mappable, as if S is our set of sets, each element will be an element of $\mathbb{N}$. For a countable amount of countable sets, if we name our sets $S_1$, $S_2$, etc. we can map $S_n$ | $n \in \mathbb{N}$. For the union of countably many countable sets, we can use Cantor's diagonal argument. If we map each row to be a set (row 1 is $S_1$, etc.), and each n-th column to be the n-th element of the set ((1,1) is the first element of $S_1$, (n, m) is the m-th element of ($S_n$)), there is clearly a 1-1 mapping from the countable union of countable sets (the matrix) and $\mathbb{N}$. 
+
+\paragraph{(b)} 
+Let n = 1. Then $\mathbb{Z}^1$ := $\mathbb{Z}$, which is countable. Let $n = n + 1$. $Z^{n+1} = Z^n * Z^1$. $Z^1$ is countable, and by induction $Z^n$ is countable, hence $Z^{n+1}$ is countable, and therefore $Z^n$ is countable. 
+
+\paragraph{(c)} 
+Let $x_n$ be the set of all polynomials with degree $n$. $x_n$ is countable, as there is a 1-1 pairing from $x_1 = 1$, $x_2 = 2$, $x_n = n$ for all $n \in \mathbb{N}$. Let $y_n$ be the roots of $x_n$. $y_n$ is also countable, as for every $x_n$ there exists a $y_n$. $\Lambda = \cup y_n x_n$, and since $\Lambda$ is a countable union of countable sets, it is countable. 
+
+\paragraph{(d)} 
+Suppose $\Gamma$ is countable, then $\Lambda \cup \Gamma = \mathbb{R}$ would be countable as well (because $\Lambda$ is countable by (c)), a contradiction, as $\mathbb{R}$ is not countable. Therefore, $\Gamma$ is uncountable.
+
+
+\section*{Question 3}
+
+\paragraph{(a)} 
+Let $(x_n)_{n=1}^\infty$ be the sequence that contains all $\mathbb{Q}$. This is possible because $\mathbb{Q}$ is countable (proof is through Cantor's diagonal argument, where the rows and columns are the numerator and denominator). Because $\exists \mathbb{Q}_1, \mathbb{Q}_2$ such that $\mathbb{Q}_1 \leq \mathbb{R} \leq \mathbb{Q}_2$, this implies $\mathbb{Q}_1 \leq \beta \leq \mathbb{Q}_2$. Because $\mathbb{Q}_1, \mathbb{Q}_2$ exists in $x_n$ by definition, there will always be a subsequence of $x_n$ such that $\mathbb{Q}_2$ will be the limit, and therefore $\beta$ will be the limit. 
+
+
+\paragraph{(b)} 
+$(y_n)_{n=1}^\infty$n is such a sequence. By definition, $y_{n_k} \geq y_n$, and as $(y_n)_{n \rightarrow\infty} = \infty$, $y_{n_k} \geq \infty$. There exists no $\beta \in \mathbb{R}$ such that $\beta \geq \infty$, so therefore such a $\beta$ does not exist. 
+
+\begin{remark}
+Another such sequence is $(y_n)_{n=1}^\infty = i$, or something of that sort, as no numbers in $y_n$ are real, so no numbers in $y_{n_k}$ will be real.
+\end{remark}
+
+
+\section*{Question 4}
+
+\paragraph{(a)} 
+Let $\epsilon > 0$. There exists $N_o \in \mathbb{N}$ such that $0 < \frac{1}{N_o} < \epsilon$. By the Archimedean principle, there also exists n such that $n \geq N_o$. Then, $$0 < \frac{1}{n^p} \leq \frac{1}{n} \leq \frac{1}{N_o} < \epsilon$$.
+$$|\frac{1}{n^p} - 0| < \epsilon$$\\
+$lim_{n\rightarrow\infty}\frac{1}{p^n} = 0$
+
+\paragraph{(b)} 
+Suppose that there exists $\beta \in x_n$ such that $lim_{n\rightarrow\infty} x_n = \beta \not\in S$. By the definition of $(x_n)_{n+1}^\infty \in S$, $\beta \in x_n \in S$, so $\not\exists \beta \not\in S$
+
+\paragraph{(c)} 
+Suppose, for contradiction, that this is not true, that there exists $\beta$ such that $a \leq b <|\beta|$. $\exists y | y \in \mathbb{R}$. By definition, when $y > b$, $y \not\in x_n$, or else y would be the new Sup $(x_n)$. Therefore, the greatest value of y such that $y \in x_n$ is b. Similarly, the smallest value of y such that $y \in x_n$ is a. Therefore, $a \leq y \leq b$, and hence $a \leq \beta \leq b$. 
+
+\section*{Question 5}
+
+\paragraph{(a)} 
+Using the hint, we can replace the contents of each parenthesis with the smallest number in it, so it becomes $y_8 = 1 + (\frac{1}{2}) + (\frac{1}{4}+\frac{1}{4}) + (\frac{1}{8} + \frac{1}{8} + \frac{1}{8} + \frac{1}{8})$. The sum of each parenthesis is $\frac{1}{2}$, and the total amount of parenthesis is equal to $n$, so the sum of the parentheses is $\frac{n}{2}$. This is obviously less than our original function, as we replaced every term except $\frac{1}{2^n}$ term with a lesser value, so therefore $y_{2n} \geq 1 + \frac{n}{2}$. 
+
+The proof of this convergence is the definition of the Archimedean principle. For each $\epsilon > 0$, we can find $\frac{1}{n}$ such that $\epsilon > \frac{1}{n} > 0$. Because of the definition of $\epsilon$ and $n$, the limit must be 0, as $|\frac{1}{n} - 0 | < \epsilon$. 
+
+\paragraph{(b)}
+We want to show there is N so that for all $n > N$. 
+$$|\frac{x_1+x_2+...+x_i}{n} - \beta| < \epsilon$$ $\forall \epsilon$ given that $|x_n - \beta| < \epsilon $
+$$|\frac{x_1+x_2+...+x_i}{n} - \beta| \leq |\frac{x_1 - \beta + x_2 - \beta + ... x_N - \beta}{n} + \frac{n-N}{n}\epsilon| \leq |\frac{x_1 - \beta + x_2 - \beta + ... x_N - \beta}{n} + \epsilon|$$
+Then 
+$$lim_{n\rightarrow\infty}|\frac{x_1+x_2+...+x_n}{n} - \beta| \leq \epsilon$$
+$$|lim_{n\rightarrow\infty}\frac{x_1+x_2+...+x_n}{n} - \beta| \leq \epsilon$$
+
+\paragraph{(c)} 
+$(x_n)_{n=1}^\infty(-1)^n$ is an example of a sequence such that $lim_{z\rightarrow\infty} z_n$ exists, but $lim_{x\rightarrow\infty} x_n$. 
+$$z_n := \frac{\sum_{j=1}^n(-1)^j}{n}$$
+$$z_n := \frac{\sum_{j=1}^n(-1)^{2j} + \sum_{j=1}^n(-1)^{2j-1}}{n}$$
+$$z_n := \frac{0}{n}$$
+$$z_n := 0$$
+Therefore, $lim_{n\rightarrow\infty}z_n = 0$, and so $\exists lim_{n\rightarrow\infty}z_n$, even though $\nexists lim_{n\rightarrow\infty}x_n$
+
+
+\section*{Question 6}
+
+\paragraph{(a)} 
+Let us prove each inequality step by step by induction. When n = 1, $1 = x_1 \leq x_2 = \sqrt{5}$. For n = n + 1, we must prove $x_{n+1} \leq x_{n+2}$. $x_{n+1} = \sqrt{3+2x_n}$, and doing a bit of algebra, $x_{n+2} = \sqrt{3+2\sqrt{3+2x_n}}$. 
+$$\sqrt{3+2x_n} \leq \sqrt{3+2\sqrt{3+2x_n}}$$
+$$x_n \leq \sqrt{3+2x_n}$$
+$$x_n^2 - 2x_n - 3 \leq 0$$
+Therefore $x_n$ is increasing for $-1 \leq x_n \leq 3$. 
+
+$x_1 = 1 \geq 0$. Doing algebra on the given equation, we get $x_n = \frac{(x_{n+1})^2 - 3}{2}$. Doing a bit of algebra, we left with $x_{n+1} \geq \sqrt{3}$, which is obviously true because $x_{n+1}$ will always be at least $\sqrt{3}$ when $x_n>1$. $x_n$ will always be greater than 1 for all values of $n$ because it is increasing, so therefore $x_n \geq 0$
+
+\paragraph{(b)} 
+\subparagraph{(i)}
+Suppose S is bounded above, and Sup S = j. $a^n \leq j$, however because $a^n \in \mathbb{N}$, then $j \in \mathbb{N}$, and by the Archimedean principle, there is $i \in \mathbb{N} | i > j$, therefore j $\neq$ Sup S. 
+
+\subparagraph{(ii)}
+When $0 < a < 1$, then $a^n$ = $\frac{1^n}{a^n}$ = $\frac{1}{a^n}$. As $n \rightarrow \infty$, $\frac{1}{n!} \geq \frac{1}{a^n}$. Furthermore, $\frac{1}{n} \leq \frac{1}{a^n}$. Thus, $\frac{1}{n} \leq \frac{1}{a^n} \leq \frac{1}{n!}$. $lim_{x\rightarrow\infty} \frac{1}{n} = 0$, and $lim_{x\rightarrow\infty} \frac{1}{n!} = 0$, and so by squeeze theorem $lim_{x\rightarrow\infty} \frac{1}{a^n} = 0$. 
+
+\end{document}
+
+
+

@@ -1,0 +1,31 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+\title{Bounded Sequences}
+\paragraph{4.1}
+Recall from A3 that there exists a sequence $(x_n)$ such that no subsequence of $(x_n)$ converges. 
+
+\paragraph{4.2}
+A sequence of $(x_n)$ is said to be increasing. (or strictly increasing) if $1 \leq k \leq l$ implies $x_k \leq x_l$ (or $x_k < x_l$). We say that $x_n$ is strictly decreasing if $1 < k < l$ implies $x_k > x_l$. We say $x_n$ is monotonic if $x_n$ is either decreasing or increasing. 
+
+\paragraph{4.3: Monotone Convergence Theorem}
+(a) if $x_n$ is increasing and bounded above, then $x_n$ converges to $sup{x_n}$.\\ 
+(b) if $x_n$ is decreasing and bounded below, then $x_n$ converges to $inf{x_n}$.
+
+\paragraph{4.5: Definition}
+Let $S_n$ be a set for each $n \in \mathbb{N}$. We say that the family $(S_n)_{n=1}^\infty$ is nested if $S_1 \geq S_2 \geq S_3 \geq ...$
+
+\paragraph{4.7: The Nested Intervals Theorem}
+Suppose that $S_n$ is a nested sequence of distinct bounded intervals. Then $\cap_{n=1}^\infty S_n \neq \phi$. Writing $S_n = [a_n, b_n]$ for each $n \geq 1$, if $lim_{n\rightarrow\infty}(b_n - a_n) = 0$, then $\cap_{n=1}^\infty S_n$ consists of a single point.
+
+\paragraph{4.8: Bolzano-Weierstrass Theorem}
+Suppose that $x_n$ is a bounded sequence. Then there exists a subsequence $x_n_k$ of $x_n$ which converges.
+
+\end{document}

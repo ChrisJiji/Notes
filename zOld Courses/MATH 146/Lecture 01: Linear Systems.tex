@@ -1,0 +1,91 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Systems of Linear Equations}
+Let $\mathbb{F}$ be a field (typically $\mathbb{R}$ or $\mathbb{C}$). Consider a system of linear equations.\\  $a_{11}x_1 + ... +a_{1n}x_n = y_1$ \\ 
+$a_{21}x_1 + ... +a_{2n}x_n = y_2$\\ 
+... \\ 
+$a_{m1}x_1 + ... +a_{mn}x_n = y_m$ \\ 
+There are $m$ linear equations in $n$ unknowns. $a_{ij}\in\mathbb{F}$. $x_i$ are unknowns, $y_i\in\mathbb{F}$.A tuple of numbers $(x_1,...x_n)$ in $\mathbb{F}$ is a solution. If they satisfy the above equations. If $y_1=y_1=...y_n=0$ we say the system is homogeneous. 
+
+\paragraph{Example}\mbox{}\\ 
+(i) $2x+y-z = 0$, (ii) $x-y+z=0$. Solve by elimination: \\ 
+1. Add (-2)*(ii) to (i). This equals (i) $3y - 3z = 0$, and (ii) $x-y+z=0$. \\ 
+2. Divide (i) by 3. (i) $y-z =0$, (ii) $x-y+z=0$.\\ 
+3. Add (i) to (ii). (i) $y-z=0$, (ii) $x=0$ \\ 
+This tells me any solution to the original system $(x,y,z)$ satisfies $x=0$, and $y=z$. Conversely, any tuple $(x,y,z)$ with these properties is a solution. So a complete set of solutions is: $\{(x,y,z): x=0, y=z\} = \{(0,t,t): t\in\mathbb{F}\}$.\\ 
+
+Consider again \\
+(1) $a_{11}x_1 + ... +a_{1n}x_n = y_1$ \\ 
+(2) $a_{21}x_1 + ... +a_{2n}x_n = y_2$\\ 
+... \\ 
+(m) $a_{m1}x_1 + ... +a_{mn}x_n = y_m$ \\ \\
+For $c_1,...,c_m\in\mathbb{F}$, we can multiply equation (1) by $c_i$ and add them all together to get: $(c_1a_{1n}+...+c_ma_m1)x_1+...+(c_1a_{1n}+...+c_ma_{mn})x_n = c_1y_1+...+c_my_m$ (*)\\ 
+\textbf{Any solution of our original system is also a solution of (*).}
+\paragraph*{Definition: Linear Combination} Any equation of the form (*) is a \underline{linear combination} of the equations in our original system. \\ 
+Note: The process of elimination amounts to replacing a system of linear equations with a new system of linear equations that are linear combinations of the originals. Any solution of the original system will still be a solution of our new system. \\ \\ 
+Suppose we start with a system. \\ 
+(1) $a_{11}x_1 + ... +a_{1n}x_n = y_1$ \\ 
+(2) $a_{21}x_1 + ... +a_{2n}x_n = y_2$\\ 
+... \\ 
+(m) $a_{m1}x_1 + ... +a_{mn}x_n = y_m$ \\ \\ 
+And by taking linear combinations, we get a new system\\ 
+$b_11x_1+...+b_{1n}x_n = z_1$\\ 
+... \\ 
+$b_k1x_1+...+b_{kn}x_n=z_k$\\ \\ 
+We know that any solution of the first is also a solution of the second. If  we can also obtain the first system by taking linear combinations of the second, then solutions of the second will be solutions of the first. Hence in this case they will have the same solutions. 
+
+\paragraph*{Definition: Equivalence} Two linear systems are \underline{equivalent} if each equation in one of the systems is a linear combination of equations from the other system. 
+
+\paragraph*{Theorem} Equivalent systems of linear equations have exactly the same solutions. \\ 
+\textbf{Given a system of linear equations, find an equivalent system that is easier to solve.} This is exactly what happens in process of elimination. \\ \\ 
+Consider the system 
+(1) $a_{11}x_1 + ... +a_{1n}x_n = y_1$ \\ 
+(2) $a_{21}x_1 + ... +a_{2n}x_n = y_2$\\ 
+... \\ 
+(m) $a_{m1}x_1 + ... +a_{mn}x_n = y_m$ \\\\ 
+We write Ax=y where A is the mxn matrix $\begin{bmatrix}
+    a_{11}       & \ldots & a_{1n} \\
+    \ldots       & \ldots & \ldots \\
+    a_{m1}       & \ldots & a_{mn}
+\end{bmatrix}$
+
+. x is the vector $x = \begin{bmatrix}
+x_1 \\
+\ldots \\ 
+x_n
+\end{bmatrix}$n, y is the vector $y = \begin{bmatrix}
+y_1 \\
+\ldots \\ 
+y_m
+\end{bmatrix}$m. We say that A is the matrix of coefficients of the system. Note: A and y completely "encode" our system. \\ 
+For a field $\mathbb{F}$, we write $\mathbb{F}^n$ for the vectors of size n over $\mathbb{F}$. \\ 
+$\mathbb{F}^n = \{\begin{bmatrix}
+a_1 \\
+\ldots \\ 
+a_n
+\end{bmatrix} : a_i \in \mathbb{F}\}$\\ 
+Write $\mathbb{F}^{mxn} = M_{m,n}(\mathbb{F})$\\ 
+$=\{ \begin{bmatrix}
+    a_{11}       & \ldots & a_{1n} \\
+    \ldots       & \ldots & \ldots \\
+    a_{m1}       & \ldots & a_{mn}
+\end{bmatrix}:a_{ij}\in\mathbb{F}\}$\\ \\ 
+Often we write $A \subset M_{m,n}(\mathbb{F})$ as $A=[a_{ij}]= [a_{ij}]_{1\leq i\leq m and 1\leq i\leq n}$.
+
+Convention: an mxn matrix means m rows and n columns. 
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,71 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\paragraph{Bijections}
+Prove an inverse
+
+\paragraph{Formal Power Series}
+$A(x)+B(x)=\sum_{n\geq0}(a_n+b_n)x^n$, $A(x)B(x)=\sum_{n\geq0}\left(\sum_{k=0}^na_kb_{n-k}\right)x^n$ \\ 
+A power series has an inverse if and only if it has a non-zero constant term. Note that the inverse of $(1-x)$ is $\sum_{n\geq0}x^n$. \\ 
+$A(B(x))$ is a formal power series if and only if $B(x)$ has no constant term. 
+
+\paragraph{Series to Remember}
+$$\frac{1}{1-x}=\sum_{n\geq0}x^n$$  
+$$\frac{1-x^{k+1}}{1-x}=\sum_{n=0}^kx^n$$
+$$\frac{1}{(1-x)^k}=\sum_{n\geq0}{n+k-1\choose k-1}x^n$$
+
+\paragraph{Sum Lemma}
+Let $(A,B)$ be a partition of a set $S$. Then $\Phi_S(x)=\Phi_A(x)+\Phi_B(x)$.
+\paragraph{Product Lemma}
+Let $A,B$ be sets of configurations with weight functions $\alpha,\beta$. If $w(\sigma)=\alpha(a)+\beta(b)$ for each $\sigma=(a,b)\in A\times B$, then $\Phi_{A\times B}(x)=\Phi_A(x)\Phi_B(x)$. 
+
+\paragraph{Compositions}
+Let $S$ be the set of natural numbers to the $k$'th power, where $k$ is the number of parts in the composition. Define the weight function of $w(c_1,\ldots,c_k)=c_1+\cdots+c_k$. The powers of $x$ in a generating series for compositions is the number. You want to find $\cup_{k\geq0}\{\text{set of numbers to choose from}\}^k$. 
+
+\paragraph{Binary Strings}
+Generating series is the size of the string. Apply product lemma and $\Phi_{S^*}(x)=\frac{1}{1-\Phi_S(x)}$. Find binary strings using decomposition of known strings, complement, or recursion. Make sure they are unambiguous.
+$$\{0,1\}^*$$
+$$(\{1\}^*\{0\})^*\{1\}^*$$
+$$\{0\}^*(\{1\}\{1\}^*\{0\}\{0\}^*)^*\{1\}^*$$
+
+\paragraph{Recurrence Relations}
+Solve the characteristic polynomial, then $a_n$ is equal to the roots of $C(x)$, multiplied by a polynomial with degree the multiplicity of the root. Solve for the variables in the polynomials by plugging in values of $n$. 
+
+\paragraph{Graph Theory}
+Handshake lemma: $\sum_{v\in V(G)}\text{deg}(v)=2|E(G)|$ \\ 
+If there is a walk connecting two vertices, there is a path. Proof by assuming the minimum length walk. \\ 
+If every vertex has degree at least two, then there is a cycle. \\ 
+$T$ is a tree if and only if $|E(T)|=|V(T)|-c$. \\ 
+A graph is bipartite if and only if it has no odd cycles. \\ 
+PRIMS ALGORITHM: start with $T$, a tree. Add minimum weight edges to the tree, maintaining trees. \\
+Faceshaking lemma for planar graphs: $\sum_{\text{faces}}\text{deg}(f)=2|E(G)|$. \\ 
+Euler's Formula: $|V(G)|-|E(G)|+|F(G)|=1+c$. \\ 
+Platonic solid-like: question gives you equations for $V(G)$, $E(G)$, $F(G)$. solve using Euler's Formula.\\
+If $G$ is planar with $\geq3$ vertices, then $|E(G)|\leq 3|V(T)|-6$. \\ 
+If $G$ is bipartite with $\geq3$ vertices, then $|E(G)|\leq 2|V(T)|-4$. \\ 
+Kuratowski's Theorem: A graph is not planar if and only if it has a subgraph that is an edge subdivision of $K_{3,3}$ or $K_5$. \\ 
+A graph is 2-colourable if and only if it is bipartite. \\ 
+Dual graphs: The dual of a planar graph is produced by having a vertex in each face, and an edge for every edge, connecting the faces on the two sides of an edge. Notice a loop is obtained by any bridges in the planar graph. \\ 
+
+\paragraph{Matching}
+A matching is not a maximum matching if and only if there is an augmenting path. \\ 
+If $M$ is a matching and $C$ is a cover of $G$, then $|M|\leq|C|$, and $|M|=|C|$ if and only if $M$ is a maximum matching and $C$ is a minimum cover. \\ 
+KONIG's THEOREM: In a bipartite graph the maximum size of a matching is the minimum size of a cover.\\ 
+Bipartite matching algorithm: $X_0$ is the set of all unsaturated vertices, $X,Y$ are the vertices in the bipartitions that are connected to $X_0$ by an alternating path. You can use this to find a maximum matching by finding augmenting paths. \\
+HALL'S THEOREM: A bipartite graph has a matching saturating every vertex in $A$ if and only if every subset $D$ of $A$ satisfies $|N(D)|\geq|D|$. From this we can see a bipartite graph has a perfect matching if and only if $|A|=|B|$ and $|N(D)|\geq|D|$. \\ 
+If $G$ is a k-regular bipartite graph with $k\geq1$, then $G$ has a perfect matching. \\ 
+
+
+
+
+
+
+\end{document}

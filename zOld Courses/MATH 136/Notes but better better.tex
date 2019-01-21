@@ -1,0 +1,33 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+\paragraph{Subspace Test} Prove that it is a non-empty subset that is closed under addition and multiplication.
+\paragraph{Scalar Equation of a plane} $b_1n_1+b_2n_2+b_3n_3=x_1n_1+x_2n_2+x_3n_3$
+\paragraph{Projection} proj$_{\vec{a}}\vec{b}=\frac{\vec{a}\cdot\vec{b}}{\|\vec{a}\|^2}\vec{a]}$\\ 
+perp$_{\vec{a}}\vec{b}=\vec{b}-\text{proj}_{\vec{a}}\vec{b}$\\ 
+proj$_P\vec{v}=\text{perp}_{\vec{n}}\vec{v}$\\ 
+refl$_P(\vec{x})=\vec{x}-2\text{proj}_{\vec{n}}\vec{x}$
+\paragraph{Linearity Property}$f(sx+ty)=sf(x)+tf(y)$ 
+\paragraph{Kernel/Nullspace} Set of all $\vec{x}$ such that $L(\vec{x})=0$ or $A\vec{x}=0$ 
+\paragraph{Change of Coordinates} Find the product of the matrix multiplied by each vector in the basis. Make a multiple augmented matrix with the basis on the left, and the products on the right. 
+\paragraph{Cofactor} $C_{ij}=(-1)^{i+j}\text{det}\,A(i,j)$, where $A(i,j)$ is $A$ but with the i-th row and j-th column deleted. 
+\paragraph{Adjugate} $adjA_{ij}=C_{ji}$, or the transpose of the cofactor matrix. 
+\paragraph{Inverse} $A^{-1}=\frac{1}{det\,A}adj\,A$\\ 
+$A^{-1}=$ cofactor expansion along any column or row. 
+\paragraph{Cramer's Rule}$x_i=\frac{det\,A_i}{det\,A_i}$ 
+\paragraph{Area and Volume} Is the absolute value of the determinant of the matrix formed by the vectors 
+\paragraph{Matrix of a Linear Mapping}$[L(\vec{x})]_\mathcal{B}=[L]_\mathcal{B}[\vec{x}]_\mathcal{B}$. To find the $\mathcal{B}$ matrix of a linear mapping, apply the mapping to each vector in $\mathcal{B}$. Then express it as a linear combination of the vectors in $\mathcal{B}$. Then take those coefficients to be the vectors of the matrix. 
+\paragraph{Similar Matrices} If $P^{-1}AP=B$, then $A$ and $B$ are similar. Their ranks, determinants, and traces are equal. 
+\paragraph{Eigenvalues} $A\vec{v}=\lambda\vec{v}$\quad$C(\lambda)=|A-\lambda I|$
+\paragraph{Diagonalization} $P^{-1}AP=diag(\lambda_1,\lambda_2,\lambda_3)$. P is the matrix formed by the eigenspace of $A$. 
+\paragraph{Power of Matrices} $A^m=PD^mP^{-1}$
+
+
+\end{document}

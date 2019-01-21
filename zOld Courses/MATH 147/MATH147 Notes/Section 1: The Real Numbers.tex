@@ -1,0 +1,61 @@
+\documentclass{article}
+
+\title{MATH147 Section 0: Induction}  % Declares the document's title.
+\author{Chris Ji}      % Declares the author's name.
+\date{September 8, 2017}      % Deleting this command produces today's date.
+
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\newcommand{\ip}[2]{(#1, #2)}
+
+\begin{document}            
+
+\maketitle     % Produces the title.
+
+\section*{1.2: Definition}
+Closed intervals: [a,b], [a, $\infty)$, ($-\infty$, b], $(-\infty, \infty)$. \\
+Open intervals: (a, b), (a, $\infty$), ($-\infty$, b), ($-\infty, \infty$).\\ 
+
+\section*{1.3: Definition}
+Upper bounds, lower bounds, bounded above, bounded below.
+
+\section*{1.5: Definition}
+Supremum, infimum.
+
+\section*{1.10: Archimedean property - I}
+The archimedean property: $\mathbb{N}$ is not bounded above. 
+
+\section*{1.11: Archimedean property - II}
+Let $\epsilon > 0$ be a real number. Then there exists $n_o \in \mathbb{N}$ such that $0 < \frac{1}{n_o} < \epsilon$. 
+
+\section*{1.14: Definition}
+(a) $|x| \geq 0$ and $|x| = 0$ if and only if x = 0\\
+(b) $|xy| = |x||y|$\\
+(c) $|x+y| \leq |x| + |y|$\\
+
+Note that (c) implies: \\ 
+$|x - y| \leq |x - z| + |z - y|$\\ 
+
+\section*{1.15: Absolute value and intervals}
+(a) $|x - a| < \delta$ if and only if $x \in (a-\delta, a+\delta)$\\
+(b) $|x - a| \leq \delta$ if and only if $x \in [a-\delta, a+\delta]$\\
+(c) $0 < |x - a| < \delta$ if and only if $x \in (a-\delta, a+\delta) \backslash {a}$\\
+
+
+\end{document}               
+
+
+
+
+
+
+
+
+

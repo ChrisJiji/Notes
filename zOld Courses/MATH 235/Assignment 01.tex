@@ -1,0 +1,86 @@
+\documentclass[10pt,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\makeatletter
+\usepackage{enumitem}
+\newlength{\lyxlabelwidth}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%\usepackage{txfonts}
+
+\usepackage{microtype}
+
+\usepackage{calc}
+\usepackage{enumitem}
+\setenumerate{leftmargin=!,labelindent=0pt,itemindent=0em,labelwidth=\widthof{\ref{last-item}}}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\noindent \begin{center}
+\textbf{\large{}MATH 235 - Assignment 1}\\
+\textbf{\large{}Chris Ji 20725415}
+\par\end{center}{\large \par}
+\medskip{}
+
+\begin{enumerate}
+\item \begin{enumerate}
+    \item $A=\begin{bmatrix}1&2&3\\1&5&1\\3&9&7\end{bmatrix}\sim\begin{bmatrix}1&0&\frac{13}{3}\\0&1&\frac{-2}{3}\\0&0&0\end{bmatrix}$ using the following elementary row operations: \\ $\circled{2}=\circled{2}-\circled{1}/3\quad\quad\quad\circled{3}=\circled{3}-3\circled{1}\quad\quad\quad\circled{2}=\circled{2}/3\quad\quad\quad\circled{3}=\circled{3}-3\circled{2}\quad\quad\quad \circled{1}=\circled{1}-2\circled{2}$ \\
+By theorem 7.1.2, a basis for the columnspace of $A$ is given by the the columns of $A$ which correspond to the columns in the RREF of $A$ with leading ones. Hence a basis for Col$(A)$ is $\left\{\begin{bmatrix}1\\1\\3\end{bmatrix},\begin{bmatrix}2\\5\\9\end{bmatrix}\right\}$\\
+By theorem 7.1.3, a basis for the rowspace of $A$ is given by the non-zero rows from the RREF of $A$. Hence a basis for Row$(A)$ is $\left\{\begin{bmatrix}1\\0\\\frac{13}{3}\end{bmatrix},\begin{bmatrix}0\\1\\\frac{-2}{3}\end{bmatrix}\right\}$\\
+By inspection, we can see a basis for the nullspace of $A$ is $\left\{\begin{bmatrix}\frac{-13}{3}\\\frac{2}{3}\\1\end{bmatrix}\right\}$\\ 
+Row reducing $A^T$ we get $\begin{bmatrix}1&0&2\\0&1&1\\0&0&0\end{bmatrix}$. From this we can see a basis for the nullspace of $A^T$, and hence a basis for the left nullspace of $A$ is $\left\{\begin{bmatrix}-2\\-1\\1\end{bmatrix}\right\}$.\pagebreak
+
+\item $A=\begin{bmatrix}1&3&2&-1\\1&4&3&-4\\1&2&1&2\end{bmatrix}\sim\begin{bmatrix}1&0&-1&8\\0&1&1&-3\\0&0&0&0\end{bmatrix}$ using the following elementary row operations: \\ $\circled{2}=\circled{2}-\circled{1}$\quad\quad\quad $\circled{3}=\circled{3}-\circled{1}$\quad\quad\quad $\circled{3}=\circled{3}+\circled{2}$\quad\quad\quad $\circled{1}=\circled{1}-3\circled{2}$ \\
+By theorem 7.1.2, a basis for the columnspace of $A$ is given by the the columns of $A$ which correspond to the columns in the RREF of $A$ with leading ones. Hence a basis for Col$(A)$ is $\left\{\begin{bmatrix}1\\1\\1\end{bmatrix},\begin{bmatrix}3\\4\\2\end{bmatrix}\right\}$\\
+By theorem 7.1.3, a basis for the rowspace of $A$ is given by the non-zero rows from the RREF of $A$. Hence a basis for Row$(A)$ is $\left\{\begin{bmatrix}1\\3\\1\\-1\end{bmatrix},\begin{bmatrix}1\\4\\3\\-4\end{bmatrix}\right\}$\\ 
+By inspection, we can see a basis for the nullspace of $A$ is $\left\{\begin{bmatrix}1\\-1\\1\\0\end{bmatrix},\begin{bmatrix}-8\\3\\0\\1\end{bmatrix}\right\}$\\ 
+Row reducing $A^T$ we get $\begin{bmatrix}1&0&2\\0&1&-1\\0&0&0\\0&0&0\end{bmatrix}$. From this we can see a basis for the nullspace of $A^T$, and hence a basis for the left nullspace of $A$ is $\left\{\begin{bmatrix}-2\\1\\1\end{bmatrix}\right\}$.
+\end{enumerate}\pagebreak
+
+\item \begin{enumerate}
+    \item We have to prove that $L(sx+ty)=sL(x)+tL(y)$. Since $x,y$ have to exist in $\mathbb{M}_{2,2}(\mathbb{R})$, they must both be $2\times2$ matrixes. Let $x=\begin{bmatrix}x_1&x_2\\x_3&x_4\end{bmatrix}$, and $y=\begin{bmatrix}y_1&y_2\\y_3&y_4\end{bmatrix}$ $L(sx+ty)=L(\begin{bmatrix}sx_1+ty_1&sx_2+ty_2\\sx_3+ty_3&sx_4+ty_4\end{bmatrix})=(sx_1+ty_1+sx_2+ty_2+sx_3+ty_3)x+(sx_1+ty_1-sx_2+ty_2-sx_4+ty_4)x^2$. $sL(x)+tL(y)=L\left(\begin{bmatrix}sx_1&sx_2\\sx_3&sx_4\end{bmatrix}\right)+L\left(\begin{bmatrix}ty_1&ty_2\\ty_3&ty_4\end{bmatrix}\right)=(sx_1+sx_2+sx_3)x+(sx_1-sx_2-sx_4)x^2+(ty_1+ty_2+ty_3)x+(ty_1-ty_2-ty_4)x^2=(sx_1+ty_1+sx_2+ty_2+sx_3+ty_3)x+(sx_1+ty_1-sx_2+ty_2-sx_4+ty_4)x^2$. This is the exact same as we got from $L(sx+ty)$ above, so therefore $L$ is linear. 
+    
+    \item $L\left(\begin{bmatrix}1&2\\-1&1\end{bmatrix}\right)=(1+2+(-1))x+(1-2-1)x^2=2x-2x^2=2(x+x^2)$.
+    
+    \item We can work backwards from $(a+b+c)x+(a-b-d)x^2$ to see the requirements for $a,b,c,d$ in $A$. We can see that $a+b+c=2$, and $a-b-d=1$. Since the question only asks for one such $A$ such that $L(A)=2x+x^2$, we can see very quickly that $a=1,b=0,c=1,d=0$ works as the elements of $A$. However, since we are in linear algebra, we can plug our two equations into an augmented matrix to get a general solution. $\begin{amatrix}{4}1&1&1&0&2\\1&-1&0&-1&1\end{amatrix}\sim\begin{amatrix}{4}1&0&\frac{1}{2}&\frac{-1}{2}&\frac{3}{2}\\0&1&\frac{1}{2}&\frac{1}{2}&\frac{1}{2}\end{amatrix}$. So we can see a general solution for a matrix $A$ that satisfies $L(A)=2x+x^2$ is $a=\frac{3}{2}-\frac{c}{2}+\frac{d}{2}, b=\frac{1}{2}-\frac{c}{2}-\frac{d}{2}$, for all $c,d\in\mathbb{R}$. 
+\end{enumerate}\pagebreak
+
+\item Let $v$ be a vector in $\mathbb{V}$. For ease of my understanding, I will replace $(s+t)L=sL+tL$ with $(s+t)L(v)+sL(v)+tL(v)$, which we can do by the multiplication rule $(((s+t)L)(v)=(s+t)L(v)$, and so on). By the definition of linearity, $sL(v)+tL(v)=L(sv+tv)=L((s+t)v)$. But then, also by linearity, $L((s+t)v)=(s+t)L(v)$, as required.  \pagebreak
+ 
+\item \begin{enumerate}
+    \item Suppose some vector $\vec{v}$ is in the columspace of $AB$. Then for some vector $\vec{x}$, $AB\vec{x}=\vec{v}$. But this means that for a vector $\vec{z}=B\vec{x}$, $A\vec{z}=\vec{v}$, implying that $\vec{v}$ is also in the columnspace of $A$. So every vector in the columnspace of $AB$ is also in the columnspace of $A$, and so $\text{Col}(AB)\subseteq\text{Col}(A)$
+    
+    \item Suppose that $A$ is invertible. Then we can multiply $A=BC$ by $A^{-1}$ on both sides to get $I=(BC)A^{-1}$. By the fact that matrix multiplication is associative, $(BC)A^{-1}=B(CA^{-1})$. However, since $C$ is a $4\times5$ matrix, and $A^{-1}$ is a $5\times 5$ matrix, this multiplication can not be done. Therefore, $A$ is not invertible. 
+
+\end{enumerate}\pagebreak 
+
+\item \begin{enumerate}
+    \item If $\vec{v}$ is in Null$(A)$, then $A\vec{v}=\vec{0}$. By the definition of eigenvector, $A\vec{v}=\vec{0}=\lambda\vec{v}$. $\vec{v}$ is a non-zero vector, and so $\lambda$ would have to be $0$ for this to be true. Eigenvalues can be 0, so $\vec{v}$ is indeed an eigenvector of $A$, with its corresponding eigenvalue of 0.
+    
+    \item The columns of the RREF of $A$ only give you the indexes of the columns of the original $A$ that are in the columnspace. For example, $A=\begin{bmatrix}1&0&\\0&1&0\\1&1&0\end{bmatrix}$ would be a matrix such that $R=\begin{bmatrix}1&0&0\\0&1&0\\0&0&0\end{bmatrix}$, however $\mathcal{B}=\left\{\begin{bmatrix}1\\0\\1\end{bmatrix}\begin{bmatrix}0\\1\\1\end{bmatrix}\right\}$
+    
+    \item  If $L$ is invertible, then there exists $L^{-1}$ such that $L\circ L^{-1}=Id$, where $Id$ is the identity mapping in $\mathbb{R}^n$. Since $L$ is a linear mapping, $L^{-1}$ must also be a linear mapping. They both have a corresponding matrix mapping, $[L]$ and $[L^{-1}]$. The corresponding matrix mapping of $Id$ is obviously $I_n$. 
+    
+    %Note that $[L]=[L(\vec{e}_1)\quad L(\vec{e}_2)\ldots L(\vec{e}_n)]$. By definition, $\{e_1,\ldots,e_n\}$ forms a basis for $\mathbb{R}^n$. Since $\{L\vec{e}_1,\ldots,L\vec{e}_n\}$ is linearly independent, it must also form a basis for $\mathbb{R}^n$. Since these are exactly the columns of $[L]$, $\text{rank}[L]=n$, and so by the invertible matrix theorem, $[L]$ is invertible. 
+
+\end{enumerate}
+\end{enumerate}
+\end{document}

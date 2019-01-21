@@ -1,0 +1,98 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\title{MATH147 Assignment 4}
+\author{Chris Ji 20725415}
+
+\maketitle 
+
+\section*{Question 1}
+
+\paragraph{(a)}
+Let $0 < \epsilon \in \mathbb{R}$ such that $\epsilon$ is as close to $0$ as possible. Let $2 > \alpha \in \mathbb{R}$ such that $\alpha$ is as close to $2$ as possible. With the supremum and infimum of $a$ being $\epsilon$ and $\alpha$ respectively, the supremum and infimum of $\sqrt{2a}$ are then $\sqrt{2\alpha}$ and $\epsilon$, respectively. $\sqrt{2\alpha} < 2$ because of our definition of $\alpha$, and $\epsilon < \sqrt{2\epsilon}$ because of our definition of $\epsilon$. 
+
+\paragraph{(b)} 
+We will prove that it is increasing by induction. $x_2 = \sqrt{2x_{1}} = \sqrt{2\sqrt{2}}$ 
+$$x_2 > x_1$$
+$$\sqrt{2\sqrt{2}} > \sqrt{2}$$
+$$2\sqrt{2} > 2$$
+$$2 > 1$$
+Hence the statement is increasing for $n = 1$. \\ 
+By algebra, $x_{n+1} = \sqrt{2x_n}$, and $x_{n-1} = \frac{x^{2}_n}{2}$. We will now prove the sequence is increasing for $n = n + 1$
+$$x_{n+1} > x_n$$
+$$\sqrt{2x_n} > \sqrt{2x_{n-1}}$$
+$$\sqrt{2\sqrt{2x_{n-1}}} > \sqrt{2x_{n-1}}$$
+$$\sqrt{2x_{n-1}} > x_{n-1}$$
+$$2 > x_{n-1}$$
+$$2 > \frac{x^{2}_n}{2}$$
+$$2 > x_n$$
+Thus proving that 2 is a limit, and therefore it is increasing (as $2 > x_n$ will always be true).
+
+\paragraph{(c)} The limit of the sequence is 2, by the proof in (b).
+
+
+\section*{Question 2}
+Let $\beta = lim_{n\rightarrow\infty}y_n$. Suppose that $\beta < \infty$.
+$$\beta < lim_{n\rightarrow\infty}x_n$$
+$$lim_{n\rightarrow\infty}y_n < lim_{n\rightarrow\infty}x_n$$
+For arbitrarily large values of n, $y_n < x_n$, which contradicts our original statement that $n > N$ implies $x_n \leq y_n$. 
+
+
+\section*{Question 3}
+Let $y_n = \frac{7}{n}$, and $z_n = \frac{7^n}{n^n}$\\
+$\frac{7}{n} \leq \frac{7^n}{n!} \leq \frac{7^n}{n^n}$ \\
+$lim_{n\rightarrow\infty}y_n = 0$, as shown multiple times. 
+$$lim_{n\rightarrow\infty}y_n = lim_{n\rightarrow\infty}\frac{7}{n} = 0$$
+$$0^n = 0 = lim_{n\rightarrow\infty}(\frac{7}{n})^n = lim_{n\rightarrow\infty}z_n$$
+$$lim_{n\rightarrow\infty}y_n = lim_{n\rightarrow\infty}z_n = 0$$
+Then, by squeeze theorem, $lim_{n\rightarrow\infty}x_n = 0$.
+
+\section*{Question 4}
+
+\paragraph{(a)}
+Suppose that $lim_{n\rightarrow\infty}|x_{n+1}-x_n| > 0$
+$$lim_{n\rightarrow\infty}|\sqrt{n+1}| - lim_{n\rightarrow\infty}|\sqrt{n}| > 0$$
+$$lim_{n\rightarrow\infty}|\sqrt{n+1}| > lim_{n\rightarrow\infty}|\sqrt{n}|$$
+Proof that $lim_{n\rightarrow\infty}|\sqrt{n}| = \infty$: \\ 
+Suppose that there exists $\beta$ such that $lim_{n\rightarrow\infty}|\sqrt{n}| = \beta$, and $\epsilon > 0$. Then $x_n - \beta < \epsilon$ for all $n \in N$. There then exists an $m \in N$ such that $m > n$ implies $x_m > x_n$. Hence, $m > (x_n + \beta)^2$. Then $\sqrt{m} > x_n + \beta$, which means $x_m - \beta < \epsilon$, a contradiction. \\ 
+$lim_{n\rightarrow\infty}|\sqrt{n}| = \infty$, and there exists no $lim_{n\rightarrow\infty}|\sqrt{n+1}|$ such that $lim_{n\rightarrow\infty}|\sqrt{n+1}| > \infty$. Hence, $lim_{n\rightarrow\infty}|x_{n+1} - x_n| = 0$
+
+\paragraph{(b)}
+Because $\sqrt{n}$ does not converge, it is not a Cauchy sequence, and $x_n$ is a Cauchy sequence if and only if it converges.
+
+
+\section*{Question 5}
+\paragraph{(a)} 
+To prove that $lim_{k\rightarrow\infty}\frac{1}{k} = \infty$, we can replace each term preceding $k =$ any power of 2 with the power of 2 ($(\frac{1}{2} + \frac{1}{2}) + (\frac{1}{4} + \frac{1}{4} + \frac{1}{4} + \frac{1}{4}) + ... + \frac{1}{2^n}$). Let this sequence be $x_m$. $\sigma_k$ is obviously greater than $x_m$, as $\sigma_k > x_m$ for all $k = m$. $x_m$ is divergent, as each parenthesis adds up to 1, so as $m \rightarrow \infty$, $x_m \rightarrow \infty$. $lim_{m\rightarrow\infty}x_m = \infty \leq lim_{k\rightarrow\infty}\sigma_k$. Therefore $lim_{k\rightarrow\infty}\sigma_k = \infty$, and so the harmonic series diverges to infinity. 
+
+\paragraph{(b)} Suppose that $\sum_{n=1}^\infty x_n$ diverges. Then, by definition, there exists no $\epsilon > 0$ such that $\epsilon > |\sum_{n=1}^\infty x_n|$, in other words $\epsilon < |\sum_{n=1}^\infty x_n|$ for all $\epsilon$. Then, $\sum_{k=n}^m x_k < \epsilon < |\sum_{i=1}^\infty x_i|$. By the Archimedean principle, we can find $k > i$ for all values of i (and as $m > n = k$, as $i \rightarrow\infty$ implies $m \rightarrow \infty$), so $\sum_{k=n}^m x_k \nless \sum_{i=1}^\infty x_i$. Therefore, $sum_{n=1}^\infty x_n$ converges. 
+
+\paragraph{(c)} If $\tau$ is a bijection from $\mathbb{N} \rightarrow \mathbb{N}$, then there exists $n \in \mathbb{N}$ for every $\tau(i) \in \mathbb{N}$ such that $n = \tau(i)$. Then $x_n \mapsto \tau(n)$ is a bijection. Then, because addition is commutative, $\sum_{n=1}^\infty x_n = \sum_{n=1}^\infty x_{\tau(n)} = \infty$
+
+\paragraph{(d)}  If $\tau$ is a bijection from $\mathbb{N} \rightarrow \mathbb{N}$, then there exists $n \in \mathbb{N}$ for every $\tau(i) \in \mathbb{N}$ such that $n = \tau(i)$. Then $x_n \mapsto \tau(n)$ is a bijection. Then, because addition is commutative, $\sum_{n=1}^\infty x_n = \sum_{n=1}^\infty x_{\tau(n)} = \beta$
+
+
+\section*{Question 6}
+
+\paragraph{(a)} 
+Doing some algebra, 
+$$a_n = \frac{1}{\sqrt{1 + \frac{1}{n}}+1}$$
+$$lim_{n\rightarrow\infty}a_n = \frac{lim_{n\rightarrow\infty}1}{lim_{n\rightarrow\infty}(\sqrt{1 + \frac{1}{n})} + lim_{n\rightarrow\infty}1}$$
+$lim_{n\rightarrow\infty}1 = 1$, and $lim_{n\rightarrow\infty}\sqrt{1 + \frac{1}{n}} = \sqrt{1+0} = 1$. Hence, $$lim_{n\rightarrow\infty}a_n = \frac{1}{1+1} = \frac{1}{2}$$
+
+\paragraph{(b)} 
+Doing some algebra,
+$$\frac{1}{\sqrt{1+\frac{1}{n}}+1} < \frac{1-10^{-40}}{2}$$
+$$\frac{1}{n} > \frac{-40^{-40}}{(1-\frac{-10^{-40}}{2})^2}$$
+$$n > 4999999999999999999999999999999999999999.5$$
+Let $N = 4999999999999999999999999999999999999999.5$, and all $n \geq N$ will work for $\epsilon = \frac{1}{2}10^{-40}$
+
+\end{document}

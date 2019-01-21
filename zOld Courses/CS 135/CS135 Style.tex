@@ -1,0 +1,123 @@
+\documentclass{article}     % Specifies the document class 
+
+\begin{document}
+
+\section*{1.2} 
+Do not copy paste 
+\\
+Save using file > Save Other > Save Definitions As Text
+
+\section*{2.1 Comments}
+Full line comments are double semicolon and a space, in-line comments are a 
+single semicolon and a space.
+
+\section*{2.2 Header}
+Use the following header for all assignments: \\
+;;\\
+;; ***************************************************\\
+;; Chris Ji (20725415)\\
+;; CS 135 Fall 2017\\ 
+;; Assignment XX, Problem X\\
+;; ***************************************************\\
+;;\\
+
+\section*{2.3 Whitespace}
+Insert two consecutive blank lines between functions or “function blocks”\\
+Insert one blank line before and after the function definition: do not use more than one consecutive
+blank line within a function block. \\
+If you have many functions and/or large function blocks, you may want to insert a row of symbols (such as the *’s used in
+the file header above) to separate your functions. \\
+If the question asks you to write more than one function, the file should contain them in the order specified by the
+assignment. \\
+Helper functions are placed above the assignment function they are
+helping. 
+For conditional expressions, placing the keyword cond on a line by itself, and
+aligning not only the questions but the answers as well can improve readability
+(provided that they are short). Each question must appear on a separate line, and long questions/answers
+should be placed on separate lines. Marks may be deducted if a cond is too dense
+or confusing.\\
+
+\section*{2.4 Variable and Function Identifiers}
+It is a Racket convention to use lowercase letters and hyphens\\
+The rare exception is when proper names are used\\
+Constants should be used to improve your code in the following ways:\\
+\indent To improve the readability of your code by avoiding “magic” numbers.\\
+\indent To improve flexibility and allow easier updating of special values.\\
+\indent To define values for testing and examples.
+
+\section*{3.1 Design Recipe Sample}
+;; (sum-of-squares p1 p2) produces the sum of \hfill <--- Purpose\\
+;; \indent the squares of p1 and p2\\
+;; sum-of-squares: Num Num -> Num \hfill <--- Contract\\
+;; Examples: \hfill <--- Examples\\
+(check-expect (sum-of-squares 3 4) 25)\\
+(check-expect (sum-of-squares 0 2.5) 6.25)\\
+(define (sum-of-squares p1 p2) ; \hfill <--- Function Header\\
+\\
+(+ (* p1 p1) ; \hfill <--- Function Body\\
+\indent (* p2 p2)))\\
+\\
+;; Tests: \hfill <--- Tests\\
+(check-expect (sum-of-squares 0 0) 0)\\
+(check-expect (sum-of-squares -2 7) 53)\\\\
+\textbf{Do these in the following order:}
+\begin{itemize}
+    \item Draft Purpose
+    \item Examples
+    \item Function Header
+    \item Contract
+    \item Finalize Purpose
+    \item Body
+    \item Tests
+\end{itemize}
+
+\section*{3.2 Purpose}
+;; (sum-of-squares p1 p2) produces the sum of\\
+;; the squares of p1 and p2\\
+The purpose statement has two parts: an illustration of how the function is applied, and a brief description of what the function does. \\
+The purpose starts with an example of how the function is applied, which
+uses the same parameter names used in the function header.
+\begin{itemize} 
+\item Do not write the word “purpose”.
+\item The description must include the names of the parameters in the purpose
+to make it clear what they mean and how they relate to what the function
+does (choosing meaningful parameter names helps also). Do not include
+parameter types and requirements in your purpose statement — the contract
+already contains that information.
+\item If the description requires more than one line, “indent” the next line of the
+purpose 2 or 3 spaces.
+\item If your purpose requires more than two or three lines, you should probably
+consider re-writing it to make it more condensed. It could also be that you
+are describing how your function works, not what it does.
+\item If you find the purpose of one of your helper functions is too long or too
+complicated, you might want to reconsider your approach by using a different
+helper function or perhaps using more than one helper function.
+\end{itemize}
+
+\section*{3.3 Contract}
+;; function-name: Type1 Type2 ... TypeN -> Type\\
+The contract contains the name of the function, the types of the arguments it consumes,
+and the type of the value it produces.
+
+\section*{3.4 Examples}
+;; Examples:\\
+(check-expect (sum-of-squares 3 4) 25)\\
+(check-expect (sum-of-squares 0 2.5) 6.25)
+
+\section*{3.5 Function Header and Body}
+\textbf{Develop your purpose, contract, and examples \underline{before} you write the code for the function.}\\
+(define (sum-of-squares p1 p2)\\
+\indent(+ (* p1 p1)\\
+\indent\indent(* p2 p2)))\\\\
+\textbf{MAKE SURE YOUR FUNCTIONS ARE SPELLED THE SAME WAY AS GIVEN}
+
+\section*{3.6 Tests}
+;; Tests:\\
+(check-expect (sum-of-squares 0 0) 0)\\
+(check-expect (sum-of-squares -2 7) 53)
+\begin{itemize}
+\item Make sure your tests are testing every part of the code, e.g. if a conditional expression has 3 possible outcomes, all 3 outcomes are tested.
+\item Make sure the tests are small, testing small sections of code at a time, to make sure that if it fails, the failing part is easily identifiable
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,126 @@
+\documentclass[10pt,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+\usepackage{enumitem}
+\newlength{\lyxlabelwidth}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%\usepackage{txfonts}
+
+\usepackage{microtype}
+
+\usepackage{calc}
+\usepackage{enumitem}
+\setenumerate{leftmargin=!,labelindent=0pt,itemindent=0em,labelwidth=\widthof{\ref{last-item}}}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\noindent \begin{center}
+\textbf{\large{}CO250 - Assignment 1}\\
+\textbf{\large{}Chris Ji 20725415}
+\par\end{center}{\large \par}
+\medskip{}
+
+\begin{enumerate}
+\item \begin{enumerate}
+    \item Let A=Abe's Salary, B=Bill's Salary, C=Cora's Salary, D=David's Salary, E=Ethel's Salary, F=Fran's Salary, G=George's Salary, all of them in dollars. Then we need:
+\begin{alignat*}{3}
+    &\text{min}&&A+B+C+D+E+F+G \\ 
+    &\text{subject to}\\ 
+    &&& A-B\geq 0 \\ 
+    &&& B-C-D\geq 0 \\ 
+    &&& E-F=200 \\ 
+    &&& A,B,C,D,E,F,G\geq 40000 \\
+    &&& A+B-2E-2F\geq0 \\ 
+    &&& B-E\leq2000 \\
+    &&& G-1.2B\geq 0 \\
+    &&& G-1.3F\leq0 \\
+    &&& A-1.3F\leq 0 \\  
+    &&& A+B+C-G-E\leq 0
+\end{alignat*}
+    
+    
+    \item 
+\begin{alignat*}{3}
+    &\text{min}&& \\ 
+    &\text{subject to}\\ 
+    &&& A-B\geq 0 \\ 
+    &&& B-C-D\geq 0 \\ 
+    &&& E-F=200 \\ 
+    &&& A,B,C,D,E,F,G\geq 40000 \\
+    &&& A+B-2E-2F\geq0 \\ 
+    &&& B-E\leq2000 \\
+    &&& G-1.2B\geq 0 \\
+    &&& G-1.3F\leq0 \\
+    &&& A-1.3F\leq 0 \\  
+    &&& A+B+C-G-E\leq 0
+\end{alignat*}
+    
+    
+    
+    \item 
+\end{enumerate}
+
+
+\pagebreak
+
+\item Let $x_{ia}$ be the units shipped from factory $i$ to $A$, and $x_{ib}$ be the units shipped from factory $i$ to $B$. Let $x'_{ja}$ and $x'_{jb}$ be defined similarly, being the units shipped from $A (B)$ to store $j$.
+
+\begin{alignat*}{3}
+    &\text{min}&& \left(\sum_{i=0}^m(x_{ia}a_i+x_{ib}b_i)+\sum_{j=1}^n(x'_{ja}a'_j+x'_{jb}b'_j)\right)\\ 
+    &\text{subject to}\\ 
+    &&& x_{ia},x_{ib},x'_{ja},x'_{jb}\geq0 \forall i,j\\
+    &&& x_{ia}+x_{ib}-u_i\leq 0 \forall i\text{(supply is not being exceeded)}\\ 
+    &&& x'_{ja}+x'_{jb}-l_j\geq 0\forall j \text{(all the demand is being met)}\\ 
+    &&& \sum_{i>0}(u_i)-\sum_{j>0}(l_j)\leq0\text{(demand is less than the supply)}
+\end{alignat*}
+
+
+
+\item Let $d_i$ be the amount of water delivered to floor $i$. We need:
+
+\begin{alignat*}{3}
+    &\text{min}&& \sum_{i=1}^12(p_i-d_i)+2\sum_{i=14}^20(p_i-d_i)+4\sum_{i=21}^28(p_i-d_i)+8\sum_{i=29}^32(p_i-d_i)\\ 
+    &\text{subject to}\\ 
+    &&& p_i,d_i\geq0\forall i\\
+    &&& \sum_{i=1}^32r_i-1200\leq0 \text{(water pipe limit)}\\ 
+    &&& \sum_{i=1}^12r_i-1000\leq0 \text{(economy floors can only get water from the basement water tank)}\\ 
+\end{alignat*}
+
+
+
+\item Let the letters $1$ through $9$ represent the clowns Albert through Ian, respectively. Let $w_i$ be the weight of the $i^{th}$ clown.
+
+
+
+
+\item \begin{enumerate}
+    \item 
+    \item 
+    \item 
+    \item Since $C$ is non-singular, and therefore invertible, define $A$ such that $C^{-1}=A$. Then $A^T=(C^{-1})^T$. Also, since $C$ and $A$ are inverses, we get $CA=I\Rightarrow C^TA^T=I^T\Rightarrow A^T=(C^T)^{-1}$. Now we have $(C^{-1})^T=A^T=(C^T)^{-1}$, or $(C^{-1})^T=(C^T)^{-1}$
+    
+    
+    
+    \item Note $\alpha\alpha^T$ is just a real number, so its rank is always 1. Let $\alpha=\begin{bmatrix}a_1&a_2&a_3&a_4\end{bmatrix}$ Then $\alpha^T\alpha$ is equal to $\begin{bmatrix}a_1\cdot\alpha\\a_2\cdot\alpha\\a_3\cdot\alpha\\a_4\cdot\alpha\end{bmatrix}$, or alternatively $\begin{bmatrix}a_1\cdot\alpha^T&a_2\cdot\alpha^T&a_3\cdot\alpha^T&a_4\cdot\alpha^T\end{bmatrix}$
+    
+    
+    
+    \item $\lambda x+y-\lambda y=b\Rightarrow b-y=\lambda(x-y)$
+    
+    
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

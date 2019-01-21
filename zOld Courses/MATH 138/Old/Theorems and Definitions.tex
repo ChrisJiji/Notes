@@ -1,0 +1,308 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{textcomp}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Week 1}
+\paragraph{Partitions} A \underline{partition}, P, for the interval $[a,b]$ is a finite sequence of increasing numbers of the form $a=t_0<t_1<\ldots<t_{n-1}<t_n=b$. This partition subdivides the interval $[a,b]$ into $n$ subintervals, $[t_0,t_1], [t_1,t_2], \ldots [t_{n-1}, t_n]$. Note that these subintervals may not all have the same length, and denote the length of the $i^{\text{th}}$ subinterval $[t_{i-1},t_i]$ by $\Delta t_i=t_i-t_{i-1}$. The \underline{norm} of a partition is the length of the widest subinterval: $||P||=\text{sup}\{\Delta t_1,\ldots ,\Delta t_n\}$. A partition where each subinterval is the same length is called a \underline{regular n-partition}, and $\Delta t=\frac{b-a}{n}$ and $t_i = t_0+i\Delta t$.
+
+\paragraph{Riemann sum} Given a bounded function $f$ on $[a,b]$, a partition $P$ of $[a,b]$, and a set $\{C_1,C_2,\ldots, C_n\}$, where $C_i\in[t_{i-1},t_i]$, then a \underline{Riemann sum} for $f$ with respect to $P$ is $S=\sum_{i=1}^n f(C_i)\Delta t_i$. Since it is usually easier to work with endpoints, when possible, the \underline{right-hand Riemann sum} for $f$ with respect to $P$ is the one where $C_i=t_i$, ie. $R=\sum_{i=1}^nf(t_i)\Delta t_i$. Similarly, the \underline{left-hand Riemann sum} is $L=\sum_{i=1}^n f(t_{i-1})\Delta t_i$
+
+\paragraph{Integrable} We say that $f$ is \underline{integrable} on $[a,b]$ if there exists a unique number $I\in\mathbb{R}$ such that if whenever $\{P_n\}$ is a sequence of partitions with lim$_{n\rightarrow\infty}||P_n||=0$ and $\{S_n\}$ is any sequence of Riemann sums associated to the $P_n$'s, we have lim$_{n\rightarrow\infty}S_n=I$. In this case we call $I$ the integral of $f$ over $[a,b]$ and denote it by $\int_a^b f(x)dx$. 
+
+\paragraph{Integrability Theorem for Continuous Functions} Let $f$ be continuous on $[a,b]$. Then $f$ is integrable on $[a,b]$. Moreover, $\int_a^bf(x)dx=\text{lim}_{n\rightarrow\infty}S_n$ where $S_n$ is any Riemann sum associated with regular partitions. In particular, $\int_a^bf(x)dx=\text{lim}_{n\rightarrow\infty}\sum_{i=1}^nf(x_i)\left(\frac{b-a}{n}\right)$
+
+\paragraph{Properties of Integrals} If $f$ is integrable on $[a,b]$ then: \begin{itemize}
+    \item For any $c\in\mathbb{R}$, $\int_a^bcf(x)dx=c\int_a^bf(x)dx$
+    \item $\int_a^b(f+g)(x)dx = \int_a^bf(x)dx + \int_a^bg(x)dx$
+    \item If $m\leq f(x)\leq M$ for $x\in[a,b]$ then $m(b-a)\leq \int_a^bf(x)dx\leq M(b-a)$ 
+    \item If $0\leq f(x)$ for $x\in[a,b]$ then $0\leq \int_a^bf(x)dx$ 
+    \item If $f(x)\leq g(x)$ for $x\in[a,b]$ then $\int_a^bf(x)dx\leq\int_a^bg(x)dx$
+    \item $|f|$ is integrable on $[a,b]$ and $\left|\int_a^bf(x)dx\right|\leq \int_a^b|f(x)|dx$ 
+    \item If $f(a)$ is defined, then $\int_a^af(x)dx=0$ 
+    \item $\int_a^bf(x)dx=-\int_b^af(x)dx$ 
+    \item $\int_a^bf(x)dx=\int_a^cf(x)dx+\int_c^bf(x)dx$ 
+\end{itemize}
+
+\pagebreak
+
+\section*{Week 2}
+\paragraph{Average Value of a Function} If $f$ is continuous on $[a,b]$, the \underline{average value of $f$} on $[a,b]$ is defined as $\frac{1}{b-a}\int_a^bf(x)dx$. Furthermore, by IVT, there exists some $c\in[a,b]$ such that $f(c)=\frac{1}{b-a}\int_a^bf(x)dx$. This is \underline{average value theorem}. 
+
+\paragraph{Fundamental Theorem of Calculus (part 1)} If $f$ is continuous on an open interval $I$ containing $x=a$, and if $G(x)=\int_a^xf(t)dt$, then $G$ is differentiable for all $x\in I$ and $G'(x)=f(x)$. That is, $\frac{d}{dx}\int_a^xf(t)dt=f(x)$. 
+
+\paragraph{Antiderivatives} Given a function $f$, and antiderivative of $f$ is a function $F$ such that $F'(x)=f(x)$. 
+
+\paragraph{Fundamental Theorem of Calculus (part 2)} If $f$ is continuous on $[a,b]$ and $F$ is any antiderivative of $f$ then $\int_a^bf(x)dx = F(b)-F(a)=F(x)|_a^b$. A corollary of this is as follows: $\frac{d}{dx}\int_{g(x)}^{h(x)}f(t)dt=f(h(x))\cdot h'(x) - f(g(x))\cdot g'(x)$
+
+\pagebreak
+
+\section*{Week 3}
+\paragraph{U-substitution} AKA Reverse chain rule. It is as follows: $\int f(g(x))g'(x)dx = \int f(u)du$, when $u=g(x)$. Good choices for $u$: \begin{itemize}
+    \item function whose derivative is present 
+    \item base of an ugly power 
+    \item function inside sin/cos/ln/e, etc.
+    \item denominator sometimes works
+\end{itemize}
+Examples: \begin{enumerate}
+    \item $\int\frac{\text{ln}x}{x}dx$. Set $u =\text{ln}x$ $du=\frac{1}{x}dx \rightarrow dx = xdu$. $\int\frac{u}{x}xdu = \int u du= \frac{u^2}{2}+C = \frac{(\text{ln}x)^2}{2}+C$. 
+    \item $\int \text{sin}^6x\text{ cos}x dx$ Set $u = sinx$ $du = cosxdx\rightarrow dx = \frac{du}{cosx}$ $\int u^6 cosx \frac{du}{cosx} = \int u^6 du = \frac{u^7}{7} + C = \frac{sin^7x}{7}+C$ 
+    \item $\int\frac{x^2}{\sqrt{x+1}}dx$ Set $u = x+1$, then $x = u-1$ and $du = dx$. $\int\frac{(u-1)^2}{\sqrt{u}}du = \int\frac{u^2-2u+1}{\sqrt{u}}du = \int(u^{3/2}-2u^{1/2}+u^{-1/2})du = \frac{2}{5}u^{5/2}-2\cdot\frac{2}{3}u^{3/2}+2u^{1/2}+C$
+\end{enumerate}
+
+\paragraph{Change of Variable Theorem(for definite integrals)} If $g'(x)$ is continuous on $[a,b]$ and $f(x)$ is continuous between $g(a)$ and $g(b)$, then $\int_{x=a}^{x=b}f(g(x))g'(x)dx=\int_{u=g(a)}^{u=g(b)}f(u)du$. Examples: \begin{enumerate}
+    \item $\int_0^1e^x(cos(e^x))dx$ Set $u = e^x$, then $du = e^xdx\rightarrow dx=\frac{du}{u}$. If $x = 0, u=1$ if $x=1, u=e$. $\int_1^eucos(u)\frac{du}{u}=\int_1^ecos(u)du=sinu|_1^e=sin(e)-sin(1)$ 
+\end{enumerate}
+
+
+\paragraph{Trigonometric Substitution} Sometimes, changing $x$ into a trig function can make certain integrals easier. There are three situations where this is useful: \begin{enumerate}
+    \item $\sqrt{a^2-x^2}\rightarrow x=asin\theta$ $(\frac{-\pi}{2}<\theta<\frac{\pi}{2})$
+    \item $\sqrt{a^2+x^2}\rightarrow x=atan\theta$ $(\frac{-\pi}{2}<\theta<\frac{\pi}{2})$
+    \item $\sqrt{x^2-a^2}\rightarrow x=asec\theta$ $(0\leq\theta<\frac{-\pi}{2} \text{ or }\pi\leq\theta<\frac{3\pi}{2})$
+\end{enumerate}
+
+\paragraph{Integration By Parts} AKA Reverse product rule. Let $u$ and $v$ be functions of $x$. From the product rule we know: $\frac{d}{dx}(ux)=u\frac{dv}{dx}+v\frac{du}{dx}$. Integrate both sides: $\int\frac{d}{dx}(ux)=\int u\frac{dv}{dx}dx+\int v\frac{du}{dx}dx \rightarrow uv=\int udv - \int vdu$, which rearranges to $\int udv = uv-\int vdu$. Strategy: When integrating the product of two functions, you need to pick one to integrate(dv) and one to differentiate(u). A common trick to pick $u$ and $dv$ is "ILATE". Pick $u$ to be the first one on this list: \begin{itemize}
+    \item I = inverse trig functions
+    \item L = logarithms
+    \item A = algebraic functions
+    \item T = trig functions
+    \item E = exponential functions
+\end{itemize}
+Examples: 
+\begin{enumerate}
+    \item $\int x^2ln(x)dx$ Set $u = ln(x)$ and $dv = x^2dx$. Then $du = \frac{1}{x}dx$ and $v = \frac{x^3}{3}$. After the formula, $\frac{x^3}{3}lnx-\int\frac{x^3}{3}\cdot\frac{1}{x}dx=\frac{x^3}{3}lnx-\int{x^2}{3}dx=\frac{x^3}{3}lnx-\frac{x^3}{9}+C$ 
+    \item $\int xe^xdx$ Set $u = x$ and $dv = e^xdx$, then $du = dx$ and $v=e^x$. Then $\int xe^xdx = xe^x - \int e^xdx = xe^x  -e^x+C$ 
+    \item $\int_1^3 x^3ln(x)dx$. Set $u = lnx$ and $dv = x^3dx$, then $du = \frac{1}{x}dx$ and $v=\frac{x^4}{4}$. $I=\frac{x^4}{4}lnx|_1^3-\int_1^3\frac{x^3}{4}dx = \frac{x^4}{4}lnx-\frac{x^4}{16}|_1^3 = \left(\frac{3^4ln(3)}{4}-\frac{3^4}{16}\right) - \left(\frac{1^4ln(1)}{4} - \frac{1^4}{16}\right) = \frac{81ln(3)}{4}-\frac{80}{16}$
+\end{enumerate}
+
+\paragraph{Integration By Parts for definite integrals} Assume $f$ and $g$ are such that both $f'$ and $g'$ are continuous on an interval containing $a$ and $b$. Then $\int_a^bf(x)g'(x)dx=f(x)g(x)|_a^b - \int_a^bf'(x)g(x)dx$
+
+\pagebreak
+
+\section*{Week 4}
+\paragraph{Partial Fractions} Partial fractions are useful for evaluating $\int\frac{p(x)}{q(x)}dx$ where $p$ and $q$ are polynomials. 
+\begin{center}
+\begin{tabular}{|c|c|} 
+\hline
+ If the demominator has... & Then the integral is... \\ 
+ \hline
+ Distinct linear factors \\$(a_1x+b_1)(a_2x+b_2)\ldots(a_nx+b_n)$ & One constant per factor $(\frac{A_1}{a_1x+b_1}+\frac{A_2}{a_2x+b_2}\ldots+\frac{A_n}{a_nx+b_n})$ \\ 
+ \hline
+ A repeated linear factor\\ $(ax+b)^n$ & One constant per factor $(\frac{A_1}{ax+b}+\frac{A_2}{(ax+b)^2}+\ldots+\frac{A_n}{(ax+b)^n})$ \\ 
+ \hline
+ A product of distinct irreducible quadratic factors\\ $(a_1x^2+b_1x+c_1)\ldots(a_nx^2+b_nx+c_n)$ & A linear term per factor: $\frac{A_1x+B_1}{a_1x^2+b_1x+c_1} + \ldots + \frac{A_nx+B_n}{a_nx^2+b_nx+c_n}$\\ 
+\hline 
+ A repeatable irreducible quadratic factor \\$(ax^2+bx+c)^n$ & A linear term per power $\frac{A_1x+B_1}{(ax^2+bx+c)}+\ldots+\frac{A_nx+B_n}{(ax^2+bx+c)^n}$\\
+\hline
+\end{tabular}
+\end{center}
+How do we find $A$ and $B$? Cross multiply and compare coefficients! Here's an example: $\frac{x}{x^2-4x-5}=\frac{x}{(x+1)(x-5)}=\frac{A}{x+1}+\frac{B}{x-5}$. Cross multiplying, we get $x = (x+1)(x-5)\left[\frac{A}{x+1}+\frac{B}{x-5}\right]=A(x-5)+B(x+1)$. And then solve for $A$ and $B$ one of two ways: 
+\begin{enumerate}
+    \item Linear Algebra! $x=Ax-5A+Bx+5b = (A+B)X+(B-5A)$ Therefore, $A+B = 1$, and $B-5A = 0\rightarrow B=5A$. Plugging $B=5A$ into the first equation, we get $6A=1\rightarrow A=\frac{1}{6}$, and then plugging that into the second equation we get $B=5(\frac{1}{6})=\frac{5}{6}$.
+    \item Plug in "nice" values for x. Setting $x=5$, $5=A(0)+B(6)\rightarrow B=\frac{5}{6}$. Setting $x=-1$, $-1=A(-6)\rightarrow A=\frac{1}{6}$. 
+\end{enumerate}
+
+\paragraph{Bad Integrals} 
+Integrals that are $\int_{-\infty}^af(x)dx$ or $\int_a^\infty f(x)dx$ where $f(x)$ is continuous on the interval. Then we replace the infinite endpoint with a letter and take a limit. \begin{itemize}
+    \item $\int_a^\infty f(x)dx=\lim_{b\rightarrow\infty}\int_a^bf(x)dx$ 
+    \item $\int_{-\infty}^af(x)dx = \lim_{b\rightarrow-\infty}\int_b^af(x)dx$ 
+    \item $\int_{-\infty}^\infty f(x)dx=\lim_{b_1\rightarrow-\infty}\int_{b_1}^0f(x)dx + \lim_{b_2\rightarrow\infty}\int_0^{b_2}f(x)dx$
+\end{itemize}
+
+When $f(x)$ has an infinite discontinuity inside the finite interval, e.g., $\int_{-1}^1\frac{1}{x}dx$ at $x=0$ what happens? Then replace the problem value with a letter and take a limit! Consider $\int_a^bf(x)dx$. \begin{itemize}
+    \item If $f$ is not continuous at $a$, then $\int_a^bf(x)dx=\lim_{t\rightarrow a^+}\int_t^bf(x)dx$ 
+    \item If $f$ is not continuous at $b$, then $\int_a^bf(x)dx=\lim_{t\rightarrow b^-}\int_a^tf(x)dx$ 
+    \item If $f$ is not continuous at $c$, $a<c<b$, then $\int_a^bf(x)dx = \int_a^cf(x)dx+\int_c^bf(x)dx$ , and then use the above procedures. 
+\end{itemize}
+
+\paragraph{Properties of type I improper integrals} If $\int_a^\infty f(x)dx$ and $\int_a^\infty g(x)dx$ both converge, then \begin{enumerate}
+    \item $\int_a^\infty cf(x)dx$ converges and $\int_a^\infty cf(x)dx=c\int_a^\infty f(x)dx$ for any $c\in\mathbb{R}$ 
+    \item $\int_a^\infty f(x)+g(x)dx$ converges, and $\int_a^\infty f(x)+g(x)dx = \int_a^\infty f(x)dx + \int_a^\infty g(x)dx$ 
+    \item If $f(x)\leq g(x)$ for all $x\geq a$ then $\int_a^\infty f(x)dx \leq \int_a^\infty g(x)dx$ 
+    \item If $\int_a^\infty f(x)dx$ converges, and $a<c<\infty$, then $\int_c^\infty f(x)dx$ converges and $\int_a^\infty f(x)dx = \int_a^cf(x)dx + \int_c^\infty f(x)dx$
+\end{enumerate}
+
+\paragraph{Comparison Theorem} Used to help determine if an improper integral converges or diverges without actually integrating. Suppose $f$ and $g$ are continuous functions where $f(x)\geq g(x)\geq0$ for $x\geq a$. \begin{enumerate}
+    \item If $\int_a^\infty f(x)dx$ is convergent, then $\int_a^\infty g(x)dx$ also converges.
+    \item If $\int_a^\infty g(x)dx$ diverges, then $\int_a^\infty f(x)dx$ also diverges. 
+\end{enumerate}
+
+\paragraph{Absolute Convergence Theorem} Also used to help determine if an improper integral converges or diverges without actually integrating. Let $f$ be integrable on $[a,b]$ for $b>a$. Then $|f|$ is integrable on $[a,b]$ for all $b>a$, and if $\int_a^\infty |f(x)|dx$ converges then so does $\int_a^\infty f(x)dx$. In particular, if $0\leq|f(x)|\leq g(x)$ for $x\geq a$, and if $\int_a^\infty g(x)dx$ converges, then so does $\int_a^\infty f(x)dx$. 
+
+\pagebreak
+
+\section*{Week 5}
+\paragraph{Area between curves} Suppose we have to calculate the area of the region between two functions $f$ and $g$. It is $A=\int_a^b|f(x)-g(x)|dx$ Actually, it is the upper function minus the lower function, so if they switch, you have to switch the integrals. 
+
+\paragraph{Volumes} Similar to finding areas under curves, we can find the volumes of certain objects that have nice symmetry. If you had a nice shape with $a$ and $b$ being the endpoints of the height, and $A(x)$ being the base area, then $V=\int_a^b A(x)dx$. 
+
+\pagebreak
+
+\section*{Week 6}
+\paragraph{Intro to Differential Equations} A differential equation is an equation containing derivatives of a \underline{dependent} variable (ie. a function). $y=f(x)$ is called an ordinary differential equation (ODE).  The \underline{order} of an ODE is the order of the highest derivative that appears in the equation. For example: $y''+y^3 = 0$ has an order of 2. $x^2\frac{d^2y}{dx^2}+\frac{dy}{dx}=y$ has an order of 2 aswell. An ODE is called \underline{linear} if it contains only linear functions in $y,y', y''$ etc. (pretend X is a constant). For example: $3y''+2x^3y=cosx$ is linear, whereas $y^2+y'=0$ is non-linear.  \\ 
+The \underline{general solution} of an ODE is the collection of all possible solutions, including arbitrary constants. A \underline{particular solution} is a solution in which all arbitrary constants have been determined. To get a particular solution, additional info is needed. Something like values of $y,y',y''$ etc. for certain x-values, called \underline{initial conditions}. An ODE together with initial conditions is called an \textbf{Initial Value Problem} (IVP). We will study ODE's in the form $y'=f(x,y)$. 
+\paragraph{Separable Differential Equations} A separable ODE is a first-order ODE that can be written as $\frac{dy}{dx}=g(y)h(x)$. IE. we can factor the RHS into a product of functions, one containing only y's and one containing only x's. Then, to solve it, we move g(y) to the LHS and integrate! $\frac{1}{g(y)}\frac{dy}{dx}=h(x)\rightarrow \int\frac{1}{g(y)}\frac{dy}{dx}dx=\int h(x)dx\rightarrow \int\frac{1}{g(y)}dy = \int h(x)dx$\\ 
+For example: Find the particular solution to the IVP $\frac{dy}{dx}=\frac{3x^2+4x+2}{2(y-1)}$ when $y(0)=-1$. \\
+Solution: re-write as $2(y-1)dy = 3x^2+4x+2dx$ and then integrate: $\int 2(y-1)dy = \int 3x^2 + 4x+2dx\rightarrow y^2-2y=x^3+2x^2+2x+C$. Get C using $y(0)=-1$: $(-1)^2-2(-1)=0+0+0+C\rightarrow C = 3$. So the particular solution is $y^2-2y=x^3+2x^2+2x+3$. If possible, solve for $y$. In this case, we can complete the square on the LHS from $y^2-2y$ to $(y-1)^2-1$. By algebra, $(y-1)^2-1=x^3+2x^2+2x+3\rightarrow y = 1\pm\sqrt{x^3+2x^2+2x+4}$. Since only the negative square root satisfies $y(0)=-1$, the particular solution is $y=1-\sqrt{x^3+2x^2+2x+4}$ \\ 
+\textbf{WARNING} Watch out for dividing by 0 when you move y to the LHS. Deal with that case separately. When $y=0$ is a solution, it's called a singular solution, or an equilibrium solution (constant)\\
+Newton's law of cooling is also an ODE! $\frac{dT}{dt}  = -K(T-T_{room})$ and it's separable! $\int\frac{dT}{T-T_{room}}=\int-Kdt\rightarrow ln|T-T_{room}| = -Kt +C\rightarrow |T-Troom| = e^ce^{-kt}$
+
+
+\paragraph{A mixing problem} A tank has a 1000L of salt water at an initial concentration of 0.1kg/L. Salt water of concentration 0.3kg/L flows in at a rate of 10L/min. The solution is kept well-mixed and is drained at the same rate. Let $X(t)=$ amount of salt in tank at time t. Then $\frac{dx}{dt}=\text{rate in}- \text{rate out} = 10L/min \cdot 0.3kg/L - \text{concentration in tank} \cdot 10L/min$. The concentration in the tank is just $\frac{x}{1000}$. So then $\frac{dx}{dt}=3-\frac{x}{100}$, and since it's separable, $\int\frac{dx}{300-x}=\int\frac{dt}{100}\rightarrow -\ln|300-x|=\frac{t}{100}+C$. Since the tank starts at 1000L and 0.1kg/L, $X(0)=100kg$ so $-\ln(300-100) = 0 + C\rightarrow C = -\ln(200)$. So $-\ln|300-x|=\frac{t}{100}-\ln(200)\rightarrow |300-x|=e^{\frac{-t}{100}}\cdot e^{\ln200}=200e^{\frac{-t}{100}}$. In this case, $300-x>0$ since $x$ starts at 100 and increases, so $x(t) = 300 - 200e^{\frac{-t}{100}}$. 
+
+\paragraph{Substitution in ODEs} Sometimes, an ODE doesn't look separable, but a substitution will make it separable. Common substitutions: $v=y+x$, $v=\frac{y}{x}$, $v=y'$. For example: $\frac{dy}{dx}=(x+y)^2-1$. Let $v=x+y$, then $v'=1+y'\rightarrow y'=v'-1$. So then $v'-1 = v^2-1\rightarrow v' = v^2$. First consider $v\neq 0$. $\int\frac{dv}{v^2}=\int dx\rightarrow \frac{-1}{v}=x+C\rightarrow \frac{-1}{x+C}=v$. But $v=y+x$, so $y=-x-\frac{1}{x+C}$. Now if $v=0$ then $y=-x$ and $\frac{dy}{dx}=-1$. We get $-1 = -1$ which is true, so $y=-x$ is another solution. Therefore, $y=-x$ or $y=-x-\frac{1}{x+c}$
+
+\paragraph{Linear first-order ODEs} AKA only linear operations on $y$ and $y'$. General form for a linear first-order ODE is $A(x)y' + B(x)y = C(x)$, but we can always manipulate it to look like $\frac{dy}{dx}+P(x)y=Q(x)$. For example: $\frac{dy}{dx}+\frac{1}{x}y = 1$. Trick: multiply the ODE by $x$: $x\frac{dy}{dx}+y=x$. Notice the LHS is the derivative of xy! So $\frac{d}{dx}(xy)=x\rightarrow xy=\int xdx = \frac{x^2}{2}+C\rightarrow y=\frac{x}{2}+\frac{C}{x}$. The idea: Find a clever function to multiply the ODE by so that the LHS collapses into a product rule! Then integrate both sides, then solve for y.  \textbf{STEPS TO SOLVE A LINEAR FIRST-ORDER ODE:} \begin{enumerate}
+    \item Write it in the form $\frac{dy}{dx}+P(x)y=Q(x)$
+    \item Find $\mu(x)=e^{\int p(x)dx}$ 
+    \item Multiply the ODE by $\mu(x)$ 
+    \item Collapse the LHS into a product rule, then integrate both sides. 
+    \item Solve for y
+\end{enumerate}
+For example: \begin{itemize}
+    \item $\frac{dy}{dx}+2xy+x$ First, $\mu(x) = e^{\int p(X)dx} = e^{\int 2xdx} = e^{x^2}$. Multiply the ODE by $e^{x^2}$: $e^{x^2}\frac{dy}{dx}+2xe^{x^2}y = xe^{x^2} \longrightarrow \frac{d}{dx}(e^{x^2}y)=xe^{x^2}$. Integrating, $e^{x^2}y = \int xe^{x^2}dx$. This is a place to use u-substition: $u = x^2$, then $du = 2xdx\longrightarrow dx = \frac{du}{2x}$. $\frac{1}{2}\int e^udu=\frac{1}{2}e^u + C = \frac{1}{2}e^{x^2}+C$. So $e^{x^2}y = \frac{1}{2}e^{x^2}+C\longrightarrow y=\frac{1}{2}+\frac{C}{e^{x^2}}$. 
+    \item $x^2\frac{dy}{dx}+2xy=1$, $y(1)=0$. First, divide by $x^2$: $\frac{dy}{dx}+\frac{2}{x}y=\frac{1}{x^2}$, so $\mu(x) = e^{\int\frac{2}{x}dx} = e^{2\ln x}=e^{\ln x^2}=x^2$. So multiply by $x^2$: $x^2\frac{dy}{dx}+2xy=1\longrightarrow \frac{d}{dx}(x^2y)=1$. Integrating: $x^2y=\int dx = x + C$. So $y = \frac{1}{x}+\frac{C}{x^2}$, but $y(1)=0$, so $0=\frac{1}{1}+\frac{C}{1}\longrightarrow c = -1$. So $y=\frac{1}{x}-\frac{1}{x^2}$.  
+\end{itemize}
+\textbf{NOTE THERE IS A FORMULA TO DOUBLE-CHECK ANSWER}: The solution of $\frac{dy}{dx}+P(x)y=Q(x)$ is $y = \frac{1}{\mu(x)}\left[\int\mu(x)Q(x)dx\right], \mu(x)=e^{\int p(x)dx}$
+
+\pagebreak
+
+\section*{Week 7}
+\paragraph{Existence and Uniqueness of solutions to first-order linear DEs} Assume $p$ and $p$ are continuous functions on an interval I. Then, for each $x$ of I and any $y_o\in\mathbb{R}$, the IVP $y'+p(x)y=Q(x)$, $y(x_o)=y_o$ has exactly one solution, $y=Q(x)$ on I. 
+
+\paragraph{Newton's Law of Cooling} The law is that an object will cool (or warm) at a rate that is proportional to the difference between the temperature of the object and the ambient temperature, Ta. Namely, there is a constant $k>0$ such that $T'=-k(T-Ta)$. This is a separable DE, which has solution $T(t)=ce^{-kt}+Ta$, where c and k could be found with additional info. \\ 
+Example: For $\frac{dT}{dt}=-k(t-25)$, if an object was initially at 0\textdegree C, and after 10 minunte it was at 5\textdegree C, solve the ODE. (Here, T is in \textdegree C and t is in minutes). We know $T=ce^{-kt}+Ta=ce^{-kt}+25$. We know $T(0)=0$, $T(10)=5$. First, $T(0)=0\longrightarrow 0 = C +25\longrightarrow c=-25$. So $T=-25e^{-kt}+25$. Then, with $T(10)=5$: $5=-25e^{-10k}+25\longrightarrow \frac{-20}{-25}=e^{-10k}$. Then $k = -10\ln\left(\frac{4}{5}\right)$, so $T = -25e^{10\ln\left(\frac{4}{5}\right)t}+25$
+
+\paragraph{Models of population growth/decay} Natural growth model: Say $p=$ population, and $t=$time. Then $\frac{dP}{dt}=kP$, where k is a constant, roughly birthrate or deathrate. Note: It's separable!! When $p\neq0$, $\int\frac{dP}{P}=\int kdt\rightarrow \ln|P| = kt+C\rightarrow p = \pm e^ce^{kt}$. But since we should take into account the carrying capacity, $m$. The logistic DE is $\frac{dp}{dt}=kp(m-p)$, where $k>0$ is a constant. The particular solution to the logistic DE $\frac{dp}{dt}=kp(m-p)$ where $p(0)=p_0$ is $p=\frac{mAe^{mkt}}{1+Ae^{mkt}}$ and $A = \frac{p_0}{m-p_0}$ \\ 
+Example: Scientists took 100 wolves and let them go into a walled-off nature preserve. They estimated the carrying capacity to be 1500, and after one year there were 150 wolves. Assuming logistic growth, find an expression for $p(t)$. The DE is: $\frac{dp}{dt}=kp(1500-p)$, $p(0) = 100$, and $p(1)=150$. so $p=\frac{1500Ae^{1500kt}}{1+Ae^{1500kt}}$, and $A = \frac{100}{1500-100}=\frac{1}{14}$. Finally, use $p(1)=150$ to find k: $150 = \frac{1500(\frac{1}{14})e^{1500k}}{1+\frac{1}{14}e^{1500k}}\longrightarrow k=\frac{\ln(\frac{14}{9})}{1500}$. There are other models too: \begin{enumerate}
+    \item taking harvesting/hunting into account: $\frac{dp}{dt}=kp(1-\frac{p}{m})-C$, where C is the harvesting 
+    \item If a population is too sparse, it may go extinct! $\frac{dp}{dt}=kp(1-\frac{p}{m})(1-\frac{N}{p})$, N = minimum population to prevent extinction. 
+\end{enumerate}
+
+\pagebreak
+
+\section*{Week 8} 
+\paragraph{Partial Sum} If $\sum_{n=1}^\infty a_n$ is a series, define its \underline{sequence of partial sums}, $\{S_n\}$ to be the sum of the first $n$ terms. 
+\paragraph{Convergence of Series} A series $\sum_{n=1}^\infty a_n$ converges to $S$ if $\lim_{n\rightarrow\infty}S_n=S$. Here $S$ is called the \underline{sum} of the series. If $\{S_n\}$ diverges, we say the series diverges. For example: $\sum_{n=1}^\infty(-1)^n$ has partial sums $S_1 = -1, S_2=0, S_3=-1\ldots$. Clearly $\lim_{n\rightarrow\infty}$ DNE, so $\sum_{n=1}^\infty(-1)^n$ diverges. 
+
+\paragraph{Geometric Series} A geometric series is a series of the form $\sum_{n=0}^\infty ar^n$ or $\sum_{n=1}^\infty ar^{n-1}$ where $a,r\in\mathbb{R}$, and $a\neq0$. $\sum_{n=1}^\infty ar^{n-1}$ converges to $\frac{a}{1-r}$ if $|r|<1$, and diverges otherwise. 
+
+\paragraph{Properties of Series} If $\sum_{n=1}^\infty a_n=A$, and $\sum_{n=1}^\infty b_n=B$, and $k\in\mathbb{R}$, \begin{enumerate}
+    \item $\sum_{n=1}^\infty a_n\pm b_n=A\pm B$ 
+    \item $\sum_{n=1}^\infty ka_n=kA$
+\end{enumerate}
+
+\paragraph{p-series} A p-series $\sum_{n=1}^\infty\frac{1}{n^p}$ converges iff $p>1$. 
+
+\paragraph{Divergence Test} If $\sum_{n=1}^\infty a_n$ converges, then $\lim_{n\rightarrow\infty}a_n=0$. The contrapositive is also true, if $\lim_{n\rightarrow\infty}\neq 0$, then $\sum_{n=1}^\infty$ diverges. Note: If $\lim_{n\rightarrow\infty}=0$, the series doesn't necessarily converge. 
+
+\paragraph{Tests for Positive Series} A series $\sum_{n=1}^\infty a_n$ is called positive if $a_n\geq0$ for all $n\in\mathbb{N}$. There are a few tests that only work on positive series:
+
+\paragraph{Integral Test} Suppose $f(x)$ is continuous, positive, and decreasing for $x\in[1,\infty)$. Let $a_n=f(n)$. Then $\sum_{n=1}^\infty a_n$ converges if and only if $\int_1^\infty f(x)dx$ converges. Use it when the series looks like it can be integrated \\ 
+Example: $\sum_{n=1}^\infty \frac{1}{n^2}$. Note that $f(x)=\frac{1}{x^2}$ is continuous, positive, and decreasing if $x\geq1$, so we may apply the integral test. $\int_1^\infty \frac{1}{x^2}dx$ converges (because $p=2$, which is greater than 1), so $\sum_{n=1}^\infty \frac{1}{n^2}$ converges. \\ 
+Note: The series does not converge to what the integral converges to, but it can be used to approximate it. The \underline{remainder} is the error in using $S_n$ to approximate $\sum_{n=1}^\infty a_n$, so $R_n=S-S_n$. So then if $a_n=f(n)$ and $f(x)$ is continuous, positive, and decreasing, we know that $\int_{n+1}^\infty f(x)dx\leq R_n\leq \int_n^\infty f(x)dx$. So $\int_n^\infty f(x)dx$ is an upper bound on the remainder.  
+
+\paragraph{Comparison Test} Suppose that $\sum_{n=1}^\infty a_n$ and $\sum_{n=1}^\infty b_n$ are two positive series and $a_n\leq b_n$ for all $n$, then $\sum_{n=1}^\infty a_n \leq \sum_{n=1}^\infty b_n$. IE, if $\sum_{n=1}^\infty b_n$ converges, then $\sum_{n=1}^\infty a_n$ does too, and if $\sum_{n=1}^\infty a_n$ diverges, then  $\sum_{n=1}^\infty b_n$ does too. Use these comparison tests when the series are "almost" geometric series.\\ 
+Example:  $\sum_{n=1}^\infty \frac{n+7}{n^2-1}$ Note that $\frac{n+7}{n^2-1}\geq\frac{n}{n^2-1}\geq\frac{n}{n^2}=\frac{1}{n}$, and since  $\sum_{n=1}^\infty \frac{1}{n}$ diverges (harmonic series), so does  $\sum_{n=1}^\infty \frac{n+7}{n^2-1}$. 
+
+\paragraph{Limit Comparison Test} If $0\leq a_n$ and $0<b_n$ and $\lim_{n\rightarrow\infty}\frac{a_n}{b_n}=L$, $L\neq0$, $L<\infty$, then either they both converge or they both diverge. 
+
+\pagebreak
+
+\section*{Week 9}
+\paragraph{Alternating Series Test} A series is \underline{alternating} if its terms are alternately positive and negative. In general, it has $(-1)^n$ somewhere in it. If \begin{enumerate}
+    \item $\{a_n\}$ is decreasing 
+    \item $\lim_{n\rightarrow\infty}a_n=0$
+\end{enumerate}
+then the series converges. \\ 
+Example: $\sum_{n=1}^\infty \frac{(-1)^{n+1}}{n}$. $\frac{1}{n}$ is clearly decreasing, and $\lim_{n\rightarrow\infty}\frac{1}{n}=0$, so by AST, it converges.
+
+\paragraph{Estimating Sums with AST} Because of how alternating series works, we know 2 things. The actual sum lies between any two consecutive partial sums, and the maximum possible error is the next term, since $s_{n+1}=s_n\pm a_{n+1}\rightarrow |s_{n+1}-s_n|=a_{n+1}$. \\ 
+Example: Approximate the sum of $\sum_{n=1}^\infty \frac{(-1)^{n+1}}{n}$ by using the first 10 terms and find an upper bound on the remainder. $S_10=1-\frac{1}{2}+\frac{1}{3}\ldots-\frac{1}{10} \approx 0.645364$ and the remainder is $|S-S_10| \leq a_{11} = \frac{1}{11} \approx 0.0909$.
+
+\paragraph{Absolute and Conditional Convergence} A series $\sum_{n=1}^\infty a_n$ is \underline{absolutely convergent} if $\sum_{n=1}^\infty |a_n|$ converges. A series is \underline{conditionally convergent} if it converges, but it is not absolutely convergent. If a series $\sum_{n=1}^\infty a_n$ is absolutely convergent, then it is convergent. \\ 
+Example: Is $\sum_{n=1}^\infty \frac{\sin(n^3)}{n^3}$ convergent? Note: $0\leq \left|\frac{\sin(n^3)}{n^3}\right|\leq \frac{1}{n^3}$, and $\sum_{n=1}^\infty \frac{1}{n^3}$ converges since it is a p-series, so by comparison $\sum_{n=1}^\infty \left|\frac{\sin(n^3)}{n^3}\right|$ converges, and therefore $\sum_{n=1}^\infty \frac{\sin(n^3)}{n^3}$
+
+\paragraph{Ratio Test} Let $\sum_{n=1}^\infty a_n$ be a series. Calculate $L = \lim_{n\rightarrow\infty}|\frac{a_{n+1}}{a_n}|$. \begin{itemize}
+    \item If $L < 1$ then the series converges absolutely. 
+    \item If $L > 1$ then the series divergent
+    \item If $L = 1$ or $L$ does not exist, then the test is inconclusive.
+\end{itemize} Use this test for when there are factorials.  \\ 
+Example: $\sum_{n=1}^\infty \frac{3^n}{n!}$. Ratio test: $\lim_{n\rightarrow\infty}|\frac{a_{n+1}}{a_n}| = \lim_{n\rightarrow\infty}\frac{3^{n+1}}{(n+1)!}\cdot \frac{n!}{3^n}=\lim_{n\rightarrow\infty}\frac{3}{n+1}=0$ $0<1$, so $\sum_{n=1}^\infty\frac{3^n}{n!}$ converges absolutely. 
+
+\paragraph{Root Test} Let $\sum_{n=1}^\infty a_n$ be a series. Calculate $L = \lim_{n\rightarrow\infty}\sqrt[n]|a_n|$. \begin{itemize}
+    \item If $L < 1$ then the series converges absolutely. 
+    \item If $L > 1$ then the series divergent
+    \item If $L = 1$ or $L$ does not exist, then the test is inconclusive.
+\end{itemize} Use this test for when the terms of a series are all raised to the power of n. \\ 
+Example: $\sum_{n=1}^\infty\left(\frac{n^2+n}{2n^2+3n}\right)^n$ Applying the root test, $\lim_{n\rightarrow\infty}\sqrt[n]{\left(\frac{n^2+n}{2n^2+3n}\right)^n} = \lim_{n\rightarrow\infty}\frac{n^2+n}{2n^2+3n} = \frac{1}{2}<1$, so the series converges absolutely. 
+
+\pagebreak
+
+\section*{Week 10} 
+\paragraph{Power Series} A power series is a series of the form: $\sum_{n=1}^\infty c_nx^n=c_0+c_1x+c_2x^2+\ldots$ (centre = 0) or $\sum_{n=1}^\infty c_n(x-a)^n = c_0+c_1(x-a)+c_2(x-1)^2+\ldots$ where $c_i\in\mathbb{R}$. The domain of a power series is the collection of all $x\in\mathbb{R}$ for which the series converges. \\ 
+Example: For what $x$ does $\sum_{n=1}^\infty (x-7)^n$ converge? Applying the root test: $\lim_{n\rightarrow\infty}|\sqrt[n]{(x-7)^n}| = \lim_{n\rightarrow\infty}|x-7|$. So it converges if $|x-7|<1\rightarrow 6<x<8$. Checking endpoints: If $x=6$, $\sum_{n=1}^\infty (6-7)^n$ diverges, and if $x=8$, $\sum_{n=1}^\infty (8-7)^n$ diverges. So it converges if $6<x<8$. \\ 
+So for a given power series $\sum_{n=1}^\infty C_n(x-a)^n$, there are 3 possibilities.\begin{enumerate}
+    \item The series only converges when $x=a$.
+    \item The series converges for all $x\in\mathbb{R}$ 
+    \item There is $R\in\mathbb{R}$ such that it converges if $|x-a|<R$, diverges if $|x-a|>R$, and may either converge or diverge if $|x-a|=R$. In this case, $R$ is called the \underline{radius of convergence}. The \underline{interval of convergence} is the interval on which the power series converges to. 
+\end{enumerate}
+
+\paragraph{Abel's Theorem} If $f(x)=\sum_{n=0}^\infty a_n(x-a)^n$ has an interval of convergence I, then $f(x)$ is continuous on $I$. 
+
+\paragraph{Obtain a power series from a known series} Say $f(x)=\frac{a}{b+cx}$, then factor out $\frac{a}{b}$ so you obtain $\frac{1}{1-cx}$. Then the power series representation is $\frac{a}{b}\sum_{n=0}^\infty (cx)^n$, and $R = |cx|<1$ \\ 
+Examples: $f(x)=\frac{x^2}{x+7}=\frac{x^2}{7}\frac{1}{1+\frac{x}{7}}=\frac{x^2}{7}\frac{1}{1-\left(-\frac{x}{7}\right)}=\frac{x^2}{7}\sum_{n=0}^\infty \frac{-x}{7}^n = \sum_{n=0}^\infty\frac{(-1)^nx^{n+2}}{7^{n+1}}$. Then $|\frac{-x}{7}|<1\rightarrow |x|<7$, so $R=7$, $I=(-7,7)$.  
+
+\paragraph{Differentiation and Integration of power series} If $f(x)=\sum_{n=0}^\infty c_n(x-a)^n$ with radius of convergence $R>0$, then $f(x)$ is differentiable, and \begin{itemize}
+    \item $f'(x)=\sum_{n=0}^\infty nc_n(x-a)^{n-1}$ 
+    \item $\int f(x)dx = \sum_{n=0}^\infty \left(\frac{c_n(x-a)^{n+1}}{n+1}\right) + C$
+\end{itemize} 
+Examples: \begin{enumerate}
+    \item Find a power series for $\frac{1}{(1-x)^3}$. Note $\frac{1}{1-x}=\sum_{n=0}^\infty x^n$, so $\left(\frac{1}{1-x}\right)' = \frac{1}{(1-x)^2} = \sum_{n=0}^\infty nx^{n-1}$. So then $\left(\frac{1}{(1-x)^2}\right)=\frac{2}{(1-x)^3} = \sum_{n=0}^\infty n(n-1)x^{n-2}$, so then we get $\frac{1}{(1-x)^3} = \frac{1}{2}\sum_{n=0}^\infty n(n-1)x^{n-2}$ with $R=1$. The endpoints both diverge by divergence test, so the interval is $(-1,1)$. 
+    \item Find a power series for $\arctan(x)$. First, find a series for $\frac{d}{dx}\arctan(x) = \frac{1}{1+x^2}$, and then integrate. $\frac{1}{1+x^2}=\frac{1}{1-(-x^2)} = \sum_{n=0}^\infty (-x^2)^2=\sum_{n=0}^\infty(-1)^nx^{2n}$, with $R=1$, and $I=(-1,1)$. So then $\arctan(x)=\int\frac{1}{1+x^2}dx=\int\sum_{n=0}^\infty(-1)^nx^{2n}dx=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{2n+1}+C$. But $\arctan(0)=0\rightarrow 0 =0+C\rightarrow C=0$, so the definite integral is $\arctan(x)=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{2n+1}$. Both the endpoints converge by AST, so $R=1$, $I=[-1,1]$. 
+    \item Evaluate $\int\frac{1}{2-x^5}dx$ as a power series. Note that $\frac{1}{2-x^5} = \sum_{n=0}^\infty\frac{x^{5n}}{2^{n+1}}$  with $R = 2^{\frac{1}{5}}$, and $I = (-2^{\frac{1}{5}}, 2^{\frac{1}{5}})$ (nice exercise). So then $\int\frac{1}{2-x^5}dx = \int\sum_{n=0}^\infty\frac{x^{5n}}2^{n+1}dx = \sum_{n=0}^\infty\frac{x^{5n+1}}{2^{n+1}(5n+1)} + C$. Checking endpoints (nice exercise) the interval is $[-2^{1/5}, 2^{1/5})$. 
+\end{enumerate}
+
+
+\pagebreak
+
+\section*{Week 11} 
+\paragraph{Taylor and Maclaurin Series} If $f(x)$ has a power series expansion about $x=a$, say $f(x)=\sum_{n=0}^\infty c_n(x-a)^n$, for $|x-a|<R$, $R>0$, then $c_n=\frac{f^{(n)}(a)}{n!}$. In other words, for $|x-a|<R$, $f(x)=\sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!}(x-a)^n$. This is called the Taylor series for $f(x)$ about $x=a$. For the special case when $a=0$, then $f(x)=\sum_{n=0}^\infty\frac{f^{(n)}(0)}{n!}x^n$ is called the Maclaurin series for $f(x)$. 
+
+\paragraph{When is f(x) equal to its Taylor series} If $f(x)=T_{n,a}(x)+R_{n,a}(x)$, where $T_{n,a}$ is the $n^{th}$ degree Taylor Polynomial, and $\lim_{n\rightarrow\infty}R_{n,a}(x)=0$ for $|x-a|<R$, then $f(x)$ is equal to its Taylor series on $|x-a|<R$. 
+
+\paragraph{Taylor's Remainder Theorem} There is a number $z$ between $x$ and $a$ such that $R_{n,a}(x)=\frac{f^{(n+1)}(z)}{(n+1)!}(x-a)^{n+1}$. A corollary of this is Taylor's Inequality: If $|f^{(n+1)}(x)|\leq M$ for $|x-a|\leq d$, then $|R_{n,a}(x)|\leq\frac{M|x-a|^{n+1}}{(n+1)!}$. \\ 
+Example: Prove that $e^x$ is equal to its Maclaurin series for all $x\in\mathbb{R}$. Fix $x\in\mathbb{R}$, say $|x|\leq d$ for some $d$. Then $|f^{(n+1)}(x)|=e^x\leq e^d$, so Taylor's inequality says $|R_{n,a}|\leq\frac{e^d|x|^{n+1}}{(n+1)!}$, so $0\leq\lim_{n\rightarrow\infty}|R_{n,a}(x)|\leq\lim_{n\rightarrow\infty}\frac{e^d|x|^{n+1}}{(n+1)!}$. Therefore, $\lim_{n\rightarrow\infty}|R_{n,a}(x)|=0\Rightarrow\lim_{n\rightarrow\infty}R_{n,a}(x)=0$ for all $x$. 
+
+\paragraph{Convergence Theorem for Taylor Series} Assume $f$ has derivatives of all orders on an interval $I$ containing $x=a$. Assume also that there exists $M\in\mathbb{R}$ such that $|f^{(k)}(x)|\leq M$ for all $k\in\mathbb{N}$ and $x\in I$. Then $f(x)=\sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x-a)^n$ for all $x\in I$. 
+
+\paragraph{Addition and Subtraction of Power Series} If $f(x)=\sum_{n=0}^\infty a_n(x-a)^n$, $g(x)=\sum_{n=0}^\infty b_n(x-a)^n$ with radii of convergence $R_f$ and $R_g$, then $(f\pm g)(x)=\sum_{n=0}^\infty (a_n\pm b_n)(x-a)^n$ with radius $R\geq\min\{R_f,R_g\}$. If $R_f\neq R_g$, then $R=\min\{R_f,R_g\}$. \\ 
+Example: Find the Maclaurin series for $f(x)=\frac{1}{1-x}+e^x$. $\frac{1}{1-x}+e^x = \sum_{n=0}^\infty x^n+\sum_{n=0}^\infty\frac{x^n}{n!}=\sum_{n=0}^\infty (1+\frac{1}{n!})x^n$. $R=\min\{1,\infty\} = 1$. 
+
+\pagebreak
+
+\section*{Week 12}
+\paragraph{Finding Sums} Given a series, we may be able to manipulate it into one of the series we know, and then find the sum. We can either start with the given series, or the one that we know. \\ 
+Examples: \begin{itemize}
+    \item Find the sum of $\sum_{n=0}^\infty\left(\frac{n+1}{n!}\right)x^n$. There is an extra $(n+1)$ in there! Integrating, $\int\sum_{n=0}^\infty\left(\frac{n+1}{n!}\right)x^n dx = \sum_{n=0}^\infty\frac{x^{n+1}}{n!}=x\sum_{n=0}^\infty\frac{x^n}{n!}=xe^x+C$. So the sum is $(xe^x+C)' = e^x + xe^x$.  
+\end{itemize}
+
+\paragraph{Common Summations} \begin{itemize}
+    \item $e^x=\sum_{n=0}^\infty \frac{x^n}{n!}$ for $x\in\mathbb{R}$ 
+    \item $\frac{1}{1-x}=\sum_{n=0}^\infty x^n$ 
+    \item $\sin(x)=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{(2n+1)!}$ 
+    \item $\cos(x)=\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{(2n)!}$ 
+    \item $\arctan(x)=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{2n+1}$ 
+    \item $\ln(1+x)=\sum_{n=0}^\infty\frac{(-1)^{n+1}x^n}{n}$ 
+    \item $(1+x)^n = \sum_{n=0}^\infty {n\choose k}x^k$ 
+\end{itemize}
+
+\end{document}

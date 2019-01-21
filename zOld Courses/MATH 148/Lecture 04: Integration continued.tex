@@ -1,0 +1,29 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Integration cont.}
+
+\paragraph{Characterization Theorem}
+Suppose $f$ is a bounded function from $[a,b]\rightarrow\mathbb{R}$. Then $f$ is integrable if and only if for every $\epsilon>0$ there is a partition $P$ such that $0\leq U(f,P)-L(f,P)<\epsilon$.\\ 
+Proof: $(\Leftarrow)$ Suppose that for every $\epsilon>0$ there is a partition $P_\epsilon$ such that $0\leq U(f,P_\epsilon)-L(f,P_\epsilon)<\epsilon$. We need to prove that $I=S$. Note: $I=\text{inf}\{U(f,P):\text{all }P\}\leq U(f,P_\epsilon)$, and $S=\text{sup}\{L(f,P):\text{all }P\}\geq L(f,P_\epsilon)$. So $0\leq I-S\leq U(f,P_\epsilon)-L(f,P_\epsilon)<\epsilon$. This is true for every $\epsilon>0$, so $I=S$, and $f$ is integrable. 
+
+$(\Rightarrow)$ Now assume $f$ is integrable. Let $\epsilon>0$. We know $I=S$.  $I=\text{inf}\{U(f,P):\text{all }P\}$, so we can pick a partition $P_1$ such that $I\leq U(f,P_1)<I+\frac{\epsilon}{2}$. $S=\text{sup}\{L(f,P):\text{all }P\}$, so similarly we can pick a partition $P_2$ such that $S-\frac{\epsilon}{2}<L(f,P_2)\leq S$. Since $f$ is integrable, and $I=S$, $S-\frac{\epsilon}{2}<L(f,P_2)<S<U(f,P_2)<I+\frac{\epsilon}{2}$. Let P be the common refinement of $P_1$ and $P_2$ $(P = P_1\cup P_2)$. We know by definition $U(f,P)\leq U(f,P_1)$ and $L(f,P)\geq L(f,P_2)$. Thus $U(f,P)-L(f,P)\leq U(f,P_1)-L(f,P_2)\leq I+\frac{\epsilon}{2}-(S-\frac{\epsilon}{2})=\epsilon$, the last equality is due to $I=S$. \\ 
+
+E.g. $f(x)=x^2$ on $[0,1]$. Divide $[0,1]$ into an $n$ number of equal length partitions. Let $\epsilon>0$, and choose $n$ such that $\frac{1}{n}<\epsilon$. Let $P_n:0=t_0<t_1<\ldots<t_n=1$ where $t_i=\frac{i}{n}$. $M_i=\text{sup}f|_{[t_{i-1},t_i)}=f(t_i)=f(\frac{i}{n})=(\frac{i}{n})^2$. $m_i=\text{inf}f|_{[t_{i-1},t_i)}=f(t_{i-1})=f(\frac{i-1}{n})=(\frac{i-1}{n})^2$. $U(f,P_n)=\sum_{i=1}^n(\frac{i}{n})^2(t_i-t_{i-1})=\frac{1}{n^3}\sum_{i=1}^ni^2=\frac{1}{n^3}\frac{n(n+1)(2n+1)}{6}$, because $(t_i-t_{i-1}=\frac{1}{n})$. $L(f,P_n)=\sum_{i=1}^n(\frac{i-1}{n})^2\frac{1}{n}=\frac{1}{n^3}\sum_{i=1}^n(i-1)^2=\frac{1}{n^3}\sum_{i=0}^{n-1}i^2=\frac{1}{n^3}\frac{n(n-1)(2(n-1)+1)}{6}$. $U(f,P_n)-L(f,P_n) = \frac{1}{n}$. Thus by the characterization theorem, $f(x)=x^2$ is integrable over $[0,1]$.  \\ 
+Find $\int_o^1x^2$. We know $\int_o^1x^2=S=I$. Since $f$ is integrable, $\int_0^1x^2=I=\text{inf}\{I(f,P): \text{all }P\}\leq\text{inf}\{U(f,P_n): \text{all }P\}\leq U(f,P_N)$ for any $N$. $\int_0^1x^2=S=\text{sup}\{L(f,P): \text{all }P\}\geq\text{sup}\{L(f,P_n): \text{all }P\}\geq L(f,P_N)$ for any $N$. Let $N\rightarrow\infty$. $L(f,P_N)\leq\int_0^1x^2\leq U(f,P_N)$, $L(f,P_N)\rightarrow\frac{1}{3}=U(f,P_N)$, hence by squeeze theorem $\int_0^1x^2=\frac{1}{3}$. 
+
+\paragraph{}
+Reminder about uniform continuity. A function $f$ is continuous if it's continuous at every $x\in \mathbb{D}(f)$, and $f$ is continuous at x means $\forall\epsilon>0$ $\exists\delta>0$ such that $|y-x|<\delta$ implies $|f(y)-f(x)|<\epsilon$. We say $f$ is uniformly continuous if for every $\epsilon>0$ $\exists\delta>0$ such that $|x-y|<\delta$ then $|f(x)-f(y)|<\epsilon$, and there is a same choice of $\delta$ $\forall x,y\in\mathbb{D}(f)$. Uniform continuity implies continuity, but not the other way around. E.g. $f(x)=x^2$ on $\mathbb{R}$. It is continuous, but not uniformly continuous. Take $\epsilon=1$, and let's say $\exists\delta>0$ works. Consider the point $x=a>0$, and $y=a+\frac{\delta}{2}$. $|f(x)-f(y)|=|a^2-(a+\frac{\delta}{2})^2|=a\delta+\frac{\delta^2}{4}>a\delta\rightarrow\infty$ as $a\rightarrow\infty$, so it is not true that $|f(x)-f(y)|<1$ for all $a$. 
+
+Want to show all continuous functions are integrable over $[a,b]$.  
+
+
+\end{document}

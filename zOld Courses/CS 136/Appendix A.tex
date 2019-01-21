@@ -1,0 +1,51 @@
+\documentclass[10pt,letter]{article}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{xcolor}
+\newcommand\tab[1][5mm]{\hspace*{#1}}
+\onehalfspacing
+\usepackage{fullpage}
+\begin{document}
+\definecolor{teal}{RGB}{0,139,139}
+
+\paragraph*{Booleans} 
+Any value that isn't \textcolor{blue}{\#f} is considered true. 
+
+\paragraph*{Logical Operators}
+\textcolor{teal}{and} produces \textcolor{blue}{\#f} if any of the arguments are \textcolor{blue}{\#f}, \textcolor{blue}{\#t} if there are no arguments, otherwise it produces the last argument. \textcolor{teal}{or} produces either \textcolor{blue}{\#f} or the first non-false argument. 
+
+\paragraph*{Structures}
+\begin{itemize}
+    \item \textcolor{teal}{struct} can be used instead of \textcolor{teal}{define-struct}
+    \item the make- prefix can be omitted (\textcolor{blue}{posn} instead of make-posn)
+\end{itemize}
+For now, you should include \textcolor{blue}{\#:transparent} in your \textcolor{teal}{struct} definitions (this is discussed in Section 02). \\ e.g. 
+(\textcolor{teal}{struct} posn (x y) \textcolor{blue}{\#:transparent})
+
+\paragraph*{member}
+(member v lst) produces \textcolor{blue}{\#f} if v does not exist in lst. If v does exist in lst, it produces the tail of lst, starting with the first occurrence of v.
+
+\paragraph*{Implicit local}
+You do not need to explicitly use \textcolor{teal}{local}, e.g.  \\ 
+(\textcolor{teal}{define} (t-area a b c)\\
+\tab(\textcolor{teal}{define}\\ 
+\tab\tab{[}(\textcolor{teal}{define} s (/ (+ a b c) 2)){]}\\ 
+\tab\tab(sqrt (* s (- s a) (- s b) (- s c)))))\\ 
+
+Is equivalent to:\\ 
+(\textcolor{teal}{define} (t-area a b c)\\ 
+\tab(\textcolor{teal}{define} s (/ (+ a b c) 2))\\ 
+\tab(sqrt (* s (- s a) (- s b) (- s c))))\\ 
+
+\paragraph*{check-expect} More advanced testing methods will be introduced in Section 07, until then, equal? can be used. 
+
+\paragraph*{Racket Modules} \textcolor{teal}{provide} is used in a module to specify the identifiers that are available to clients. \textcolor{teal}{require} is used to identify the module that the current file depends on. 
+
+\paragraph*{C Modules} C uses \#include to include any files needed. 
+
+\paragraph*
+
+
+
+
+\end{document}

@@ -1,0 +1,96 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+
+\paragraph{Four Fundamental Subspaces}
+\begin{itemize}
+    \item Column space: leading ones in RREF correspond to columns in the column space 
+    \item Row space: non-zero rows in the RREF correspond to the vectors in the row space. 
+    \item Null space: Append the identity matrix to the columns without pivots in the RREF multiplied by $-1$. 
+    \item Left-Null space: same thing with the matrix transposed
+\end{itemize}
+
+\paragraph{Rank-Nullity Theorem}
+Let $L:V\rightarrow W$ be a linear mapping. Then $\text{nullity}(L)=\text{dim}(V)-\text{rank}(L)$
+
+\paragraph{Coordinates}
+Let $L:\mathbb{V}\rightarrow\mathbb{W}$, where $\mathcal{B}$ is a basis for $\mathbb{V}$ and $\mathcal{C}$ is a basis for $\mathbb{W}$. Then $_\mathcal{C}[L(\vec{v})]_\mathcal{B}=[[L(\vec{v}_1)]_\mathcal{C}\quad[L(\vec{v}_2)]_\mathcal{C}\ldots[L(\vec{v}_n)]_\mathcal{C}]$, where $\vec{v}_1,\ldots,\vec{v}_n$ are the vectors in $\mathcal{B}$. Basically put $\mathcal{C}$ on the left side of a multiple augmented matrix, $\mathcal{B}$, on the other side, and solve.\\ 
+Let $L:\mathbb{V}\rightarrow\mathbb{V}$, where $\mathcal{B}$ is a basis for $\mathbb{V}$. Then $[L(\vec{x})]_\mathcal{B}=[[L(\vec{v}_1)]_\mathcal{B}\ldots[L(\vec{v}_1)_\mathcal{B}]]$. Basically put the original matrix on the left side of a multiple augmented matrix, and the product of applying the linear transformation on the other, and solved.
+
+\paragraph{Isomorphisms}
+$L:\mathbb{V}\rightarrow\mathbb{W}$ is injective if and only if $\text{Ker}(L)=\{\vec{0}\}$, and it is surjective if and only if it is injective. $L$ is isomorphic if and only if they have the same dimension. 
+
+\paragraph{Inner product}
+A function is an inner product if it is 
+\begin{itemize}
+    \item positive definite (the inner product of a vector with itself is non negative, and zero if and only if the vector is zero.)
+    \item symmetric ($\langle\vec{v},\vec{w}\rangle=\langle\vec{w},\vec{v}\rangle$)
+    \item bilinear ($\langle a\vec{v}+b\vec{w},\vec{z}=a\langle\vec{v},\vec{z}\rangle+b\langle\vec{v},\vec{z}\rangle$)
+\end{itemize}
+The length of a vector is $||\vec{v}||=\sqrt{\langle\vec{v},\vec{v}\rangle}$. 
+
+\paragraph{Orthogonality}
+Two vectors are orthogonal if their inner product is 0. \\ 
+A matrix is called orthogonal if its columns (and hence its rows, and $P^T=P^{-1}$) form an orthonormal basis. Note the product of two orthogonal matrices is an orthogonal matrix. \\ 
+Gram-Schmidt Procedure: Let $\{\vec{w}_1,\ldots,\vec{w}_n\}$ be a basis for $\mathbb{W}$. then an orthogonal basis for this can be found by $\vec{v}_n=\vec{w}_n-\sum_{i=0}^{n-1}\frac{\langle\vec{w}_i,\vec{v}_{i-1}\rangle}{||\vec{v}_{i-1}||^2}\vec{v}_{i-1}$.\\ 
+The orthogonal complement of a subspace is the set of all vectors such that it is orthogonal to all the vectors in the subspace. Note dimension of the orthogonal complement added to the dimension of the subspace is the dimension of the vector space.\\ 
+The projection of $\vec{v}$ onto $\mathbb{W}$ is $\text{proj}_\mathbb{W}(\vec{v})=\frac{\langle\vec{v},\vec{v}_1\rangle}{||\vec{v}_1||^2}\vec{v}_1+\cdots+\frac{\langle\vec{v},\vec{v}_k\rangle}{||\vec{v}_k||^2}\vec{v}_k$, where $\{\vec{v}_1,\ldots,\vec{v}_k\}$ is an orthogonal basis for $\mathbb{W}$. The perpendicular is $\text{perp}_\mathbb{W}(\vec{v})=\vec{v}-\text{proj}_\mathbb{W}(\vec{v})$. 
+
+\paragraph{Fundamental Theorem of Linear Algebra}
+The direct sum of two subspaces is the span of both subspaces. \\ 
+The fundamental theorem of linear algebra is $\text{Col}(A)^\perp=\text{Null}(A^T)$, and $\text{Row}(A)^T=\text{Null}(A)$. In particular, if $A$ is an $m\times n$ matrix, then $\mathbb{R}^n=\text{Row}(A)\oplus\text{Null}(A)$, and $\mathbb{R}^m=\text{Col}(A)\oplus\text{Null}(A^T)$. 
+
+\paragraph{Polynomials of Best Fit}
+To get $\vec{x}$ such that $||A\vec{x}-\vec{b}||$ is minimized, solve $A^TA\vec{x}=A^T\vec{b}$, or $\vec{x}=(A^TA)^{-1}A^T\vec{b}$. \\ 
+
+\paragraph{Polynomial of Best Fit}
+The polynomial of best fit is $\vec{a}$ in $X^TX\vec{a}=X^T\vec{y}$, or $\vec{a}=(X^TX)^{-1}X^T\vec{y}$, where $X$ is a matrix where the first column is all ones, the second column is the first row of x, etc.
+
+\paragraph{Orthogonal Similarity and Triangularization}
+Two matrices are orthogonally similar if there exists an orthogonal matrix $P$ such that $P^TAP=B$. \\ 
+To triangularize, find an eigenvector and extend to an orthogonal matrix for $\mathbb{R}^n$. Set that as $P_1$. Then find $P_1^TAP_1$, which will correspond to $\begin{bmatrix}\lambda_1&\vec{b}^T\\\vec{0}&A_1\end{bmatrix}$. Find an eigenvector for $A-1$, and use that to find an orthogonal basis for $\mathbb{R}^{n-1}$ (the dimension of $A$). Set that as $Q$. Then set $P_2=\begin{bmatrix}1&\vec{0}^T\\\vec{0}&Q\end{bmatrix}$. Then $P=P_1P_2$, and $P^TAP=T$. 
+
+\paragraph{Orthogonal Diagonalization} 
+A matrix is orthogonally diagonalizable if and only if it is symmetric. To orthogonally diagonalize, normalize the corresponding eigenvectors, and that is $P$ in $P^TAP=D$. $D$ has the corresponding eigenvalues down the diagonal.
+
+\paragraph{Quadratic Form}
+The quadratic form of a transformation is a symmetric matrix. To diagonalize, just orthogonally diagonalize, and using the change of variables $\vec{y}=P^T\vec{x}$ you get $Q(\vec{x})=\sum_{i=1}^n \lambda_iy_i^2$. The orthonormal vectors used for $P$ are called the \textbf{principle axes}.\\ 
+A quadratic form is positive/negative definite if all of its eigenvalues are positive/negative indefinite if there are some positive, some negative, and positive/negative semidefinite if all the eigenvalues are non-negative/non-positive.\\ 
+To sketch a quadratic form, diagonalize the matrix, and those will be the coefficients of $y_i$. Then rotate it back to the plane given by the span of the eigenvectors. \\ 
+To optimize a quadratic form, the maximum is the largest eigenvalue of the corresponding symmetric matrix, and the minimum is the smallest. 
+
+
+\paragraph{Singular Values}
+The singular values of a matrix are the square roots of the eigenvalues of $A^TA$ arranged in descending order. \\ 
+Right singular vectors are the eigenvectors of $A^TA$, and left singular vectors are the eigenvectors of $AA^T$. \\ 
+To do singular value decomposition, a matrix $A$ is equal to $U\Sigma V^T$, where $U$ is an orthogonal matrix with the left singular vectors, $V$ is an orthogonal matrix containing the right singular vectors, and $\Sigma_{ii}=\sigma_i$, and all other entries are 0. Another way to find $V$ is to use $\frac{1}{\sigma_i}A\vec{v}_i$, and then any other vectors can be found by using the nullspace of $A^T$. 
+
+\paragraph{Complex}
+Standard Hermitian inner product for $\mathbb{C}^n$ is $\vec{z}\cdot\overline{\vec{w}}$. \\ 
+Standard Hermitian inner product on $M_{m\times n}(\mathbb{C})$ is $\langle Z,W\rangle=\text{tr}(W^*Z)$\\ 
+A matrix is unitary if its columns form an orthogonal basis for $\mathbb{C}^n$, and $U^*=U^{-1}$. \\ 
+Schur's Theorem: all square matrices are unitarily similar to an upper triangular matrix. \\ 
+A matrix is Hermitian if $A^*=A$. All Hermitian matrices are unitarily diagonalizable (they are all unitarily similar to a diagonal matrix $D$). \\ 
+A matrix is normal if $AA^*=A^*A$. A matrix is unitarily diagonalizable if and only if it is normal. \\ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

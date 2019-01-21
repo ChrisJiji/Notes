@@ -1,0 +1,276 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+
+\begin{document}
+
+\section*{Lecture 1}
+\paragraph{Some definitions}
+The \textbf{repetition code} of length $n$ consists of repeating each data symbol $n$ times. By looking at the output, and hoping not more than half of them had changed, you can decode the source message. You can detect $n-1$ errors and correct $\left\lfloor\frac{n-1}{2}\right\rfloor$ of them. But since you are sending more data, the rate of transmission is slowed by $\frac{1}{n}$. \\
+The \textbf{even parity check bit} is a bit appended to a string of bits such that there is an even number of "1"s in the new string. Only one error per codeword can be detected, and corrections can't be made. However, the information rate is $\frac{n-1}{n}$, so it is much faster. 
+
+\paragraph{Goals of Coding Theory}
+\begin{enumerate}
+    \item high error correcting capability
+    \item high information rate 
+    \item efficient encoding and decoding algorithms
+\end{enumerate}
+
+\paragraph{The Communication Channel}
+For now, we make the following assumptions about our channel: 
+\begin{itemize}
+    \item it is one way
+    \item Digital: we send and receive symbols from a fixed finite set 
+    \item Discrete-time: no symbols are lost, added, or interchanged 
+    \item Symmetric independent random errors 
+\end{itemize}
+Such a channel is a \textbf{q-ary symmetric channel}, which is defined as follows (it looks like a complete bipartite graph, with $1-p$ being horizontal lines, and $\frac{p}{q-1}$ being all other lines): 
+\begin{itemize}
+    \item Let $A$ be a set of size $q$, our alphabet, e.g. $A=\{0,1,\ldots,q-1\}$.
+    \item Let $X_t$ be the $t^{th}$ symbol sent.
+    \item Let $Y_t$ be the $t^{th}$ symbol received. 
+    \item Then there is a $p$ between 0 and 1 such that, for all $t\geq4$ and $a,b\in A$, $\mathbb{P}(Y_t=b|X_t=a)=\begin{cases}1-p, \quad\text{if } b=a \\ \frac{p}{q-1},\quad\text{if } b\neq a\end{cases}$. The value $p$ is called the \textbf{symbol error probability} of the channel. 
+\end{itemize}  
+
+\paragraph{Example: Binary Symmetric Channel (BSC)}
+If you send $0$, the probability you receive $0$ is $1-p$, and the probability you receive $1$ is $p$. If you send $1$, the probability you receive $1$ is $1-p$, and the probability you receive $0$ is $p$.
+\begin{itemize}
+    \item If $p=0$, the channel is \textbf{perfect} (no errors ever occur)
+    \item If $p=\frac{1}{2}$, the channel is \textbf{useless} (input has no influence on the output)
+    \item If $\frac{1}{2}<p\leq1$, then flipping all received bits converts the channel into a binary symmetric channel with symbol error probability $p'=1-p\in\left[0,\frac{1}{2}\right)$ 
+\end{itemize}
+Hence we will always assume that $0<p<\frac{1}{2}$ for a binary symmetric channel. Similarly, for a q-ary symmetric channel, we assume $0<p<\frac{q-1}{q}$. 
+
+\paragraph{Vocabulary}
+\begin{itemize}
+    \item An \textbf{alphabet}, $A$, is a finite set of $q\geq2$ symbols, e.g. $A=\{a,b,c,\ldots,z,\_\}, A=\{0,1\}$ 
+    \item A \textbf{word/vector/tuple} is a finite sequence of symbols from $A$. 
+    \item The \textbf{length} of a word is the number of symbols in it. 
+    \item A \textbf{code}, $C$, over $A$ is a set of words. 
+    \item A \textbf{codeword}, $c$, is a word in the code. 
+    \item A \textbf{block code} is a type of code in which all codewords have the same length. 
+    \item We say a block code $C$ is of length $n$ and size $M$ when $C\subseteq A^n$ and $|C|=M$. Such a code is often called a $[n,M]-$code. \textbf{Unless otherwise specified, all codes in this course will be block codes.}
+\end{itemize}
+
+\paragraph{Example}
+Let $C=\{00000,11100,00111,10101\}$. We have $n=5$, $M=4$. This is a $[5,4]-$code. We might encode messages as follows: \\ \\
+\begin{tabular}{|c|c|}
+\hline
+Message & Codeword \\ \hline
+00      & 00000    \\
+01      & 11100    \\      
+10      & 00111    \\ 
+11      & 10101    \\
+\hline
+\end{tabular}\\ \\
+What do we do if $r=00011$ is received? By inspection, the codeword for $10$ is most similar, so it is mostly likely $10$ is the message. 
+
+\section*{Lecture 2}
+\paragraph{Information Rate} 
+The \textbf{information rate}, $R$, of a $[n,M]-$code $C$ is defined as $R:=\frac{\log_qM}{n}$, where $M=|C|,\,C\subseteq A^n, \,|A|=q$. In the special case where $C$ encodes source messages that are $k-$tuples over $A$ (and hence $M=|A^k|=q^k$), we have $R=\frac{k}{n}$. 
+
+\paragraph{Hamming Distance}
+This will be the only concept of distance we look at in this course, and so it will henceforth be called distance. The \textbf{hamming distance} between two $n$-tuples $x$ and $y$ over $A$, denoted $d(x,y)$ is the number of positions in which they differ.
+\begin{enumerate}
+    \item $d(x,y)\geq0$, with $d(x,y)=0\Leftrightarrow x=y$ (positive definite)
+        \begin{proof}
+            $d(x,y)=\sum_{i=1}^n\delta(x_i,y_i)\geq0$ and $\sum_{i=1}^n\delta(x_i,y_i)=0\Leftrightarrow x_i=y_i\quad\forall i$, and so $x=y$. 
+        \end{proof}
+    \item $d(x,y)=d(y,x)$ (symmetry)
+        \begin{proof}
+            $d(x,y)=\sum_{i=1}^n\delta(x_i,y_i)=\sum_{i=1}^n\delta(y_i,x_i)=d(y,x)$
+        \end{proof}
+    \item $d(x,y)+d(y,z)\geq d(x,z)$ (triangle inequality)
+        \begin{proof}
+            Claim: $\delta(x_i,z_i)\leq \delta(x_i,y_i)+\delta(y_i,z_i)\quad\forall i$. If $x_i=z_i$ then $\delta(x_i,z_i)=0$ and the claim holds. Otherwise, $x_i\neq z_i$ for some $i$. Then $y_i$ cannot be equal to both $x_i$ and $z_i$, as $x_i\neq z_i$ and so at least one of $\delta(x_i,y_i)$ or $\delta(y_i,z_i)$ is 1. As the other one is at least 0, we have $\delta(x_i,y_i)+\delta(y_i,z_i)\geq1=\delta(x_i,z_i)$. \\
+            Applying the claim: $\delta(x,z)=\sum_{i=1}^n\delta(x_i,z_i)\leq\sum_{i=1}^n\delta(x_i,y_i)+\sum_{i=1}^n\delta(y_i,z_i)=d(x,y)+d(y,z)$
+        \end{proof}
+\end{enumerate}
+Idea behind the proofs: For any two symbols $a,b\in A$, we define $\delta(a,b)=\begin{cases}0,\quad \text{if }a=b\\1,\quad\text{if }a\neq b\end{cases}$ \\ Say $x=(x_1,\ldots,x_n),y=(y_1,\ldots,y_n),z=(z_1,\ldots,z_n)$ where $x_i,y_i,z_i\in A$. Then, by definition, $d(x,y)=\sum_{i=1}^n\delta(x_i,y_i),\quad d(y,z)=\sum_{i=1}^n\delta(y_i,z_i),\quad d(x,z)=\sum_{i=1}^n\delta(x_i,z_i)$. \\ 
+
+The (Hamming) distance, $d$, of a block code $C$ is defined as $d:=\text{min}\{d(x,y):x,y\in C;x\neq y\}$
+
+\paragraph{Decoding Strategies}
+Let $C$ be a block code over $A$ with length $n$. Suppose a codeword is trasnmitted (we don't know which), and $r\in A^n$ is received. The decoder must pick one of the following outcomes: \begin{enumerate}
+    \item No errors have occurred: accept $r$ 
+    \item Errors have occurred: correct/decode $r$ to a codeword $c\in C$ 
+    \item Errors have occurred: no correction is possible 
+\end{enumerate}
+A decoding algorithm that always decodes to a codeword is called \textbf{complete}. A decoding algorithm that may reject $r$ is called \textbf{incomplete}. The following are all types of decoding methods. 
+
+\paragraph{Maximum Likelihood Decoding}
+Nearest neighbour decoding (or maximum likelihood decoding (MLD)): If there is a unique codeword $c\in C$ such that $d(r,c)$ is minimal, then correct $r$ to $c$. 
+\subparagraph{Theorem: Nearest neighbour decoding is maximum likelihood decoding} If $p<\frac{q-1}{q}$, then nearest neighbourhood decoding chooses the codeword $c$ for which the conditional probability $\mathbb{P}(r|c):=\mathbb{P}(r\text{ is received}|c\text{ is sent})$ is largest.  \\ 
+Idea behind the proof: suppose $c_1,c_2\in C$ with $d_1=d(r,c_1)$ and $d_2=d(r,c_2)$. Suppose $d_1>d_2$. Compare $\mathbb{P}(r|c_1)$ and $\mathbb{P}(r|c_2)$ by looking at $\frac{\mathbb{P}(r|c_1)}{\mathbb{P}(r|c_2)}$ (and show $\frac{p}{(1-p)(q-1)}<1\Leftrightarrow p<\frac{q-1}{q}$)
+\begin{proof}
+$\mathbb{P}(r|c_1)=(1-p)^{n-d_1}\left(\frac{p}{q-1}\right)^{d_1}$ Similarly, \\ $\mathbb{P}(r|c_2)=(1-p)^{n-d_2}\left(\frac{p}{q-1}\right)^{d_2}$ Then \\ $\frac{\mathbb{P}(r|c_1)}{\mathbb{P}(r|c_2)}=(1-p)^{d_2-d_1}\left(\frac{p}{q-1}\right)^{d_1-d_2}=\left(\frac{p}{(1-p)(q-1)}\right)^{d_1-d_2}$. Note that this fraction is less than 1 if and only if $p<(1-p)(q-1)\Leftrightarrow p<q-pq-1+p\Leftrightarrow pq<q-1\Leftrightarrow p<\frac{q-1}{q}$ Thus $\mathbb{P}(r|c_1)<\mathbb{P}(r|c_2)$ and we correct $r$ to $d_2$ as we wanted to show. 
+\end{proof}
+\textbf{Incomplete maximum likelihood decoding (IMLD)} report that errors have been detected, but no correction is possible when there is not a unique codeword. \textbf{Complete maximum likelihood decoding (CMLD)} corrects $r$ to an arbitrary $c\in C$ with $d(r,c)$ minimal.  
+
+\paragraph{Minimum Error Decoding (MED)}
+Correct $r$ to a codeword $c\in C$ for which the conditional probability $\mathbb{P}(c|r):=\mathbb{P}(c\text{ is sent}|r\text{ is recieved})$ is largest. This is the \textbf{optimal strategy}
+\subparagraph{Example that shows MLD is not the same as MED}
+Consider $C=\{c_1,c_2\}$ where $c_1=000,c_2=111$. Let $\mathbb{P}(c_i)$ denote the probability that $c_i$ is sent. Suppose $\mathbb{P}(c_1)=0.1,\mathbb{P}(c_2)=0.9$. Suppose that $p=\frac{1}{4}$ (and that we are using a binary symmetric channel). Suppose $r=100$ is the received codeword. MLD decodes $r$ to $c_1$ because $d(r,c_1)=1$ while $d(r,c_2)=2$. MED decodes $r$ to $c_2$, since $\mathbb{P}(c_1|r)=\mathbb{P}(r|c_1)\frac{\mathbb{P}(c_1)}{\mathbb{P}(r)}=p(1-p)^2\frac{0.1}{\mathbb{P}(r)}=\frac{9}{640}\cdot\frac{1}{\mathbb{P}(r)}$ \\$\mathbb{P}(c_2|r)=\mathbb{P}(r|c_2)\frac{\mathbb{P}(c_2)}{\mathbb{P}(r)}=(1-p)p^2\frac{0.9}{\mathbb{P}(r)}=\frac{27}{640}\cdot\frac{1}{\mathbb{P}(r)}$ (applying Baye's Theorem). Since $\mathbb{P}(c_2|r)$ is higher, MED decodes to $c_2$. \\ 
+In general, MLD maximizes $P(r|c)$, whereas MED maximizes $P(c|r)=P(r|c)\cdot\frac{P(c)}{P(r)}$. Unless otherwise stated, our coding strategy will be IMLD. MED has the disadvantage of depending on the probability distribution of the source messages. If all source messages are equally likely, then MLD and MED are equivalent. 
+
+\section*{Lecture 3}
+\paragraph{Error Correcting Capability of a Code}
+A code $C$ is said to correct $e$ errors (or detect $e$ errors) if the decoder always makes the correct decision whenever $e$ or fewer errors per codeword are introduced. We call $C$ an $e$-error correcting code (or $e$-error detecting code). An error correcting code corrects the code to what was sent, where as an error detecting code only detects there is an error.  \\ 
+\textbf{Theorem 3}
+A code of distance $d$ is a $(d-1)-$error detecting code, but not a $d$-error detecting code. Key idea of the proof: Look at cases to show error detection. Construct counterexample for $d$ errors. \\ 
+\begin{proof}
+     Suppose $c\in C$ is sent. If $0$ errors occur, then $r$ is received and accepted. If $e$ errors are made, $1\leq e\leq d-1$, and $r$ is received then $1\leq d(r,c)\leq d-1$, so $r\notin C$, and $r$ is rejected. By definition of $d$, there exist $c_1,c_2\in C$ with $d(c_1,c_2)=d$. If $c_1$ is sent and $c_2$ is received (with $d$ errors), then $c_2$ is incorrectly accepted. 
+\end{proof}
+\textbf{Theorem 4}
+A code of distance $d$ is an $e$-error correcting code, where $e=\left\lfloor\frac{d-1}{2}\right\rfloor$. Proof idea: Suppose $c\in C$ was sent, at most $\frac{d-1}{2}$ errors are introduced, and $r$ is received. Suppose $c'\in C$ is any other codeword. Then use the triangle inequality.
+\begin{proof}
+     As at most $\frac{d-1}{2}$ errors are introduced, we have $d(c,r)\leq\frac{d-1}{2}$. If $c'$ is any other codeword, then $d(c',r)\geq d(c,c')-d(r,c)\geq d-\frac{d-1}{2}=\frac{d+1}{2}>\frac{d-1}{2}$ Hence $c$ is the unique codeword at minimum distance from $r$, so the decoder correctly concludes that $c$ was sent. 
+\end{proof}
+If $C$ has distance $d$, then IMLD may go wrong if more than $e=\left\lfloor\frac{d-1}{2}\right\rfloor$ errors occur (C is not $e+1$ error decoding): Let $c_1,c_2\in C$ with $d(c_1,c_2)=d$. If $d$ is odd, then $d=2e+1$. If $d$ is even, then $d=2e+2$. 
+\textbf{Theorem 5} If $C$ has even distance $d=2k$, then $C$ can be used to correct $e=\left\lfloor\frac{d-1}{2}\right\rfloor=k-1$ errors and simultaneously detect $k$ errors. Proof strategy: Decoding strategy: If there is $c\in C$ with $d(c,r)\leq k-1$, correct to $c$. Otherwise reject $r$. Note this is different from IMLD.
+
+\paragraph{Sphere Packing Bound}
+\textbf{Theorem 6 (Sphere packing bound aka Hamming bound)}
+If $C$ is a length $n$, size $M$, distance $d$ code over $A$ (with $|A|=q$), and $e=\left\lfloor\frac{d-1}{2}\right\rfloor$, then $M\sum_{i=0}^e{n\choose i}(q-1)^i\leq q^n$. Proof idea: Imagine a box that represents $A^n$. Each codeword is a center of a sphere, with $e$ being the radius of each sphere. $M$ is the choice of $c\in C$, and $\sum_{i=0}^e{n\choose i}(q-1)^i$ is the words in radius $e$ of each sphere centered at $c$. ${n\choose i}$ is the choice of $i$ locations, and $(q-1)^i$ are the ways to change these $i$ locations. $q^n$ is the size of $A^n$, and that clearly encloses the space.  
+\begin{proof}
+     For $c\in C$, let $S_c=\{r\in A^n:d(c,r)\leq e\}$. As in Theorem 4,if $c_1,c_2\in C$, with $c_1\neq c_2$, then $S_{c_1}\cap S_{c_2}\neq\phi$. Thus $\dot{\cup}_{c\in C}S_c\subseteq A^n$ ($\dot{\cup}$ means disjoint union). Number of words at distance exactly $e$ from $c$ is ${n\choose i}(q-1)^i$, hence $|S_c|=\sum_{i=0}^e{n\choose i}(q-1)^i$ for each $c\in C$. So $M\sum_{i=0}^e{n\choose i}(q-1)^i=\left|\dot{\cup}_{c\in C}S_c\right|\leq |A^n|=q^n$. 
+\end{proof}
+
+\section*{Lecture 4}
+\paragraph{Example}
+Let $C=\{0000,1111\}$. Then $d=4$. We can (1-error correct OR 3-error detect), and simultaneously detect 2 errors. 
+\paragraph{Fields}
+A field ($\mathbb{F},+,\cdot$) consists of a set $\mathbb{F}$, and two binary operations: $$+:\mathbb{F}\times\mathbb{F}\rightarrow\mathbb{F}$$ $$\cdot:\mathbb{F}\times\mathbb{F}\rightarrow\mathbb{F}$$ such that $\forall a,b,c\in\mathbb{F}$: 
+\begin{enumerate}
+    \item $a+(b+c)=(a+b)+c$ (addition is associative)
+    \item $a+b=b+a$ (addition is commutative)
+    \item There exists an element $0\in\mathbb{F}$ such that $a+0=a$ for all $a\in\mathbb{F}$ (additive identity)
+    \item There exists $-a\in\mathbb{F}$ such that $a+(-a)=0$ (additive inverse)
+    \item $a\cdot(b\cdot c)=(a\cdot b)\cdot c$ (multiplication is associative)
+    \item $a\cdot b=b\cdot a$ (multiplication is commutative)  
+    \item There exists a $1\in\mathbb{F}$ such that $a\cdot1=1\cdot a=a$ (multiplicative identity)
+    \item For all $a\neq0$, there exists $a^{-1}\in\mathbb{F}$ such that $a\cdot a^{-1}=a^{-1}\cdot a=1$ (multiplicative inverse) 
+    \item $a\cdot(b+c)=(a+b)\cdot c=(a\cdot b)+(a\cdot c)=(a\cdot c)+(b\cdot c)$ (distributive property) 
+    \item $1\neq0$ (the zero ring is not a field)
+\end{enumerate}
+
+\paragraph{Rings}
+A \textbf{commutative ring} $(R,+,\cdot)$ consists of a set $R$, and two binary operations, as above, but you only need to satisfy conditions 1 through 7, and 9. A \textbf{ring} $(R,+,\cdot)$ consists of a set $R$, and two binary operations, as above, but you only need to satisfy conditions 1 through 5, 7, and 9.
+\paragraph{Exercises (in order of difficulty)}
+\begin{enumerate}
+    \item $0+a=a$ $\forall a\in\mathbb{F}$ 
+    \item $(-a)+a=0$, $1\cdot a=a$, $a^{-1}\cdot a=1$ $\forall a\neq0$
+    \item Prove $0$ is unique 
+    \item Prove $1$ is unique 
+    \item Prove $-a$ is unique 
+    \item Prove $a^{-1}$ is unique $\forall a\neq 0$
+    \item $-(-a)=a$ 
+    \item $(a^{-1})^{-1}=a$ $\quad\forall a\neq0$
+    \item $a\cdot0=0$ $\quad\forall a\in\mathbb{F}$ 
+    \item If $a\cdot b=0$, then either $a=0$ or $b=0$. 
+    \item $(-1)\cdot (-1)=1$ 
+    \item $(-1)\cdot a=-a$
+\end{enumerate}
+
+\paragraph{Finite Field}
+A field $(\mathbb{F},+,\cdot)$ is called a \textbf{finite field} if it consists of a finite set $\mathbb{F}$. Otherwise it is an \textbf{infinite field}. If $(\mathbb{F},+,\cdot)$ is a finite field, the \textbf{order} of $\mathbb{F}$ is defined to be $|\mathbb{F}|$.
+
+\paragraph{Questions}
+\begin{enumerate}
+    \item For which integers $n\geq2$ does there exist a finite field of order $n$? 
+    \item If there exists a finite field with order $n$, how do we construct one?
+\end{enumerate}
+
+
+Recall $\mathbb{Z}_n=\{[0],\ldots,[n-1]\}$ with $+$ and $\cdot$ defined as follows: $[a]+[b]=[a+b]$ and $[a]\cdot[b]=[a\cdot b]$. They are a commutative ring. 
+
+\paragraph{Theorem 7}
+    $\mathbb{Z}_n$ is a field if and only if $n$ is prime 
+\begin{proof}
+    $(\Rightarrow)$ Suppose $n$ is composite. Say $n=ab$ where $2\leq a,b\leq n-1$. Now if $a^{-1}$ exists, say $ac\equiv1\quad\text{mod }n$, then 
+    \begin{align*}&abc\equiv b\quad\text{mod }n\\\Rightarrow &nc\equiv b\quad\text{mod }n\\\Rightarrow &0\equiv b\quad\text{mod }n\\\Rightarrow &n \text{ divides }b
+    \end{align*} 
+    A contradiction as $2\leq b<n$. \\ 
+    $(\Leftarrow)$ Suppose $n$ is prime. Let $a\in\mathbb{Z}_n$ with $a\neq0$. Since $n$ is prime $\text{gcd}(a,n)=1$. Hence there exists $x,y$ such that $ax+ny=1$. Reducing both sides modulo $n$ gives $ax\equiv 1\quad\text{mod }n$. Hence $a^{-1}\equiv x\quad\text{mod }n$, so $\mathbb{Z}_n$ is a field. 
+\end{proof}
+
+
+\section*{Lecture 5}
+\paragraph{Characteristic}
+Let $F$ be a field. The \textbf{characteristic} of $F$, denoted $\text{char}(F)$, is the smallest positive integer $m$ such that $1+\cdots+1=0$, with $m$ number of $1$'s. If no such integer $m$ exists, the characteristic of $F$ is taken to be $0$. If $\text{char}(F)=0$, then $F$ is said to be an infinite field ($1,1+1,1+1+1,\ldots$ are all unique values, if they aren't, then $\underbrace{1+\cdots+1}_{a\text{ times}}=\underbrace{1+\cdots+1}_{b\text{ times}}$ implies that $\underbrace{1+\cdots+1}_{b-a\text{ times}}=0$). If $\text{char}(F)$ is finite, then $F$ is said to be finite. 
+\paragraph{Theorem 8}
+Let $F$ be a field of characteristic $m$, with $m\neq0$. Then $m$ is prime. 
+\begin{proof}
+Suppose $m$ is composite, say $m=ab$, where $2\leq a,b\leq m-1$. Let $s=\underbrace{1+\cdots+1}_{a\text{ times}}\neq0$, and $t=\underbrace{1+\cdots+1}_{a\text{ times}}\neq0$. Then $s\cdot t=(\underbrace{1+\cdots+1}_{a\text{ times}})(\underbrace{1+\cdots+1}_{b\text{ times}})=\underbrace{1+\cdots+1}_{m\text{ times}}=0$. Hence $t^{-1}\cdot t\cdot s=s=0$, a contradiction. 
+\end{proof}
+
+\paragraph{Subfield}
+Let $F$ be a field with characteristic $p$. Consider the set $E=\{0,1,1+1,\ldots,\underbrace{1+\cdots+1}_{p\text{ times}}\}\subseteq F$. One can verify that $E$ is a field, using the same operations as $F$. We say that $(E,+',\cdot')$ is a \textbf{subfield} of $(F,+,\cdot)$ when 
+\begin{enumerate}
+    \item $(E,+',\cdot')$ is a field 
+    \item $E\subseteq F$ 
+    \item $+'$ and $\cdot'$ are the restrictions of $+$ and $\cdot$ to $E\times E$
+\end{enumerate}\mbox{}\\
+Abuse of notation: 
+\begin{itemize}
+    \item Say $E$ is a subfield of $F$ denote $+'$ and $\cdot'$ by $+$ and $\cdot$
+    \item write $\underbrace{1+\cdots+1}_{a\text{ times}}$ as $a$ 
+\end{itemize}
+
+\paragraph{Theorem 9}
+If $F$ is a field of characteristic $p$, then $\mathbb{Z}_p$ is a subfield of $F$. We call the subfield $\mathbb{Z}_p$ of $F$ the \textbf{prime subfield} of $F$. 
+\begin{proof}
+
+\end{proof}
+
+\paragraph{Finite Fields as Vector Spaces}
+Let $F$ be a finite field of characteristic $p$. Identify: 
+\begin{itemize}
+    \item vectors as elements of $F$ 
+    \item scalars as elements of $\mathbb{Z}_p$ 
+    \item vector addition as addition on $F$ 
+    \item scalar multiplication as multiplication in $F$
+\end{itemize}
+
+\paragraph{Theorem 10}
+Let $F$ be a field of characteristic $p$. Then the \textbf{order} of $F$ is $p^n$, for some positive integer $n$. 
+\begin{proof}
+     Let the dimension of $F$ as a vector space over $\mathbb{Z}_p$ be $n$. Let $\{\alpha_1,\ldots,\alpha_n\}$ be a basis for $F$ over $\mathbb{Z}_p$. Hence $F=\left\{\sum_{i=1}^nc_i\alpha_i|c_i\in\mathbb{Z}_p\right\}$, and so $|F|=p^n$. 
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

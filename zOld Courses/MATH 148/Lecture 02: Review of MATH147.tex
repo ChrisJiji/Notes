@@ -1,0 +1,41 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Continuation of Lecture 1}
+
+\paragraph*{Definition: Density}
+Say $A\subseteq\mathbb{R}$ is \underline{dense} if $\forall p<q\in\mathbb{R}$, $\exists a\in A$ with $p<a<q$. In other words, $A\cap(p,q)\neq\phi$. 
+
+\paragraph*{Monotone Convergence Theorem}
+If $(x_n)$ is an increasing sequence that is bounded above, then it converges to the LUB. If it is decreasing and bounded below, then it converges to the GLB. \\ 
+\textbf{Proof}: Since the sequence is bounded above, $sup\{x_n:n=1,2,3,\ldots\}$ exists, call it L. RTP (required to prove) that for every $\epsilon>0$, there is $N$ such that $<L-\epsilon<x_n<L+\epsilon$ $\forall n\geq N$. Since L is the LUB, $x_n\leq L$ $\forall n$, so it is obvious that $x_n<L+\epsilon$ $\forall\epsilon>0$. Since L is the LUB, and $L-\epsilon<L$, $L-\epsilon$ is not an upper bound. So $\exists N$ such that $x_n>L-\epsilon$. Since $(x_n)$ is increasing, $x_n\geq x_N$ if $n\geq N$, therefore, if $n\geq N$ $L-\epsilon<x_N\leq x_n\leq L<L+\epsilon$, as required. 
+
+\paragraph*{Definition: Cauchy Sequence}
+$(x_n)$ is a Cauchy sequence if $\forall\epsilon>0$, $\exists N$ such that if $n,n\geq N$, then $|x_n-x_m|<\epsilon$. Convergent sequences are Cauchy, and Cauchy sequences are always bounded. 
+\paragraph*{Theorem}
+\textbf{Cauchy sequences converge}. 
+
+\paragraph*{Limits}
+$f:A\subseteq\mathbb{R}\rightarrow\mathbb{R}$. $lim_{x\rightarrow a}f(x)=L$ means $\forall\epsilon>0$, $\exists\delta>0$ such that if $0<|x-a|<\delta$, then $|f(x)-L|<\epsilon$. 
+
+\paragraph*{Continuity}
+$f:A\rightarrow\mathbb{R}$ is continuous at $a\in A$ if $\forall\epsilon>0$, $\exists\delta>0$ such that whenever $x\in A$, and $|x-a|<\delta$, then $|f(x)-f(a)|<\epsilon$. Same as saying $lim_{x\rightarrow a}f(x) = f(a)$ if $A=\{(a,b), a,b\in\mathbb{R} \quad (a,\infty)\quad  (-\infty,a)\quad \mathbb{R})$. Then $f$ is continuous at $a\in A$ if whenever $(x_n)\subseteq A$  and $(x_n)\rirghtarrow a$ then $(f(x_n))\rightarrow f(a)$. 
+
+\paragraph*{Intermediate Value Theorem}
+If $f:[a,b]\rightarrow\mathbb{R}$ is continuous and $f(a)<z<f(b)$, then $\exists x\in(a,b)$ such that $f(x)=z$. 
+
+\paragraph*{Extreme Value Theorem}
+If $f:[a,b]\rightarrow\mathbb{R}$ is continuous then $\exists c,d \in [a,b]$ such that $f(c)\leq f(x)\leq f(d)$ $\forall x\in[a,b]$. \\ 
+\textbf{Proof}: First check that $\{f(t):t\in[a,b]\}$ is a bounded set. Suppose $f(t)$ is not bounded above. Then $\forall n$, $\exists t_n\in[a,b]$ such that $f(t_n)=n$. Look at the sequence $(t_n)$. This s bounded as $a\leq t_n\leq b$ $\forall n$. By Bolzano Weierstrass theorem, there is a convergent subsequence $(t_{n_k})\rightarrow t_o$, $t_o\in[a,b]$ so $f$ is continuous at $t_o$. Hence $f(t_{n_k})\rightarrow f(t_o)$. But $f(t_{n_k})>n_k\geq k \rightarrow\infty$, a contradiction. The proof is similar to prove it is bounded below. 
+Let $L = sup\{f(t):t\in[a,b]\}$ which we know exists since the set is bounded. We know $\forall n\in\mathbb{N}$, $L-\frac{1}{n}$ is not an upper bound, so $\exists f(s_n)>L-\frac{1}{n}$ for some $s_n\in[a,b]$. So then we have $L-\frac{1}{n}<f(s_n)\leq L < L + \frac{1}{n}$, $\forall n$. By squeeze theorem, $(f(s_n))\rightarrow L$. But $(s_n)\subseteq[a,b]$ is a bounded sequence, so it has a convergent subsequence by Bolzano Weierstrass theorem, say $(s_{n_k})\rightarrow s_o\in[a,b]$. Therefore $f$ is continuous at $s_o$. $f(s_{n_k})\rightarrow f(s_o)$ but $f(s_{n_k})\rightarrow L$, so then $f(s_o)=L$. Thus $f(s_o)=L\geq f(x)$ $\forall x\in[a,b]$, so $d = s_o$. The proof is similar to prove the GLB. 
+
+
+\end{document}

@@ -1,0 +1,66 @@
+\documentclass[10pt,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+\usepackage{enumitem}
+\newlength{\lyxlabelwidth}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%\usepackage{txfonts}
+
+\usepackage{microtype}
+
+\usepackage{calc}
+\usepackage{enumitem}
+\setenumerate{leftmargin=!,labelindent=0pt,itemindent=0em,labelwidth=\widthof{\ref{last-item}}}
+
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\noindent \begin{center}
+\textbf{\large{}MATH 146 - Assignment 1}\\
+\textbf{\large{}Chris Ji 20725415}
+\par\end{center}{\large \par}
+\medskip{}
+
+\begin{enumerate}
+\item \begin{enumerate}
+    \item $S=\{\epsilon,0,1\}\cup \{0\}S\{0\}\cup \{1\}S\{1\}$. Since all three of the base cases are palindromic, and each of $\{0\}S\{0\}$ and $\{1\}S\{1\}$ maintain the palindromic property, so this decomposition produces all of the binary strings that are palindromic. Furthermore, it is unambiguous since there are clearly no ways to produce the same string in two different ways, as the recursions are different, and the base cases aren't covered by the recursions. 
+    
+    \item We can use block decomposition to match the strings that are not in $S$, then subtract that from the set of all binary strings. Clearly, the strings that are not in $S$ can be represented by $\{0\}^*(\{1\}\{1\}^*\{0\}\{\epsilon\}\cup\{1,11\}\{0\}\{0\}^*)^*\{1\}^*$. Then a decomposition of all the strings in $S$ is $\{0,1\}^*\backslash(\{0\}^*(\{1\}\{1\}^*\{0\}\cup\{1,11\}\{0\}\{0\}^*)^*\{1\}^*)$. This is unambiguous since we started with 2 strings that are unambiguous. 
+    
+\end{enumerate}
+
+\pagebreak
+\item \begin{enumerate}
+    \item Since all strings in $S$ cannot contain 0's on either side of a $1$, we use the block decomposition $\{0\}^*(\{1\}\{1\}^*\{0\}\{0\}^*)\{1\}^*$, and remove the strings we don't want. This will produce a decomposition that is clearly unambiguous, as the original decomposition is unambiguous. Removing strings that have $0$'s on either side of a $1$, we get the resulting decomposition: $\{\epsilon\}(\{1\}^*\{0\}\{0\}^*\cup\{\epsilon\})\{1\}^*$.
+    \item Since our above decomposition is unambiguous, we can apply the sum and product lemmas generously. \begin{align*}&\{\epsilon\}(\{1\}^*\{0\}\{0\}^*\cup\{\epsilon\})\{1\}^*\\&=\Phi_{\{\epsilon\}}(x)(\Phi_{\{1\}^*}(x)\Phi_{\{0\}}(x)\Phi_{\{0\}^*}(x)+\Phi_{\{\epsilon\}}(x))\Phi_{\{1\}^*}(x)\\&=1\left(\left(\frac{1}{1-x}\right)x\left(\frac{1}{1-x}\right)+1\right)\left(\frac{1}{1-x}\right)\\&=\frac{x^2-x+1}{(1-x)^3}\end{align*}
+\end{enumerate}
+
+\pagebreak
+\item Dividing the fraction, $\frac{1-x-x^2}{1-x-2x^2}=\frac{1}{2}+\frac{\frac{-x}{2}+\frac{1}{2}}{-2x^2-x+1}=\frac{1}{2}+\frac{\frac{-x}{2}+\frac{1}{2}}{(-2x+1)(x+1)}$. Then $\frac{\frac{-x}{2}+\frac{1}{2}}{(-2x+1)(x+1)}=\frac{A}{-2x+1}+\frac{B}{x+1}$, for some constants $A$ and $B$. Then $\frac{1-x-x^2}{(-2x+1)(x+1)}=\frac{A}{-2x+1}+\frac{B}{x+1}\Rightarrow1-x-x^2=A(x+1)+B(-2x+1)$. Setting $x=\frac{1}{2}$ gives us $1-\frac{1}{2}-\frac{1}{4}=\frac{3}{2}A\Rightarrow A=\frac{1}{6}$, and setting $x=-1$ gives us $1=3B$, $B=\frac{1}{3}$. Then the fraction decomposes to $\frac{1}{2}-\frac{1}{6(2x-1)}+\frac{1}{3(x+1)}$, and $[x^n]\Phi_S(x)=[x^n]\frac{1}{2}-[x^n]\frac{1}{6(2x-1)}+[x^n]\frac{1}{3(x+1)}=[x^n]\frac{1}{2}+[x^n]\frac{1}{6}\sum_{i=0}^\infty2^ix^i+[x^n]\frac{1}{3}\sum_{i=0}^\infty (-x)^i=\begin{cases}\frac{1}{2}+\frac{1}{6}2^n-\frac{1}{3}\quad\,\,\,\,\,\text{if }n=0\\\frac{1}{6}2^n+\frac{1}{3}(-1)^n\quad\text{otherwise}\end{cases}$ $$=\begin{cases}\frac{1}{3}\quad\quad\quad\quad\quad\quad\,\,\,\text{if }n=0\\\frac{1}{6}2^n+\frac{1}{3}(-1)^n\quad\text{otherwise}\end{cases}$$
+
+\pagebreak
+\item Clearly the characteristic polynomial of this recurrence relation is $x^3-x^2-8x+12$, which factors to $(x-2)^2(x+3)$. Then the root $2$ has a multiplicity of $2$, and the root $-3$ has a multiplicity of $1$, and so $b_n=(A+Bn)(2)^n+(C)(-3)^n$, for some constants $A,B,C$. Plugging in values, \begin{align*}b_0=1=A+C\\b_1=0=2A+2B-3C\\b_2=2=4A+8B+9C\end{align*} Putting this into a matrix, $$\begin{amatrix}{3}1&0&1&1\\2&2&-3&0\\4&8&9&2\end{amatrix}\sim\begin{amatrix}{3}1&0&0&\frac{9}{25}\\0&1&0&\frac{-2}{5}\\0&0&1&\frac{6}{25}\end{amatrix}$$. So $A=\frac{9}{25},B=\frac{-2}{5},C=\frac{6}{25}$, and the closed form formula for $b_n=\left(\frac{9}{25}-\frac{2}{5}n\right)(2)^n+\left(\frac{6}{25}\right)(-3)^n$
+
+\pagebreak
+\item Clearly the characteristic polynomial for $d_n$ is $x^2-x-6$, which factors to $(x-3)(x+2)$. Then both roots $3$ and $-2$ have multiplicity of $1$, and so $b_n=A(3)^n+B(-2)^n$, for some constants $A,B$. Here, note that $d_1=1, d_2=1*1-3*(-2)=7$, and $d_3$ can be calculated from the following: $\begin{bmatrix}1&-2&0\\3&1&-2\\0&3&1\end{bmatrix}\sim\begin{bmatrix}1&-2&0\\0&7&-2\\0&0&\frac{13}{7}\end{bmatrix}$, and so $d_3=1*7*\frac{13}{7}=13$. Then plugging in values, \begin{align*}d_1=1=3A-2B\\d_2=7=9A+4B\\d_3=13=27A-8B\end{align*} Putting this into a matrix, $\begin{amatrix}{2}3&-2&1\\9&4&7\\27&-8&13\end{amatrix}\sim\begin{amatrix}{2}1&0&\frac{3}{5}\\0&1&\frac{2}{5}\\0&0&0\end{amatrix}$, so $A=\frac{3}{5},B=\frac{2}{5}$, and a closed form formula for $d_n=\frac{3}{5}(3)^n+\frac{2}{5}(-2)^n$
+
+\end{enumerate}
+
+\end{document}

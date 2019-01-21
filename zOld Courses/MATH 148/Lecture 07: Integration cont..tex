@@ -1,0 +1,45 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Integration cont.}
+
+\paragraph{Elementary Properties of Integrals}
+Suppose $f,g\in[a,b]\rightarrow\mathbb{R}$ are integrable. The following are true: 
+\begin{enumerate}
+    \item $f+g$ and $cf$ for any $c\in\mathbb{R}$ are integrable. $\int_a^bcf=c\int_a^bf$ and $\int_a^b(f+g)=\int_a^bf+\int_a^bg$
+    \item If $a<c<b$, then $\int_a^bf=\int_a^cf+\int_c^bf$ (in particular, $f$ is integrable over $[a,c]$ and $[c,b]$)
+    \item \underline{Monotonicity} If $f(x)\leq g(x)$ $\forall x\in[a,b]$, then $\int_a^bf\leq\int_a^bg$.
+\end{enumerate}
+(1.) says if we define a map $T:$Integrable functions$\rightarrow\mathbb{R}$ over $[a,b]$. $T(f)=\int_a^bf$. Then $T$ is a linear map. \\ 
+
+Proof of $f+g$ is integrable. Key point: $f+g(x)\leq \text{sup}f|_{[t_{i-1},t_i]}+\text{sup}g|_{[t_{i-1},t_i]}$ $\forall x\in[t_{i-1},t_i]=J_i$. This implies sup$f+g|_{J_i}\leq \text{sup}f|_{J_i}+\text{sup}g|_{J_i}$ and $U(f+g,P)\leq U(f,P) + U(g,P)$ $\forall p$. Similarly, $L(f+g,P)\geq L(f,P)+L(g,P)$ $\forall P$. \\ 
+Proof: Let $\epsilon>0$ and get partitions $P_1,P_2$ so $U(f,P_1)-L(f,P_1)<\epsilon$ and $U(g,P_2)-L(g,P_2)<\epsilon$. Let $P_0$ be the common refinement between $P_1$ and $P_2$. Look at $U(f+g,P_0)-L(f+g,P_0)\leq U(f,P_0)+U(g,P_0)-(L(f,P_0)+L(g,P_0))\leq U(f,P_1)-L(f,P_1)+U(g,P_2)-L(g,P_2)< 2\epsilon$. Therefore, $f+g$ is integrable. 
+% proof that the integral of the sum is equal to the sum of the integrals
+$L(f,P_0)+L(g,P_0)\leq L(f+g,P_0)\leq \int_a^b(f+g)\leq U(f+g,P_0)\leq U(f,P_0)+U(g,P_0)$, with the bounds being between $2\epsilon$ from above. $L(f,P_0)+L(g,P_0)\leq \int_a^bf \int_a^bg\leq U(f,P_0)+U(g,P_0)$. This implies $|\int_a^bf+g - (\int_a^bf+\int_a^bg)<2\epsilon$ $\forall\epsilon>0$, which implies $\int_a^bf+g=\int_a^bf+\int_a^bg$. \\ \\ 
+
+Proof of $(2)$. Let $a<c<b$, and $\epsilon>0$. Know there is a partition P of $[a,b]$ such that $U(f,P)-L(f,P)<\epsilon$. We can assume $c$ is already in $P$ because if it's not, you can just throw it in with refinements, and the statement will still be true. Let $P_1$ be a partition from $[a,c]$ and $P_2$ be a partition from $[c,b]$. $U(f,P)=U(f,P_1)+U(f,P_2)$ and $L(f,P)=L(f,P_1)+L(f,P_2)$ by definition, and $\epsilon>U(f,P)-L(f,P)=(U(f,P_1)-L(f,P_1))+(U(f,P_2)-L(f,P_2))$ This implies that both $U(f,P_j)-L(f,P_j)<\epsilon$ for $j=1,2$. This implies $f$ is integrable over $[a,c]$, and $[c,b]$. $L(f,P_1)+L(f,P_2)\leq L(f,P)\leq\int_a^bf\leq U(f,P)=U(f,P_1)+U(f,P_2)$. $\int_a^cf+\int_c^bf$ also sits between $U(f,P_1)+U(f,P_2)$ and $L(f,P_1)+L(f,P_2)$ so similar to above, they must be equal as they are between epsilon. We defined the integral over intervals $[a,b]$ ($a<b$). We can also define $\int_b^af=-\int_a^bf$. The addition rules continue to hold. \\ \\ 
+
+Proof of $(3)$. If $f(x)\leq g(x)$ $\forall x$. sup$f|_{J_i}\leq \text{sup}f|_{J_i}$ and inf$f|_{J_i}\leq \text{inf}g|_{J_i}$. $U(f,P)\leq U(g,P)$ and $L(f,P)\leq L(g,P)$. $\int_a^bf=\text{inf}U(f,P)\leq\text{inf}U(g,P)=\int_a^bg$ $\forall P$. Corollary: if $m\leq f(x)\leq M$ $\forall x$, then $m(b-a)\leq\int_a^bf\leq \int_a^bM=M(b-a)$\\ \\ 
+
+More properties: \begin{enumerate}
+    \item $f$ is integrable over $[a,b]$ then is $|f|$. Corollary: $|\int_a^bf|\leq \int_a^b|f|$. 
+\end{enumerate}
+PRoof: Compare sup$|f||_{J_i}-\text{inf}|f||_{J_i}$ and sup$f|_{J_i}-\text{inf}f|_{J_i}$. Cases: \begin{enumerate}
+    \item if $f\geq0$ on $J_i$, then $|f|=f$ on $J_i$, and clearly these two differences are identical.   
+    \item $f\leq0$ on $J_i$, then $|f|=-f$ on $J_i$, and clearly the differences are the same.
+    \item $f$ switches sign. Then the sup is positive, and the inf is negative. Here, sup$|f||_{J_1}-\text{inf}|f||_{J_i}\leq \text{sup}f|_{J_i}-\text{inf}f|_{J_i}$.
+\end{enumerate}
+Hence $U(|f|,P)-L(|f|,P)\leq U(f,P)-L(f,P)$. This implies that $|f|$ is integrable.\\ 
+Proof of corollary: $-|f|\leq f\leq |f|$. By monotonicity, $\int_a^b-|f|\leq \int_a^bf\leq \int_a^b|f|\Rightarrow-\int_a^b|f|\leq \int_a^bf\leq \int_a^b|f|\Rightarrow |\int_a^bf|\leq\int_a^b|f|$. 
+
+
+
+\end{document}

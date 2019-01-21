@@ -1,0 +1,95 @@
+\documentclass[10pt,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+\usepackage{enumitem}
+\newlength{\lyxlabelwidth}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%\usepackage{txfonts}
+
+\usepackage{microtype}
+
+\usepackage{calc}
+\usepackage{enumitem}
+\setenumerate{leftmargin=!,labelindent=0pt,itemindent=0em,labelwidth=\widthof{\ref{last-item}}}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\noindent \begin{center}
+\textbf{\large{}MATH 146 - Assignment 1}\\
+\textbf{\large{}Chris Ji 20725415}
+\par\end{center}{\large \par}
+\medskip{}
+
+\begin{enumerate}
+\item \begin{enumerate}
+    \item Using the limit comparison test and with the harmonic series, $\lim_{n\rightarrow\infty}\frac{\frac{1}{n}}{\frac{n^2+1}{n^3+2}}=\lim_{n\rightarrow\infty}\frac{n^3+2}{n^3+n}=1$. Then since the harmonic series diverges, $\sum_{n=0}^\infty\frac{n^2+1}{n^3+2}$ diverges. 
+    \item Note that $0\leq\cos^2(n)\leq1$ for all $n$. Then $\sum_{n=1}^\infty\frac{\cos^2(n)}{n^2}\leq\sum_{n=1}^\infty\frac{1}{n^2}$, which converges by the p-test. Then by the comparison test, $\sum_{n=1}^\infty\frac{\cos^2(n)}{n^2}$ converges. 
+    \item Using the limit comparison test with $\sum_{n=0}^\infty\frac{1}{\sqrt{n^6}}$, we get $\lim_{n\rightarrow\infty}\frac{\frac{1}{\sqrt{n^6}}}{\frac{n+1}{\sqrt{n^6+1}}}=\lim_{n\rightarrow\infty}\frac{\sqrt{n^6+1}}{(n+1)\sqrt{n^6}}=\lim_{n\rightarrow\infty}\frac{\sqrt{1+\frac{1}{n^6}}}{n+1}=0$. Then, since $\sum_{n=0}^
+    \infty\frac{1}{\sqrt{n^6}}=\sum_{n=0}^\infty\frac{1}{n^3}$ converges, $\sum_{n=1}^\infty\frac{n+1}{\sqrt{n^6+1}}$
+\end{enumerate}
+
+
+
+\item \begin{enumerate}
+    \item Note that since $\lim_{n\rightarrow\infty}\frac{1}{\sqrt{n}}=0$, the fundamental trig limit shows $\lim_{x\rightarrow\infty}\frac{\sin\left(\frac{1}{\sqrt{x}}\right)}{\frac{1}{\sqrt{x}}}=1$. Then since $\sum_{n=1}^\infty\frac{1}{\sqrt{n}}$ diverges by the p-test ($p=\frac{1}{2}$), by the limit comparison test $\sum_{n=1}^\infty\sin\left(\frac{1}{\sqrt{n}}\right)$ diverges. 
+    \item Note that $\sin\left(\frac{1}{\sqrt{n}}\right)>0,\sin\left(\frac{1}{\sqrt{n+1}}\right)<\sin\left(\frac{1}{\sqrt{n}}\right)$, and $\lim_{n\rightarrow\infty}\frac{1}{\sqrt{n}}=0$, we get $\lim_{n\rightarrow\infty}\sin\left(\frac{1}{\sqrt{n}}\right)=\sin(0)=0$. Then by the alternating series test, $\sum_{n=1}^\infty(-1)^{n+1}\sin(\frac{1}{\sqrt{n}})$
+\end{enumerate}
+
+
+
+\item \begin{enumerate}
+    \item Note that $\sum_{n=1}^\infty\sin\frac{1}{n^3}$ converges with the comparison test with $\frac{1}{n^3}$, so the series converges absolutely
+    \item $\lim_{n\rightarrow\infty}\cos(\frac{1}{n})=\cos(0)=1$. Therefore, this series converges by the divergence test and the alternating series test. 
+    \item By the alternating series test, $a_n=\sqrt{n^2+1}-n$ is clearly positive, monotone, and decreasing for all $n$. Also $\lim_{n\rightarrow\infty}\sqrt{n^2+1}-n=0$. So $\sum_{n=1}^\infty(-1)^{n+1}(\sqrt{n^2+1}-n)$ converges. But, by the limit comparison test and setting $b_n=\frac{1}{n}$, $\lim_{n\rightarrow\infty}\frac{\sqrt{n^2+1}-n}{\frac{1}{n}}=\frac{1}{2}$, then $\sum_{n=1}^\infty|(-1)^{n+1}(\sqrt{n^2+1}-n)|$ diverges, and so the series converges conditionally. 
+\end{enumerate}
+
+
+
+\item \begin{enumerate}
+    \item Note that $f(x)=\frac{1}{x^3}$ is continuous, positive, and decreasing on $[1,\infty)$. Then $\sum_{n=1}^\infty\frac{1}{n^3}$ converges if and only if $\int_1^\infty\frac{1}{x^3}dx$ converges. Note that $\int_1^\infty\frac{1}{x^3}dx$ converges by the p-test for integrals, as $p=3>1$. 
+    \item We know from the integral test that $\sum_{n=1}^\infty\frac{1}{n^3}-\sum_{n=1}^k\frac{1}{n^3}\leq\int_k^\infty\frac{1}{x^3}dx$. We need $\int_k^\infty\frac{1}{x^3}dx\leq\frac{1}{20000}$. Then $\lim_{a\rightarrow\infty}\int_k^a\frac{1}{x^3}dx=\lim_{a\rightarrow\infty}-\frac{1}{2x^2}|_k^a=\lim_{a\rightarrow\infty}-\frac{1}{2a^2}+\frac{1}{2k^2}=\frac{1}{2k^2}$. Then for $\frac{1}{2k^2}\leq\frac{1}{20000}$, clearly $k\leq-100$ or $k\geq100$. $k\leq-100$ doesn't make sense, hence we need $k\geq100$.
+\end{enumerate}
+
+
+
+\item \begin{enumerate}
+    \item Note that $\lim_{n\rightarrow\infty}\left|\frac{\frac{x^{n+1}}{n+1}}{\frac{x^n}{n}}\right|=\lim_{n\rightarrow\infty}\left|\frac{xn}{n+1}\right|=|x|\lim_{n\rightarrow\infty}\left|\frac{n}{n+1}\right|=|x|\cdot 1$. Since the series converges for $L<1$, we need $|x|<1$, and so the radius of convergence is $1$. For $x=-1$, the series is $\sum_{n=1}^\infty\frac{(-1)^n}{n}$, which converges conditionally. For $x=1$, the series is $\sum_{n=1}^\infty\frac{1^n}{n}$, which is the harmonic series and hence diverges. Then the interval of convergence is $[-1,1)$. 
+    \item $\lim_{n\rightarrow\infty}\left|\frac{\frac{x^{n+1}}{(n+1)!}}{\frac{x^n}{n!}}\right|=|x|\lim_{n\rightarrow\infty}\left|\frac{1}{n+1}\right|=|x|\cdot 0$. Then we need $L<1$, which is true for all $x\in\mathbb{R}$. Then the radius of convergence is $\infty$, and the interval of convergence is $(-\infty,\infty)$. 
+\end{enumerate}
+
+
+
+\item \begin{enumerate}
+    \item Setting $u=-t^2$, we get $f(t)=\sum_{n=0}^\infty\frac{(-t^2)^n}{n!}$
+    \item Note $H'(x)=e^{-x^2}$, and we know that $e^{-x^2}=\sum_{n=1}^\infty\frac{(-x^2)^n}{n!}=\sum\frac{(-1)^nx^{2n}}{n!}$. Then $\int\sum_{n=1}^\infty\frac{(-1)^nx^{2n}}{n!}=\sum_{n=1}^\infty(-1)^n\frac{x^{2n+1}}{n!(2n+1)}$, as required.
+    \item $\sum_{n=1}^\infty(-1)^n\frac{\left(\frac{1}{10}\right)^{2n+1}}{(2n+1)n!}$
+    \item We know that $|S_k-S|<a_{k+1}$ (this is the alternating series test). $S=\int_{0}^{0.1}e^{-t^2}dt=\sum_{n=1}^\infty(-1)^n\frac{\left(\frac{1}{10}\right)^{2n+1}}{(2n+1)n!}=\sum_{n=0}^\infty(-1)^nb_n$. Then $b_0=\frac{0.1}{1}=\frac{1}{10}$, and $b_1=\frac{0.1^3}{3}=\frac{1}{3000}<\frac{1}{1000}$. We get $S_0=b_0=0.1$, and because $S=\int_0^{0.1}e^{-t^2}$, we get $|S-S_0|<b_1<\frac{1}{1000}$
+    \item The sign of the next term of the series is negative since $(-1)^1=-1$. Then $0.1=S_0$ is greater than the true value of $\int_0^{-.1}e^{-t^2}$. 
+    \item We get $2n+1=5$ when $n=2$, and so $H^{(5)}(0)=2!(-1)^2\frac{1}{(2(2)+1)(2!)}=\frac{1}{5}$. Note that there is no natural number such that $2n+1=8$, and so $H^{(k)}(0)=8!\cdot 0 = 0$. 
+\end{enumerate}
+
+
+
+\item \begin{enumerate}
+    \item $f(0)=\sum_{n=0}^\infty\frac{0^{2n}}{2^nn!}=\frac{0^0}{2^0(0)!}+\sum_{n=1}^\infty\frac{0^{2n}}{2^nn!}=1+0=1$. 
+    \item By definition, the derivative of a power series is $\sum_{n=1}^\infty na_nx^{n-1}$. With $n=2n$, we get $f'(x)=\sum_{n=1}^\infty 2n\frac{1}{2^nn!}x^{2n-1}=\sum_{n=1}^\infty \frac{1}{2^{n-1}(n-1)!}x^{2n-1}=\sum_{n=1}^\infty \frac{x^{2n-1}}{2^n(n-1)!}$
+    \item $\sum_{n=1}^\infty\frac{x^{2n-1}}{2^{n-1}(n-1)!}=x\sum_{n=1}^\infty\frac{x^{2n}}{2^nn!}\Rightarrow \sum_{n=0}^\infty\frac{x^{2n+1}}{2^nn!}=\sum_{n=1}^\infty\frac{x^{2n+1}}{2^nn!}$
+    \item Note this is a separable DE, so we solve $\int\frac{1}{y}dy=\int xdx\Rightarrow \ln(|y|)=\frac{x^2}{2}+C\Rightarrow y=ce^{\frac{x^2}{2}}$. Since $y(0)=1$, we get $c=1$, and so $f(x)=e^{\frac{x^2}{2}}$. 
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}

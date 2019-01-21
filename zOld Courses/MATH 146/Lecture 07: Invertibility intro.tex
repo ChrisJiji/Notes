@@ -1,0 +1,40 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{}
+
+\paragraph{elementary matrices}
+For A $m\times n$. $E\cdot A\leftrightarrow$elementary row operation. Then there is an element $E'$ such that $E'\cdot E\cdot A=A$. \\ 
+\paragraph{matrix inverses}
+Let A be $n\times n$. A \underline{left inverse} for A is an $n\times n$ B if $B\cdot A=I_n$. Similarly, an $n\times n$ matrix C is a \underline{right inverse} if $A\cdot C=I_n$. If there is a left inverse, we say A is \underline{left invertible}, and if there exists a right inverse, A is \underline{right invertible}. A is \underline{invertible} if $BA=I_n=AB$. We say B is an inverse for A. \\ 
+Lemma: If $A$ is $n\times n$ and has a left inverse $B$ and a right inverse $C$, then $B=C$. \\ 
+Proof: We have $BA = I = AC$. So $B=B\cdot I=B(AC)=(BA)C=I\cdot C = C$. \\ \\ 
+Fact: If A is $n\times n$ then it is left invertible if and only if it is right invertible. \\ 
+Corollary(of lemma): If A is both left and right invertible, then it's invertible, and the inverse is unique. \\ 
+Proof of corollary: There is $B,C$ such that $BA=I=AC$. By the lemma, $B=C$, so $BA=I=AB$. So $B$ (and hence $C$) are both left and right inverses. Suppose $D$ is a two sided inverse for $A$. Now $BA=I=AD$, and by the lemma $B=D$. 
+
+\paragraph{definition}
+If $A$ is $n\times n$ and invertible, we write $A^{-1}$ for the unique two-sided inverse of A. \\ \\ 
+Fact: matrices M_{n}(\mathbb{F}) form a ring with addition ($[a_{ij}]+[b_{ij}]=[a_{ij}+b_{ij}]$) and multiplication (matrix multiplication). 
+
+\paragraph{Theorem}
+Let A and B be $n\times n$ matrices. \begin{enumerate}
+    \item If A is invertible then so is $A_{-1}$, and $(A^{-1})^{-1}=A$. 
+    \item If A and B are invertible, then so is $AB$ and $(AB)^{-1}=B^{-1}\cdot A^{-1}$. 
+\end{enumerate}
+Note: Elementary matrices are invertible with inverses that are elementary matrices, since elementary row operations can be inverted with elementary row operations. \\ 
+\subparagraph{Examples}
+\begin{enumerate}
+    \item $E=\begin{bmatrix}1&C\\0&1\end{bmatrix}$ corresponds to setting $(1)=(1)+(2)*C$, and $E^{-1}=\begin{bmatrix}1&-C\\0&1\end{bmatrix}$, which corresponds to setting $(1)=(1)+(2)*(-C)$. 
+\end{enumerate}
+
+
+\end{document}

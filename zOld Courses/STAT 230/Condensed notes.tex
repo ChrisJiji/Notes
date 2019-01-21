@@ -1,0 +1,63 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\paragraph{Continuous Random Variable}
+$f(x)=F'(x)$, where $f(x)$ is a pdf and $F(x)$ is a cdf. When solving for $F(x)$ using $f(x)$, note that $F(x)=\int_a^xf(u)du$, where $a$ is the bottom of the range. When changing variables, make sure to use the chain rule when converting from $F(y)$ to $f(y)$!!! In particular $f(y)=\frac{d}{dy}F(y)=f(y)\cdot\frac{d}{dy}y$. 
+\paragraph{Exponential Distribution}
+Measures the probability that $x$ time occurs before the first event happens, given a poissonian event. $\theta$ is the interval of time (not the rate!!), it has the memoryless property. 
+\paragraph{Normal Distribution}
+If $X\sim N(\mu,\sigma^2)$, then $P(X<x)=P\left(Z<\frac{x-\mu}{\sigma}\right)$, where $Z\sim N(0,1)$. Remember that it is symmetric, so $P(X<a)=1-P(X<-a)$ for all $a$. 
+
+\paragraph{Joint Probability Function}
+Marginal probability: probability of one, ignoring the other. \\ 
+Independent: two variables are independent if their joint probability function is equal to the product of their marginal probabilities. \\ 
+Conditional: $P(X=x|Y=y)=\frac{P(X=x,Y=y)}{P(Y=y)}$ \\ 
+If $X,Y$ are both poisson distributions with expected values $\mu_1,\mu_2$, then $T=X+Y$ is a poisson distribution with expected value $\mu_1+\mu_2$. \\ 
+If $X\sim\text{Binomial}(n,p)$, and $Y\sim\text{Binomial}(m,p)$, then $T=X+Y\sim\text{Binomial}(n+m,p)$. \\ 
+
+\paragraph{Multinomial Probability Function}
+use brain and formula, it is easy 
+
+\paragraph{Expectation for Multivariate Distributions: Covariance and Correlation}
+$\text{Cov}(X,Y)=E[(X-\mu_X)(Y-\mu_Y)]=E(XY)-E(X)E(Y)$.  \\ 
+Correlation coefficient: $\rho=\frac{\text{Cov}(X,Y)}{\sigma_X\sigma_Y}$ 
+
+\paragraph{Mean and Variance of a Linear Combination of Random Variables}
+$E(X+Y)=E(X)+E(Y)$ \\ 
+$\text{Var}(aX+bY)=\text{Cov}(aX+bY,aX+bY)=a^2\text{Var}(X)+b^2\text{Var}(Y)+2ab\text{Cov}(X,Y)$ \\ 
+If $X_1,\ldots,X_n$ are independent random variables with the same mean $\mu$ and variance $\sigma^2$, then $E(\bar{X})=\mu,\text{Var}(\bar{X})=\frac{\sigma^2}{n}$
+
+\paragraph{Linear Combination of Normal Random Variables}
+If $X\sim N(\mu,\sigma^2)$, and $Y=aX+b$, then $Y\sim(a\mu+b,a^2\sigma^2)$.\\ 
+Let $X_i$ be independent normal random variables. Then $\sum_{i=1}^nX_i\sim N(\sum_{i=1}^n\mu_i,\sum_{i=1}^n\sigma^2_i)$ 
+
+\paragraph{Indicator Random Variables}
+Find $P(X_i)$, $E(X_i)=P(X_i)$, find $X$ in terms of $X_i$. 
+
+\paragraph{Central Limit Theorem}
+When you are summing a large amount of independent random variables (say, $S_n$, with $E(S_i)=\mu$, $\text{Var}(S_i)=\sigma^2$), then you can approximate $P(S_n>x)\sim P\left(Z>\frac{x-n\mu}{\sigma\sqrt{n}}\right)$ \\ 
+Continuity correction: When you want $P(a<x)$ lower $a$ by 0.5. When you want $P(x<a)$ raise $a$ by 0.5. \\ 
+Normal Approximation to Poisson Distribution: If $X\sim \text{Poisson}(\mu)$, then $Z=\frac{X-\mu}{\sqrt{\mu}}$ approaches a standard normal variable as $\mu\rightarrow\infty$. \\ 
+Normal approximation to Binomial Distribution: If $X\sim\text{Binomial}(\mu)$, then $Z=\frac{X-np}{\sqrt{np(1-p)}}$ has a $N(0,1)$ distribution for large $n$. \\ 
+
+\paragraph{Moment Generating Functions}
+the moment generating function of a discrete random variable is defined as $M(t)=E(e^{tX})=\sum_{\text{all }x}e^{tx}f(x)$. \\ 
+$E(X^k)=M^{(k)}(0)$. From this we can find $E(X)$ and $E(X^2)$ (and so Var$(X)$) easily.\\ 
+Moment generating functions are unique\\ 
+the moment generating function of a continuous random variable is defined as $M(t)=E(e^{tX})=\int_{-\infty}^\infty e^{tx}$
+
+\paragraph{Multivariate Generating Functions}
+The joint moment generating function of $(X,Y)$ is $M(s,t)=E(e^{sX+tY})=M_X(s)M_Y(t)$, where $M_X$ and $M_Y$ are the moment generating functions for $X,Y$. \\ 
+The moment generating function of the sum of independent random variables is the product of the individual moment generating functions. 
+
+
+
+\end{document}

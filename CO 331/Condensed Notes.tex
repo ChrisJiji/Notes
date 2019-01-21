@@ -1,0 +1,35 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+
+\begin{document}
+
+\paragraph{Goals of Coding Theory}
+\begin{enumerate}
+    \item High error correcting capability
+    \item High information rate 
+    \item Efficient encoding and decoding algorithms
+\end{enumerate}
+\paragraph{q-ary Symmetric Channel} A channel with $q$ letters where the probability of every symbol being correct is $1-p$, and the probability of the symbol changing to any other symbol is $\frac{p}{q-1}$. 
+\paragraph{Block Code} A code with $M$ words, all of length $n$ is called an $[n,M]-$code. 
+\paragraph{IMLD} decodes to the codeword that has the last hamming distance from the received word.
+\paragraph{MED} Maximizes $P(c|r)=P(r|c)\frac{P(c)}{P(r)}$
+\paragraph{Sphere Packing Bound}$M\sum_{i=1}^e{n\choose i}(1-q)^i\leq q^n$. $q^n$ is the entire space, $M$ is the number of words, and each sum is the area of each word that can be error corrected. 
+
+
+\end{document}

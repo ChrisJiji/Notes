@@ -1,0 +1,116 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\usepackage{gensymb}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Introduction to Probability}
+
+\paragraph{Types of Probability}
+The Classical Definition and the Relative Frequency Definition are consistent with one another if the model used in the relative frequency definition is constructed well. 
+
+\subparagraph{Classical Definition of Probability}
+Let $S$ be the set of all possible outcomes of a random experiment. The probability of an event is: $\frac{\text{Number of ways the event can occur}}{\text{Total number of outcomes in }S}$
+
+\subparagraph{Relative Frequency Definition of Probability}
+The probability of an event in an experiment is the (limiting) proportion or fraction of times the event occurs in a very long (theoretically infinite) series of (independent) repetitions of the experiment.
+
+\subparagraph{Subjective Definition of Probability}
+The probability of an event is a "best guess" by a person making the statement of the chances that the event will happen. e.g., a 30\% chance of rain.
+
+\paragraph{Probability Model}
+\begin{enumerate}
+    \item A sample space of all possible outcomes of a random experiment must be defined.
+    \item A set of events is defined. An event is a subset of the sample space, to which we can assign a probability. 
+    \item A way of assigning probabilities, which are numbers between 0 and 1, to events is specified. 
+\end{enumerate}
+
+\section*{Random Experiments and Sample Spaces}
+\paragraph{What is a Random Experiment?}
+When we repeat the experiment under controlled conditions, different outcomes may occur. 
+\begin{itemize}
+    \item We should be able to repeat it (repititions are called "trials")
+    \item Different outcomes may occur on different trials
+    \item Outcomes have probabilities associated with them
+\end{itemize}
+
+\paragraph{Sample Space}
+The set of distinct outcomes for an experiment or process, with the property that in a single trial, one and only one of these outcomes occurs. The outcomes in $S$ are sample points, or points.\\ 
+E.g. Take the letters of the name "DON" and arrange them at random to form a "name". Describe a suitable sample space, $S$, for this experiment. $S=\{DON,OND,NDO,NOD,ODN,DNO\}$. Note that there are $3!$ elements in this set. \\ 
+Toss a fair coin three times. Describe a suitable sample space for this experiment. $S=\{HHH,HHT,HTH,HTT,THH,THT,TTH,TTT\}$, note that there are $2^3$ elements in this set. \\ 
+Toss a fair coin until the first tails occurs. $S=\{T,HT,HHT,HHHT,HHHHT, \ldots\}$. Note that $S$ has an infinite number of elements. We can also write S by the number of tosses to get the first tails, ie. $S=\{1,2,3,4,\ldots\}$. \\ 
+A bulb is selected at random and put on test at 40\degree C. The lifetime of the bulb would be $S=[0,\infty)$. 
+
+\paragraph{Discrete Sample Spaces}
+A discrete sample space is one with a finite number of sample points, or countably many sample points. 
+
+\section*{Probability Models and Events}
+\paragraph{Events}
+An event, $A$, defined on a discrete sample space, $S$, is a subset of $S$. If the event $A\subset S$ consists of only one sample point, then A is called a \textbf{simple event}. If the event $A\subset S$ consists of two or more sample points, then $A$ is called a \textbf{compound event}. $A$ is said to occur on a trial of the experiment if one of the simple events in $A$ occurs. \\ 
+E.g. Take the letters of the name DON and arrange them at random to form a "name". Let $A$ be the event middle letter is "O". $A=\{DON,NOD\}$. \\ 
+Toss a coin three times. Let $A$ be the event the number of heads is greater than or equal to one. Let B be the event that the first toss is heads. $A = \{HHH,HHT,HTH,HTT,THH,THT,TTH\}$, and $B=\{HHH,HHT,HTH,HTT\}$. 
+
+\paragraph{Probability Distribution}
+Let $S=\{a_1,a_2,\ldots\}$ be a discrete sample space. Let $P(a_1),P(a_2),\ldots$ be a set of numbers associated with the sample points such that 
+\begin{enumerate}
+    \item $0\leq P(a_i)\leq 1, i=1,2,\ldots$
+    \item $\sum_{i=1}^\infty P(a_i)=1$
+\end{enumerate}
+Then $P(a_i)$ is called a probability. The set $\{P(a_i), i=1,2,\ldots\}$ is called a probability distribution on $S$. 
+
+\paragraph{Probability of an Event}
+Let $S$ be a discrete sample space. Let $A$ be an event defined on $S$. Then $P(A)$, the probability of the event $A$, is the sum of the probabilities corresponding to all the simple events that are in $A$, that is $P(A)=\sum_{a\in A}P(a)$. \\ 
+Eg. Let $A$ be the event that the letters D and O occur together in either order. Find $P(A)$. Here, $S=\{DON,OND,NDO,NOD,ODN,DNO\}$, and $A=\{DON,NDO,NOD,ODN\}$. So $P(A)=\sum_{a\in A}P(a)=\frac{4}{6}$. \\ 
+Let C be the event that the first "tail" occurs on an odd-numbered toss. Find $P(C)$. $S=\{T,HT,HHT,HHHT,HHHHT, \ldots\}$, and $C=\{T,HHT,HHHHT,\ldots\}$. So $P(C)=\frac{1}{2}+\frac{1}{2^3}+\frac{1}{2^5}+\ldots=\frac{2}{3}$. 
+
+\paragraph{Discrete Probability Model}
+A discrete sample space together with a probability distribution is referred to as a discrete probability model. \\ 
+E.g. Your room-mate, Sloppy Joe, helps himself to your classic collections of 4 movies on DVD. What is the probability that he puts the DVDs back into the cases such that no DVD is in the correct case? \\ 
+The sample space has $4!=24$ points, with each simple event assumed to have $\frac{1}{24}$ probability of happening. Let $A$ be the event that no DVD is in the correct case. Then $P(A)=\frac{9}{24}$, so the probability that at least one dvd is in the correct case is $1-\frac{9}{24}=\frac{5}{8}$. 
+
+\section*{Counting Techniques}
+\paragraph{Equally Likely Outcomes}
+Suppose we have some sample space such that every outcome is equally likely. For any event $A\subset S$, $P(A)=\frac{\text{number of points in A}}{N}$, where N is the size of $S$. 
+\subparagraph{Addition Rule}
+Suppose we can do job 1 in $p$ ways, and job 2 in $q$ ways. Then we can do either job 1 or job 2 in $p+q$ ways. In other words, \textit{or} means add. 
+\subparagraph{Multiplication Rule}
+Suppose we can do job 1 in $p$ ways, and job 2 in $q$ ways. Then we can do job 1 and job 2 in $p*q$ ways. In other words, \textit{and} means multiply. 
+
+\paragraph{Some Useful Combinatorial Symbols}
+\begin{itemize}
+    \item $n^{(k)} = n*(n-1)*\ldots * (n-k+1)$ called "n to k factors". It is the number of arrangements of $n$ different elements taken $k$ at a time. 
+    \item $n!=n^{(n)}$. It is the number of arrangements (permutations) of $n$ different elements taken $n$ at a time.
+    \item $n^k$ is the number of arrangements of $n$ elements taken $k$ at a time allowing repeats.
+\end{itemize}
+
+Note: $n^{(k)}=\frac{n!}{(n-k)!}$ when $k\geq0$ is an integer. \\ 
+E.g. How many "words" can you make from the word "JUSTIN"
+\begin{enumerate}
+    \item If you use 5 letters? $6^{(5)}=6*5*4*3*2=720$ 
+    \item If you use 4 letters? $6^{(4)}=6*5*4*3=360$
+    \item If you use 6 letters but you allow repeated letters? $6^6=46 656$. 
+\end{enumerate}
+Note: $n^{(k)}$ is also defined for $n$ a real number and $k$ a non-negative integer. E.g. 
+\begin{enumerate}
+    \item $3^{(4)} = 3*2*1*0=0$
+    \item $e^{(3)}=e(e-1)(e-2)=3.355$
+    \item $(-6)^{(2)}=(-6)(-7)=42$
+\end{enumerate}
+E.g. \\ 
+Roll 3 fair dice, one red, one blue, one green. Describe a suitable probability model for this experiment. 
+\begin{enumerate}
+    \item Let $A$ be the event all 3 dice are showing different numbers. Find $P(A)$. $S=6^3$, $A=6^{(3)}$, then $P(A)=\frac{6^{(3)}}{6^3}=\frac{6*5*4}{6*6*6}=\frac{5}{9}$
+    \item Let $B$ be the event all 3 dice show the same number. Find $P(B)$. $S=6^3$, $B=6$, then $P(B)=\frac{6}{6^3}=\frac{1}{36}$ 
+    \item Let $C$ be the event at most one six is rolled. Find $P(C)$. $S=6^3$. The probability that no six is rolled is $\frac{5^3}{6^3}$, and the probability one six is rolled is $\frac{3*5^2}{6^3}$, so $P(C)=P(\text{0 sixes})+P(\text{1 six})=\frac{5^3}{6^3}+\frac{3*5^2}{6^3}=\frac{25}{27}$
+\end{enumerate}
+
+${n\choose k} = \frac{n^{(k)}}{k!}$ called "n choose k". If $n$ is a positive integer and $k$ is a non-negative integer such that $k\leq n$ then ${n\choose k}$ is the number of subsets (combinations) of $k$ elements which may be selected from a set containing $n$ elements. 
+
+
+\end{document}

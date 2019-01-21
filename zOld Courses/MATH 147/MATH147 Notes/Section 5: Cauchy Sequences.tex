@@ -1,0 +1,24 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+\title{Cauchy Sequences}
+\paragraph{5.2: Definition}
+Let $x_n$. We say that $x_n$ is a Cauchy sequence if for all $\epsilon > 0$ there exists $N\in\mathbb{N}$ such that $m > n \geq N$ implies $|x_n - x_m| < \epsilon$. 
+
+\paragraph{5.5: Theorem}
+Let $x_n$. The following are equivalent: \\ 
+(a) $x_n$ is convergent, that is, there exists $\beta$ such that $lim x_n = \beta$.\\ 
+(b) $x_n$ is a cauchy sequence. 
+
+\paragraph{5.9: Definition}
+A subset $E \subseteq \mathbb{R}$ is said to be sequentially compact if, given a sequence $x_n \in E^\mathbb{N}$, there exists a subsequence $x_n_k$ of $x_n$ which converges to some element $\beta \in \mathbb{R}$, and furthermore we must have $\beta \in E$
+
+
+\end{document}

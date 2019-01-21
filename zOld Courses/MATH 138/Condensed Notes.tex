@@ -1,0 +1,57 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\paragraph{Area Between Curves}
+$A=\int_a^b|g(t)-f(t)|dt$.
+
+\paragraph{Rotating around x-axis}
+$V=\int_a^b\pi (g(x)^2-f(x)^2)dx$
+
+\paragraph{Rotating around y-axis}
+$V=\int_a^b2\pi x(g(x)-f(x))dx$
+
+\paragraph{Arc Length}
+$S=\int_a^b\sqrt{1+(f'(x))^2}dx$
+
+\paragraph{Separable Differential Equation}
+When $y'=f(x)g(y)$, $\int\frac{1}{g(y)}dy=\int f(x)dx$. 
+
+\paragraph{Linear Differential Equation} 
+When $y'=f(x)y+g(x)$, $y=\frac{\int g(x)I(x)dx}{I(x)}$, where $I=e^{-\int f(x)dx}$ 
+
+\paragraph{Mixing Problem}
+$s'(t)=r_{\text{in}}(t)-r_{\text{out}}(t)$, $r_\text{out}=\frac{\text{s(t)}}{\text{initial content}}\times(\text{rate water leaves})$
+
+\paragraph{Exponential Growth and Decay}
+$Q'=kQ$, and $Q(t)=Ce^{kt}$, where $C$ is the initial value.
+
+\paragraph{Newton's Law of Cooling}
+$T'=k(T-T_a)$, $T(t)=(T_0-T_a)e^{kt}+T_a$
+
+\paragraph{Logistic Growth}
+$P'=kP(M-P)$, $P(t)=M\frac{Ce^{Mkt}}{1+Ce^{Mkt}}$, where $C=\frac{P_0}{M-P_0}$. $M$ is the maximum population. 
+
+\paragraph{Divergence Test}
+If $\lim_{n\rightarrow\infty}a_n\neq0$, then the series diverges.
+
+\paragraph{Limit Comparison Test}
+Let $L=\lim_{n\rightarrow\infty}\frac{a_n}{b_n}$, where $a_n,b_n>0$. If $0<L<\infty$, then they either both converge or both diverge. 
+
+\paragraph{Ratio Test}
+Let $L=\lim_{n\rightarrow\infty}\left|\frac{a_{n+1}}{a_n}\right|$. If $0\leq L<1$, then the series converges absolutely. If $L>1$, then the series diverges. If $L=1$, then no conclusion is possible. 
+
+\paragraph{Differentiation of Power Series}
+If $f(x)=\sum_{n=0}^\infty a_n(x-a)^n$, then $f'(x)=\sum_{n=1}^\infty na_n(x-a)^{n-1}$. 
+
+\paragraph{Integration of Power Series}
+If $f(x)=\sum_{n=0}^\infty a_n(x-a)^n$, then $F(x)=C+\sum_{n=0}^\infty\frac{a_n}{n+1}(x-a)^{n+1}$. 
+
+\end{document}

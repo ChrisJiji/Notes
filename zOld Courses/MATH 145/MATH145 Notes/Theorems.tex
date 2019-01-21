@@ -1,0 +1,65 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+%\date{\vspace{-5ex}}
+\begin{document}
+
+\title{MATH145 Theorems and Definitions}
+\author{Chris Ji 20725415}
+
+\section*{2.52: Binomial coefficient}
+${n\choose k} = \frac{n!}{k!(n-k)!}$
+
+\section*{2.53: Pascal's Triangle}
+${n\choose 0} = {n\choose n} = 1$, ${n \choose k} = {n\choose n-k}$, ${n \choose k} + {n \choose k + 1} = {n+1\choose k+1}$
+
+\section*{2.55: Binomial Theorem}
+$(a + b)^{n} = \sum_{k=0}^{n}{n \choose k}a^{k}b^{n-k} = \sum_{k=0}^{n}{n \choose k}a^{n-k}b^{n}$
+
+\section*{3.2: Sum and product of Complex Numbers}
+$(a + ib) + (c + id) = {a\choose b} + {c \choose d} = {a+c \choose b+d} = (a+c) + i(b+d)$\\ 
+$(a+ib)(c+id) = ac + iad + ibc + i^2bd = (ac - bd) + i(ad + bc)$\\
+This requires the product to be commutative and associative and distributive over the sum.
+
+\section*{3.8-3.9: Definitions of Complex numbers}
+\textbf{conjugate} if $z = x + iy$, $\bar{z} = x - iy$\\ 
+\textbf{length/magnitude}$|z| = \sqrt{x^2+y^2}$\\
+\textbf{various identities} $\bar{\bar{z}} = z$\\
+$z + \bar{z} = 2Re z$, $z - \bar{z} = 2iIm z$\\ 
+$z\bar{z} = |z|^2$, $|\bar{z}| = |z|$\\ 
+$\bar{z+w} = \bar{z} + \bar{w}$, $\bar{zw} = \bar{z}\bar{w}$, $|zw| = |z||w|$ 
+
+\section*{3.13: Square Roots of Complex Numbers}
+When $z = x + iy$, $\sqrt{z} = \pm (\sqrt{\frac{x+\sqrt{x^2+y^2}}{2}} - i\sqrt{\frac{-x+\sqrt{x^2+y^2}}{2}})$
+
+\section*{3.18-3.20: Polar Form Definition}
+The angle (or argument) $z = |z|(\cos\theta(z) + i\sin\theta(z))$\\
+If $z \neq 0$ and we have $x = Re(z)$, $y = Im(z)$, $r = |z|$ and $\theta = \theta(z)$, then $x = r\cos\theta$, $y = r\sin\theta$. \\ 
+$r = \sqrt{x^2+y^2}$, $tan\theta = \frac{y}{x}$\\ 
+$z = re^{i\theta}$, $\bar{z} = re^{-i\theta}$, $z^-1 = \frac{1}{r}e^{-i\theta}$
+
+\section*{5.2: Divisor Theorems}
+$a|0$ for all a $\in \mathbb{Z}$ and $0|a \Longleftrightarrow a = 0$\\
+$a|1 \Longleftrightarrow a = \pm 1$ and $1 | a$ for all $a \in \mathbb{Z}$\\ 
+If $a|b$ and $b|c$ then $a|c$\\ 
+If $a|b$ and $b|a$ then $b = \pm a$\\ 
+If $a|b$ and $a|c$ then $a|(bx+cy)$ for all $x$, $y \in \mathbb{Z}$
+
+\section*{5.3: Division Algorithm}
+Let a, b $\mathbb{Z}$ with $b \neq 0$. Then there exist unique integers q and r such that $a = qb + r$ and $0 \leq r < |b|$. The integers q and r are called the quotient and remainder when a is divided by b. 
+
+
+\section*{5.5: Common divisor}
+Let a, b $\in \mathbb{Z}$. A common divisor of a and b is an integer d such that $d|a$ and $d|b$. 
+
+\section*{5.18: Sieve of Eratosthenes}
+circle every number thats prime, then cross off all multiples of that number
+
+
+\end{document}

@@ -1,0 +1,330 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\usepackage{tikz}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{Lecture 1}
+
+\paragraph{Enumeration} If A and B are disjoint sets, then $|A\cup B|=|A|+|B|$. If they are not disjoint, $|A\cup B| =|A|+|B|-|A\cap B|$. Also, $|A\cup B|+|A\cap B|=|A|+|B|$. \\ 
+How many subsets of a set $S$ with $|S|=n$ are there? Since for each element, it is either in a given subset or not, there are $2^n$ subsets. \\ 
+How many subsets of size $k$ does a set of size $n$ have? This number is ${n\choose k}$. Note: ${n\choose k}={n\choose n-k}$ This is because ${n\choose k}$ and ${n\choose n-k}$ have complimentary sets. \\ 
+Therefore: ${n\choose 0} + {n\choose 1}+\ldots+{n\choose n}=2^n$ \\ 
+The function $f:$ subsets of $S\rightarrow$ subsets of $S$ defined by $f(A)=S\backslash A$ has nice properties: 
+\begin{itemize}
+    \item $f(f(A))=A$ 
+    \item $f$ is an injection (1 to 1)(if $a\neq b$, then $f(a)\neq f(b)$ and the contrapositive is true: if $f(a)=f(b)$, then $a=b$)
+    \item $f$ is a surjection (onto)(for $f:S\rightarrow T$ is onto if, for every element in $T$, there is an element in $S$ such that $f(s)=t$) 
+    \item Since $f$ is an injection and a surjection, it is a bijection. Note that if $f:A\rightarrow B$ is a bijection, then $|A|=|B|$. 
+\end{itemize}
+
+\section*{Lecture 2}
+\subsection*{Theorem} The function $f:A\rightarrow B$ is a bijection iff there is a function $g:B\rightarrow A$ such that for all $a\in A$, $g(f(a))=a$, and for all $b\in B$, $f(g(b))=b$. In other words, if you want to prove sometings a bijection, sometimes it's easier to prove there is an inverse function. 
+\paragraph{Example} Let $B$ be the set of binary strings of length $n$. Let $S$ be the set of subsets of $\{1,2,\ldots,n\}$. Define $f:B\rightarrow S$ by $f(a_1a_2\ldots a_n)=\{i|a_i=1\}$. IE $f(00110110)=\{3,4,6,7\}$. What is $g:S\rightarrow B$? $g(A)=a_1a_2\ldots a_n$ with $a_i\begin{cases}0\quad i\notin A\\1\quad i\in A\end{cases}$. IE. $g(\{3,7,8,9,12\})=0010001110010$. Show $f(g(A))=A$ and $g(f(a_1a_2\ldots a_n))=a_1a_2\ldots a_n$.\\ $f(g(A))=f(a_1a_2\ldots a_n)=\{i|a_i=1\} = \{i|i\in A\} = A$\\ $g(f(a_1a_2\ldots a_n))=g(\{i|a_i=1\})=b_1b_2\ldots b_n$ with $b_j=\begin{cases}0\quad j\notin\{i|a_i=1\}\\ 1\quad j\in\{i|a_i=1\}\end{cases}$. Therefore, $b_j=1$ precisely when $j\in\{i|a_i=1\}$. That is, $b_j=1$ precisely when $a_j=1$. Thus, $b_1b_2\ldots b_n=a_1a_2\ldots b_n$. 
+\subsection*{More info} $f:A\rightarrow B$ is a \textbf{function} if, for every element $a\in A$, $f(a)$ is a uniquely determined element of $B$ (it's 1-1). If $f:A\rightarrow B$ has inverse $g:B\rightarrow A$, then: 
+\begin{itemize}
+    \item $f$ is 1-1 because if a and a' are different elements of $A$, then $g(f(a))=a$, $g(f(a'))=a'$. Since $a\neq a'$, $g(f(a))\neq g(f(a'))$. Since $g$ is a function, $f(a)\neq f(a')$.
+    \item $f$ is onto because for $b\in B$, $f(g(b))=b$. Since $g(b)\in A$, $f$ is onto. 
+\end{itemize} 
+In other words, you still have to prove that $f$ and $g$ are functions. 
+\paragraph{Example continued} In the example, we used that $g$ is a function, so we should show that $f,g$ are functions. $g(A)=a_1a_2\ldots a_n$ with $a_i=\begin{cases}0\quad i\notin A\\1\quad i\in A\end{cases}$, the value of each term $a_i$ in the binary sequence is determined by $A$ and, therefore, the entire sequence is determined y $A$. Therefore $g$ is a function. 
+\subsection*{Cartesian Products} If $A$ and $B$ are sets, $A\times B=\{(a,b)|a\in A, b\in B\}$. Example: $A=\{1,2,3\}$ and $B=\{4,5,6\}$, then $A\times B=\{(1,4),(1,5),(1,6),(2,4),(2,5),(2,6),(3,4),(3,5),(3,6)\}$. Note that $|A\times B|=|A|\times|B|$. 
+\paragraph{Example} How many ordered pairs $(A,B)$ of subsets of $\{1,\ldots,n\}$ are there with $A\cap B=\phi$?, with $|A|=r$ and $|B|=s$? Notice that we must have $r+s\leq n$ for such subsets to exist. There are ${n\choose r}$ choices for $A$, and then there are ${n-r\choose s}$ choices for $B$. Therefore, there are ${n\choose r}{n-r\choose s}$ ordered pairs. On the other hand, there are ${n\choose s}$ ways to choose $B$. For each $B$, there are ${n-s\choose r}$ choices for $A$. Therefore, there are ${n\choose s}{n-s\choose r}$ ordered pairs. Thus, ${n\choose r}{n-r\choose s}={n\choose s}{n-s\choose r}$. 
+
+\section*{Lecture 3}
+\paragraph{Binomial Coefficient}
+Every k-subset of an n-subset occurs as the first k entries in $k!(n-k)!$ permutations of $n$ symbols. In a formula, $k!(n-k)!{n\choose k}=n!$, or ${n\choose k}=\frac{n!}{k!(n-k)!}$. 
+
+\paragraph{Pascal's Triangle Relation} 
+From the triangle, we can see that for $n>1$, $0<k<n$, ${n\choose k}={n-1\choose k}+{n-1\choose k-1}$. \\ 
+Combinatorial proof: ${n\choose k}$ counts the $k$ subsets of an $n$-set, $S$. Let $s_0\in S$. Let $A$ be the set of k-subsets of $S$ that do not include $s_0$. Let $B$ be the set of k-subsets of $S$ that do include $s_0$. Note that $|A|={n-1\choose k}$. Note that $B$ is in bijective correspondence with $(k-1)$-subsets of $S\backslash\{s_0\}$. $f(B)=B\backslash\{s_0\}$, with $f^{-1}(A)=A\cup\{s_0\}$, and so $|B|={n-1\choose k-1}$. Since ${n\choose k}$ is completely partitioned into $A$ and $B$, and so $|A|+|B|={n-1\choose k}+{n-1\choose k-1}={n\choose k}$.
+
+\paragraph{Hockey Stick Lemma} For any $k\geq 0$, and $n\geq0$, $$\sum_{j=0}^n{j\choose k}={n+1\choose k+1}$$ In an example, ${2\choose 2}+{3\choose 2}+{4\choose 2}+{5\choose 2}={6\choose 3}$. Also, $$\sum_{j=k}^n{j\choose k}=\sum_{j=0}^n{j\choose k}$$ Note that if $0\leq j<k$, then ${j\choose k}=0$. 
+    
+\section*{Lecture 4}
+\paragraph{Binomial Theorem} $(1+x)^n=\sum_{k=0}^n{n\choose k}x^k$ \\ 
+Proof: Consider the product $(w_1+x_1)(w_2+x_2)\ldots(w_n+x_n)$. If we set all of the w's to 1, and all the x's to x, then we get the left side. Now we must consider the expansion, and prove that it is equal to the right side. There are $2^n$ terms on the right. How many factors have exactly $k$ x's? There are $k$ positions to place the x's, so there are ${n\choose k}$ ways to place the x's. Replace $w_i$ by 1, and $x_j$ by x. Then exactly ${n\choose k}$ of the factors become $x^k$.  \\ 
+Consider $1+2x+4x^2+\ldots=\sum_{n=0}^\infty2^nx^n=\sum_{n=0}2^nx^n=\sum_{n=0}(2x)^n=\frac{1}{1-(2x)}$
+
+\paragraph{Formal Power Series} Let $a_0,a_1,a_2,\ldots$ (possibly finite, possibly infinite) be a sequence of numbers. Then the \textbf{formal power series} corresponding to this sequence $\sum_{n=0}a_nx^n$. (Pad with 0's if the sequence is finite). 
+
+\paragraph{Generating Series} For each $n\geq0$, how binary strings of length do not contain the substring $01100011100111000110$? Let $b_n$ be the number of such binary strings. The generating series is the formal power series $\sum_{n=0}b_nx^n$. Since the string is length 20, then every binary string up to length 20 does not contain it. Past length 19, the amount of strings that contain it are $2^n$. 
+
+\paragraph{Definition: Weight function} Let $S$ be any set, and let $w:S\rightarrow\mathbb{N}$. $w$ is a \textbf{weight function} if, for every $n\in\mathbb{N}$, $\{\sigma\in S|w(\sigma)=n\}$ is finite. The generating series for $(S,w)$ is denoted $\Phi_S^w(x)=\sum_{n=0}(\text{number of elements of S with }w(\sigma)=n)x^n$. In other words, $\Phi_S^w(x)=\sum_{\sigma\in S}x^{w(\sigma)}$. It is just the sum of all the elements, to the exponent of their weight. 
+
+\section*{Lecture 5}
+\paragraph{Examples Of Random Weight Functions}
+\begin{itemize}
+    \item Let $S=\{a,b,c\}$ and define $w:S\rightarrow\mathbb{N}$ by $w(a)=4,w(b)=7=w(c)$. Then $\Phi_S^w(x)=x^4+2x^7$. 
+    \item Let $S$ be the set $\mathbb{N}$ and, for each $n\in\mathbb{N}$, define $w(n)=\left\lfloor\frac{n}{2}\right\rfloor$. Then $\Phi_S^w(x)=2x^0+2x^1+2x^2+\ldots$
+    \item How many binary strings of length $n$ have precisely $k$ 1s? There are ${n\choose k}$ of these. Let $S$ be the set of binary strings that have $k$ 1s. Let $w:S\rightarrow\mathbb{N}$ be defined by $w(\sigma)=\text{length of }\sigma$. Then $\Phi_S^w(x)=\sum_{n=0}^\infty{n\choose k}x^n$. 
+\end{itemize}
+
+\paragraph{Fibonacci Numbers} $f_0=1, f_1=1, f_2=2,f_3=3,\ldots,f_n=f_{n-1}+f_{n-2}(n\geq2)$. Imagine a $2\times n$ array of dominoes. How many ways are there to fill it with $2\times 1$ sized dominoes, places either horizontally or vertically? Let $F(X)=\sum_{n=0}f_nx^n=f_0x^0+f_1x^1+\ldots=f_0x^0+f_1x^1+\sum_{n=2}(f_{n-1}+f_{n-2})x^n=f_0x^0+f_1x^1+(\sum_{n=2}f_{n-1}x^n)+(\sum_{n=2}f_{n-2}x^n)$. Idk what happened, but he just proved the ordinary generating function of the Fibonacci sequence using sigma algebra, and then just normal algebra. 
+
+\paragraph{Sum Lemma(simple version)} Let $S_1,S_2$ be sets, with $S_i$ having a weight function $w_i$. Suppose that $S_1\cap S_2=\phi$. Define the weight function $w$ on $S_1\cup S_2$ by $w(\sigma)=\begin{cases}w_1(\sigma)\quad\text{if }\sigma\in S_1\\w_2(\sigma)\quad \text{if }\sigma\in S_2\end{cases}$. Then $\Phi_{S_1\cup S_2}^w(x)=\Phi_{S_1}^{w_1}(x)+\Phi_{S_2}^{w_2}(x)$. Basically, the weight function for the union of two sets is just the weight function depending on which set the given element came from.\\ 
+PROOF: The set $\{\sigma\in S_1\cup S_2|w(\sigma)=n\}$ is, because $S_1\cap S_2=\phi$, $\{\sigma\in S_1|w_1(\sigma)=n\}\cup\{\sigma\in S_2|w_2(\sigma)=n\}$ and therefore $|\{\sigma\in S_1\cup S_2|w(\sigma)=n\}|=|\{\sigma\in S_1|w_1(\sigma)=n\}|+|\{\sigma\in S_2|w_2(\sigma)=n\}|$. Therefore, the coefficient of $x^n$ in $\Phi_{S_1\cup S_2}^w(x)$ is the sum of the coefficients of $x^n$ in each of $\Phi_{S_1}^{w_1}(x)$ and $\Phi_{S_2}^{w_2}(x)$. That is, $\Phi_{S_1\cup S_2}^w(x)=\Phi_{S_1}^{w_1}(x)+\Phi_{S_2}^{w_2}(x)$. \\ 
+EXAMPLE: Suppose $E$ is the set of all even non-negative integers, and $O$ is the set of all odd non-negative integers. Define $w_E(2k)=k$ and $w_o(2k+1)=k$. This makes $\Phi_E(x)=x+x^1+x^2+\ldots$ and  $\Phi_O(x)=x^0+x^1+x^2+\ldots$. Then $\Phi_\mathbb{N}^{\lfloor\rfloor}(x)=\sum_{n=0}2x^n$. 
+
+\paragraph{Compositions with k parts} 
+A \textbf{composition with k parts} is an ordered k-tuple($p_1,p_2,\ldots,p_k$) of POSITIVE integers. The \textbf{weight} of the composition $(p_1,p_2,\ldots,p_k)$ is the sum of the entries of the composition $(p_1+p_2+\ldots+p_k)$. How many compositions with 2 parts have weight $n$? In other words, how many $(p_1>p_2)$ such that $p_1+p_2=n$? There are $n-1$ such pairs, as the ordered pairs must follow $(1,n-1), (2,n-2),\ldots,(n-1,1)$. 
+
+\section*{Lecture 6}
+\paragraph{Compositions}
+A composition is an ordered k-tuple $(k\geq 0)$ $(x_1,x_2,\ldots,x_k)$ of positive integers. Its weight is $x_1+x_2+\ldots+x_k$. Is is a composition of $n$ if $x_1+x_2+\ldots+x_k=n$. It has $k$ parts. \\ 
+E.g. A composition of $13$ is $(1,3,2,7)$. Its weight is $13$, and it has $4$ parts. Note order matters, so $(7,2,3,1)$ is a different composition. $w(1,3,2,7)=w(1,3,2)+w(7)=w(1)+w(3)+w(2)+w(7)$. \\ 
+Compositions with one part are especially boring: $w(n)=n$. Generating series for compositions with 1 part: $1x^1+1x^2+1x^3+\ldots=\frac{x}{1-x}$. \\ 
+Compositions with 2 parts $(x_1,x_2)$. For $n=1$, there are no 2-part compositions. For $n=2$, there is 1 composition, $(1,1)$. For $n=3$, there are 2 compositions: $(1,2), (2,1)$. By inspection, we can see there are $n-1$ compositions for any $n$. Generating series for compositions with 2 parts: $x^2+2x^3+3x^4+4x^5=\sum_{n=2}(n-1)x^n$. 
+
+\paragraph{Product Lemma}
+Let $S,T$ be sets with weight functions $w_s,w_t$, respectively. If the weight function on $S\times T$ satisfies $w((\sigma,\tau))=w_S(\sigma)+w_T(\sigma)$, then $\Phi_{S\times T}^w(x)=\Phi_S^{w_S}(x)\cdot\Phi_T^{w_T}(x)$\\ 
+PROOF: $\Phi_{S\times T}^w(x)=\sum_{(\sigma,\tau)\in S\times T}x^{w((\sigma,\tau))}=\sum_{\sigma\in S}\left(\sum_{\tau\in T}x^{w((\sigma,\tau))}\right)=\sum_{\sigma\in S}\left(\sum_{\tau\in T}x^{(w_S(\sigma)+w_T(\tau))}\right)=\sum_{\sigma\in S}\left(\sum_{\tau\in T}x^{w_s(\sigma)}x^{w_T(\tau)}\right)=\sum_{\sigma\in S}\left(x^{w_S(\sigma)}\sum_{\tau\in T}x^{w_T(\tau)}\right)=\left(\sum_{\tau\in T}x^{w_T(\tau)}\right)\left(\sum_{\sigma\in S}x^{w_S(\sigma}\right)=\Phi_T^{w_T}(x)\cdot\Phi_S^{w_S}(x)$ \\ 
+The product lemma tells us that the generating series for compositions with $k$ parts is $(\frac{x}{1-x})^k$. \\ 
+Example: What is $(\frac{x}{1-x})^3$? the square brackets are asking for the coefficients of $x^n$ $[x^n]\left(\frac{x}{1-x}\right)^3=1+2+\ldots+(n-2)={n-1\choose 2}$. So then $\left(\frac{x}{1-x}\right)^3=\sum_{n\geq3}{n-1\choose2}x^n$. Note that $\left(\frac{x}{1-x}\right)^k=\sum_{n\geq k}a_nx^n$. 
+
+\section*{Lecture 7}
+Exercise: The number of compositions of $n$ with $k$ parts is ${n-1\choose k-1}$, with $n\geq k\geq 1$. \\ 
+Solution: We find the bijection from the compositions of $n$ with $k$ parts and the set of $(k-1)$-subsets of an $(n-1)$-set. Say we have a composition with $k$ parts. Then we have $x_1+x_2+\ldots+x_k=n$. Note that the $k$'th entry is determined by the other $(k-1)$ entries, as $x_k=n-(x_1+x_2+\ldots+x_{k-1})$. In this way, $k\geq2$. Now observe $(x_1,x_1+x_2,x_1+x_2+x_3,\ldots,x_1+\ldots+x_{k-1})$. Note that this sequence of partial sums is in order, as all the $x$'s are positive, but all of them are less than $n$. These are $(k-1)$ different numbers in $\{1,2,\ldots,n-1\}$ (up to $(n-1)$ because $x_k>0$).
+Define $f((x_1,\ldots,x_k))=\{x_1,x_1+x_2,\ldots,x_1+x_2+\ldots+x_{k-1}\}$. So $f$ is a function from the compositions of $n$ having $k$ parts to $(k-1)$ subsets of $\{1,2,\ldots,n-1\}$. To show it is a bijection, we will find the inverse. 
+$g$: Let $\{a_1,a_2,\ldots,a_k\}$ be a $(k-1)$ subset of $\{1,\ldots,n-1\}$. We choose the labeling so that $a_1<a_2<a_3<\ldots<a_{k-1}$. Set $x_1=a_1,x_2=a_2-a_1=x_3=a_3-a_2,\ldots,x_k=a_{k-1}-a_{k-2},x_k=n-a_{k-1}$. Then $x_1+x_2+x_3+\ldots+x_k=n$. 
+Now we need to prove that $g(f((x_1,\ldots,x_k)))=g(\{x_1,x_1+x_2,\ldots,x_1+\ldots+x_{k-1}\})=(x_1,x_2,x_3,\ldots,x_{k-1},n-(x_1+\ldots+x_{k-1})=x_k)$ and $f(g(\{a_1,a_2,\ldots,a_{k-1}\}))=f((a_1,a_2-a_1,,\ldots,a_{k-1}-a_{k-2},n-a_{k-1}))=\{a_1,a_1+(a_2-a_1),a_1+(a_2-a_1)+(a_3-a_2)\}=\{a_1,a_2,a_3,\ldots,a_{k-1}\}$. \\ 
+Now we know $\Phi_{\text{compositions with k parts}}(x)=\sum_{n\geq0}{n-1\choose k-1}x^n$, for $(k\geq1)$. Note, there is one composition with $k=0$, and it is the only composition of $0$. What we saw from the product lemma: $\Phi_{\text{compositions with k parts}}(x)=\left(\frac{x}{1-x}\right)^k$. Therefore, $\Phi_{\text{composition with k parts}}(x)=\sum_{n\geq 0}{n-1\choose k-1}x^n=\left(\frac{x}{1-x}\right)^k$. Note that from this, we can see $x^k\left(\frac{1}{1-x}\right)^k=\sum_{n=k}^\infty{n-1\choose k-1}x^n=x^k\sum_{n=0}^\infty{k-1+n\choose k-1}x^n$, so IMPORTANT$$\left(\frac{1}{1-x}\right)^k=\sum_{n=0}^\infty{n+k-1\choose k-1}x^n$$
+
+\section*{Lecture 8}
+\paragraph{Compositions of n with arbitrarily many parts}
+$n=5:(5);(1,4),(2,3),(3,2),(4,1);(1,1,3),(1,2,2),(1,3,1),(2,1,2),(2,2,1),(3,1,1);(1,1,1,2),(1,1,2,1),(1,2,1,1),(2,1,1,1);(1,1,1,1,1)$. We know that the number of compositions of $n$ with $k$ parts is $[x^n]\left(\frac{x}{1-x}\right)^k$. Generating series for all compositions is, by the sum lemma, $\left(\frac{x}{1-x}\right)^0+\left(\frac{x}{1-x}\right)^1+\ldots+\left(\frac{x}{1-x}\right)^k+\ldots=\frac{1}{1-\left(\frac{x}{1-x}\right)}$ by geometric series. Then it is $\frac{1-x}{1-2x}$ by algebra. Let $S$ be a set with a weight function $w$, giving the generating series $\Phi_S^w(x)$. If $w$ on $S\times S\times\ldots S$ $k$ times ($S^k$) is defined by $w((\sigma_1,\ldots,\sigma_k))=w(\sigma_1)+\ldots+w(\sigma_k)$ then the product lemma implies $\Phi_{S^k}(x)=\left(\Phi_S^w(x)\right)^k$. Let $A=\cup_{k=0}S^k$. Then the generating series for $A$ is $\sum_{k\geq0}\Phi_{S^k}(x)=\sum_{k\geq0}\left(\Phi_S^w(x)\right)^k=\frac{1}{1-\Phi_S^w(x)}$. If $P$ and $Q$ are general power series, when is $P(Q(x))$ also a power series? In other words, can we "compute" the coefficients of $x^n$? Note that the composition $P(x)=\sum_{k\geq0}x^k$ and $Q(x)=\sum_{l\geq0}x^l$ is not a power series, as the coefficients of $x^n$ are not finite. 
+\paragraph{Compositions of Power Series}
+Let $P(x)=\sum_{k\geq0}p_kx^k$ and $Q(x)=\sum_{j\geq0}q_jx^j$. Let's try to compute $P(Q(x))=\sum_{k\geq0}p_k\left(\sum_{j\geq0}q_jx^j\right)^k$ Let's focus on the coefficient of $x^0$. It is $(p_0+p_1q_0+p_2q_0^2+p_3q_0^3+\ldots)$. When is this finite? For us, $p_i$ and $q_j$ are typically integers (as we are using them to count things). So in this context, if $\sum_{n\geq0}p_nq_0^n$ converges, then, from some point on, all $p_nq_0^n=0$. Therefore, either $[x^0]Q(x)=0$, or $P(x)=p_0+p_1x+\ldots+p_nx^n+\ldots$, or $P(x)$ is a polynomial. 
+\paragraph{Theorem} 
+If $P(x)$ and $Q(x)$ are power series with integer coefficients, then $P(Q(x))$ iff either $P(x)$ is a polynomial, or $[x^0]Q(x)=0$. \\ 
+PROOF: The paragraph above proves the $\Rightarrow$ direction. For $\Leftarrow$, suppose first that $P(x)$ is a polynomial. Each of $Q(x),Q^2(x),\ldots,Q^n(x)$ is a power series; each is a product of power series. Now $P(Q(x))=p_0+p_1(Q(x))+p_2(Q(x))^2+p_n(Q(x))^n$ is a finite sum of power series; this is a power series. Now suppose that $[x^0]Q(x)=0$. So $Q(x)=q_1x+q_2x^2+\ldots=x(q_1+q_2x+\ldots)=x\bar{Q}(x)$. Thus $(Q(x))^n=x^n(\bar{Q}(x))^n$ has 0 coefficient of $x^0,\ldots,x^{n-1}$. Therefore, $[x^n]P(Q(x))=\sum_{k=0}^n[x^n]p_k(Q(x))^k$. This is again a finite sum of coefficients of power series. 
+
+\section*{Lecture 9}
+\paragraph{Binary Strings}
+A binary string of length $n$ is a sequence $a_1a_2\ldots a_n$ such that each $a_i$ is $0$ or $1$. 
+Kleene star operator. 
+If $A$ and $B$  are sets of binary strings, then $A\times B=\{(a,b)|a\in A,b\in B\}\leftrightarrow\{ab|a\in A, b\in B\}=AB$\\ 
+EXAMPLES: \\ 
+The generating series for binary strings are counting the amount of strings of length $n$ in the set. ($a_nx^n$, $a_n$ is counting how many strings are of length $n$ in the set)
+$\Phi_{\{0\}^*}(x)=1+x+x^2+\ldots=\frac{1}{1-x}$ 
+
+\section*{Lecture 14}
+\paragraph{Graph Theory}
+A \textbf{graph}, $G$ is an ordered pair $G=(G(V),G(E))$ of finite sets $V$ and $E$ such that $E$ (edges) is a set of subsets of $V$ (vertices) of size 2. For example, $(\{1,2,3,4,5,6\},\{1,2\},\{1,3\},\{2,3\},\{2,4\},\{3,4\},\{3,5\},\{4,5\},\{4,6\},\{5,6\},\{5,1\},\{6,1\},\{6,2\})$ is a graph. The \textbf{degree} of a vertex $v$ is the number of edges containing $v$; it is denotede $\text{deg}(v)$. If $\{u,v\}$ is an edge, then $u$ and $v$ are \textbf{incident} with $\{u,v\}$, and $u,v$ are called \textbf{neighbours/adjacent}, and the set of neighbours of $u$ is denoted $N(u)$. 
+
+\paragraph{Graph Equality}
+The graph $(V,E)$ and $(W,F)$ are ISOMORPHIC if there is a bijection $\Phi:V\rightarrow W$ such that, for every distinct $u,v\in V$, $\{u,v\}\in E\Leftrightarrow \{\Phi(u),\Phi(v)\}\in F$. To show that two graphs are not equal, find a structure in one that is not in the other (apply some number of neighbour functions applied to a vertex, for example one graph's neighbours might be neighbours, but the other graph's neighbours aren't neighbours). 
+
+\paragraph{Common Graph Conventions}
+Empty graph: $(V,\phi)$; as many vertices as you wish, but no edges. \\ 
+Complete graph ($K_V$): $(V,E)$, where $E$ is all the two element subsets of $V$. Denoted as $K_V$, where $V$ is the number of vertices. Note that there are ${n\choose 2}$ edges.\\ 
+Path graph ($P_n$): $(V,p_n)$, where $p_n=(\{0,\ldots,n\},\{\{i-1,i\}|i=1,\ldots,n\})$. The resulting graph is a straight line, or a path.\\ 
+Cyclic graph ($C_n$): $(V,c_n)$, where $c_n=(\{0,\ldots,n-1\},\{\{i-1,i\}|i=0,\ldots,n-1\quad\text{mod }n\})$ The resulting graph is a circle, hence cyclic. \\ 
+$n$-dimensional cube ($Q_n$): The $n$-dimensional cube has as its vertices all binary strings of length $n$, and two vertices are adjacent precisely when their strings differ in exactly 1 coordinate. 
+
+\section*{Lecture 15}
+\paragraph{Handshake Lemma}
+Let $(V,E)$ be a graph. Then $\sum_{v\in V}\text{deg}(v)=2|E|$ \\ 
+Let $X$ be the set $X=\{(v,e)|v\in V,e\in E, v\in e\}$. Then, since all $e$'s contain all $v$'s, $|X|=\sum_{v\in V}\text{deg}(v)$. Also, for every $e\in E$, since each edge contains 2 vertexes, $|X|=\sum_{e\in E}2=2|E|$. Then, by combinatorial proof, $\sum_{v\in V}\text{deg}(v)=2|E|$. \\ 
+\textbf{COROLLARY}: Every graph has an even number of of vertices with odd degree, since $2|E|$ must be even, and so you must add up an even amount of odd numbers and any amount of even numbers to reach an even number. \\ 
+For $Q_n$, the $n-$dimensional cube, every vertex has degree $n$, and there are $2^n$ vertices, so $2|E|=\sum\text{deg}(v)=n2^n$. Therefore, $|E|=n2^{n-1}$ \\ 
+For $K_n$: there are $n$ vertices, and ${n\choose2}$ edges. Every vertex has degree $n-1$, so $n(n-1)=2{n\choose 2}$ 
+
+\paragraph{Bipartite Graph}
+A graph $(V,E)$ is bipartite if $V$ partitions into two sets, $X,Y$ such that every edge has $1$ vertex in $X$, and the other in $Y$. 
+
+\paragraph{Complete Bipartite Graphs}
+For positive integers $p,q$, the complete bipartite graph $K_{p,q}$ has $|X|=p,|Y|=q$, and all possible edges with one end in $X$ and the other in $Y$. The total amount of edges is $pq$, since the degree of every vertex in $X$ is $q$, and the degree of every vertex in $Y$ is $p$, then the edges from $X$ is $pq$, and the edges from $Y$ is $qp$, then $|E|=\frac{pq+qp}{2}=pq$. \\ 
+\textbf{LEMMA}: If $(V,E)$ is a bipartite graph with bipartition $X,Y$, then $\sum_{v\in X}\text{deg}(v)=|E|=\sum_{v\in Y}\text{deg}(v)$. 
+
+\paragraph{Bipartite and the n-dimensional cube}
+$Q_n$ is clearly bipartite, as take $X$ to be a set of binary strings with an even or odd amount of $1$'s, and $Y$ to be its complement, or an odd or even amount of $1$'s. 
+
+\section*{Lecture 16}
+\paragraph{Subgraphs and Graph Terminology}
+A \textbf{subgraph} of a graph, $G$, is a graph $H$ such that $V(H)\subseteq V(G)$ and $E(H)\subseteq E(G)$. We will often be interested especially with subgraphs that are paths and cycles. Recall that a path is $(\{a_0,\ldots,a_n\},\{\{a_0,a_1\},\ldots,\{a_{n-1},a_{n}\}\})$. \\ 
+A graph $G$ is \textbf{connected} if, for every two distinct vertices $u,v$ of $G$, there is a path in $G$ having $u$ and $v$ as ends. In other words, a graph is connected if every two vertices are connected. If there is a path between $u,v$, we call it a $uv-$path. \\ 
+A \textbf{walk} in a graph $G$ is a sequence of vertices, $(a_0,\ldots,a_k)$ such that, for each $i=1,\ldots,k$, $\{a_{i-1},a_i\}\in E(G)$. In this context, for a walk to be a path, all the $a_i$'s need to be distinct. Therefore, every path is a walk, but not the converse. 
+
+\paragraph{Theorem}
+If a graph $G$ has a $uv-walk$, then $G$ has a $uv-path$. This can be proved in multiple ways.\\ 
+PROOF \#1: By induction on the number of repetitions. A repetition is a vertex occurring more than once in a sequence. If there are no repetitions, then the walk is already a path, and we are done. Otherwise, there is a repeated vertex, say, $w$. Find the first and last occurrences of $w$: $(u,\ldots,w,\ldots,w,\ldots,v)$. Replacing the portion of our walk between the two occurrences of $w$ leaves a walk with no repetition of $w$, $(u,\ldots,w,\ldots,v)$. This walk has fewer repetitions, so by induction, there is a $uv-$path. \\ 
+PROOF \#2: By induction on the length of the $uv-$walk. If the length is 1, then it is a path and we are done. If our $uv-$walk has no repetition, then it is a path. Otherwise, let $w$ be a repeated vertex, so our walk looks like $(u,\ldots,w,\ldots,w,\ldots,v)$. Then we can replace the two occurrences of $w$ with a single $w$, and so the resulting walk will be shorter. Then since we have a shorter $uv-$walk, by induction, we have a $uv-$path. \\ 
+PROOF \#3: Let $W$ be a shortest $uv-$walk. We can do this because the set of $uv-$walks is a set of positive integers, so it is bounded below. Then if this walk has a repetition, then we do the same thing as above and we get a shorter walk. But, since we defined $W$ to be the shortest $uv-$walk, this can't be true, so $W$ is a path. 
+
+\section*{Lecture 17}
+\paragraph{Lemma}
+If every vertex in a graph $G$ has degree at least 2, then $G$ has a cycle. This is because if you walk through the graph, every time you reach a vertex, there's at least one more vertex to "walk out" on. \\
+PROOF: Let $v_0$ be any starting vertex. We iteratively build a walk as follows: if we have $v_0,\ldots,v_i$ distinct, we let $v_1,v_{i+1}$ be an edge different from $v_{i-1},v_i$, and now get $v_0,v_1,\ldots,v_i,v_{i+1}$. If $v_{i+1}$ is not one of $v_0,\ldots,v_i$, we continue. If $v_{i+1}=v_j$, with $j\in[0,i]$, then we stop and we notice that $v_j,\ldots,v_i,v_{i+1}$ is a cycle. This argument actually proves the following: If $G$ has at most one vertex with degree 1 and all others have degree $\geq2$, then $G$ has a cycle, as we can use the above proof and start with $v_0$ being the vertex with degree 1. 
+
+\paragraph{Components}
+A component of a graph $G$ is a connected subgraph $H$ of $G$ such that if $H\varsubsetneq K\subseteq G$, then $K$ is not connected. In other words, it is a maximal connected subgraph of $G$. 
+
+\paragraph{Cycles and Walks in Bipartite Graphs}
+Every cycle in a bipartite graph has to have an even length. In fact, if $G$ is a bipartite graph, with bipartition $(X,Y)$, and $W$ is a walk with origin in $X$, then \begin{itemize}
+    \item $W$ has odd length $\Leftrightarrow$ its terminus is in $Y$ 
+    \item $W$ has even length $\Leftrightarrow$ its terminus is in $X$
+\end{itemize}
+The converse is true. If a graph has cycles of only even length, then it is bipartite. A consequence of this is that if $G$ has no cycles, then it is bipartite. \\ 
+If $H$ is a subgraph of a bipartite graph, then $H$ is bipartite. As a consequence, if $G$ is bipartite, then every component of $G$ is bipartite. The converse is true, if every component of $G$ is bipartite, then $G$ is bipartite. 
+
+\section*{Lecture 18}
+\paragraph{More stuff}
+A connected graph with no cycles is a tree. Notice if you remove an edge from a tree you get two components that are trees. \\ 
+Let $G$ be a connected graph and let $e$ be an edge of $G$. Then the graph $G-e$ obtained by deleting $e$ has at most 2 components. To see this, let $u,v$ be vertices of $G$ incident with $e$. For every vertex $w$ of $G$, let $P_w$ be a $wu$-path in $G$. Let $U$ be the set $\{w|P_w\text{ does not contain }v\}$, and $V=\{w|P_w\text{ does contain }v\}$. Since $G$ is connected, $V(G)=U\cup V$. Any two vertices of $U$ are in the same component of $G-e$ with  u; any two vertices in $V$ are in the same component of $G-e$ with $v$. This shows that $G-e$ has at most two components. There are two components if and only if $u$ and $v$ are in different components of $G-e$. If $G$ is a connected graph, a \textbf{bridge} of $G$ is an edge $e$ of $G$ such that $G-e$ is not connected.  
+
+\paragraph{Theorem}
+An edge $e$ of a connected graph is not a bridge of $G$ $\Leftrightarrow$ there is a cycle in $G$ containing $e$. \\ 
+PROOF: Let $u,v$ be the ends of $e$ 
+$\Leftarrow$: Let $C$ be a cycle in $G$ containing $e$. Then $C-e$ is a $uv-$path in $G-e$, showing $u$ and $v$ are in the same component of $G-e$. Our above considerations show $G-e$ is connected. \\ 
+$\Rightarrow$: If $e$ is not a bridge, then $G-e$ is connected, in particular, there is a $uv-$path $P$ in $G-e$ such that $P+e$ is a cycle in $G$. \\ 
+COROLLARY: Every edge of a tree is a bridge. The only tree with no bridge is the tree with one vertex. 
+
+\paragraph{Theorem}
+Let $T$ be a tree with $n\geq1$ vertices. Then $|E(T)|=n-1$. By induction with base case $n=1$, then there are no edges, and $n-1=0$, so the statement is true for the base case. For the induction step, $n\geq2$, and $T$ has at least $1$ edge $e$. Because $e$ is a bridge, $T-e$ has two components $T_1,T_2$. Both are trees (they are connected and have no cycles). We know $|V(T_1)|+|V(T_2)|=|V(T)|$, so $|V(T_1)|<|V(T)|$ and $|V(T_2)|<|V(T)|$; and $|E(T_1)|+|E(T_2)|=|E(T)|-1$. Both $T_1$ and $T_2$ are smaller than $T$, so by induction $|E(T_1)|=|V(T_1)|-1$, and $|E(T_2)|=|V(T_2)|-1$. Adding these two equations we get \begin{align*}|E(T_1)|+|E(T_2)|&=(|V(T_1)|-1)+(|V(T_2)|-1) \\\Rightarrow |E(T)|-1&=|V(T)|-2\\\Rightarrow |E(T)|&=|V(T)|-1\end{align*}, as required
+
+\section*{Lecture 19}
+\paragraph{Lemma}
+Let $u,v$ be vertices in a graph $G$ such that there are two different $u,v-$paths in $G$. Then $G$ has a cycle. proof in textbook
+
+\paragraph{More on Trees}
+A graph with no cycles is a \textbf{forest}. Each component of a forest is a tree. We proved above that for a tree $T$, $|E(T)|=|V(T)|-1$. For a forest $F$, $|E(F)|=|V(F)|-\text{number of components of }F$. $\sum_{v\in V(T)}\text{deg}(v)=2(|V(T)|-1)$. From this we can see that every tree has at least one vertex $v$ with $\text{deg}(v)<2$. Note that the only tree with a vertex of degree 0 is the tree with 1 vertex, so if $T$ is a tree and $|V(T)|\geq2$, then $T$ has at least two vertices of degree $1$. We can prove this because since trees have no cycles, we can pick the longest path in the tree, and the two ends will have degree 1. \\ 
+Another proof of above theorem: Suppose $G$ is a graph in which every vertex has degree $\geq2$. Then $G$ has a cycle. Pick a longest path in $G$, then we know (from a6q6) an end vertex either has degree 1 (which can't be true from our premise of all the degrees of the vertices), or it's incident with another edge (which can't be true as we have the longest path), or there's a cycle. 
+
+\section*{Lecture 20}
+Note that every tree with $\geq2$ vertices has at least two vertices of degree 1. Every edge of a tree is a bridge. Let $T$ be a tree and $u$ a vertex of $T$ with degree 1 (vertices with degree 1 in a tree are called leaves). Let $e$ be the edge of $T$ incident with $u$. What is $T-e$? It leaves us with a smaller tree, $T-u$, and the isolated vertex $u$. 
+
+\paragraph{Theorem: Every tree is bipartite}
+PROOF: we proceed by induction on the number $k$ of vertices. If $k=1$, the tree has one vertex, and it is clearly bipartite. Suppose the statement is true for trees with $k$ vertices. Let $T$ be a tree with $k+1$ vertices. Let $u$ be a vertex of $T$ with degree $1$ in $T$. Let $T-u$ denote the tree obtained by deleting $u$ and its incident edge. Then $T-u$ has $k$ vertices. By the induction assumption, $T-u$ has a partition of its vertex set into $X$ and $Y$ such that every edge of $T-u$ has one end in $X$, and the other in $Y$. Let $v$ be the other end of the edge of $T$ that is incident with $u$. Then $v$ is a vertex of $T-u$, so $v\in X$ or $v\in Y$. Add $u$ to the one of $X$ and $Y$ that do not contain $v$. This yields a bipartition of $T$. 
+
+\paragraph{Another tree theorem}
+Let $G$ be a graph. If any two of the following three statements hold, then $T$ is a tree: 
+\begin{enumerate}
+    \item $G$ is connected 
+    \item $|E(G)|=|V(G)|-1$ 
+    \item $G$ has no cycles
+\end{enumerate}
+Note that $1$ and $3$ make the definition of a tree, so if those are true we are done.  \\ 
+$(2) \& (3)\Rightarrow (1)$, and so the above is true, and we are done. (proof) Suppose $G$ has components $C_1,\ldots,C_r$. Then each $C_i$ is a connected graph with no cycles, and so is a tree. Therefore, $|E(C_i)|=|V(C_i)|-1$. Since $|E(G)|=\sum_{i=1}^r|E(C_i)|=\sum_{i=1}^r(|V(C_i)|-1)=\sum_{i=1}^r(|V(C_i)|)-r=|V(G)|-r$. Since $(2)$ says $|E(G)|=|V(G)|-1$, we see $r$ is $1$, and so $G$ is connected, which is $(1)$. \\ 
+$(1)\&(2)$. Claim: $G$ is connected $\Rightarrow$ $G$ contains a subgraph $T$ that is a tree and $|V(T)|=|V(G)|$. Proof: We induct on the number $n$ of cycles in $G$. If $n=0$, then $G$ is a tree. If $n>0$, then let $C$ be a cycle in $G$ and let $e\in E(C)$. Then $G-e$ is connected ($e$ is not a bridge of $G$). Since every cycle of $G-e$ is a cycle of $G$; $C$ is a cycle of $G$ and not in $G-e$. Therefore $G-e$ has fewer cycles than $G$ has. The induction yields a subgraph $T$ of $G-e$ that is a tree with $V(T)=V(G-e)$. Then $T$ is a subgraph of $G$ that is a tree with $V(T)=V(G)$. QED. Using this claim, $G$ has a subgraph $T$ that is a tree and $V(T)=V(G)$. Thus $E(T)=|V(T)|-1=|V(G)|-1=|E(G)$, therefore $E(T)=E(G)$, so $G=T$. 
+
+\section*{Lecture 21}
+Last time we proved that a connected graph $G$ contains a subgraph $T$ such that $T$ is a tree and $V(T)=V(G)$ (this means its a spanning tree of $G$), and that every tree is bipartite. 
+\paragraph{Theorem}
+If $G$ is a connected graph such that every cycle in $G$ has even length, then $G$ is bipartite. \\ 
+PROOF: Let $T$ be a spanning tree of $G$, and let $(X,Y)$ be a bipartition of $T$. Either for every edge $e$ in $E(G)\backslash E(T)$, $e$ has one end in $X$ one end in $Y$, OR there is an edge $e$ in $E(G)\backslash E(T)$ such that both ends of $e$ are in the same one of $X$ and $Y$. In the first case, $(X,Y)$ is a bipartition of $G$. In the second case, the path $P$ in $T$ joining the ends of $e$ has even length. Therefore, the cycle $P+e$ has odd length. By our theorem, $G$ has no odd cycles, so this cannot occur, and $G$ is bipartite. 
+\paragraph{Asides}
+From assignment 6, we say that if $G$ is a bipartite graph with $n$ vertices, then $|E(G)|\leq\left(\frac{n}{2}\right)^2$. Harder version: If $G$ is a graph with no cycle of length 3, then $|E(G)|\leq \left(\frac{n}{2}\right)^2$. Turan's Theorem (not in scope of this course) helps to prove this. This fits under a branch of graph theory: extremal graph theory. 
+
+\paragraph{Colouring Graphs/Planar Graphs}
+Colour the vertices so that adjacent vertices get different colours, trying to use as few colours as possible. FACTS: \begin{itemize}
+    \item A graph can only be coloured with one colour if and only if it is the empty graph.
+    \item A graph can be coloured with two colours if and only if it is bipartite. 
+    \item Odd cycles need 3 colours
+    \item $K_n$ needs $n$ colours 
+\end{itemize} 
+
+\paragraph{Theorem}
+Let $G$ be a graph and let $\Delta(G)$ denote the largest degree of any vertex in $G$. Then $G$ can be coloured with $\Delta(G)+1$ colours. \\ 
+PROOF: we proceed by induction on $|V(G)|$. If $|V(G)|=1$, then $\Delta(G)=0$; $G$ can indeed by coloured with one colour. If $|V(G)|>1$, let $v$ be any vertex of $G$ and let $H=G-v$. Then at max, $\Delta(H)\leq\Delta(G)$, and by induction $H$ can be coloured by $\Delta(H)+1$ colours. The vertex $v$ has $\leq\Delta(G)$ neighbours in $H$, so at most $\Delta(G)$ colours occur on those neighbours. We have $\Delta(G)+1$ colours available, so we have at least one colour available to colour $v$ with, such that the colour is different from all its neighbours. 
+
+\section*{Lecture 22}
+This lecture should have been between bipartite and colouring, the prof forgot to do it\\ 
+Label a weight to each edge, and then how do we find a spanning tree that minimizes the sum of the numbers on its edges? (called a minimum weight spanning tree). We found two different methods, one that removed all of the largest weights, and one that avoided cycles, taking the edges with the lowest weights, got the same sum in the end. 
+\paragraph{Prim's algorithm}
+An algorithm that builds up with trees always. We start with a cheapest edge, and then we take one of the cheapest edges that connect our tree with one of the remaining vertices. 
+\paragraph{Kruskal's algorithm}
+An algorithm that builds up with never introducing a cycle. We start with the empty graph (components of the graph), and we pick the cheapest edge having ends in different components of our current graph. 
+
+\paragraph{Proof that Kruskal's algorithm gives a minimum weight spanning tree}
+Let $T$ be a tree constructed by Kruskal's algorithm, having picked the edges $e_1,e_2,\ldots,e_k$ in this order. Let $S$ be a least weight spanning tree. CLAIM: there is a minimum weight spanning tree $S_1$ containing $e_1$. We assume $e_1$ is not in $S$. Let $u,v$ be the vertices connected by $e_1$ in $T$. Then $u,v$ has a path, $P$, in $S$ that is not $e_1$. If we partition $T$ into the components, $T_1,T_2$, that is connected by $e$, we can see that if we overlay the path $P$ from $S$ onto $T$, there must be at least one edge, $f$, in $P$ that connects $T_1$ to $T_2$. But by Kruskal's algorithm, this edge's weight is greater than or equal to $e_1$. Then, therefore $S+e_1-f$ must be a spanning tree with less weight than $S$, a contradiction. Then $S$ is a spanning tree that contains $e_1$. 
+
+\section*{Lecture 23}
+Proof of Kruskal's algorithm (i have paper)
+
+\section*{Lecture 24}
+From lecture 21, we showed that for any graph $G$, there is a colouring of the vertices of $G$ using at most 1+max degree of $G$ colours so that any two adjacent vertices get different colours. 
+\paragraph{Four Colour Theorem}
+Every planar graph can be properly coloured with 4 colours. We will prove later the 5 colour theorem. But what is a planar graph?
+\paragraph{Planar Graph}
+A graph that can be drawn in a plane such that no edges cross. 3-dimensional cube is planar, cycles, trees, empty graphs, $K_{2,n}$. $K_{3,3}$ is a famous non planar graph (3 houses and 3 utilities problem), 4-d cube is not planar. 
+\paragraph{Faces}
+A face is an area on the plane that is separated by edges of a planar graph. They are determined by the graph, but they exist in the plane, not the graph. The complete 4 graph has 4 faces, the 3-d cube has 6 faces, cycles have 2 faces, $K_{2,n}$ has $n$ faces, and trees have 1 face. 
+\paragraph{Euler's Formula} 
+$|V(G)|-|E(G)|+|\text{Faces}(G)|=1+C$, where $C$ is the number of components in the graph. Note for a connected graph, the right side will always be $2$ (which will be the one we use the most). A formal definition is below.
+\paragraph{Euler's Formula for Connected Graphs}
+If $G$ is a connected graph embedded in the plane, then $|V(G)|-|E(G)|+|F(G)|=2$. If $G$ is a disconnected graph embedded in the plane, then $|V(G)|-|E(G)|+|F(G)|=1+C$. A proof will come in lecture 25, where we induct on the number of edges in the graph past being a tree (as the equation is true for all trees). 
+\paragraph{Boundary Walk}
+A boundary walk is a walk along the periphery of a face, recording which vertices you pass and stopping at the vertex you started at. The length of the boundary walk is the degree of the face. 
+
+\section*{Lecture 25}
+\paragraph{Face Shake Lemma}
+Let $\mathfrak{F}$ be the set of faces of a planar embedding of a graph $G$. For each face $F\in\mathfrak{F}$, $d^*(F)$ is its degree. Then $\sum_{F\in\mathfrak{f}}d^*(F)=2|E(G)|$. 
+
+\paragraph{Jordan Curve Theorem}
+Every embedding of a cycle in the plane partitions the plane into the inside face, the outside face, and the cycle itself. 
+
+\paragraph{Proof of Euler's Formula}
+Let $G$ be a connected graph embedded in the plane with set $\mathfrak{F}$ of faces. Then $|V(G)|-|E(G)|+|\mathfrak{F}|=2$. \\ 
+PROOF: We let $T$ be a spanning tree in $G$. Then the embedding of $G$ yields an embedding of $T:$ erase the edges of $G$ in $T$. Since $T$ has only one face, and $|V(T)|-|E(T)=1$, we have $|V(T)|-|E(T)|+1=2$, as required for the base case of our induction. For the induction step, let $e$ be an edge of $G$ not in $T$. Since $T$ is a spanning tree of $G$, and $e$ is not in $T$, $G-e$ is connected. By the induction, $|V(G-e)|-|E(G-e)|+|\mathfrak{F}(G-e)|=2$. $|V(G-e)|=|V(G)|$; $|E(G-e)|=|E(G)|-1$; $|\mathfrak{F}(G-e)|=|\mathfrak{F}(G)|-1$. The vertices and edges are obvious, but the faces equation is not. The edge $e$, together with the path $P$ in $T$ joining the ends of $e$, makes a cycle $P+e$. This cycle separates the face $F_1$ of $G$ inside that is incident with $e$ from the face $F_2$ of $G$ outside that is incident with $e$ (Jordan curve theorem). Since $F_1\neq F_2$ for $G$, but they merge into one face for $G-e$, $|\mathfrak{F}(G-e)|=|\mathfrak{F}(G)|-1$. Therefore $2=|V(G-e)|-|E(G-e)|+|\mathfrak{F}(G-e)|=|V(G)|-(|E(G)|-1)+(|\mathfrak{F}(G)|-1)=|V(G)|-|E(G)|+|\mathfrak{F}(G)|$
+
+\paragraph{Platonic Solids Theorem}
+Let $G$ be a connected $d-$regular graph embedded in the plane so that every face has degree $d^*$. If $d\geq3$ and $d^*\geq3$, then $(d,d^*)$ is one of $(3,3),(3,4),(3,5),(4,3),(5,3)$. \\ 
+PROOF: Handshake Lemma: $d|V(G)|=2|E(G)|$, Faceshake Lemma: $d^*|\mathfrak{F}(G)|=2|E(G)|$, Euler's Formula: $|V(G)|-|E(G)|+|\mathfrak{F}(G)|=2$. Putting handshake lemma and faceshake lemma into Euler's Formula, we get $\frac{2|E(G)|}{d}-|E(G)|+\frac{2|E(G)|}{d^*}=2$. Multiplying both sides by $-\frac{dd^*}{|E(G)|}$, we get $dd^*-2d^*-2d=-\frac{2dd^*}{|E(G)|}$. Factoring the LHS and +4 to get $(d-2)(d^*-2)=4-\frac{2dd^*}{|E(G)|}$. Therefore, $(d-2,d^*-2)$ is one of $(1,1),(1,2),(1,3),(2,1),(3,1)$. Hence $(d,d^*)$ is one of $(3,3),(4,3),(3,5),(4,3),(5,3)$. 
+
+\section*{Lecture 26}
+GET FROM SARA
+
+\section*{Lecture 27}
+Recall: \begin{enumerate}
+    \item If $G$ is a planar graph with $\geq3$ vertices, then $|E(G)|\leq 3|V(G)|-6$ 
+    \item $K_5$ is not planar 
+\end{enumerate}
+PROOF of (1): \\ 
+For each face $f$, $\text{deg}(f)\geq3$ (because there are $\geq3$ vertices), so $2|E(G)|\geq 3|F(G)|$. $|V(G)|-|E(G)|+|F(G)|=2\Rightarrow |V(G)|-|E(G)|+\frac{2}{3}|E(G)|\geq2\Rightarrow |E(G)|\leq 3|V(G)|-6$.  \\ 
+We will now show something similar is true for bipartite connected planar graphs aswell. \\ 
+In a bipartite graph, every closed walk has EVEN length. Thus, in a bipartite connected planar graph, ever face as even degree. If the bipartite connected planar graph has at least 3 vertices, every face degree is an even number at least 3. Then in a bipartite connected planar graph with at least 3 vertices, $\text{deg}(f)\geq4$. Then using the same argument as above replacing the $3$'s with a $4$, we get $|E(G)|\leq 2|V(G)|-4$.\\ 
+COROLLARY: $K_{3,3}$ is not planar (has 8 edges 6 vertices, $8\nleq 2(6)-4$).  
+\paragraph{Subdivision}
+Let $G$ be a graph and let $e$ be an edge of $G$. Then the subdivision of $G$ in $e$ is the graph obtained from $(G-e)$ by adding a new vertex with degree 2 joined to the ends of $e$. A graph $H$ is a subdivision of a graph $G$ if there is a sequence $G=G_0,G_1,\ldots,G_k=H$ such that for $i=1,\ldots,k$, $G_i$ is the subdivision of $G_{i-1}$ in some edge of $G_{i-1}$. Typically to prove something involving subdivisions, do induction on the number of subdivision steps. 
+
+\paragraph{Kuratowski's Theorem} 
+A graph $G$ is NOT planar if and only if it contains a subdivision of either $K_5$ or $K_{3,3}$. \\ 
+PROOF of the left direction: \\ 
+Observe: 
+\begin{enumerate}
+    \item Suppose $H$ is a subgraph of a planar graph $G$. Then $H$ is clearly planar. 
+    \item The contrapositive of $(1)$, if $H$ is a non-planar subgraph of a graph $G$, then $G$ is non-planar.
+\end{enumerate}
+
+\section*{Lecture 28}
+\paragraph{Colouring}
+A colouring of a graph with colour set $C$ is a function $f:V(G)\rightarrow C$ such that, if $uv\in E(G)$, $f(u)\neq f(v)$. The chromatic number of a graph $G$ is denoted \raisebox{2pt}{$\chi$}$(G)$ and is the size of the smallest set $C$ such that there is a colouring of $G$ with colour set $C$. $1\leq\chi(G)\leq|V(G)|$. Note that $\chi(K_n)=|V(K_n)|$ is the upper limit of $\chi(G)$. For an integer $k$, $G$ has a $k$ colouring if $k\geq \chi(G)$. 
+\paragraph{Six Colour Theorem}
+Every planar graph has a 6-colouring. \\ 
+PROOF: Note every planar graph has a vertex with degree $\leq5$. If $G$ has $n$ vertices, then we set $V_n$ to be any vertex of $G$ that has degree $\leq5$ in $G$. Now move to $G-v_n$. This is a planar graph, so it has a vertex of $v_{n-1}$ of degree $\leq5$ in $G-v_n$ (and so degree $\leq6$ in $G$). In general, $G-\{v_n,v_{n-1},\ldots,v_{i+1}\}$ is a planar graph, so it has a vertex $v_i$ of degree $\leq5$ in $G-\{v_n,v_{n-1},\ldots,v_{i+1}\}$ (and so degree $\leq5+(n-i)$ in $G$). In this way, we have ordered the vertices as $v_1,v_2,\ldots,v_{n-1},v_n$. Colour in this order, using $G$ colours: when we colour $v_i$, the degree of $v_i$ in $G-\{v_{i+1},\ldots,v_n\}$ is $\leq5$, so $v_i$ has $\leq5$ neighbours amount the coloured $v_1,\ldots,v_i$. Therefore, there is at least one colour of the 6 available that is used to colour any neighbours of $v_{i+1}$ in $v_1,\ldots,v_i$. This colour can be used to colour $v_{i+1}$.\\ 
+In general when doing this kind of proof, choose the vertex with least neighbours and proceed from there.
+\paragraph{Revised proof of 6-colour theorem}
+We proceed by induction on $|V(G)|$. If $|V(G)|\leq6$, then $G$ has a 6-colouring. Suppose the result holds for all planar graphs with $k$ vertices. Let $G$ be a planar graph with $k+1$ vertices. Then $G$ has a vertex $v$ with degree $\leq5$ in $G$. Let $G'=G-v$. Then $G'$ is a planar graph on $k$ vertices and so has a $6-$colouring $f:V(G-v)\rightarrow C$, $|C|=6$. Since $\text{deg}(v)\leq5$, the number of colours appearing in the colouring $f$ on the neighbours of $v$ is $\leq5$. Thus, there is a colour in $C$ different from these colours on $v$'s neighbours that we use on $v$ to extend $f$ to a 6-colouring of $G$. 
+
+\paragraph{Proof of 5-colour Theorem}
+If $G$ has a vertex $v$ with degree $\leq4$, proceed exactly as the six colour theorem, turning 6's into 5's. Otherwise, there is a vertex with degree 5. on wikipedia
+
+\section*{Lecture 29}
+\paragraph{Planar Duals}
+Every planar graph has a dual, which is also planar. The dual is obtained by drawing a vertex in every face of the original graph, and an edge through every edge, connecting every vertex from the adjacent faces. 
+\paragraph{Theorem}
+Let $G$ be a connected graph embedded in the plane and let $T$ be a spanning tree of $G$. Let $G^*$ be the dual of $G$. Then $(V(G^*),E(G^*)\backslash E^*(T))$ is a spanning tree of $G^*$. \\ 
+First notice the number of edges in $T$ is $|V(G)|-1$. Then the number of edges not in the spanning tree is $|E(G)|-|V(G)|+1$. The number of vertices in the dual is $|F(G)|$. The number of edges in a spanning tree of $G^*$ is $|F(G)|-1$. By Euler's formula, $|V(G)|-|E(G)|+|F(G)|=2\Rightarrow |F(G)|-1=|E(G)|-|V(G)|+1$, so the number of edges not in $T$ is equal to the number of edges in the spanning tree of $G^*$, so we have the right number of edges. \\ 
+PROOF OF THEOREM: \\ 
+We showed above that the number of edges is the right number for a spanning tree of $G^*$. We show these edges do not include the edges of a cycle in $G^*$. Let $C^*$ be a cycle of $G^*$ using the edges not in $T$. Let $e^*$ be any edge of $C^*$ and let $e$ be the edge of $G$ dual to $e^*$. Let $u$ and $v$ be the vertices of $G$ incident with $e$. Notice that $u,v$ are on different sides of $C^*$. There is a $uv-$path, $P$, in $T$. There is, starting from $u$, a first vertex, $w$, of $P$ on the side of $C^*$ containing $v$. The predecessor of $w$, $x$, in $P$ is on the same side as $u$ in $C^*$. So $xw$ crosses $C^*$, but then either $xw$ is not in $T$, or the edge of $C^*$ it crosses is in $T$. These are both contradictions, so $C^*$ doesn't exist. 
+    
+
+
+\end{document}

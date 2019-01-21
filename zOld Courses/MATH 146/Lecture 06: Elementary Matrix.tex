@@ -1,0 +1,50 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\section*{}
+
+\paragraph{Matrix multiplication cont.}
+$A=m\times n
+\begin{bmatrix}
+a_{11} & \ldots & a_{1n} \\
+ & \vdots \\
+a_{m1} & \ldots & a_{mn}
+\end{bmatrix}, B=n\times p. 
+\begin{bmatrix}
+b_{11} & \ldots & b_{1p} \\
+ & \vdots \\
+b_{n1} & \ldots & a_{np}
+\end{bmatrix}$ 
+$A\cdot B = 
+\begin{bmatrix}c_{ij}
+\end{bmatrix}, c_{ij}=a_{i1}b_{1j}+a_{i2}b_{2}+\ldots+a_{in}b_{nj}$ \\ 
+Facts: If $A$ is $m\times n$, then $I_n\cdot A = A$, and $A\cdot I_n=A$. \\
+$A\cdot 0_n=0_{m,n}$, and $0_n\cdot A = 0_{m,n}$ \\ 
+Very important fact: Matrix multiplication is not commutative in general. There are many examples of $A,B$ such that $A\cdot B\neq B\cdot A$. $A=\begin{bmatrix}
+1\\2
+\end{bmatrix}, B = \begin{bmatrix}-1&3\end{bmatrix}$. $A\cdot B = \begin{bmatrix}-1 & 3 \\ -2 & 6\end{bmatrix}$, where as $B\cdot A = -1 + 6 = 5$ (dot product). 
+
+\paragraph{Theorem: Matrix multiplication is associative}
+If $A,B,C$ are appropriate sized matrices, $(A\cdot B\cdot) C=A\cdot(B\cdot C)$.\\ 
+Proof: Suppose $A$ is $n\times n$, $B$ is $n\times p$, and C is $p\times q$. $A=[a_{ij}],B=[b_{ij}],C=[c_{ij}]$. We check $[A(BC)]_{ij}=[(AB)C]_{ij}$. $[A(BC)]_{ij}=\sum_{k=1}^na_{ik}[BC]_{kj}=\sum_{k=1}^na_{ik}\sum_{l=1}^pb_{kl}c_{lj} = \sum_{k=1}^n\sum_{l=1}^p(a_{ik}b_{kl})c_{lj}=\sum_{l=1}^p(\sum_{k=1}^na_{ik}b_{kl})c_{lj}=\sum_{l=1}^p[AB]_{il}c_{lj}=[(AB)C]_{ij}$
+
+\paragraph{definition}
+Say an $m\times m$ matrix is \underline{elementary} if it is obtained from $I_m$ by applying a single elementary row operation. 
+
+\paragraph{Theorem}
+Let E be an $m\times m$ elementary matrix, let A be $m\times n$, then $E\cdot A$ is the matrix obtained by applying the elementary row operation that defines E to A. \\ 
+Proof: For the second and third types of elementary row operations, the proof is easy and left as an exercise to the reader. \ \ 
+Consider $E=m\times m$, $A=m\times n$, and $E$ is obtained by mutiltiplying row $s$ by $c$, and adding to row $r$, where $r\neq s$. Then $[E]_{ij}=\{\delta_{ij}, \text{if }i\neq r| \delta_{rj}+c\delta_{sj}, i=r\}$. Then $[EA]_{ij}=\sum_{k=1}^n[E]_{ik}[A]_{kj}$. If $i\neq r$, $=\sum_{k=1}^n\delta_{ik}[A]_{kj}=[A]_{ij}$. Otherwise ($i=r$), $=\sum(\delta_{ik}+c\delta_{sj})[A]_{kj}=[A]_{rj}+c[A]_{sj}$ This is exactly what we would obtain by multiplying the s'th row of $A$ by $c$, and adding it to the r'th row. 
+
+\paragraph{Corollary} 
+A and B are row equivalent if and only if there are elementary matrices $E_1,\ldots,E_k$ such that $B=E_k,\ldots,E_1A$. The proof is simply if we take elementary row operations $A=A_o\mapsto A_1\mapsto\ldots\mapsto A_n=B$, where in between each $A$ is an $E_i$, then $A_1=E_1A$ $A_2=E_2E_1A$,$\ldots, B=A_k=E_kE_{k=1}\ldots E_1A$
+
+\end{document}
