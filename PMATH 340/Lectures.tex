@@ -194,7 +194,7 @@ Let $m\geq1$, and $a,b\in\mathbb{Z}$. We say $a\equiv b\mod{m}$ if $m|a-b$. ie. 
     \end{proof}
 \end{enumerate}
 Other properties: 
-\begin{enumerate}
+\begin{itemize}
     \item If $a\equiv a'\mod{m}$ and $b\equiv b'\mod{m}$, then 
     \begin{enumerate}
         \item $a+b\equiv a'+b'\mod{m}$ 
@@ -206,9 +206,18 @@ Other properties:
         $ab=(a'+k_1m)(b'+k_2m)\Rightarrow ab=a'b'+m(a'k_2+b'k_1+k_1k_2m)$, hence $ab\equiv a'b'\mod{m}$ 
         \end{proof}
     \end{enumerate}
-\end{enumerate}
+\end{itemize}
 
+\section*{Lecture 8}
+\paragraph{Proposition}
+Let $a=q_1m+r_1$, and $b=q_2m+r_2$, with $0\leq r_1,r_2<m$. Then $a\equiv b\mod{m}\Leftrightarrow r_1=r_2$. \begin{proof}
+$(\Leftarrow)$: $r_1=r_2$, thus $a-b=(q_1-q_2)m$. Then $m|a-b$, ie. $a\equiv b\mod{m}$ \\ 
+$(\Rightarrow)$: Let $a\equiv b\mod{m}$. Then $m|a-b$, so $a-b=(q_1-q_2)m+(r_1+r_2)\Rightarrow m|r_1-r_2$. But $-m<r_1-r_2<m$, and so the only multiple of $m$ between $-m$ and $m$ is $0$, so $r_1-r_2=0$, and hence they are equal. 
+\end{proof}
+Thus congruence $\mod{m}$ partitions the set of integers into $m$ equivalence classes modulo $m$.  
 
+\paragraph{What about inverses mod m}
+Say $ca\equiv cb\mod{m}$. Can we cancel the $c$ and conclude $a\equiv b\mod{m}$? 
 
 
 \end{document}

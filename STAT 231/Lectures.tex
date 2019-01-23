@@ -200,7 +200,19 @@ Data has two personalities. $y_1,\ldots,y_n$ are numbers, but ALSO outcomes of s
 \paragraph{The Theory of Estimation}
 maximum likelyhood estimation (covered examples this time, the formal definition will be next class)
 
- 
+\section*{Lecture 8}
+\paragraph{The Theory of Estimation}
+We have an unknown population parameter $\theta$ that we are interested in. We have data: $\{y_1,\ldots,y_n\}$, and $Y_i\sim f(y_i;\theta)$, with $i=1,\ldots,n$. Question: Based on your data, what is the most likely value of $\theta$? 
+\paragraph{Definition}
+Let $y=(y_1,\ldots,y_n)$ be a vector of the data set. The likelihood function $L(y;\theta)=P(Y_1=y_1,\ldots,Y_n=y_n)$. What is the probability of observing our sample, as a function of $\theta$? Example: Suppose a coin is tossed 200 times and $Y=\text{number of heads}$. The experiment leads to 110 heads. Assume $\theta=P(\text{head})$, then we have $L(y,\theta)={200\choose 110}\theta^{110}(1-\theta)^{90}$. We choose the value of $\theta$ that maximizes the probability of observing what we observed, or the maximum likelihood estimate, denoted $\hat{\theta}$. Instead of taking the derivative of the function to maximize (cause its hard to), we take the log-likelihood function $l(\theta)=\log L(\theta)$, note that $\log$ is always base $e$. Then $l(\theta)=\ln{200\choose 110}+110\ln\theta+90\ln(1-\theta)$, then $\frac{dl}{d\theta}=0\Rightarrow \frac{110}{\theta}-\frac{90}{1-\theta}=0$, and solving we get $\theta=\frac{110}{200}=0.55$. 
+\paragraph{Example 2}
+Canadian Jeopardy example. Let $\theta=P(\text{Canadian wins})$. Then we have $y=(2,3,1,1,1,2)$, and $L(y,\theta)=P(Y_1=y_1,\ldots,Y_6=y_6)$. Then $L(y,\theta)=\theta(1-\theta)\theta^2(1-\theta)(1-\theta)(1-\theta)(1-\theta)\theta(1-\theta)=\theta^4(1-\theta)^6$. Then $\frac{dl}{d\theta}=0\Rightarrow \frac{4}{\theta}-\frac{6}{1-\theta}=0\Rightarrow \theta=\frac{4}{10}$ 
+\paragraph{Example 3}
+The number of texts you receive in an hour is assumed to have a Poisson distribution. Data points: $(2,3,1,0,0,0,1,2,1,0)$. $\mu=\text{average amount of texts per hour}$. Based on your sample, what is $\hat{\mu}$? (MLE for $\mu$). $L(\mu;y)=\frac{e^{-\mu}\mu^2}{2!}\cdots\frac{e^{-u}\mu^0}{0!}=L(\mu)=\frac{e^{-10\mu}\mu^{10}}{2!3!1!\ldots0!}$. Then setting the horrible denominator to be $k$, we get $l(\mu)=-10\mu+10\ln\mu-\ln k$, then $\frac{dl}{d\mu}=-10+\frac{10}{\mu}=0\Rightarrow \hat{\mu}=1$. 
+\paragraph{General Poisson}
+Let $\{y_1,\ldots,y_n\}$ be our data set, and $Y_i\sim \text{Poisson}(\mu)$. Then the MLE for $\mu$ can be found using $L(\mu,y)=\frac{e^{-\mu}\mu^{y_1}}{y_1!}\cdots\frac{e^{-\mu}\mu^{y_n}}{y_n!}=\frac{e^{-n\mu}\mu^{\sum y_i}}{y_1!\ldots y_n!}$. Then $l(\mu)=-n\mu+\sum y_i\ln\mu-\ln k$, and then solving for $\frac{dl}{d\mu}=0$ we get $\hat{\mu}=\bar{y}$. 
+
+
 
 
 
