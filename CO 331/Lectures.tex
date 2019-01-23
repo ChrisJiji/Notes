@@ -16,6 +16,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem*{definition*}{Definition}
+\newcommand{\Mod}[1]{\ \((\mathrm{mod}\\) #1)}
 
 \begin{document}
 
@@ -257,11 +258,20 @@ Let $F$ be a field of characteristic $p$. Then the \textbf{order} of $F$ is $p^n
 Let $F$ be a field. $F[x]$ denotes the set of all polynomials in $x$ having coefficients in $F$. Addition and multiplication of polynomials are defined as usual, with coefficient arithmetic done in $F$. Remark: $F[x]$ is an infinite commutative ring.
 
 \paragraph{Theorem 11: Division Algorithm}
-For any two polynomials $a(x),b(x)\in F[x]$, with $b(x)\neq0$, there exists unique polynomials 
+For any two polynomials $a(x),b(x)\in F[x]$, with $b(x)\neq0$, there exists unique polynomials $q(x),r(x)\in F[x]$ such that $a(x)=q(x)\cdot b(x)+r(x)$, and $\text{deg}(r(x))<\text{deg}(b(x))$. \\ 
 
 
-
-
+\paragraph{Congruency}
+Let $f(x),g(x),h(x)$ be polynomials in $F[x]$. We say $g(x)$ and $h(x)$  are \textbf{congruent modulo} $f(x)$, denoted $g(x)\equiv h(x)\pmod{f(x)}$, when $f(x)|g(x)-h(x)$. IE. There exists $q(x)\in F[x]$ such that $g(x)-h(x)=f(x)q(x)$. \\ 
+Remarks: 
+\begin{itemize}
+    \item any two polynomials $g$ and $h$ are congruent if and only if they have the same remainder upon division by $f$ 
+    \item congruence modulo $f$ is an equivalence relation 
+    \item the relation partitions $F[x]$ into \textbf{equivalence classes}. The equivalence class containing $g(x)\in F[x]$ is defined to be $[g]=\{h\in F[x]:h\equiv g\pmod{f}\}$ 
+    \item define addition and multiplication of equivalence classes as: $[g]+[h]=[g+h]$ and $[g]\cdot[h]=[g\cdot h]$ 
+    \item the set of all equivalence classes is denoted as $\frac{F[x]}{f(x)}$ 
+    \item $\frac{F[x]}{f(x)}$ is a commutative ring
+\end{itemize}
 
 
 
