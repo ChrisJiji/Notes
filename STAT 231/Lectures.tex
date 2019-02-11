@@ -16,6 +16,8 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem*{definition*}{Definition}
+\usepackage{forest}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 \begin{document}
 
@@ -212,6 +214,190 @@ The number of texts you receive in an hour is assumed to have a Poisson distribu
 \paragraph{General Poisson}
 Let $\{y_1,\ldots,y_n\}$ be our data set, and $Y_i\sim \text{Poisson}(\mu)$. Then the MLE for $\mu$ can be found using $L(\mu,y)=\frac{e^{-\mu}\mu^{y_1}}{y_1!}\cdots\frac{e^{-\mu}\mu^{y_n}}{y_n!}=\frac{e^{-n\mu}\mu^{\sum y_i}}{y_1!\ldots y_n!}$. Then $l(\mu)=-n\mu+\sum y_i\ln\mu-\ln k$, and then solving for $\frac{dl}{d\mu}=0$ we get $\hat{\mu}=\bar{y}$. 
 
+\section*{Lecture 9}
+\paragraph{Set up}
+Say we have some (population) parameter of interest, $\theta(\mu,\pi,\sigma^2,\ldots)$. We collect a sample from the population, $\{y_1,\ldots,y_n\}$, then $Y_i\sim f(y_i;\theta)$ is our model. Based on the model and the data, what is the "most likely" value of $\theta$? The MLE of $\theta=\hat{\theta}(y_1,\ldots,y_n)$\\ 
+\paragraph{Definition}
+$L(\theta;y_1,\ldots,y_n)=P(Y_1=y_1,\ldots,Y_n=y_n)$ If the data is drawn independently, and the distribution is the same, then $L(\theta;y_1,\ldots,y_n)=\Pi_{i=1}^nf(y_i;\theta)$. $\hat{\theta}$ is called the MLE if $\hat{\theta}$ maximizes $L(\theta;y_1,\ldots,y_n)$. $l(\theta;y_1,\ldots,y_n)=\log_lL(\theta;y_1,\ldots,y_n)$. $\hat{\theta}\text{ maximizes }L\Leftrightarrow \hat{\theta}\text{ maximizes }l$. 
+\paragraph{Example}
+A sample of 1000 voters are taken. 293 of them say they approve of what the government is doing. $\theta=$approval rating. Find $\hat{\theta}$ \\ 
+Solution: Note that $Y\sim\text{Bin}(1000,\theta)$, so $L(\theta;y)={1000\choose293}\theta^{293}(1-\theta)^{707}$. Taking logs, we get $l(\theta)=\ln(k)+293\ln\theta+707\ln(1-\theta)$, with $k={1000\choose293}$. Since we want to maximize $\theta$, we find the $0$ of the derivative, so $\frac{dl}{d\theta}=0\Rightarrow\frac{293}{\theta}-\frac{707}{1-\theta}=0$, or $\hat\theta=0.293$. Note that this is equal to $\frac{y}{n}$, which is true in general for binomial distributions. 
+
+\section*{Lecture 10}
+\paragraph{MLE for Normal Distribution}
+If $Y_i\sim N(\mu,\sigma^2)$, if $\mu,\sigma^2$ were unknown, what are $\hat\mu,\hat\sigma^2$? \\ 
+Multiplying out the definition of $L(\theta)$, taking the log-likelihood function, and taking partial derivatives, we get $\hat\mu=\bar{y}$, and $\hat\sigma^2=\frac{1}{n}\sum(y_i-\bar{y})^2$
+\paragraph{Invariance Property of the MLE}
+If $\hat\theta$ is the MLE for $\theta$, then $g(\hat\theta)$ is the MLE for $g(\theta)$. 
+\paragraph{Using the Invariance Property}
+Let $Y_i\sim N(\mu,\sigma^2)$ for $i=1,\ldots,n$. Find the MLE for the $95^{th}$ percentile of $Y$. \\ 
+solution: first, what is the $95^{th}$ percentile of $Y$? Let $A=95^{th}$ percentile. Then $P(Y\leq A)=0.95\Rightarrow P\left(\frac{Y-\mu}{\sigma}\leq\frac{A-\mu}{\sigma}\right)=0.95$. Let $Z=\frac{Y-\mu}{\sigma},B=\frac{A-\mu}{\sigma}$. We can find $B$ from the $Z-$table, $B=1.65$, and then $A=\mu+1.65\sigma$. By the invariance property, the MLE for $A$ is $\hat\mu+1.65\hat\sigma$, with $\hat\mu=\bar{y},\hat\sigma=\sqrt{\frac{1}{n}\sum(y_i-\bar{y})^2}$
+
+
+
+
+\section*{Lecture 11}
+\paragraph{Recap}
+\subparagraph{Model} $Y_i\sim f(y_i;\theta)$, with $i=1,\ldots,n$. \begin{itemize}
+    \item $n$ is the sample size 
+    \item $\theta$ is the population parameter 
+    \item $Y_i$'s are independent and identically distributed
+    \item $\{y_1,\ldots,y_n\}$ is our sample 
+\end{itemize}
+Objective: Find $\hat{\theta}$ where $L(\theta)=\pi_{i=1}^nf(y_i;\theta)$, which is the product of the probability (or density) function, evaluated at each sample point. $\hat{\theta}$ maximizes $L(\theta)$. \\ 
+Binomial: When $Y\sim\text{Bin}(n,\theta)$, we have $\hat{\theta}=\frac{y}{n}$\\ 
+Poisson: When $Y_1,\ldots,Y_n\sim\text{Poi}(\mu)$, we have $\hat{\mu}=\overline{y}$ \\ 
+Uniform: When $Y_1,\ldots,Y_n\sim U[0,\theta]$, we have $\hat{\theta}=\text{max}\{y_1,\ldots,y_n\}$ \\ 
+Exponential: When $Y_1,\ldots,Y_n\sim\text{Exp}(\theta)$, we have $\hat{\theta}=\overline{y}$ \\ 
+Normal: When $Y_1,\ldots,Y_n\sim N(\mu,\sigma^2)$, we have $\hat{\mu}=\overline{y}$, and $\sigma^2=\frac{1}{n}\sum(y_i-\overline{y})^2$
+\subparagraph{Invariance Property}
+$\hat{\theta}$ is the MLE for $\theta\Rightarrow g(\hat{\theta})$ is the MLE for $g(\theta)$.  
+
+\paragraph{Example of Invariance Property}
+We have $Y_1,\ldots,Y_n\sim\text{Exp}(\theta)$ are independent. Find the MLE for the median of $Y$. Our data set would be $\{y_1,\ldots,y_n\}$. Step 1: find the median of the exponential, and hopefully it will be a function of theta. Then just use the invariance property. Remember for an exponential distribution, we have $f(y)=\frac{1}{\theta}e^{-\frac{y}{\theta}}, F(y)=1-e^{-\frac{y}{\theta}}$. Suppose the median is $m$. We know $F(m)=\frac{1}{2}\Rightarrow e^{-\frac{m}{\theta}}=\frac{1}{2}\Rightarrow m=-\theta\ln\left(\frac{1}{2}\right)$. Then $\hat{m}$ (MLE for median) would be $-\hat{\theta}\ln\frac{1}{2}=-\overline{y}\ln\frac{1}{2}$ by the invariance property. 
+
+\paragraph{Relative Likelihood Function}
+The \textbf{relative likelihood function} $R(\theta)$ is defined as: $R(\theta)=\frac{L(\theta)}{L(\hat{\theta})}$, where $\hat{\theta}$ is the MLE. The log relative likelihood function is given by $r(\theta)=\ln(R(\theta))=l(\theta)-l(\hat{\theta})$, where $l$ is the log-likelihood function. $R(\theta)$ looks like  a normal curve, maximum is $1$ at $R(\hat{\theta})$. 
+
+\paragraph{Likelihood for Multinomial}
+$(\theta_1,\ldots,\theta_m)$, with $\theta_i=P(\text{success for the }i\text{'th player})$. $n$ trials, and $y_i=$number of wins by player $i$. It is easy to see that $\hat{\theta_i}=\frac{y_i}{n}$ 
+
+\paragraph{Model Selection}
+\begin{itemize}
+    \item Compare the histogram to the probability function 
+    \item Compare the ECDF to the theoretical CDF 
+\end{itemize}
+
+\paragraph{The Q-Q plot}
+Let our data set be $\{y_1,\ldots,y_n\}$. The normal $Q-Q$ plot is the plot of $(z_{(\alpha)},y_{(\alpha)})$, where $z_{(\alpha)}$ is the $\alpha^{th}$ quantile of $Z\sim N(0,1)$, and $y_{(\alpha)}$ is the $\alpha^{th}$ quantile of your data set. If you draw a $Q-Q$ plot and it's a straight line, normality is a good assumption. If $Y\sim N(\mu,\sigma^2)$, then the $Q-Q$ plot will be a straight line. If it looks like an "s", it will probably be uniform, and a "u" shape will correspond to an exponential. 
+
+\section*{Lecture 12}
+\paragraph{Model Selection}
+If we have $Y_i$ is some random variable, and we get $\{y_1,\ldots,y_n\}$ as our data points, we suspect that these data set comes from some distribution. To select a model, just compare the given data set with the expected data set from the model 
+
+\paragraph{The PPDAC}
+\begin{itemize}
+    \item P: Problem: A clear statement of the study's objectives
+    \item P: Plan: the procedures used to carry out the study including how we will collect the data
+    \item D: Data: the physical collection of the data, as described in the Plan
+    \item A: Analysis: the analysis of the data collected in light of the Problem and the Plan 
+    \item C: Conclusion: The conclusions that are drawn about the Problem and their limitations
+\end{itemize}
+
+\subparagraph{Problem}
+The elements of the Problem addresses questions starting with "what": 
+\begin{itemize}
+    \item What conclusions are we trying to draw? 
+    \item What group of things or people do we want the conclusions to apply? 
+    \item What variates can we define? 
+    \item What are the questions we are trying to answer?
+\end{itemize}
+
+Types of Problems:
+\begin{itemize}
+    \item Descriptive: The problem is to determine a particular attribute of a population. e.g., national unemployment rate
+    \item Hypothesis Testing (causative): Determine the existence or non-existence of a causal relatioship between two variates. e.g., does taking a low dose of aspirin reduce heart disease?
+    \item Predictive: Predict the response of a variate for a given unit. Mostly in finance or economics. 
+\end{itemize}
+To help define problems we first define a couple terms: 
+\begin{itemize}
+    \item \textbf{Target population} or \textbf{process} is the collection of units to which the experimenters conducting the empirical study wish the conclusions to apply 
+    \item \textbf{Variate} is a characteristic associated with each unit 
+    \item \textbf{Attribute} is a function of the variates over a population
+\end{itemize}
+
+
+\subparagraph{Plan}
+How do we collect our sample? \textbf{Study population} is the population from which your sample is drawn, ie. a random sample of 100 people between 18-35 are selected from the KW area. 18-35 year olds in KW is a study population. Study population does not need to be a subset of the target population. The \textbf{sampling protocol} is the procedure used to select a sample of units from the study population.\\ 
+Types of errors: 
+\begin{itemize}
+    \item \textbf{Study error}: the attributes in the study population differ from the attributes in the target population
+    \item \textbf{Sample error}: the attributes in the sample differ from the attributes in the study population 
+    \item \textbf{Measurement error}: the measured value and the true value of a variate are not identical
+\end{itemize}
+
+
+\subparagraph{Data}
+Recall the types of data:
+\begin{itemize}
+    \item Discrete
+    \item Continuous
+    \item Categorical
+    \item Ordinal
+\end{itemize}
+The data step is to just collect data according to the Plan. Any deviations from the Plan should be noted. \textbf{Response bias} is when incorrect data is collected due to people being dumb.  
+
+\subparagraph{Analysis}
+Analyze the data using previously learned ways (graphs and fitting to models). 
+\subparagraph{Conclusion}
+Answer the questions posed in the Problem. Should attempt to discuss potential errors as described in the Plan and any limitations to the conclusions.
+
+\section*{Lecture 13}
+oopsie
+
+\section*{Lecture 14}
+\paragraph{Set-up for Sampling Distributions}
+$\theta:$ unknown population parameter. $Y_i\sim f(y_i;\theta)$, with $i=1,\ldots,n$ and $f$ is our probability function. We have $\{y_1,\ldots,y_n\}$ as our data points. \\ 
+Question: Given our data set, what are the "reasonable" values of $\theta$? We construct an interval: $[l,u]$, with $l=l(y_1,\ldots,y_n)$, and $u=u(y_1,\ldots,y_n)$ such that the interval will contain $\theta$ with a "high degree of confidence". 
+\paragraph{Likelihood Interval}
+Take any $p\in(0,1)$. The 100p\% likelihood interval is $\{\theta:R(\theta)\geq p\}$. \\ 
+\textbf{Example:} Suppose $p=0.1$. 10\% likelihood is $\{\theta:R(\theta)\geq0.1\}$. Remember $R(\theta)=\frac{L(\theta)}{L(\hat{\theta})}$, so the 10\% likelihood is all $\theta$ such that $\frac{L(\theta)}{L(\hat{\theta})}\geq 0.1$ 
+\subparagraph{Convention} 
+\begin{itemize}
+    \item If $R(\theta)\geq0.5$, then $\theta$ is \textbf{extremely plausible} 
+    \item If $0.1\leq R(\theta)<0.5$, then $\theta$ is \textbf{plausible}
+    \item If $0.01\leq R(\theta)<0.1$, then $\theta$ is \textbf{implausible}
+    \item If $R(\theta)<0.01$, then $\theta$ is \textbf{extremely implausible}
+\end{itemize}
+\paragraph{Example}
+Suppose $Y\sim\text{Bin}(n,\theta)$. Say $n=200,y=80$. Is $\theta=0.5$ plausible? \\ 
+Solution: $L(\theta)={200\choose y}\theta^y(1-\theta)^{200-y}$. By inspection we can see $\hat{\theta}=\frac{80}{200}=0.4$. Then $R(\theta)=\frac{L(\theta)}{L(\hat\theta)}=\frac{{200\choose y}\theta^y(1-\theta)^{200-y}}{{200\choose y}\hat\theta^y(1-\hat\theta)^{200-y}}=\frac{\theta^y(1-\theta)^{200-y}}{(0.4)^y(0.6)^{200-y}}$. So is $\theta=0.5$ plausible? Just plug in $\theta=0.5,y=80$ into the above expression, and refer to the list above. Plugging in the values we get $R(\theta)=0.0178$, so $\theta=0.5$ is not plausible. 
+
+\paragraph{somethingsomething Confidence Interval}
+Insight: Our sample mean, variances, etc. are also outcomes of some random experiment. If we have $Y_1,\ldots,Y_n\sim N(\mu,\sigma^2)$ independent, then $\bar{Y}\sim N(\mu,\frac{\sigma^2}{n})$ is called our sampling distribution of the sample mean.  
+\paragraph{Our different Thetas}
+\begin{itemize}
+    \item $\theta$ is the population mean, or $\mu$ 
+    \item $\hat{\theta}$ is the best guess based on sample on what $\theta$ is, or $\bar{y}$ 
+    \item $\tilde{\theta}$ is the distribution from which $\hat{\theta}$ was drawn, or $\bar{Y}$ \\
+\end{itemize}
+\paragraph{Example}
+$Y_1,\ldots,Y_n\sim N(\mu,49)$. A sample of 25 observations are collected. Find the 95\% confidence interval for $\mu$. \\ 
+Solution: We want to find $L,U$ such that $P(L\leq\mu\leq U)=0.95$. We know from STAT 230 that $\bar{Y}\sim N(\mu,\frac{49}{25})$, so $\frac{\bar{Y}-\mu}{\frac{7}{5}}=Z\sim N(0,1)$. Looking it up, we find that we get $P(-1.96\leq Z\leq 1.96)=0.95\Rightarrow P(-1.96\leq \frac{\bar{Y}-\mu}{\frac{7}{5}}\leq1.96)=0.95$. 
+
+\section*{Lecture 15}
+\paragraph{Model for Confidence Interval}
+$Y_i\sim f(y_i;\theta)$, where $\theta$ is our parameter of interest, $n$ is our sample size. We have $\{y_1,\ldots,y_n\}$ as our data. \\ 
+\textbf{Objective}: To construct an interval $[l,u]$, $l,u$ are computed using the data set, such that we can be "reasonably confident" that $\theta$ lies in the above interval. \\ 
+\textbf{Two approaches}: 
+\begin{itemize}
+    \item Through $R(\theta)$
+    \item Sampling distributions
+\end{itemize}
+
+\paragraph{Likelihood Interval}
+Recall from last class: The 100\%p likelihood interval: $\{\theta:R(\theta)\geq p\}$. 
+
+\paragraph{Sampling distributions}
+Problem: We are given a pre specifide probability: 90\%, 95\%, 99\%\\ 
+Objective: Estimate (\textbf{confidence interval}) the random interval (\textbf{coverage interval}) that contains $\theta$  with that specified probability.\\ 
+Find the sampling distribution of our estimators. 
+
+\paragraph{Normal Example}
+Reminder: \begin{itemize}
+    \item $\theta$: unknown constant : $(\mu,\sigma^2)$
+    \item $\hat{\theta}$: number from our sample, estimate : $(\bar{y},\hat\sigma^2)$
+    \item $\tilde{\theta}$: random variable from which $\hat{\theta}$ is an outcome: $(\overline{Y},S^2)$
+\end{itemize}
+The Stat 231 scores are normally distributed with mean $\mu$ and variance $100$. A sample of 25 students are collected wuth $\bar{y}=75$. Find a 99\% confidence interval for $\mu$. \\ 
+Solution: $Y_i\sim N(\mu,100)$. MLE: $\bar{y}=75$. Note this is our estimate. Our estimator is $\overline{Y}\sim N\left(\mu,\frac{100}{25}\right)$. From stat230, $\frac{\overline{Y}-\mu}{\sqrt{\frac{100}{25}}}=Z=N(0,1)$. Then we can go to the $Z$-table and find the 99\% interval for Z. This should be $2.58$. Then $P(-2.58\leq Z\leq2.58)=0.99\Rightarrow P(-2.58\leq\frac{\overline{Y}-\mu}{2}\leq2.58)=0.99\Rightarrow P(\overline{Y}-2.58\times2\leq\mu\leq\overline{Y}+2.58\times2)=0.99$ This is our coverage interval. Our confidence interval is $(\bar{y}-2.58\times2,\bar{y}+2.58\times2)$. So our confidence interval is $(75-2.58\times2,75+2.58\times2)$, or our 99\% confidence interval is $75\pm2.58\times2$. In general, it will be $\bar{y}\pm Z^*\frac{\sigma}{\sqrt{n}}$, where $Z^*$ is some value from the $Z$ table. The $\frac{\sigma}{\sqrt{n}}$ is called the \textbf{margin of error}.
+
+\paragraph{Interpretation}
+The confidence interval is the \underline{best estimate} of the random interval that contains $\theta$ with the pre-specified high probability. ALTERNATIVELY: If we all did the same experiment and constructed our own confidence intervals, approximately 99\% of those intervals will contain $\mu$ 
+
+\paragraph{Binomial Example}
+Suppose $Y\sim\text{Bin}(n,\theta)$. A sample of 1500 people are taken, and 800 of them voted for Trump. find the 95\% confidence interval for $\theta$. \\ 
+Solution: $\hat{\theta}=\frac{y}{n}=\frac{800}{1500}=\frac{8}{15}=0.5\overline{3}$. By the CLT to Binomial, $\tilde{\theta}\approx N\left(\theta,\frac{\tilde\theta(1-\tilde\theta)}{n}\right)$, and then $\frac{\tilde{\theta}-\theta}{\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}}=Z\sim N(0,1)$. Finding the 95\% CI for $\theta$, from the $Z-$table, we get $P(-1.96\leq Z\leq1.96)=0.95\Rightarrow P\left(-1.96\leq\frac{\tilde{\theta}-\theta}{\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}}\leq1.96\right)=0.95\Rightarrow P\left(\tilde{\theta}-1.96\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}\leq\theta\leq\tilde{\theta}+1.96\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}\right)=0.95$. This is our coverage interval. Then our confidence interval is $\theta\pm1.96\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}$, or $0.33\pm1.96\sqrt{\frac{0.533\times0.467}{1500}}$. The $1.96\sqrt{\frac{0.533\times0.467}{1500}}$ is our margin of error.
 
 
 

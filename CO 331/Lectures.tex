@@ -16,7 +16,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem*{definition*}{Definition}
-\newcommand{\Mod}[1]{\ \((\mathrm{mod}\\) #1)}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
 
 \begin{document}
 
@@ -235,9 +235,6 @@ Abuse of notation:
 
 \paragraph{Theorem 9}
 If $F$ is a field of characteristic $p$, then $\mathbb{Z}_p$ is a subfield of $F$. We call the subfield $\mathbb{Z}_p$ of $F$ the \textbf{prime subfield} of $F$. 
-\begin{proof}
-
-\end{proof}
 
 \paragraph{Finite Fields as Vector Spaces}
 Let $F$ be a finite field of characteristic $p$. Identify: 
@@ -247,6 +244,7 @@ Let $F$ be a finite field of characteristic $p$. Identify:
     \item vector addition as addition on $F$ 
     \item scalar multiplication as multiplication in $F$
 \end{itemize}
+This is the same as how we think of $\mathbb{C}$ as a 2-dimensional vector space over $\mathbb{R}$. 
 
 \paragraph{Theorem 10}
 Let $F$ be a field of characteristic $p$. Then the \textbf{order} of $F$ is $p^n$, for some positive integer $n$. 
@@ -272,6 +270,93 @@ Remarks:
     \item the set of all equivalence classes is denoted as $\frac{F[x]}{f(x)}$ 
     \item $\frac{F[x]}{f(x)}$ is a commutative ring
 \end{itemize}
+
+\section*{Lecture 6}
+\paragraph{Representations of the Equivalence Classes in F[x](f)}
+Suppose that $\text{deg}(f)=n$. Let $g\in F[x]$. Then the division algorithm for polynomials gives $g=qf+r$, with $\text{deg}(r)<n$. I.e. $g\equiv r\pmod{f}$, so $[g]=[r]$. Note: $\text{deg}(0)=-\infty$ 
+\paragraph{Theorem}
+Let $f(x)\in\mathbb{Z}_p[x]$ with deg$(f)=n$. Then $\mathbb{Z}_p[x]/(f(x))=\{r\in\mathbb{Z}_p[x]:\text{deg}(r)<n\}$ \\ 
+Proof idea: define a function $\Phi:\{[g]:g\in\mathbb{Z}_p[x]\}\rightarrow\{r\in\mathbb{Z}_p[x]:\text{deg}(r)<n\}$ by the rule $\Phi([g])=r$ where $r$ is the remainder from the division algorithm. 
+\paragraph{Example}
+Let $p=2,f(x)=x^3+x+1$. Then $\mathbb{Z}_2[x]/(x^3+x+1)=\{r(x)\in\mathbb{Z}_2[x]:\text{deg}(r)<3\}=\{0,1,x,x+1,x^2,x^2+1,x^2+x,x^2+x+1\}$. Given an arbitrary element $g(x)$ in $\mathbb{Z}_2[x]$, we can use the division algorithm to determine which element in the above set corresponds to $g(x)$. For example, take $g(x)=x^3+x^2$. Then $(x^3+0\cdot x^2+x+1)\overline{\big)x^3+x^2}=1$, with remainder $x^2+x+1$ (use long division, remembering we are working in modulo 2), so $x^3+x^2=1\cdot(x^3+x+1)+(x^2+x+1)$, so the remainder obtained upon dividing $g$ by $f$ is $x^2+x+1$. Hence $[g]=[x^2+x+1]$. 
+\paragraph{Constructing Finite Fields}
+Let $f\in F[x]$, with deg$(f)\geq1$. We say $f(x)$ is \textbf{irreducible} over $F$ when it cannot be written as $f=gh$, where $g,h\in F[x]$ and deg$(g),\text{deg}(h)\geq1$. 
+\paragraph{Theorem}
+$F[x]/(f(x))$ is a field if and only if $f(x)$ is irreducible. Proof idea: Essentially the same as proving $\mathbb{Z}_n$ is prime iff $n$ is prime. 
+\paragraph{Theorem}
+Let $f\in\mathbb{Z}_p[x]$ be an irreducible polynomial of degree $n\geq1$. Then $\mathbb{Z}_p[x]/f$ is a finite field of order $p^n$ and characteristic $p$. Proof idea: we say $\mathbb{Z}_p[x]/(f(x))=\{r\in\mathbb{Z}_p[x]:\text{deg}(r)<n\}$ and so $|\mathbb{Z}_p[x]/(f(x))|=p^n$. By the above theorem, we have that $\mathbb{Z}_p[x]/(f(x))$ is a field. The characteristic must be $p$ since $\mathbb{Z}_p\subseteq\mathbb{Z}_p[x]/(f(x))$. 
+\paragraph{Example}
+$\mathbb{Z}_2[x]/(x^3+x+1)$ is a finite field of order $2^3=8$. You should check that it is indeed a finite field, though ($x^3+x+1$ is irreducible). The elements of $F=\mathbb{Z}_2[x]/(x^3+x+1)$ are $\{0,1,x,x+1,x^2,x^2+1,x^2+x,x^2+x+1\}$. \\ 
+Example of addition: $x^2+(x^2+x)=x$. \\ 
+Example of multiplication: $x^2\cdot(x^2+x)=x^4+x^3=(x+1)(x^3+x+1)+x^2+1=x^2+1$ by division algorithm.\\ 
+Example of inversion: $(x^2)^{-1}$ We will use the Euclidean algorithm over $\mathbb{Z}_2[x]$. $(x^2+0x+0)\overline{\big)(x^3+0x^2+x+1)}=x$ with remainder $(x+1)$. So $x^3+x+1=x^2\cdot x+(x+1)$. Then we need $(x+1)\overline{\big)(x^2+0x+0)}=x+1$ with remainder $x$ (use long division, remembering we are working in modulo 2), so $x^2=(x+1)\cdot x+x$. And $(x)\overline{\big)x+1} = 1$ with remainder $1$, so $x+1=x\cdot1+1$. 
+
+
+\section*{Lecture 7}
+\paragraph{Theorem}
+If $p$ is prime and $n\geq1$, then there exists a unique finite field of order $p^n$ (up to isomorphism). We denote the unique (up to isomorphism) finite field of order $q$ by $GF(q)$. 
+
+\paragraph{Lemma (anti-algebra)}
+Let $R$ be a commutative ring of characteristic p, and $\alpha,\beta\in\mathbb{R}$. Then $(\alpha+\beta)^p=\alpha^p+\beta^p$ 
+\begin{proof}
+     $(\alpha+\beta)^p=\sum_{k=0}^p{p\choose k}\alpha^k\beta^{p-k}$. Now, for $1\leq k\leq p-1$, ${p\choose k}\equiv 0\mod{p}$, as $p$ divides the numerator but not the denominator. Thus $(\alpha+\beta)^p=\alpha^p+\beta^p$. 
+\end{proof}
+Corollary: $(\alpha+\beta)^{p^m}=\alpha^{p^m}+\beta^{p^m}$ for all $m\geq 0$. 
+
+The \textbf{multiplicative group} of $GF(q)$ is the set $GF(q)^*=GF(q)\backslash\{0\}$
+\paragraph{Theorem (analog of Fermat's little theorem)}
+Let $\alpha\in GF(q)^*$. Then $\alpha^{q-1}=1$.  
+\begin{proof}
+     PLEASE ADD PROOF(page 17)
+\end{proof}
+Corollary: if $\alpha\in GF(q)$, then $\alpha^{q-2}=\alpha^{-1}$ and $\alpha^q=\alpha$. 
+\paragraph{Order}
+Let $\alpha\in GF(q)^*$. The \textbf{order} of $\alpha$, ord$(\alpha)$, is the smallest positive integer $t$ such that $a^t=1$. Note ord$(0)$ is undefined. \\ 
+\textbf{Lemma}: Let $\alpha\in GF(q)$, with ord$(\alpha)=t$. Then $\alpha^s=1$ if and only if $t|s$. 
+\begin{proof}
+     ADD PROOF (page 18)
+\end{proof} \mbox{}\\
+If $\alpha\in GF(q)$ with ord$(\alpha)=t$, then the elements $\alpha^0,\ldots,\alpha^{t-1}$ are pairwise distinct, as $a^i=a^j$ implies $t|(i-j)$. As a special case, if ord$(\alpha)=q-1$, then $GF(q)=\{0,\alpha^0,\ldots,\alpha^{q-2}\}$. A \textbf{generator(or primitive element)} of $GF(q)$ is an element $\alpha\in GF(q)$ with order $q-1$. \\ 
+\textbf{Lemma}: Let $\alpha\in GF(q)$ with order $t$. Then $\alpha^i$ has order $t$ if and only if gcd$(i,t)=1$. 
+\begin{proof}
+     PLEASE ADD PROOF (PAGE 19)
+\end{proof}
+
+\paragraph{Euler's Totient Function}
+For any positive integer $n$, we define $\phi(n)$ to be the number of integers $i$ satisfying $1\leq i\leq n$ and gcd$(i,n)=1$. 
+
+\paragraph{Theorem}
+Every finite field $GF(q)$ has a generator. 
+\begin{proof}
+     Over a field, every polynomial of degree $d$ has at most $d$ distinct roots. For each divisor $d$ of $q-1$, let $\psi_1(d)$ denote the number of nonzero elements in $GF(q)$ of order $d$. If $GF(q)$ contains at least one element $\beta$ of order $d$, then $\beta^0,\ldots,\beta^{d-1}$ are $d$ distinct roots of the polynomial $x^d-1$, which must therefore be all the roots of $x^d-1$. As every element of order $d$ is a root of $x^d-1$ we conclude that $\psi_1(d)=\phi(d)$. It follows that $\psi_1(d)=\begin{cases}0,\quad\text{if }GF(q)\text{ has no elements of order }d\\\phi(d),\quad\text{otherwise}\end{cases}$ Thus $q-1=\sum_{d|q-1}\psi(d)\leq\sum_{d|q-1}\phi(d)$, with equality if and only if $\psi_1(d)=\phi(d)$ for all $d|q-1$. \\ 
+     Consider $G=\{g^0,\ldots,g^{q-2}\}$ of a hypothetical element $q$ of order $q-1$. For each $d$ dividing $q-1$, let $\psi_2(d)$ denote the number of elements in $G$ of order $d$. The value of $\psi_2(d)$ is at least $\phi(d)$, as the elements $\{\beta^c:1\leq i\leq d,\text{gcd}(i,d)=1\}$ all have order $d$. Hence $q-1=\sum_{d|q-1}\psi_2(d)\geq\sum_{d|q-1}\phi(d)$. Thus $q-1=\sum_{d|q-1}\psi_1(d)\leq\sum_{d|q-1}\phi(d)\leq\sum_{d|q-1}\psi_2(d)=q-1$ which implies that $\psi_1(d)=\phi(d)$ for every $d|q-1$. In particular, $\psi_1(q-1)=\phi(q-1)>0$, so $GF(q)$ has $\phi(q-1)$ generators.  
+\end{proof}
+\paragraph{Example}
+Show that if you have $GF(q)$, then you can construct $f(x)$ such that $GF(q)\cong\mathbb{Z}_p[x]/f(x)$. 
+
+
+\section*{Lecture 8}
+\paragraph{Linear Codes}
+Let $F=GF(q)$. Let $F^n=F\times\cdots\times F=V_n(F)$ be an $n$-dimensional vector space over $F$, with $|F^n|=q^n$. We will have $F$ as our alphabet from now on. A \textbf{linear code} over $F$ is a $k-$dimensional subspace of $F^n$ with $k\leq n$. (This is a \textbf{(n,k)}-code). Recall: a \textbf{subspace} $S$ of a vector space $V$ over $F$ is a non-empty subset $S\subseteq V$ such that it is \begin{enumerate}
+    \item $a,b\in S\Rightarrow a+b\in S$ 
+    \item $(a\in S)\wedge(\lambda\in F)\Rightarrow \lambda a\in S$
+\end{enumerate}
+If $S$ is a subspace, then $S$ itself is a vector space over $F$, and $0\in S$. 
+\\ 
+Let $C$ be a linear code over $F$ (length $n$, dimension $k$). Let $v_1,\ldots,v_k$ be an ordered basis for $C$. 
+\subparagraph{Number of Codewords}
+$C=\{c_1v_1+c_2v_2+\cdots+c_kv_k:c_i\in F\}$. So $M:=|C|=q^k$. 
+\subparagraph{Information Rate} 
+The rate of $C$ is $R:=\frac{\log_qM}{n}=\frac{\log_qq^k}{n}=\frac{k}{n}$ 
+\subparagraph{Encoding}
+If we have a message $(m_1,\ldots,m_k)$, then it is convenient and natural to map this to the codeword $m_1v_1+m_2v_2+\cdots+m_kv_k$. In other words, the codeword corresponding to $m$ is $c=mG$, where $G=\begin{bmatrix}v_1\\\vdots\\\ v_k\end{bmatrix}_{k\times n}$ is a \textbf{(generator)} matrix.
+\paragraph{Example}
+Consider the binary linear code $C=\langle(10011),(11010),(00110)\rangle$ (note that $\langle\rangle$ is the operator for a span of the elements within the brackets, and that we have $n=5,k=3,R=\frac{3}{5}$) with basis $c_1=(10011),c_2=(11010),c_3=(00110)$. One possible generator matrix for $C$ is $\begin{bmatrix}1&0&0&1&1\\1&1&0&1&0\\0&0&1&1&0\end{bmatrix}$
+
+\section*{Lecture 9}
+rip
+
+
 
 
 

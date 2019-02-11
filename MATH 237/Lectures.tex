@@ -1,4 +1,4 @@
-\documentclass[10pt,letter]{article}
+\documentclass[tikz,10pt,letter]{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -16,6 +16,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem*{definition*}{Definition}
+\usepackage{forest}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 \begin{document}
@@ -120,6 +121,129 @@ $D=\mathbb{R}^2$, $f(x,y)=\begin{cases}\frac{\sin(x+y)}{x-y},\quad\text{if }x\ne
 \paragraph{Tangent Plane and Linear Approximation}
 Recap stuff from MATH137: $f:I\rightarrow\mathbb{R}$, fix $a\in I$. Let $b=f(a)$, and try to draw a tangent line to the graph, at point $(a,b)$ (writing it in point-slope form, or $y=m(x-a)+b$). Pick $x$ nearby $a$, draw vertical line at $x$. There are two important points on the vertical: $(x,f(x))$, and $(x,L_a(x))$, where $L_a(x)$ is when $x$ hits the tangent line. $L_a(x)=m(x-a)+b$. Important: If $f$ is nice (differentiable at $a$), then for $x\approx a$, we have $f(x)\approx L_a(x)=m(x-a)+b=f'(a)(x-a)+f(a)$. This is the linear approximation of the function $f$ around the point $a$. \\ 
 For MATH237: we just add one dimension. $D\subseteq\mathbb{R}^2$, $f:D\rightarrow\mathbb{R}$. Fix $(a,b)\in D$, and we look at the point $(a,b,c)$ on the graph, where $c=f(a,b)$. Consider the tangent plane to the graph of $f$, at the point $(a,b,c)$(?). Write this tangent plane in point-slope form (??). The equation of the tangent plane will give the linearization $L_{(a,b)}(x,y)$ at function $f$ around $(a,b)$ (???). The plane has two slopes, and the point-slope equation is $z=m_1(x-a)+m_2(y-b)+c$ 
+
+\section*{Lecture 8}
+Professor Joe West is back
+\paragraph{Example 1}
+Volume of ideal gas: $V=\frac{82.06}{P}T$, where $P$ is pressure and $T$ is temperature in $K$. $V$ is the volume in $cm^3$. Find the rate of change of the volume with respect to T and with respect to P when temperature $T=300k$ and $P=5\text{atm}$. Solution: $\frac{\partial V}{\partial T}=\frac{82.06}{P}\cdot1\Rightarrow\frac{\partial V}{\partial T}|_{T=300, P=5}=\frac{82.06}{5}=16.41\frac{cm^3}{K}$. $\frac{\partial V}{\partial P}=82.06T\frac{-1}{P^2}\Rightarrow \frac{\partial V}{\partial P}|_{T=300,P=5}=\frac{-82.06(300)}{5^2}=-984.7\frac{cm^3}{atm}$
+
+\paragraph{Second Derivatives}
+We have $\frac{\partial f}{\partial x}$, how do we take the second derivative? We can take $\frac{\partial}{\partial x}\left(\frac{\partial f}{\partial x}\right)=\frac{\partial^2 f}{\partial x^2}=f_{xx}=D_1(D_1f)=D_1^2f$. We can also take $\frac{\partial f}{\partial y}\left(\frac{\partial f}{\partial x}\right)=\frac{\partial^2f}{\partial y\partial x}=f_{xy}=D_2(D_1f)=D_2D_1f$. Similarly, we can also take $\frac{\partial}{\partial x}\left(\frac{\partial f}{\partial y}\right)$, and $\frac{\partial}{\partial y}\left(\frac{\partial f}{\partial y}\right)$. 
+\paragraph{Exercise}
+Find the second partials of $f(x,y)=x^2e^{-xy}$. \\ 
+Answers: $f_{xy}=-3x^2e^{-xy}+x^3ye^{-xy}, f_{yx}=-3x^3e^{-xy}+x^3ye^{-xy}, $
+
+\paragraph{Clairaut's Theorem}
+If $f_x,f_y,f_{xy},f_{yx}$ are all defined in some neighbourhood of $(a,b)$, and $f_{xy}$ and $f_{yx}$ are continuous at $(a,b)$, then $f_{xy}(a,b)=f_{yx}(a,b)$. 
+
+\paragraph{Higher-order derivatives}
+page 33 in course notes. Note $f\in C^k$ ($f$ is of class $C^k$) means that the $k^{th}$ partial derivatives of $f$ are continuous. 
+
+\paragraph{Tangent Plane}
+The tangent plane is a plane of equation $z=C+A(x-a)+B(y-b)$ (page 33-34). $C=f(a,b),A=\frac{\partial f}{\partial x}(a,b),B=\frac{\partial f}{\partial x}(a,b)$. Equation of tangent plane to the surface $z=f(x,y)$ at the point $(a,b,f(a,b))$ is $z=f(a,b)+\frac{\partial f}{\partial x}(a,b)\cdot(x-a)+\frac{\partial f}{\partial y}(a,b)\cdot(y-b)$  
+
+\paragraph{Example}
+Find the equation of tangent plane to the surface $z=f(x,y)=\frac{xy}{x^2+y^2}$ at point $(1,2)$. Solution: $f(a,b)=\frac{2}{5}$, $\frac{\partial f}{\partial x}=\frac{(x^2+y^2)y-(xy)(2x)}{(x^2+y^2)^2}=\frac{y^3-x^2y}{(x^2+y^2)^2}$. Calculated at $(1,2)$, we get $\frac{2^3-(1)^2(2)}{(1^2+2^2)^2}=\frac{6}{25}$. Note we get the same equation for $\frac{\partial f}{\partial y}$, but $x$ and $y$ are flipped. Then plugging in $(1,2)$, we get $\frac{-3}{25}$. Then we get the equation for the tangent plane is $\frac{2}{5}+\frac{6}{25}(x-1)-\frac{3}{25}(y-2)$ 
+
+\paragraph{Definitions}
+The \textbf{linearization} of $f(x,y)$ at $(a,b)$ is defined as $L_{(a,b)}(x,y)=f(a,b)+\frac{\partial f}{\partial x}(a,b)\cdot(x-a)+\frac{\partial f}{\partial y}(a,b)\cdot(y-b)$ \\ 
+The \textbf{linear approximation} is $f(x,y)\approx L_{(a,b)}(x,y)$ for $(x,y)$ near $(a,b)$ 
+
+\paragraph{Example}
+$\sqrt{(3.01)^2+(3.98)^2}\approx?$ Solution: Let $f(x,y)=\sqrt{x^2+y^2}$ and approximate near $(a,b)=(3,4)$. The linear appoximation formula is $f(x,y)\approx f(3,4)+\frac{\partial f}{\partial x}(3,4)(x-3)+\frac{\partial f}{\partial y}(3,4)(y-4)\Rightarrow \sqrt{x^2+y^2}\approx5+\frac{3}{5}(x-3)+\frac{4}{5}(y-4)$ for $(x,y)$ near $(3,4)$. Then $\sqrt{(3.01)^2+(3.98)^2}\approx 5+ \frac{3}{5}0.01+\frac{4}{5}(-0.02)=5+0.006-0.016=4.99$. Plugging into a calculator, we get $4.99004\ldots$. 
+
+
+
+\section*{Lecture 9}
+bleh
+
+\section*{Lecture 10}
+bleh
+
+
+
+
+\section*{Lecture 11 (5.3-6.1)}
+\paragraph{Theorem}
+If $f(x,y)$ is differentiable at $(a,b)$, then $f(x,y)$ is continuous at $(a,b)$. 
+\begin{proof}
+     $\lim_{(x,y)\rightarrow(a,b)}R_{1,(a,b)}(x,y)=\lim_{(x,y)\rightarrow(a,b)}\frac{R_{1,(a,b)(x,y)}}{||(x,y)-(a,b)||}||(x,y)-(a,b)||=0\cdot0$ since $f$ is differentiable. We want to show that $\lim_{(x,y)\rightarrow(a,b)}f(x,y)=f(a,b)$ but $\lim_{(x,y)\rightarrow(a,b)}f(x,y)=\lim_{(x,y)\rightarrow(a,b)}\left(f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)+R_{1,(a,b)}(x,y)\right)=f(a,b)+0+0+0$ since $x-a$ and $y-b$ are both equal to $0$ as $(x,y)\rightarrow(a,b)$, and the remainder was just shown to be $0$. 
+\end{proof}
+\paragraph{Theorem}
+If $\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}$ are continuous at $(a,b)$, then $f$ is differentiable at $(a,b)$ 
+\begin{proof}
+     We want to show that $\lim_{(x,y)\rightarrow(a,b)}\frac{|R_{1,(a,b)}(x,y)|}{||(x,y)-(a,b)||}=0$ (ie. $f$ is differentiable). Now $R_1=f(x,y)-[f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)]=f(x,y)-f(a,y)+f(a,y)-f(a,b)-f_x(a,b)(x-a)-f_y(a,b)(y-b)$. By the mean value theorem, $\exists(\bar{x},y)$ between $(x,y)$ and $(a,y)$ such that $$\frac{\partial f}{\partial y}(\bar{x},y)=\frac{f(x,y)-f(a,y)}{x-a}\quad(1)$$. Similarly, $\exists(a,\bar{y})$ between $(a,y)$ and $(a,b)$ such that $$\frac{\partial f}{\partial y}(a,\bar{y})=\frac{f(a,y)-f(a,b)}{y-b}\quad (2)$$ Rearrange $(1)$ and $(2)$ are subbing into $R_1$: $$R_1=\frac{\partial f}{\partial x}(\bar{x},y)(x-a)+\frac{\partial f}{\partial y}(a,\bar{y})(y-b)+f_x(a,b)(x-a)-f_y(a,b)(y-b)$$ Collecting terms, $$\left[\frac{\partial f}{\partial x}(\bar{x},y)-\frac{\partial f}{\partial x}(a,b)\right](x-a)+\left[\frac{\partial f}{\partial x}(a,\bar{y})-\frac{\partial f}{\partial x}(a,b)\right](y-b)$$ Let $\frac{\partial f}{\partial x}(\bar{x},y)-\frac{\partial f}{\partial x}(a,b)=A$, and $\frac{\partial f}{\partial x}(a,\bar{y})-\frac{\partial f}{\partial x}(a,b)=B$. Look at ratio $\frac{|R_{1,(a,b)}|}{||(x,y)-(a,b)||}=\frac{|A(x-a)+B(y-b)|}{\sqrt{(x-a)^2+(y-b )^2}}\leq\frac{|A||x-a|+|B||y-b|}{\sqrt{(x-a)^2+(y-b)^2}}$ by the triangle inequality. (note we usually want to find an upper bound on the numerator, as finding a lower bound on the denominator sometimes results in more discontinuities). Also note that $|x-a|=\sqrt{(x-a)^2}$, and so this is less than or equal to $\frac{|A|\sqrt{(x-a)^2+(y-b)^2}+|B|\sqrt{(y-b)^2-(x-a)^2}}{\sqrt{(x-a)^2+(y-b)^2}}=|A|+|B|$. Now we need $|A|+|B|=\left|\frac{\partial f}{\partial x}(\bar{x},y)-\frac{\partial f}{\partial x}(a,b)\right|+\left|\frac{\partial f}{\partial x}(a,\bar{y})-\frac{\partial f}{\partial x}(a,b)\right|$ as $(x,y)\rightarrow (a,b)$, since the partials are continuous, we can just plug the limit values in. Since $\bar{x},\bar{y}$ approach $a,b$ as $(x,y)\rightarrow(a,b)$, we get $\left|\frac{\partial f}{\partial x}(a,b)-\frac{\partial f}{\partial x}(a,b)\right|+\left|\frac{\partial f}{\partial x}(a,b)-\frac{\partial f}{\partial x}(a,b)\right|=0$. 
+\end{proof}
+
+
+\paragraph{Chain Rule}
+Quick review: $\frac{d}{dt}f(x(t))=f'(x(t))\cdot x'(t)=\frac{df}{dx}\cdot\frac{dx}{dt}$ \\ 
+Parametric/vector curves: $\begin{cases}x=x(t)\\y=y(t)\end{cases}$ or equivalently $\underline{x}(t)=(x(t),y(t))$. Then $\underline{x}'=(x'(t),y'(t))$
+
+
+\section*{Lecture 12}
+\paragraph{Chain Rule for f(x(t),y(t))}
+\textbf{Motivation}: Imagine we have a duck's position is $(x(t),y(t))$. Temperature at point $(x,y)$ in the pond is $f(x,y)$. Find rate of change of temperature with respect to time as the duck moves: then we need $\frac{d}{dt}f(x(t),y(t))$ In time $\Delta t$, the change in duck's position is \begin{align*}\Delta x&=x(t+\Delta t)-x(t)\\\Delta y&=y(t+\Delta t)-y(t)\end{align*} Change in temperature is 
+$$\Delta f\approx \frac{\partial f}{\partial x}\Delta x+\frac{\partial f}{\partial y}\Delta y\quad\text{for small }\Delta x,\Delta y$$ 
+$$\Rightarrow \frac{\Delta f}{\Delta t}\approx\frac{\partial f}{\partial x}\cdot\frac{\Delta x}{\Delta t}+\frac{\partial f}{\partial y}\cdot\frac{\Delta y}{\Delta t}$$
+Let $\Delta t\rightarrow0:$ 
+$$\frac{df}{dt}=\frac{\partial f}{\partial x}\cdot\frac{dx}{dt}+\frac{\partial f}{\partial y}\cdot\frac{dy}{dt}\quad(1)$$
+Note $\frac{df}{dt}=\frac{d}{dt}f(x(t),y(t))$. This last line, $(1)$, is the Chain Rule, assuming that $f$ is differentiable. Equation $(1)$ in vector form: $\frac{df}{dt}=\frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}=\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}\right)\cdot\left(\frac{dx}{dt},\frac{dy}{dt}\right)=\nabla f\cdot \underline{x}'(t)$, where $\nabla f$ is the gradient, and $\underline{x}'(t)$ is the velocity of the duck. This forest helps you remember the derivative operators you need to derive: 
+\begin{forest}
+[f[x[t]][y[t]]]
+\end{forest}
+\paragraph{Example}
+Suppose temperature at $(x,y)$ is $T(x,y)=\frac{4}{x^2+y^2+1}$ and position of duck is $\underline{x}(t)=(x(t),y(t))=(t,t^2)$. What is the rate of change of temperature along duck's path when $t=2$? \\ 
+Solution: By inspection, $\frac{\partial T}{\partial x}$ and $\frac{\partial T}{\partial y}$ are continuous everywhere, so $T(x,y)$ is differentiable everywhere by Theorem. So by chain rule, $\frac{d}{dt}T(x(t),y(t))=\frac{\partial T}{\partial x}\frac{dx}{dt}+\frac{\partial t}{\partial y}\frac{dy}{dt}=\frac{-8x}{(x^2+y^2+1)^2}\cdot1+\frac{-8y}{(x^2+y^2+1)^2}2t$. So $\frac{dT}{dt}|_{t=2}=\frac{-8(2)}{(2^2+4^2+1)^2}-\frac{8(4)}{(2^2+4^2+1)^2}\cdot2(2)=\frac{-16}{49}$. \\ 
+Also a solution: Notice that $T(x(t),y(t))=\frac{4}{(t)^2+(t^2)^2+1}$, since $\underline{x}(t)=(t,t^2)$, then just take $\frac{d}{dt}$ and set $t=2$. 
+\paragraph{Example}
+Let $g(t)=f(te^t,t^2+2t-1)$. If $\nabla f(0,-1)=(3,4)$, find $g'(0)$. State your assumption on $f$. \\ 
+Solution: Let $x(t)=te^t,y(t)=t^2+2t-1$. By chain rule, $g'(t)=\frac{d}{dt}f(x(t),y(t))=\frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}=\frac{\partial f}{\partial x}(e^t+te^t)+\frac{\partial f}{\partial y}(2t+2)=\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}\right)\cdot(e^t+e^t,2t+2)$. Note that the left side is exactly $\nabla f(x,y)$. When $t=0$ (since we want $g'(0)$), $x=0e^0=0, y=0^2\cdot0-1=-1$. This is exactly the point that is given, so $g'(0)=\nabla f(0,-1)\cdot(e^0+0e^0,2\cdot0+2)=(3,4)\cdot(1,2)=11$. We assumed that $f$ was differentiable at $(0,-1)$, OR assume $f\in C^1$ at $(0,1)$(reminder this means $f_x,f_y$ are continuous at $(0,-1)$). 
+\paragraph{More Chain Rule (6.2)}
+With $f(x(u,v),y(u,v))$, you can calculate both $\frac{\partial}{\partial u}f(x(u,v),y(u,v))$ and $\frac{\partial}{\partial u}f(x(u,v),y(u,v))$, and we can use this tree diagram to remember how to derive: \begin{forest}[f[x[u][v]][y[u][v]]]\end{forest}. Then $\frac{\partial}{\partial u}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial u}$, assuming $f$ is differentiable. Similarly, $\frac{\partial}{\partial v}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial v}$
+\paragraph{Example}
+$f(x,y)=2x^2-\sin y, x(u,v)=u+v,y(u,v)=u-v^2$. Find $\frac{\partial f}{\partial u},\frac{\partial f}{\partial v}$. Note $\frac{\partial f}{\partial u}=\frac{\partial}{\partial u}f(x(u,v),y(u,v))$. $\frac{\partial f}{\partial u}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial u}=4x\cdot1-\cos y\cdot1=4(u+v)-\cos(u-v^2)$
+
+\section*{Lecture 13}
+rip 
+
+\section*{Lecture 14}
+\paragraph{Directional Derivatives (7.1)}
+Motivation: mountain climbing. Have a top-down view of the mountain, with $x,y$ being east and north respectively. Then $f(x,y)=$elevation at that point. Let $(a,b)$ be a point on the ring of the mountain where $f(x,y)=20$. Then if you go down the mountain (ie, positive $x,y$), $f(x,y)$ decreases, but if you go up, $f(x,y)$ increases. What happens if we travel an arbitrary direction $\hat{u}$? \\ 
+Given $(a,b)\in\mathbb{R}^2$ and unit vector $\hat{u}$, a line through $(a,b)$ has vector (parametric) equation $(x,y)=(a,b)+s\hat{u}$, where $s\in\mathbb{R}$.  
+\paragraph{Definition} The \textbf{directional derivative} of $f$ at a point $(a,b)$ in the direction of unit vector $\hat{u}$ is: $D_{\hat{u}}f(a,b)=\frac{d}{ds}f((a,b)+s(u_1,u_2))|_{s=0}=\frac{d}{ds}(f(a+su_1,b+su_2))|_{s=0}$. 
+\paragraph{Theorem} If $f(x,y)$ is differentiable at a point $(a,b)$, then $D_{\hat{u}}f(a,b)=\nabla f(a,b)\cdot\hat{u}$ 
+\begin{proof}
+     $D_{\hat{u}}f(a,b)=\frac{d}{ds}f((a+su_1,b+su_2))|_{s=0}$ by definition. By chain rule, $\left(\frac{\partial f}{\partial x}(a+su_1,b+su_2)\frac{dx}{ds}+\frac{\partial f}{\partial y}(a+su_1,b+su_2)\frac{dy}{ds}\right)|_{s=0}$. Since $x=a+su_1,y=b+su_2$, this equals $\left(\frac{\partial f}{\partial x}(a,b)\cdot u_1+\frac{\partial f}{\partial y}(a,b)\cdot u_2\right)=\left(\frac{\partial f}{\partial x}(a,b),\frac{\partial f}{\partial y}(a,b)\right)\cdot(u_1,u_2)=\nabla f(a,b)\cdot\hat{u}$
+\end{proof}
+Comments: 
+\begin{itemize}
+    \item Similar for $f(x_1,x_2,\ldots,x_n)$
+    \item If $\hat{u}=(1,0)$, then (assuming $f$ is differentiable) $D_{(1,0)}f(a,b)=\nabla f(a,b)\cdot(1,0)=\frac{\partial f}{\partial x}(a,b)$ as expected. Similar for $\hat{u}=(0,1)$ 
+    \item If direction $\vec{u}$ is a non-unit vector, then you must normalize it $\left(\hat{u}=\frac{\vec{u}}{||\vec{u}||}\right)$
+    \item If $f(x,y)$ is not differentiable at $(a,b)$, then you must use the definition of directional derivatives, not the theorem (this will be very rare)
+\end{itemize}
+\paragraph{Example}
+$f(x,y)=\frac{x}{x^2+y^2}$. Calculate the direction derivative of $f$ at $(2,0)$ in the direction $\vec{u}=(1,1)$. \\ 
+Solution: First note that $f$ is differentiable at $(2,0)$. Also first we need to normalize $\vec{u}:\hat{u}=\frac{(1,1)}{\sqrt{2}}=\left(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\right)$. By theorem, $D_{\left(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\right)}(2,0)=\nabla f(2,0)\cdot(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$. But $\nabla f=\left(\frac{(x^2+y^2)-x(2x)}{(x^2+y^2)^2},\frac{-2xy}{(x^2+y^2)^2}\right)=\left(\frac{y^2-x^2}{(x^2+y^2)^2},\frac{-2xy}{(x^2+y^2)^2}\right)$. Then $\nabla f(2,0)=\left(-\frac{1}{4},0\right)$, so therefore $D_{\hat{u}}f(2,0)=\left(-\frac{1}{4},0\right)\cdot\left(\frac{1}{\sqrt2},\frac{1}{\sqrt2}\right)=-\frac{1}{4\sqrt2}+0$
+\paragraph{Example}
+Find the directional derivative of $f(x,y,z)=x^2\cos z+e^y$ in the direction $(-1,1,-1)$ at the point $(1,\ln2,0)$. \\ 
+Solution: Again, $f$ is clearly differentiable everywhere. Also, normalize $\vec{u}$ to $\hat{u}=\left(-\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}},-\frac{1}{\sqrt{3}}\right)$. We want $D_{\hat{u}}f(1,\ln2,0)=\nabla f(1,\ln2,0)\cdot\hat{u}$. Now $\nabla f=(2x\cos z,e^y, -x^2\sin z)$. Then $\nabla f(1,\ln2,0)=(2,2,0)$. So $D_{\hat{u}}(1,\ln2,0)=(2,2,0)\cdot\left(-\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}},-\frac{1}{\sqrt{3}}\right)=0$
+\paragraph{Interpretation of the Directional Derivative}
+$D_{\hat{u}}f(a,b)$ represents the rate of change of $f$ with respect to distance at $(a,b)$ as you move in the direction of $\hat{u}$. e.g. $f(x,y)=\text{temperature}^\circ C$, with $x,y$ measured in metres. Then $D_{\hat{u}}f(a,b)$ would be measured in $^\circ C/m$. Note that traveling along the tangent line of one the isotherms gives u 0, and traveling across the orthogonal line to that maximizes the derivative.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

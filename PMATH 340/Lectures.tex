@@ -17,10 +17,10 @@
 \newtheorem{definition}{Definition}[section]
 \newtheorem*{definition*}{Definition}
 \newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
-
+\usepackage{forest}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 \begin{document}
-
 \section*{Lecture 1}
 30\% assignments, 20\% midterm, 50\% exam. TA: Ertan Elma MC 5321. Rubinstein: MC 5423. \\ 
 
@@ -219,5 +219,146 @@ Thus congruence $\mod{m}$ partitions the set of integers into $m$ equivalence cl
 \paragraph{What about inverses mod m}
 Say $ca\equiv cb\mod{m}$. Can we cancel the $c$ and conclude $a\equiv b\mod{m}$? 
 
+
+\end{document}
+    \item $a\equiv a\mod{m}$ 
+    \begin{proof}
+    $m|a-a=0$
+    \end{proof}
+    \item If $a\equiv b\mod{m}$ then $b\equiv a\mod{m}$ 
+    \begin{proof}
+    If $m|(a-b)$ then $a-b=km$ for some $k\in\mathbb{Z}$, so $b-a=(-k)m$, hence $m|b-a\Rightarrow b\equiv a\mod{m}$
+    \end{proof}
+    \item If $a\equiv b\mod{m}$ and $b\equiv c\mod{m}$ then $a\equiv c\mod{m}$ 
+    \begin{proof}
+    $m|(a-b)\Rightarrow a-b=k_1m$, and $m|(b-c)\Rightarrow b-c=k_2m$, $k_1,k_2\in\mathbb{Z}$. Adding them, we get $a-c=(k_1+k_2)m$, hence $m|a-c$, and $a\equiv c\mod{m}$.
+    \end{proof}
+\end{enumerate}
+Other properties: 
+\begin{itemize}
+    \item If $a\equiv a'\mod{m}$ and $b\equiv b'\mod{m}$, then 
+    \begin{enumerate}
+        \item $a+b\equiv a'+b'\mod{m}$ 
+        \begin{proof}
+        $a-a'=k_1m\Rightarrow a=a'+k_1m$, $b-b'=k_2m\Rightarrow b=b'+k_2m$, $k_1,k_2\in\mathbb{Z}$. Thus $a+b=a'+b'+(k_1+k_2)m$, so $a+b\equiv a'+b'\mod{m}$ 
+        \end{proof}
+        \item $ab=a'b'\mod{m}$
+        \begin{proof}
+        $ab=(a'+k_1m)(b'+k_2m)\Rightarrow ab=a'b'+m(a'k_2+b'k_1+k_1k_2m)$, hence $ab\equiv a'b'\mod{m}$ 
+        \end{proof}
+    \end{enumerate}
+\end{itemize}
+
+\section*{Lecture 8}
+\paragraph{Proposition}
+Let $a=q_1m+r_1$, and $b=q_2m+r_2$, with $0\leq r_1,r_2<m$. Then $a\equiv b\mod{m}\Leftrightarrow r_1=r_2$. \begin{proof}
+$(\Leftarrow)$: $r_1=r_2$, thus $a-b=(q_1-q_2)m$. Then $m|a-b$, ie. $a\equiv b\mod{m}$ \\ 
+$(\Rightarrow)$: Let $a\equiv b\mod{m}$. Then $m|a-b$, so $a-b=(q_1-q_2)m+(r_1+r_2)\Rightarrow m|r_1-r_2$. But $-m<r_1-r_2<m$, and so the only multiple of $m$ between $-m$ and $m$ is $0$, so $r_1-r_2=0$, and hence they are equal. 
+\end{proof}
+Thus congruence $\mod{m}$ partitions the set of integers into $m$ equivalence classes modulo $m$.  
+
+
+
+\paragraph{What about inverses mod m}
+Say $ca\equiv cb\mod{m}$. Can we cancel the $c$ and conclude $a\equiv b\mod{m}$? Not necessarily, however, if $\text{gcd}(c,m)=1$, then $ca\equiv cb\mod{m}\Rightarrow m|c(a-b)$, then if $\text{gcd}(c,m)=1$, $m|a-b\Rightarrow a\equiv b\mod{m}$. So if $\text{gcd}(c,m)=1$, then $c$ has a multiplicative inverse mod $m$. ie. $\exists f\in\mathbb{Z}:cf=1\mod{m}$. 
+\paragraph{Observation}
+If $\text{gcd}(c,m)=1$, then $0c,c,2c,\ldots,(m-1)c$ are distinct mod $m$, hence are congruent in some funny (permuted) order to $\{0,\ldots,m-1\}$. Ie. it is a bijection. 
+\begin{proof}
+     Say $jc=kc\mod{m}\Rightarrow m|c(j-k)$, and since $\text{gcd}(c,m)=1$, $m|c(j-k)\Rightarrow m|j-k\Rightarrow j\equiv k\mod{m}$. Thus $jc$ is distinct from $kc$ (mod $m$) if $0\leq j<k<m$. 
+\end{proof}
+
+\paragraph{Euclidean algorithm}
+Let $\text{gcd}(c,m)=1$. One can also use the Euclidean algorithm to prove (and efficiently find) $c^{-1}\mod{m}$. $\text{gcd}(c,m)=1\Rightarrow 1=xc+ym$. Hence $xc\equiv1\mod{m}$. 
+Example: Find $37^{-1}\mod{101}$ if it exists. 
+\begin{align*}
+101&=2\cdot37+27\\ 
+37&=1\cdot27+10\\ 
+27&=2\cdot10+7\\
+10&=1\cdot7+3\\
+7&=2\cdot3+1
+\end{align*}
+So $37^{-1}$ exists, and using backsubstitution, 
+
+\section*{Lecture 9}
+rip
+\section*{Lecture 10}
+rip. Here is all the missed content from the course notes: \\ 
+\paragraph{Sun Zi's Theorem (CRT)}
+
+\paragraph{Fermat's Little Theorem}
+
+
+\section*{Lecture 11}
+\paragraph{Euler's (totient) Phi function (is fun)}
+$n$ positive integer. Define $\phi(n)=\text{number of integers }1\leq x\leq n\text{ such that gcd}(x,n)=1$. Example: for $n=12$, $\phi(n)=4$ (1,5,7,11). For $p$ a prime integer, $\phi(p)=p-1$. Let $n=p^\alpha$ where $p$ is prime. Then $\phi(p^\alpha)=p^\alpha-p^{\alpha-1}$. \\ 
+Property: If $\text{gcd}(m,n)=1$, then $\phi(mn)=\phi(m)\phi(n)$ ie. $\phi$ is multiplicative. Note that if $\text{gcd}(x,mn)=1$, then $\text{gcd}(x,m)=1$, and $\text{gcd}(x,n)=1$. Then $x\equiv(m-1),(m-2),\ldots\mod{m}$(there are $\phi(m)$ of these), and $x\equiv(n-1),(n-2),\ldots\mod{n}$ (there are $\phi(n)$ of these). Note that gcd$(x,mn)=1$ implies that $x=(mn-1),\ldots\mod{mn}$, and there are $\phi(mn)$ of these. idk what's happening but i think this is just to show why its multiplicative. basically you are looking for numbers that are BOTH have no common factors with $m$ or $n$.
+
+\section*{Lecture 12}
+\paragraph{Euler's Totient Function}
+Last time: 
+\begin{enumerate}
+    \item If $p$ is prime, $\alpha\geq1$, then $\phi(p^\alpha)=p^\alpha-p^{\alpha-1}=p^{\alpha-1}(p-1)=p^\alpha(1-\frac{1}{p})$ 
+    \item If gcd$(a,b)=1$, then $\phi(ab)=\phi(a)\phi(b)$
+\end{enumerate}
+Thus, if $n=p_1^{\alpha_1}p_2^{\alpha_2}\ldots p_k^{\alpha_k}$, distinct $p$'s, then $\phi(n)=\Pi_{i=1}^k\phi(p_i^{\alpha_i})=\Pi_{i=1}^kp_i^{\alpha_i}\left(1-\frac{1}{p_i}\right)=\left(\Pi_{i=1}^kp_i^{\alpha_1}\right)\left(\Pi_{i=1}^k1-\frac{1}{p_i}\right)=n\Pi_{p|n}\left(1-\frac{1}{p}\right)$
+
+\paragraph{Divisor sum of Euler's totient function}
+$\sum_{d|n}\phi(n)=\Pi_{i=1}^k(1+\phi(p_i)+\cdots+\phi(p_i^{\alpha_i})$ (this is by unique factorization and property 2 as above). Note that this is a telescoping sum, so this is just equal to $\Pi_{i=1}^kp_i^{\alpha_i}=n$. 
+
+\paragraph{Euler's Theorem}
+Let: $n$ positive integer, $a\in\mathbb{Z}$ such that gcd$(a,n)=1$. Then $a^{\phi(n)}\equiv1\mod{n}$ (note if $n=p$ is prime, then this specializes to Fermat's Little Theorem, ie if $\phi(p)=p-1$, then $a^{-1}\equiv1\mod{p}$). \\ 
+\begin{proof}
+     
+Similar to the 1st proof of FLT, but restrict to invertible residue classes $\mod{n}$. Example: $n=12$, consider $\{1,5,7,11\}$ represent the $\phi(12)=4$ invertible congruence classes mod $12$. Next, consider, say $a=5$. 
+\begin{tabular}{|c|c|}
+\hline
+r & 5r mod 12\\\hline
+1 & 5\\
+5 & 1\\
+7 & 11\\
+11 & 7\\
+\hline
+\end{tabular}
+Then $(5\cdot1)(5\cdot5)(5\cdot7)(5\cdot11)\equiv5\cdot1\cdot11\cdot7\mod{12}\Rightarrow 5^4\equiv1\mod{12}$, after removing factors on both sides.  \\ 
+
+Generally, let $\{r_1,\ldots,r_{\phi(n)}\}$ be the $\phi(n)$ representations of the invertible residue classes mod $n$ (with $1\leq r_i\leq n$). Now consider $\{ar_1,\ldots,ar_{\phi(n)}\}\mod{n}$. mod $n$, these are congruent to $r_1,\ldots,r_{\phi(n)}$ in some "funny" order (since they are distinct and invertible mod $n$). 
+\end{proof}
+
+\paragraph{Wilson's Theorem}
+Let $p$ be prime, then $(p-1)!\equiv-1\mod{p}$. 
+\begin{proof}
+     Each $1\leq a\leq p-1$ is invertible mod $p$. Pair $a$ with its inverse $a^{-1}\mod{p}$. Consider when $a$ is its own inverse mod $p$. $a^2\equiv1\mod{p}\Rightarrow p|a^2-1=(a-1)(a+1)\Rightarrow p|a-1 \vee p|a+1\Rightarrow a\equiv1,-1\mod{p}$
+\end{proof}
+
+\section*{Lecture 13}
+rip. 
+\paragraph{Polynomials mod p}
+\paragraph{Division Algorithm}
+\paragraph{Lagrange's Theorem}
+
+
+\section*{Lecture 14}
+\paragraph{Lagrange's Theorem}
+$p$ prime, $f$ polynomial with deg$f=n$. Then $f(x)\equiv0\mod{p}$ has at most $n$ solutions $\mod{p}$. 
+\begin{proof}
+     Either there is no solution, or else there is at least one solution, say $x_1$. $f(x_1)\equiv0\mod{p}$, then $f(x)=(x-x_1)q(x)$ (note degree of $q(x)=\text{deg}f(x)-1$) in $\mathbb{F}_p[x]$. Now if $f(x_2)\equiv0\mod{p}$, then $(x_2-x_1)q(x_2)\equiv0\mod{p}$. Hence $p|(x_2-x_1)q(x_2)\Rightarrow p|(x_2-x_1)\text{ or }p|q(x_2)$. Inductively, $q(x_2)\equiv0\mod{p}$ has at most $n-1$ solutions mod $p$ (base case was done last class). Also, $x_2\equiv x_1\mod{p}$ has 1 solution, so $f(x_2)\equiv0\mod{p}$ has at most $n$ solutions $0\leq x_2<p-1$. 
+\end{proof}
+This is not generally true for $p$ not prime. Example: $x^2-1\equiv0\mod{8}$ has $4$ solutions mod 8, namely $x\equiv1,3,5,7\mod{8}$. 
+\paragraph{Order}
+Set $m\geq1,a\in\mathbb{Z},\text{gcd}(a,m)=1$. The \textbf{order} of $a$ for the modulus $m$ is the smallest positive integer $l$ such that $a^l\equiv1\mod{m}$. Note that $l\leq\phi(m)$ because $a^{\phi(m)\equiv1\mod{m}}$ \\ 
+\textbf{Fact:} Let $m\geq1,a\in\mathbb{Z},\text{gcd}(a,m)=1$. If $a$ has order $l\mod{m}$ then $l|\phi(m)$ \begin{proof}
+     Let $\phi(m)=ql+r$, with $0\leq r<l$ (we want to show that $r=0$). Euler stated $a^{\phi(m)}\equiv 1\mod{m}$, thus $a^{ql+r}\equiv1\mod{m}\Rightarrow (a^l)^qa^r\equiv1\mod{m}\Rightarrow a^r\equiv1\mod{m}\Rightarrow r=0$ (since $a^l\equiv1\mod{m}$ by definition). Otherwise, we would have a position integer $r<l$ such that $a^r\equiv1\mod{m}$. But $l$ is the smallest integer of that definition. 
+\end{proof}
+$a$ is said to be a \textbf{primitive root} mod $m$ if it has order $\phi(m)$. Note that not all moduli have primitive roots. $m\text{ has primitive roots}\Leftrightarrow m=1,2,4,p^\alpha,2p^\alpha$. We'll prove, if $m=p$ is prime, then there are primitive roots mod $m$. \begin{proof}
+     $p$ is prime, let $l|\phi(p)=p-1$, and $f(l)$ be the number of $1\leq a\leq p-1$ that have order $l\mod{p}$. First notice that $\sum_{l|p-1}f(l)=p-1$. 
+\end{proof}
+
+\paragraph{Lecture 15}
+\paragraph{Facts we know}
+\begin{itemize}
+    \item $\sum_{d|n}\phi(d)=n$
+    \item Langrange's theorem: A polynomial $f(x)\in\mathbb{F}_p[x]$ of degree $m$ has at most $m$ solutions $0\leq x<p$ to $f(x)\equiv0\mod{p}$.  
+    \item Let $m\geq1$, $a\in\mathbb{Z}$. $a$ is said to have (finite) order $l$ mod $m$ if $l$ is the smallest positive integer $a^l\equiv1\mod{m}$. Note $a$ has finite order mod $m$ if and only if gcd$(a,m)=1$. Defined $f_m(l)=$ number of $1\leq a<m$ that have order $l$ (for $l|\phi(m)$). 
+\end{itemize}
 
 \end{document}

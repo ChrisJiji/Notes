@@ -30,6 +30,21 @@
 \paragraph{IMLD} decodes to the codeword that has the last hamming distance from the received word.
 \paragraph{MED} Maximizes $P(c|r)=P(r|c)\frac{P(c)}{P(r)}$
 \paragraph{Sphere Packing Bound}$M\sum_{i=1}^e{n\choose i}(1-q)^i\leq q^n$. $q^n$ is the entire space, $M$ is the number of words, and each sum is the area of each word that can be error corrected. 
-
+\paragraph{Fields}
+\begin{itemize}
+    \item Addition is associative, commutative
+    \item Additive identity, inverse
+    \item Multiplication is associative, commutative
+    \item Multiplicative identity, inverse
+    \item Multiplication distributes over addition
+    \item The zero ring is not a field
+\end{itemize}
+\paragraph{Rings}
+A commutative ring has everything as above, but multiplication doesn't need an inverse, and the zero ring is a ring. A ring has everything as as a commuative ring, but multiplication isn't commutative.
+\paragraph{Order} The order of a field, $F$ is $|F|$. Note if $F$ has characteristic $p$, then the order is $p^n$ for some $n$. The order of some $\alpha\in GF(q)^*$, then ord$(\alpha)$ is the smallest integer $t$ such that $\alpha^t=1$. 
+\paragraph{Characteristic} The characteristic of $F$ is the smallest positive integer $p$ such that $\underbrace{1+\cdots+1}_{p\text{ times}}=0$. 
+\paragraph{Subfield} Let $F$ be a field with characteristic $p$. A subfield $E$ of $F$ is $\{0,1,\ldots,\underbrace{1+\cdots+1}_{p\text{ times}}\}\subseteq F$. 
+\paragraph{Prime Subfield} Let $F$ be a field with characteristic $p$. The prime subfield of $F$ is $\mathbb{Z}_p$. 
+\paragraph{Generator (primitive element)} $\alpha\in GF(q)$ with order $q-1$ is called a generator. 
 
 \end{document}

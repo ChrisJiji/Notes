@@ -31,7 +31,16 @@
 \end{tabular}\\ \\
 \paragraph{Level Set} Set $f(x,y)=k$ for some constant $k$, draw a set of $f(x,y)$ for a number of $k$.
 \paragraph{Cross-section} Similar as above, but keep $x$ or $y$ as a constant, and draw the set of $f(x,c)=z$ or $f(c,y)=z$ for some $c$. 
-\paragraph{Limits} Replace $y$ with an equation for $y$ (ie. $y=mx$), and then prove that it will be different depending on the choice of $m$. 
+\paragraph{Limits} 
+\subparagraph{Prove it doesn't exist} Replace $y$ with an equation for $y$ (ie. $y=mx$), and then prove that it will be different depending on the choice of $m$.
+\subparagraph{Prove it exists} Squeeze theorem. Useful inequalities: \begin{align*}|a|&=\sqrt{a^2}\\|a+b|&\leq|a|+|b|\\2|a||b|&\leq a^2+b^2\end{align*}
+\paragraph{Continuity} If a function is a sum, product, quotient, or composite function of any of the following basic functions (constant, coordinates, logarithm, exponential, trigonometric, inverse trigonometric, absolute value), then it is continuous. 
+\paragraph{Partial Derivatives} $\frac{\partial f}{\partial x}(a,b)=\lim_{h\rightarrow0}\frac{f(a+h,b)-f(a,b)}{h}$ Otherwise, differentiate using normal derivative rules. 
+\paragraph{Tangent Plane}$z=f(a,b)+\frac{\partial f}{\partial x}(a,b)(x-a)+\frac{\partial f}{\partial y}(a,b)(y-b)$
+\paragraph{Linear Approximation} $L_{(a,b)}(x,y)=f(a,b)+\frac{\partial f}{\partial x}(a,b)(x-a)+\frac{\partial f}{\partial y}(a,b)(y-b)$, and $f(x,y)\approx L_{(a,b)}(x,y)$ 
+\paragraph{Gradient} Suppose that $f:\mathbb{R}^3\rightarrow\mathbb{R}$ has partial derivatives at $\underline{a}$. The \textbf{gradient} of $f$ at $\underline{a}$ is defined by $\nabla f(\underline{a})=(f_x(\underline{a}),f_y(\underline{a}),f_z(\underline{a}))$ 
+\paragraph{Linear Approximation in Higher Dimensions} $f(\underline{x})\approx L_{\underline{a}}(\underline{x})=f(\underline{a})+\nabla f(\underline{a})\cdot(\underline{x}-\underline{a})$ for all $\underline{x}$ sufficiently close to $\underline{a}$ 
+\paragraph{Differentiability} A function $f:\mathbb{R}^2\rightarrow\mathbb{R}$ is \textbf{differentiable} at $\underline{a}=(a,b)$ if and only if there is a linear function $L(\underline{x})=f(a,b)+c(x-a)+d(y-b)$ such that $\lim_{\underline{x}\rightarrow\underline{a}}\frac{|R_{1,\underline{a}}(\underline{x})|}{||\underline{x}-\underline{a}||}=0$, where $R_{1,\underline{a}}(\underline{x})=f(\underline{x})-L(\underline{x})$. Note that if a function is differentiable with $L(\underline{x})$, then $L(\underline{x})$ is the linear approximation, that is, $c=f_x(a,b)$, and $d=f_y(a,b)$. 
 
 
 
