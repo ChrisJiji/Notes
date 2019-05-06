@@ -24,7 +24,7 @@
 \section*{Lecture 1}
 hes teaching pmath332 in summer
 \paragraph{Definition: Scalar Function}
-A scalar function $f(x,y)$ is a rule which assigns each ordered pair $(x,y)$ (of real numbers) in a set $D\subseteq\,\mathbb{R}^2$ a unique real number $z$. $D$ is called the domain of $f$. The set $\{z|z=f(x,y), (x,y)\in D\}$ is the range of $f$.  
+A scalar function $f(x,y)$ is a rule which assigns each ordered pair $(x,y)$ (of real numbers) in a set $D\subseteq\,\mathbb{R}^2$ a unique real number $z$. $D$ is called the domain of $f$. The set $\lbrace z|z=f(x,y), (x,y)\in D\rbrace $ is the range of $f$.  
 \paragraph{Interpretations of f(x,y)}
 \begin{itemize}
     \item Geometrical: $z=f(x,y)$ you get a surface in $\mathbb{R}^3$. $z$ would be the height above the $xy-$plane. 
@@ -40,7 +40,7 @@ We looked at drawing paraboloids and saddle surfaces/hyperbolic paraboloids, hem
 \paragraph{Limits}
 Recall in single variables, we had to check 2 directions ($\lim_{x\rightarrow a^+}f(x)=\lim_{x\rightarrow a^-}f(x)$). For $f(x,y)$ we can approach every point $(a,b)$ from infinitely many paths. 
 \begin{definition*}
-     A \textbf{neighbourhood} of a point $(a,b)\in\mathbb{R}^2$ of radius $r>0$ is a subset of $\mathbb{R}^2$ defined by $N_r(a,b)=\{(x,y)|\norm{(x,y)-(a,b)}<r\}$. Recall $\norm{(x,y)-(a,b)}=\sqrt{(x-a)^2+(y-b)^2}$
+     A \textbf{neighbourhood} of a point $(a,b)\in\mathbb{R}^2$ of radius $r>0$ is a subset of $\mathbb{R}^2$ defined by $N_r(a,b)=\lbrace (x,y)|\norm{(x,y)-(a,b)}<r\rbrace $. Recall $\norm{(x,y)-(a,b)}=\sqrt{(x-a)^2+(y-b)^2}$
 \end{definition*}
 \begin{definition*}
 Suppose $f(x,y)$ is defined in some neighbourhood of $(a,b)$, except possibly at point $(a,b)$. If for every $\epsilon>0$, there exists $\delta>0$ such that $|f(x,y)-L|<\epsilon$ whenever $0<\norm{(x,y)-(a,b)}<\delta$, then we say the limit as $(x,y)$ approaches $(a,b)$ exists and equals $L$ and write $\lim_{(x,y)\rightarrow(a,b)}=L$. Alternatively, we can write $f(x,y)\rightarrow L$ as $(x,y)\rightarrow(a,b)$. 
@@ -97,12 +97,12 @@ Important case: composite functions. Say we have $g:D\rightarrow\mathbb{R},U:\ma
 Example: Say we have $g$, continuous on $D$. Put $f(x,y)=e^{g(x,y)}$, then $f$ is continuous as well. 
 
 \paragraph{Example}
-Define $f:D\rightarrow\mathbb{R}$ as $f(x,y)=x^y$. Then $D=(0,\infty)\times\mathbb{R}=\{(x,y)|x>0,y\in\mathbb{R}\}$. Claim: $f$ is continuous on $D$. Why? Idea: Write $x=e^{\ln(x)}$. Then $f(x,y)=(e^{\ln(x)})^y=e^{(\ln(x))y}=e^{g(x,y)}$, if we let $g(x,y)=\ln(x)\cdot y$. Then $g$ is continuous by continuity theorem, and then by composite theorem, $f$ is continuous. (see the above example) 
+Define $f:D\rightarrow\mathbb{R}$ as $f(x,y)=x^y$. Then $D=(0,\infty)\times\mathbb{R}=\lbrace (x,y)|x>0,y\in\mathbb{R}\rbrace $. Claim: $f$ is continuous on $D$. Why? Idea: Write $x=e^{\ln(x)}$. Then $f(x,y)=(e^{\ln(x)})^y=e^{(\ln(x))y}=e^{g(x,y)}$, if we let $g(x,y)=\ln(x)\cdot y$. Then $g$ is continuous by continuity theorem, and then by composite theorem, $f$ is continuous. (see the above example) 
 
 \paragraph{Partial Derivatives}
 Idea: in $(x,y)\in D$, we fix $y$ and do the derivative with respect to $x$. We get a new function denoted $\frac{\partial f}{\partial x}, f_x,D_1f$ (all 3 names are equivalent). 
 \paragraph{Example}
-Recall $f:D\rightarrow\mathbb{R}$ as $f(x,y)=x^y$, with $D=(0,\infty)\times\mathbb{R}=\{(x,y)|x>0,y\in\mathbb{R}\}$. Fix $y=\frac{3}{2}$. Look at $u(x)=f\left(x,\frac{3}{2}\right)=x^{\frac{3}{2}}$. Then $u'(x)=\frac{3}{2}x^{\frac{1}{2}}$. Hence $\frac{\partial f}{\partial x}(x,\frac{3}{2})=\frac{3}{2}x^{\frac{1}{2}}$. In general, we have $\frac{\partial f}{\partial x}(x,y)=yx^{y-1},(x,y)\in D$. \\ 
+Recall $f:D\rightarrow\mathbb{R}$ as $f(x,y)=x^y$, with $D=(0,\infty)\times\mathbb{R}=\lbrace (x,y)|x>0,y\in\mathbb{R}\rbrace $. Fix $y=\frac{3}{2}$. Look at $u(x)=f\left(x,\frac{3}{2}\right)=x^{\frac{3}{2}}$. Then $u'(x)=\frac{3}{2}x^{\frac{1}{2}}$. Hence $\frac{\partial f}{\partial x}(x,\frac{3}{2})=\frac{3}{2}x^{\frac{1}{2}}$. In general, we have $\frac{\partial f}{\partial x}(x,y)=yx^{y-1},(x,y)\in D$. \\ 
 Symmetric idea: Calculate $\frac{\partial f}{\partial y}$ (also called $f_y$ or $D_2f$). We fix $x$ and do derivative with respect to $y$. Fix $x=5$, then we can look at the function $v(y)=f(5,y)=5^y$. Then $v'(y)=5^y\cdot\ln(5)$. Hence $\frac{\partial f}{\partial y}(5,y)=5^y\cdot\ln(5)$. Then we can see in general $\frac{\partial f}{\partial y}(x,y)=x^y\cdot\ln(x)$
 
 \paragraph{Challenge (done in next lecture)}
@@ -110,10 +110,10 @@ Fact: we can also do in 3 variables, and $n$ variables. With $f(x,y,z)=z^{x^y}$,
 
 \section*{Lecture 7}
 \paragraph{Example 1(warm up)} 
-$D=\{(x,y)|x\in\mathbb{R},y>0\}$, $f:D\rightarrow\mathbb{R}, f(x,y)=\left[\sin(x)+\sin(y)\right]\ln(y)$. Then $\frac{\partial f}{\partial x}(x,y)$ can be found by setting $\sin(y)=c_1,\ln(y)=c_2$. Derive $((\sin(x)+c_1)c_2)'=(\sin(x)+c_1)'c_2=\cos(x)c_2=\cos(x)\ln(y)$. $\frac{\partial f}{\partial y}(x,y)$ can be found by setting $\sin(x)=c$, then we need $[(c+\sin(y))\cdot\ln(y)]'=(c+\sin(y))\cdot\ln(y)'+(c+\sin(y))'\ln(y)=\sin(x)+\sin(y)\frac{1}{y}+\cos(x)\ln(y)$. 
+$D=\lbrace (x,y)|x\in\mathbb{R},y>0\rbrace $, $f:D\rightarrow\mathbb{R}, f(x,y)=\left[\sin(x)+\sin(y)\right]\ln(y)$. Then $\frac{\partial f}{\partial x}(x,y)$ can be found by setting $\sin(y)=c_1,\ln(y)=c_2$. Derive $((\sin(x)+c_1)c_2)'=(\sin(x)+c_1)'c_2=\cos(x)c_2=\cos(x)\ln(y)$. $\frac{\partial f}{\partial y}(x,y)$ can be found by setting $\sin(x)=c$, then we need $[(c+\sin(y))\cdot\ln(y)]'=(c+\sin(y))\cdot\ln(y)'+(c+\sin(y))'\ln(y)=\sin(x)+\sin(y)\frac{1}{y}+\cos(x)\ln(y)$. 
 
 \paragraph{Example 2}
-$D=\{(x,y,z)|x,z>0, y\in\mathbb{R}\}$, $f(x,y,z)=z^{x^y}$. What is $\frac{\partial f}{\partial x}(1,2,3)$? We fix $y=2,z=3$, look at $u(x)=f(x,2,3)=3^{x^2}$. Then $\frac{\partial f}{\partial x}(x,2,3)=u'(x)$. We can take $\frac{u'(x)}{u(x)}=(\ln(u(x))'$ by chain rule, and $(\ln(u(x))'=(x^2\ln(3))'=2x\ln(3)$. Then $u'(x)=u(x)\cdot\frac{u'(x)}{u(x)}=3^{x^2}\cdot2x\cdot\ln(3)$. Then $\frac{\partial f}{\partial x}(1,2,3)=3^{(1)^2}2\cdot(1)\cdot\ln(3)=6\ln3$.  
+$D=\lbrace (x,y,z)|x,z>0, y\in\mathbb{R}\rbrace $, $f(x,y,z)=z^{x^y}$. What is $\frac{\partial f}{\partial x}(1,2,3)$? We fix $y=2,z=3$, look at $u(x)=f(x,2,3)=3^{x^2}$. Then $\frac{\partial f}{\partial x}(x,2,3)=u'(x)$. We can take $\frac{u'(x)}{u(x)}=(\ln(u(x))'$ by chain rule, and $(\ln(u(x))'=(x^2\ln(3))'=2x\ln(3)$. Then $u'(x)=u(x)\cdot\frac{u'(x)}{u(x)}=3^{x^2}\cdot2x\cdot\ln(3)$. Then $\frac{\partial f}{\partial x}(1,2,3)=3^{(1)^2}2\cdot(1)\cdot\ln(3)=6\ln3$.  
 
 \paragraph{Example 3}
 $D=\mathbb{R}^2$, $f(x,y)=\begin{cases}\frac{\sin(x+y)}{x-y},\quad\text{if }x\neq y\\1,\quad\text{if }x=y\end{cases}$. Does $\frac{\partial f}{\partial x}$ exist at $(0,0)$? We fix $y=0$, then we have $u(x)=f(x,0)=\begin{cases}\frac{\sin(x)}{x}\quad\text{if }x\neq0\\1,\quad\text{if }x=0\end{cases}$. Then $\frac{\partial f}{\partial x}(0,0)=u'(0)$ if $u'(0)$ exists. $u'(0)=\lim_{x\rightarrow0}\frac{u(x)-u(0)}{x-0}$ if the limit exists. This equals $\lim_{x\rightarrow 0}\frac{\frac{\sin(x)}{x}-1}{x}=\lim_{x\rightarrow0}\frac{\sin(x)-x}{x^2}$. Applying l'Hopital's rule (twice), we get $\lim_{x\rightarrow0}\frac{\cos(x)-1}{2x}=\lim_{x\rightarrow0}\frac{-\sin(x)}{2}=0$. Then therefore $u'(0)$ exists, and is equal to $0$, and so $\frac{\partial f}{\partial x}(0,0)$ exists, and is equal to $0$. something to think about: what about $\frac{\partial f}{\partial y}(0,0)?$ 
@@ -160,7 +160,7 @@ bleh
 \section*{Lecture 10}
 bleh
 
-
+\paragraph{Differentiability} A function $f:\mathbb{R}^2\rightarrow\mathbb{R}$ is \textbf{differentiable} at $\underline{a}=(a,b)$ if and only if there is a linear function $L(\underline{x})=f(a,b)+c(x-a)+d(y-b)$ such that $\lim_{\underline{x}\rightarrow\underline{a}}\frac{|R_{1,\underline{a}}(\underline{x})|}{||\underline{x}-\underline{a}||}=0$, where $R_{1,\underline{a}}(\underline{x})=f(\underline{x})-L(\underline{x})$. Note that if a function is differentiable with $L(\underline{x})$, then $L(\underline{x})$ is the linear approximation, that is, $c=f_x(a,b)$, and $d=f_y(a,b)$. 
 
 
 \section*{Lecture 11 (5.3-6.1)}
@@ -205,10 +205,9 @@ With $f(x(u,v),y(u,v))$, you can calculate both $\frac{\partial}{\partial u}f(x(
 $f(x,y)=2x^2-\sin y, x(u,v)=u+v,y(u,v)=u-v^2$. Find $\frac{\partial f}{\partial u},\frac{\partial f}{\partial v}$. Note $\frac{\partial f}{\partial u}=\frac{\partial}{\partial u}f(x(u,v),y(u,v))$. $\frac{\partial f}{\partial u}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial u}=4x\cdot1-\cos y\cdot1=4(u+v)-\cos(u-v^2)$
 
 \section*{Lecture 13}
-rip 
+rip. probably 6.3
 
-\section*{Lecture 14}
-\paragraph{Directional Derivatives (7.1)}
+\section*{Lecture 14: Directional Derivatives (7.1)}
 Motivation: mountain climbing. Have a top-down view of the mountain, with $x,y$ being east and north respectively. Then $f(x,y)=$elevation at that point. Let $(a,b)$ be a point on the ring of the mountain where $f(x,y)=20$. Then if you go down the mountain (ie, positive $x,y$), $f(x,y)$ decreases, but if you go up, $f(x,y)$ increases. What happens if we travel an arbitrary direction $\hat{u}$? \\ 
 Given $(a,b)\in\mathbb{R}^2$ and unit vector $\hat{u}$, a line through $(a,b)$ has vector (parametric) equation $(x,y)=(a,b)+s\hat{u}$, where $s\in\mathbb{R}$.  
 \paragraph{Definition} The \textbf{directional derivative} of $f$ at a point $(a,b)$ in the direction of unit vector $\hat{u}$ is: $D_{\hat{u}}f(a,b)=\frac{d}{ds}f((a,b)+s(u_1,u_2))|_{s=0}=\frac{d}{ds}(f(a+su_1,b+su_2))|_{s=0}$. 
@@ -232,17 +231,194 @@ Solution: Again, $f$ is clearly differentiable everywhere. Also, normalize $\vec
 \paragraph{Interpretation of the Directional Derivative}
 $D_{\hat{u}}f(a,b)$ represents the rate of change of $f$ with respect to distance at $(a,b)$ as you move in the direction of $\hat{u}$. e.g. $f(x,y)=\text{temperature}^\circ C$, with $x,y$ measured in metres. Then $D_{\hat{u}}f(a,b)$ would be measured in $^\circ C/m$. Note that traveling along the tangent line of one the isotherms gives u 0, and traveling across the orthogonal line to that maximizes the derivative.
 
+\section*{Lecture 15: More on Directional Derivatives and the Gradient Vector (7.1-7.3)}
+Last lecture: $D_{\hat{u}}f(a,b)=\frac{d}{ds}f(a+su_1,b+su_2)|_{s=0}=\nabla f(a,b)\cdot\hat{u}$ if $f$ is differentiable at $(a,b)$. \\ 
+Question: What direction $\hat{u}$ will maximize $D_{\hat{u}}f(a,b)$? If $f$ is differentiable, $D_{\hat{u}}f(a,b)=\nabla f(a,b)\cdot\hat{u}=\norm{\nabla f(a,b)}\cdot\norm{\hat{u}}\cdot\cos\theta$. Then clearly this is maximized when $\theta=1$, or when $\hat{u}$ is in the direction of $\nabla f(a,b)$ ie. $\hat{u}=\frac{\nabla f(a,b)}{\norm{\nabla f(a,b)}}$. The maximum value is $D_{\hat{u}}f(a,b)=\norm{\nabla f(a,b)}$. Also note that $D_{\hat{u}}f(a,b)=0$ when $\theta=\frac{\pi}{2}$, and $D_{\hat{u}}f(a,b)$ is minimized when $\theta=\pi$. 
+
+\begin{theorem*}
+If $f(x,y)$ is differentiable at $(a,b)$ and $\nabla f(a,b)\neq0$, then $\nabla f(a,b)$ is orthogonal to the level curve $f(x,y)=k$ through the point $(a,b)$. 
+\end{theorem*}
+\begin{proof}
+     Sketch: Parameterize the curve by $\begin{cases}x=x(t)\\y=y(t)\end{cases}$ (implicit function theorem). Then $f(x(t),y(t))=k$. Differentiate with respect to $t$, \begin{align*}\frac{\partial f}{\partial t}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}=\frac{d}{dt}(k)=0\\\Rightarrow \nabla f\cdot\underbrace{\left(\frac{dx}{dt},\frac{dy}{dt}\right)}_{\text{tangent vector }x'\neq0}=0\\\Rightarrow \nabla f\perp\text{tangent vector}\end{align*}
+\end{proof}
+Remark: This generalizes for $f(x,y,z)$. $f(x,y,z)=k$ is called the level surface. $\nabla f(a,b,c)$ orthogonal to the tangent plane of the surface at $(a,b,c)=\underline{a}$. Let $\underline{x}$ be any point on the tangent plane. Then $\nabla f(\underline{a})\cdot (\underline{x}-\underline{a})=0$ is the \textbf{equation of the tangent plane} to $f(x,y,z)=k$ at $(a,b,c)$.
+
+\paragraph{Example}
+Consider the surface $x^2+y^2+z^2=6$. Find the equation of the tangent plane to this surface at $\underline{a}=(2,1,1)$. \\
+Solution: Let $f(x,y,z)=x^2+y^2+z^2$. Then $\nabla f=(2x,2y,2z)\Rightarrow \nabla f(2,1,1)=(4,2,2)$. By the above equation, the tangent plane is given by $\nabla f(2,1,1)\cdot((x,y,z)-(2,1,1))=0$, or $(4,2,2)\cdot(x-2,y-1,z-1)=0\Rightarrow 4(x-2)+2(y-1)+2(z-1)=0$ or $2x+y+z=6$ or $z=-2x-y+6$. 
+
+\paragraph{Example}
+Find the equation of the tangent plane to the surface described by $z=\sqrt{x^2+y^2}$ at $(1,1,\sqrt{2})$. \\ 
+Solution 1: Equation of the tangent plane is $z=f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)$ (exercise) \\ 
+Solution 2: Rearrange to get $z-\sqrt{x^2+y^2}=0$, and set $g(x,y,z)=z-\sqrt{x^2+y^2}$. Then plug into the above equation of tangent plane. \\ 
+Better than Solution 2: square the equation to get $z^2=x^2+y^2$, with $z\geq0$, then rearrange to get $z^2-x^2-y^2=0$, and THEN plug into the above equation of tangent plane. ($\nabla g(1,1,\sqrt{2})\cdot(x-1,y-1,z-\sqrt{2})=0$)\\
+\textbf{Comment}: Could also use this same idea for equation of the tangent line to the curve $f(x,y)=k$: $\nabla f(a,b)\cdot ((x,y)-(a,b))=0$. 
+
+\section*{Lecture 16}
+rip. Probably 8.1
 
 
+\section*{Lecture 17: Using Taylor's Formula and Generalizations (8.2-8.3)}
+Recap: $f(x,y)=L_{(a,b)}(x,y)+R_{1,(a,b)}(x,y)$, $R_{1,(a,b)}(x,y)=\frac{1}{2^1}\left(f_{xx}(c,d)(x-a)^2+2f_{xy}(c,d)(x-a)(y-b)+f_{yy}(c,d)(y-b)^2\right)$, assuming $f\in C^2$, and $(c,d)$ is a point between $(a,b)$ and $(x,y)$. \\ 
+question \#1 on the midterm: If $f(x,y)=x^2+y^2$, then $f_{x}(0,1)=$? 
+\paragraph{Example 1}
+Let $f(x,y)=e^{x^2+y^2}$. Use Taylor's theorem to show that the error in the linear approximation $f(x,y)\approx L_{(1,1)}(x,y)$ for $(x,y)$ near $(1,1)$ is at most $5e^2[(x-1)^2+(y-1)^2]$ if $0\leq x,y\leq1$. \\ 
+Solution: Partials are 
+\begin{align*}
+f_x&=2xe^{x^2+y^2}\\ 
+f_y&=2ye^{x^2+y^2} \\ 
+f_{xx}&=2e^{x^2+y^2}+4x^2e^{x^2+y^2} &&\Rightarrow f_{xx}(c,d)=2e^{c^2+d^2}+4c^2e^{c^2+d^2}\\ 
+f_{xy}&=4xye^{x^2+y^2} &&\Rightarrow f_{xy}(c,d)=4cde^{c^2+d^2}\\
+f_{yy}&=2e^{x^2+y^2}+4y^2e^{x^2+y^2} &&\Rightarrow f_{yy}(c,d)=2e^{c^2+d^2}+4d^2e^{c^2+d^2}
+\end{align*}
+By Taylor's formula, (note that clearly $f\in C^2$), 
+$$|R_{1,(1,1)}(x,y)|=\frac{1}{2}\left|f_{xx}(c,d)(x-1)^2+2f_{xy}(c,d)(x-1)(y-1)+f_{yy}(c,d)(y-1)^2\right|$$
+Since $0\leq x,y\leq1$, and $(c,d)$ are between $1$ and $(x,y)$, then $0\leq c,d\leq1$. So then clearly we can find an upper bound for the second degree partial derivatives by setting $(c,d)=(1,1)$. Then $f_{xx}\leq 6e^2,f_{xy}\leq4e^2,f_{yy}\leq6e^2$. Then $|R_{1,(1,1)}(x,y)|\leq \frac{1}{2}\left(|f_{xx}(c,d)(x-1)^2|+|2f_{xy}(c,d)(x-1)(y-1)|+|f_{yy}(c,d)(y-1)^2|\right)$ by triangle inequality. Then this is less than or equal to $\frac{1}{2}(6e^2(x-1)^2+2(4e^2)|x-1||y-1|+6e^2(y-1)^2)$. Note that $|x-1||y-1|\leq\frac{1}{2}((x-1)^2+(y-1)^2)$ by the cosine inequality. Multiplying all of it out, we get exactly $5e^2[(x-1)^2+(y-1)^2]$. 
 
+\paragraph{Example 2}
+$f(x,y)=\frac{1}{2x-3y}$. Show that $f(x,y)\approx L_{(2,-1)}(x,y)$ with $|\text{error}|\leq15[(x-2)^2+(y+1)^2]$ if $x\geq2$ and $y\leq1$. \\ 
+Solution: Partials are 
+\begin{align*}
+f_x&=\frac{-2}{(2x-3y)^2} \\ 
+f_y&=\frac{3}{(2x-3y)^2}\\ 
+f_{xx}&=\frac{8}{(2x-3y)^3} &&\Rightarrow f_{xx}(c,d)= \frac{8}{(2c-3d)^3}\\ 
+f_{xy}&=\frac{-12}{(2x-3y)^3} &&\Rightarrow f_{xy}(c,d)=\frac{-12}{(2c-3d)^3}\\ 
+f_{yy}&=\frac{18}{(2x-3y)^3} &&\Rightarrow f_{yy}(c,d)=\frac{18}{(2c-3d)^3}
+\end{align*}
+By Taylor's formula, 
+$$|R_{1,(2,-1)}(x,y)|=\frac{1}{2}\left|f_{xx}(c,d)(x-2)^2+2f_{xy}(c,d)(x-2)(y+1)+f_{yy}(c,d)(y+1)^2\right|$$ 
+By triangle inequality, then this is less than or equal to $$\frac{1}{2}(|f_{xx}(c,d)|(x-2)^2+2|f_{xy}(c,d)|x-2||y-1|+|f_{yy}(c,d)|(y+1)^2)$$ Now note again that $(c,d)$ is between $(2,-1)$ and $(x,y)$. Then $c$ is between $2$ and $x$, and $d$ is between $-1$ and $y$. Then $c\geq2$, and $d\leq1$. Then $2c\geq4$, and $3d\leq3$, and so $f_{xx}=\frac{8}{|2c-3d|^3}\leq\frac{8}{1^3}$. Similarly, $f_{xy}\leq12,f_{yy}\leq18$. Then $|R_1|\leq\frac{1}{2}(8(x-2)^2+12\underbrace{((x-2)^2+(y+1)^2)}_{\text{by cosine inequality}}+18(y+1)^2)=10(x-2)^2+15(y+1)^2\leq15(x-2)^2+15(y+1)^2$ as expected. 
 
+\paragraph{Generalizations}
+$k^{th}$ order polynomial $P_{k,(a,b)}(x,y)$. Differential operator: $[(x-a)D_1+(y-b)D_2]f(a,b)=(x-a)D_1f(a,b)+(y-b)D_2f(a,b)$. \\ 
+Then $P_{1,(a,b)}(x,y)=f(a,b)+[(x-a)D_1+(y-b)D_2]f(a,b)=f(a,b)+(x-a)D_1f(a,b)+(y-b)D_2f(a,b)$. \\ 
+Then $P_{2,(a,b)}(x,y)=P_{1,(a,b)}(x,y)+\frac{1}{2!}[(x-a)D_1+(y-b)D_2]^2f(a,b)=P_1+\frac{1}{2}(x-a)^2D_1^2f(a,b)+2(x-a)(y-b)D_1D_2f(a,b)+(y-b)^2D_2^2f(a,b)$. \\ 
+Then $P_{3,(a,b)}(x,y)=P_{2,(a,b)}(x,y)+\frac{1}{3!}[(x-a)D_1+(y-b)D_2]^3f(a,b)$. \\ 
 
+\section*{Lecture 18: Critical Points (9.1)}
+Recall: for a single variable function: a "critical point" is when $f'=0$ or $f'\,\,DNE$. 
+\paragraph{Definition} If, for all $(x,y)$, $f(x,y)\leq f(a,b)$ in a neighbourhood of $(a,b)$, we call $(a,b)$ a \textbf{local maximum} point of $f$. If, for all $(x,y)$, $f(x,y)\geq f(a,b)$ in a neighbourhood of $(a,b)$, we call $(a,b)$ a \textbf{local minimum} point of $f$. 
 
+\paragraph{Theorem} If $(a,b)$ is a local max or a local min, then $f_x(a,b)=0$ or DNE and $f_y(a,b)=0$ or DNE. Proof: Consider cross-sections (page 93). 
 
+\paragraph{Definition} If $(a,b)$ satisfies $f_x(a,b)=0$ or DNE and $f_y(a,b)=0$ or DNE, then we call it a \textbf{critical point} of $f$. 
+\paragraph{Definition} A \textbf{critical point} that is neither a local max nor a local min is called a \textbf{saddle point} of $f$. 
+\paragraph{Example 1}
+Find all critical points of $f(x,y)=y^3+x^2-6xy+3x+6y$. \\ 
+Solution: $f_x=2x-6y+3,f_y=3y^2-6x+6$. Clearly these are continuous, and so $f$ is differentiable. Then we need to solve $2x-6y+3=0$, and $3y^2-6x+6=0$. Then $2x-6y+3=0\Rightarrow 2x=6y-3$, and so plugging that into the second equation, $3y^2-3\cdot(6y-3)+6=0\Rightarrow 3y^2-18y+15=0\Rightarrow 3(y-1)(y-5)=0$, or $y=1,5$. Then plugging into the first equation again, we get $x=\frac{3}{2},\frac{27}{2}$, respectively. So the critical points are $\left(\frac{3}{2},1\right), \left(\frac{27}{2},5\right)$
 
+\paragraph{Example 2}
+Find the critical points for $f(x,y)=6xy^2-2x^3-3y^4$. \\ 
+Solution: $f_x=6y^2-6x^2, f_y=12xy-12y^3$. Then we need to solve $6y^2-6x^2=0, 12xy-12y^3=0$. Using the second equation, we have $12y(x-y^2)=0\Rightarrow y=0\vee(x-y^2)=0$. If $y=0$, then the first equation gives $x=0$. Then we get $(0,0)$ as a critical point. If $x-y^2=0$, i.e. $x=y^2$, then the first equation gives $6x-6x^2=0\Rightarrow 6x(1-x)=0\Rightarrow x=0\vee(1-x)=0$. If $x=0$ then $y=0$, which we already found, and if $x=1$, then $y=\pm1$. Then we have $(0,0),(1,-1),(1,1)$ as our critical points. 
 
+\section*{Lecture 19: Classifying Critical Points (9.2)}
+Recap: $\begin{cases}\text{local max:}\quad f(x,y)\leq f(a,b)\\\text{local min:}\quad f(x,y)\geq f(a,b)\\\text{saddle:}\quad\text{neither of the above}\end{cases}$ 
+Given $f(x,y)$, how to classify critical points? Given $f(x,y)\in C^2$ with critical point $(a,b)$, the $2^{nd}$ order Taylor approximation is: $f(x,y)\approx f(a,b)+f_x(a,b)(x-1)+f_y(a,b)(y-b)+\frac{1}{2!}(f_{xx}(a,b)(x-a)^2+2f_{xy}(a,b)(x-a)(y-b)+f_{yy}(a,b)(y-b)^2)$. Setting $A=f_{xx}(a,b),B=f_{xy}(a,b),C=f_{yy}(a,b),u=x-a,v=y-b$, then $f(x,y)-f(a,b)\approx\frac{1}{2}(Au^2+2Buv+Cv^2)$, which is a quadratic form. Now, we want to see if this quadratic form is positive or negative, to see whether $f(x,y)\leq f(a,b)$ or $f(x,y)\geq f(a,b)$. Then (assuming $A\neq0$) 
+\begin{align*}Au^2+2Buv+Cv^2&=A\left(u^2\frac{2B}{A}uv+\frac{C}{A}v^2\right)\\&=A\left((u+\frac{B}{A}v)^2+(\frac{C}{A}-\frac{B^2}{A^2})v^2\right)\\&=A\left(u+\frac{B}{A}v\right)^2+\left(C-\frac{B^2}{A}\right)v^2\end{align*}
+Then clearly, $\left(u+\frac{B}{A}v\right)^2\geq0$, and $v^2\geq0$. Then, 
+\begin{itemize}
+    \item If $A>0$ and $C-\frac{B^2}{A}>0$, we expect $f(x,y)-f(a,b)\gtrapprox0$. 
+    \item If $A<0$ and $C-\frac{B^2}{A}<0$, we expect $f(x,y)-f(a,b)\lessapprox0$. 
+    \item If $A\cdot\left(C-\frac{B^2}{A}\right)<0$, we expect $f(x,y)-f(a,b)\gtrapprox0$ sometimes, and $f(x,y)-f(a,b)\lessapprox0$ sometimes, so it is a saddle. 
+\end{itemize}
+Comment: $A\left(C-\frac{B^2}{A}\right)=AC-B^2=\det\begin{bmatrix}A&B\\B&C\end{bmatrix}=\det\begin{bmatrix}f_{xx}(a,b)&f_{xy}(a,b)\\f_{xy}(a,b)&f_{yy}(a,b)\end{bmatrix}$, this is the Hessian matrix. 
 
+\begin{theorem*}[$2^{nd}$ derivative test for $f(x,y)$]
+     If $f\in C^2$ in some neighbourhood of a critical point $(a,b)$, then \begin{enumerate}
+         \item if $\det(Hf(a,b))>0$, and $f_{xx}(a,b)>0$ then $(a,b)$ is a \textbf{local minimum point} 
+         \item if $\det(Hf(a,b))>0$ and $f_{xx}(a,b)<0$ then $(a,b)$ is a \textbf{local maximum point} 
+         \item if $\det(Hf(a,b))<0$ then $(a,b)$ is a saddle point. 
+         \item if $\det(Hf(a,b))=0$, no conclusion from this theorem
+     \end{enumerate}
+\end{theorem*}
+Proof is in section 9.3, and it's completely optional. Comment: the above cases correspond to the following terminology for quadratic forms:\begin{enumerate}
+    \item positive definite 
+    \item negative definite 
+    \item indefinite
+    \item semidefinite
+\end{enumerate}
+\paragraph{Example}
+$f(x,y)=6xy^2-2x^3-3y^4$ has critical points $(0,0)$, $(1,1)$, $(1,-1)$ (found last lecture). Classify these critical points. $Hf(x,y)=\begin{pmatrix}f_{xx}&f_{xy}\\f_{xy}&f_{yy}\end{pmatrix}=\begin{pmatrix}-12x&12y\\12y&12x-36y^2\end{pmatrix}$. Then: 
+$$\det(Hf(0,0))=\det\begin{vmatrix}0&0\\0&0\end{vmatrix}=0$$ so no conclusion is possible from the theorem
+$$\det(Hf(1,1)=\det\begin{vmatrix}-12&12\\12&-24\end{vmatrix}>0$$ so it is a local max or min. Since $f_{xx}(1,1)<0$, then by theorem, $(1,1)$ is a local maximum point. 
+$$\det(Hf(1,-1))=\det\begin{vmatrix}-12&-12\\-12&-24\end{vmatrix}>0$$ so $(1,-1)$ is also a local maximum\\ What about $(0,0)$? We know $f(x,y)=6xy^2-2x^3-3y^4$, and $f(0,0)=0$. We want to know if $f(x,y)\geq f(0,0)$ for $(x,y)$ near $(0,0)$, or is it $\leq$, or is it neither? One idea is to look at cross cross-sections: $\begin{cases}f(x,0)=-2x^3\\f(0,y)=-3y^4\leq0\end{cases}$ Since $-2x^3$ is above zero sometimes and below zero sometimes, and $f(0,y)$ is always positive, then $f(x,y)>0$ for some nearby $(x,y)$, and $f(x,y)<0$ for some nearby $(x,y)$, then $(0,0)$ is a saddle point. \\ 
+Question: Is it possible for $f\in C^2$ to have exactly two critical points, both of which are local maxima?
 
+\section*{Lecture 20}
+oops
+\section*{Lecture 21}
+oops
+\section*{Lecture 22}
+oops
+\section*{Lecture 23}
+oops
+
+\section*{Lecture 24: More Polar Coords (11.1), Cylindrical coords (11.2)}
+recap: given a coordinate $(x,y)$, $r$ is the line from the origin to $(x,y)$, and $\theta$ is the angle between the positive x-axis and $r$. $r=\sqrt{x^2+y^2},\tan\theta=\frac{y}{x},x=r\cos\theta,y=r\sin\theta$. 
+\paragraph{Example 3}
+Describe the region given by $\lbrace(x,y)|(y>x)\wedge( x^2+y^2\leq4)\rbrace$ using polar coordinates. \\ 
+Solution: draw the line $y=x$, and the circle given by $x^2+y^2=4$. Then clearly the set we are looking for is all of the circle that is above the line $y=x$ (the intersection of $y>x$ and $x^2+y^2=4$). By inspection, the region is $\lbrace(r,\theta)|0<r\leq2\text{ and }\frac{\pi}{4}<\theta<\frac{5\pi}{4}\rbrace$
+\paragraph{Example 4}
+Describe the region given by $y\leq1$ in polar coordinates. \\ 
+Solution: If $0<\theta<\pi$, then $0\leq r\leq ?$. We can convert the line $y=1$ to polar: $r\sin\theta=1\Rightarrow r=\frac{1}{\sin\theta}$. Then $0\leq r\leq\frac{1}{\sin\theta}$. If $\pi\leq\theta\leq 2\pi$, then $0\leq r<\infty$. So the region is $\left\lbrace(r,\theta)|0<\theta<\pi,0\leq r\leq\frac{1}{\sin\theta}\right\rbrace\cup\bigg\lbrace(r,\theta)|\pi\leq\theta\leq2\pi,0\leq r<\infty\bigg\rbrace$
+
+\paragraph{Cylindrical Coordinates (11.2)}
+$\begin{cases}x=r\cos\theta\\y=r\sin\theta\\z=z\end{cases}$ as with polar. The distance to the coordinate is polar as above, and then the "height" is just measured by $z$. 
+
+\paragraph{Example 1}
+Sketch the surfaces given by:
+\begin{enumerate}
+    \item $r=1$. Note that in the $xy$ plane, $r=1$ is a circle. Then in the $xyz$ plane, this is just an infinitely tall cylinder.  
+    \item $z=r$. This is just a cone extending infinitely upwards, since $z=\sqrt{x^2+y^2}$, and then you can just sketch the $3d$ graph of this. 
+\end{enumerate} 
+
+\paragraph{Example 2}
+Describe $\lbrace(x,y,z)|x^2+y^2\leq4,\,y\geq0,\,0\leq z\leq y+4\rbrace$ in cylindrical coordinates. \\ 
+Solution: First we sketch the cylinder given by $x^2+y^2=4$ (cylinder of radius 2), the plane $z=0$, the plane $z=y+4$, and the plane given by $y=0$. Then the shape we get is a half cylinder with a sloped cut-off top. From above (positive $z$ axis), we get a semi circle, and so we get $0\leq r\leq 2,0\leq\theta\leq\pi$. Notice $0\leq z\leq y+4=r\sin\theta+4$. Conclusion: $\lbrace(r,\theta,z)|0\leq r\leq2,0\leq\theta\leq\pi,0\leq z\leq r\sin\theta+4\rbrace$
+
+\section*{Lecture 25: Spherical Coordinates (11.1)}
+\paragraph{Spherical Coordinates}
+Given by $(\rho,\phi,\theta)$, where $\rho$ is the distance from the origin to the point, $\phi$ is the angle from the positive $z$ axis, and $\theta$ is the angle from the positive $x$ axis.$$\begin{cases}x=\rho\sin\phi\cos\theta\\y=\rho\sin\phi\sin\theta\\z=\rho\cos\phi\end{cases}$$ We have $0\leq\rho,0\leq\theta\leq2\pi,0\leq\phi\leq\pi$
+\paragraph{Example 1}
+Plot points and convert into Cartesian: 
+\begin{enumerate}
+    \item $(\rho,\phi,\theta)=(1,\frac{\pi}{2},\frac{\pi}{4})$\\ 
+    $\phi=\frac{\pi}{2}$ means the point is on the $xy-$plane, and $\theta=\frac{\pi}{4}$ means the point is halfway between the positive $x$ and $y$ axes. $(x,y,z)=\left(1\sin\frac{\pi}{2}\cos\frac{\pi}{4},1\sin\frac{\pi}{2}\sin\frac{\pi}{4},1\cos\frac{\pi}{2}\right)=\left(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}},0\right)$
+    \item $(\rho,\phi,\theta)=(2,\pi,\frac{3\pi}{4})$\\ 
+    $\phi=\pi$ means the point is on the $z$ axes, since the $\sin\phi$ in both the equations for $x$ and $y$ is 0. Then $(x,y,z)=\left(0,0,2\cos\frac{3\pi}{4}\right)=(0,0,-2)$
+\end{enumerate}
+\paragraph{Example 2}
+Sketch surfaces 
+\begin{enumerate}
+    \item $\rho=1$\\ 
+    This is just a sphere of radius 1. 
+    \item $\phi=\frac{\pi}{3}$ \\
+    This is a cone surrounding the $z$ axis with angle $\frac{\pi}{3}$. 
+    \item $\theta=\frac{\pi}{2}$\\
+    This is a half plane on the positive $y$ side of the $zy-$plane
+\end{enumerate}
+\paragraph{Example 3}
+Describe the region $\lbrace(x,y,z)|x^2+y^2+z^2\leq16,\sqrt{3x^2+3y^2}\leq z\rbrace$ using spherical coords. \\ 
+SOLUTION: Start with sketch. The first restriction gives the fact that the region is within a sphere of radius 4, and the second restriction gives that we are above a cone of height $\sqrt{3}$. We get $0\leq\rho\leq4$ by inspection. Also, $0\leq\theta\leq2\pi$ by inspection. By inspection, we can see $\phi\geq0$. To get the upper bound, we can notice that the $\theta$ is symmetric, so we can look at a "v" shaped cross section. We have $z=\sqrt{3}\sqrt{y^2}=\sqrt{3}|y|$. We can see that this gives us a slope of $\sqrt{3}$, and so when $y=1$, $z=\sqrt{3}$, and then we can just use trigonometry to get the angle. Then $0\leq\phi\leq\frac{\pi}{6}$. 
+
+\section*{Lecture 26: Mappings (12.1,12.2)}
+Consider $(u,v)=F(x,y)=(F_1(x,y),F_2(x,y))$. Can be imagined either as a vector field or just a regular mapping from $xy-$plane to $uv-$plane. 
+\paragraph{Example 1}
+Find the image of $S=\lbrace(x,y)|\,|x|\leq1,|y|\leq1\rbrace$ under the mapping $(u,v)=F(x,y)=(x+y,y)$. \\ 
+Sketching $S$, we get a square of side length $2$. We can label each boundary curve, and then see how $F$ transforms them. For the right side, we have $x=1,-1\leq y\leq1$, and so $u=1+y,v=y\Rightarrow v=u-1,-1\leq v\leq1$. For the top side, we have $y=1,-1\leq x\leq1$, and so $u=x+1,v=1\Rightarrow v=1,0\leq u\leq2$. Similar for the last 2. It is a parallelogram. 
+
+\paragraph{Example 2}
+Consider $(x,y)=F(r,\theta)=(r\cos\theta,r\sin\theta)$. Find the image of $S=\lbrace(r,\theta)|0\leq r\leq1,0\leq\theta\leq\pi\rbrace$\\ 
+Sketching $S$, we get a rectangle with width $1$ and length $\pi$. The right side is given by $\theta=\pi,0\leq r\leq1$. Then we get $x=r\cos\pi,y=r\sin\pi\Rightarrow x=-r,y=0$. So $-1\leq x\leq0$, and $y=0$. The top side is given by $0\leq\theta\leq\pi, r=1$. Then $x=1\cos\theta,y=1\sin\theta$. Note this is a circle since $x^2+y^2=\cos^2\theta+\sin^2\theta=1$. Then $0\leq y\leq1$, $-1\leq x\leq 1$. This gives a semi circle above the $x$ axis. Similarly for the last two sides, and we get a semi circle of radius 1.
+\paragraph{Linear Approximation of a Mapping (12.2)}
+Suppose we have $(u,v)=F(x,y)$. If we had $(a,b)$ mapping to $(c,d)$, ie. $(c,d)=F(a,b)$, if we changed $(a,b)$ slightly to $(a+\Delta x,b+\Delta y)$, how can we approximate $(c+\Delta u,d+\Delta v)\approx F(a+\Delta x,b+\Delta y)$? \\ 
+Let $(u,v)=F(x,y)=\big(\underbrace{f(x,y)}_{u},\underbrace{g(x,y)}_v\big)$. Use increment form of linear approximation: \begin{align*}\Delta u&\approx f_x(a,b)\Delta x+f_y(a,b)\Delta y\\\Delta v&\approx g_x(a,b)\Delta x+g_y(a,b)\Delta y\end{align*} 
+This gives $\begin{pmatrix}u\\v\end{pmatrix}\approx\begin{pmatrix}f_x(a,b)&f_y(a,b)\\g_x(a,b)&g_y(a,b)\end{pmatrix}\begin{pmatrix}\Delta x\\\Delta y\end{pmatrix}$. Note that $\begin{pmatrix}f_x(a,b)&f_y(a,b)\\g_x(a,b)&g_y(a,b)\end{pmatrix}$ is noted as $DF(a,b)$, and is called the \textbf{derivative matrix}. So we write $F(\underline{a}+\Delta\underline{x})-F(\underline{a})\approx DF(\underline{a})\Delta\underline{x}$, where $\underline{a}=\begin{pmatrix}a\\b\end{pmatrix},\Delta\underline{x}=\begin{pmatrix}\Delta x\\\Delta y\end{pmatrix}$. Ie. $F(\underline{a}+\Delta \underline{x})\approx F(\underline{a})+DF(\underline{a})\Delta \underline{x}$
+
+\section*{Lecture 27}
+\section*{Lecture 28}
+\section*{Lecture 29}
+rip
 
 
 

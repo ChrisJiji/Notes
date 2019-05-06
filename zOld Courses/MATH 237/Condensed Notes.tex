@@ -1,0 +1,67 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\begin{document}
+\paragraph{Graphs of Second Degree Equations}\mbox{}\newline
+
+\begin{tabular}{|p{2cm}|p{4cm}|p{7cm}|}\\
+\hline
+\textbf{Graph}     & \textbf{Formula} & \textbf{Notes} \\ \hline
+\textbf{Circle}    & $(x-h)^2+(y-k)^2=r^2$               & Centre is $(h,k)$ and radius is $r$  \\\hline
+\textbf{Parabola}  & $y=ax^2+bx+c$                       & Can find roots with quadratic equation, vertex by completing the square\\\hline   
+\textbf{Ellipse}   & $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ & $x$ intercepts are found by setting $y=0$, $y$ intercepts are found by setting $x=0$\\\hline
+\textbf{Hyperbola} & $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ & Find $x$ intercepts by setting $y=0$. Its asymptotes are $y=\pm\left(\frac{b}{a}\right)x$  \\
+\hline
+\end{tabular}\\ \\
+\paragraph{Level Set} Set $f(x,y)=k$ for some constant $k$, draw a set of $f(x,y)$ for a number of $k$.
+\paragraph{Cross-section} Similar as above, but keep $x$ or $y$ as a constant, and draw the set of $f(x,c)=z$ or $f(c,y)=z$ for some $c$. 
+\paragraph{Limits} 
+\subparagraph{Prove it doesn't exist} Replace $y$ with an equation for $y$ (ie. $y=mx$), and then prove that it will be different depending on the choice of $m$.
+\subparagraph{Prove it exists} Squeeze theorem. Useful inequalities: \begin{align*}|a|&=\sqrt{a^2}\\|a+b|&\leq|a|+|b|\\2|a||b|&\leq a^2+b^2\end{align*}
+\paragraph{Continuity} If a function is a sum, product, quotient, or composite function of any of the following basic functions (constant, coordinates, logarithm, exponential, trigonometric, inverse trigonometric, absolute value), then it is continuous. Also, if the limit exists, and is equal to the function at a point. 
+\paragraph{Partial Derivatives} $\frac{\partial f}{\partial x}(a,b)=\lim_{h\rightarrow0}\frac{f(a+h,b)-f(a,b)}{h}$ Otherwise, differentiate using normal derivative rules. 
+\paragraph{Tangent Plane}$z=f(a,b)+\frac{\partial f}{\partial x}(a,b)(x-a)+\frac{\partial f}{\partial y}(a,b)(y-b)$. Also given by $\nabla f(\underline{a})\cdot(\underline{x}-\underline{a})=0$. 
+\paragraph{Linear Approximation} $L_{(a,b)}(x,y)=f(a,b)+\frac{\partial f}{\partial x}(a,b)(x-a)+\frac{\partial f}{\partial y}(a,b)(y-b)$, and $f(x,y)\approx L_{(a,b)}(x,y)$ 
+\paragraph{Gradient} Suppose that $f:\mathbb{R}^3\rightarrow\mathbb{R}$ has partial derivatives at $\underline{a}$. The \textbf{gradient} of $f$ at $\underline{a}$ is defined by $\nabla f(\underline{a})=(f_x(\underline{a}),f_y(\underline{a}),f_z(\underline{a}))$ 
+\paragraph{Linear Approximation in Higher Dimensions} $f(\underline{x})\approx L_{\underline{a}}(\underline{x})=f(\underline{a})+\nabla f(\underline{a})\cdot(\underline{x}-\underline{a})$ for all $\underline{x}$ sufficiently close to $\underline{a}$ 
+\paragraph{Differentiability} $\lim_{\underline{x}\rightarrow\underline{a}}\frac{|R_{1,\underline{a}}(\underline{x})|}{||\underline{x}-\underline{a}||}=0$, where $R_{1,\underline{a}}(\underline{x})=f(\underline{x})-L_{\underline{a}}(\underline{x})$.
+\paragraph{Chain Rule} $G'(t_0)=f_x(a,b)x'(t_0)+f_y(a,b)y'(t_0)$, where $a=x(t_0),b=y(t_0)$. Equivalently, $\frac{d}{dt}f(\underline{x}(t))=\nabla f(\underline{x}(t))\cdot\frac{d\underline{x}}{dt}$. 
+\paragraph{Directional Derivatives} $D_{\hat{u}}f(\underline{a})=\frac{d}{ds}f(\underline{a}+s\hat{u})|_{s=0}$. If $f$ is differentiable at $\underline{a}$, then $D_{\hat{u}}f(\underline{a})=\nabla f(\underline{a})\cdot\hat{u}$. It is maximized when $\hat{u}$ is in the direction of $\nabla f(\underline{a})$. $\nabla f(\underline{a})$ is orthogonal to $f(x,y)=k$ through $\underline{a}$. 
+\paragraph{Taylor's Formula} $f(\underline{x})=f(\underline{a})+f_x(\underline{a})(x-a)+f_y(\underline{a})(y-b)+R_{1,\underline{a}}(\underline{x})$, where $R_{1,\underline{a}}=\frac{1}{2!}[f_{xx}(\underline{c})(x-a)^2+2f_{xy}(\underline{c})(x-a)(y-b)+f_{yy}(\underline{c})(y-b)^2]$. Generally, $R_{k,\underline{a}}(\underline{x})=\frac{1}{(k+1)!}[(x-a)D_1+(y-b)D_2]^{k+1}f(\underline{c})$
+\paragraph{Critical Points} Find all points where the partials are equal to zero, classify them using the Hessian matrix. 
+\paragraph{Extreme Values} Find all critical points and maximum/minimum on the boundary of $f$. 
+\paragraph{Lagrange Multipliers} Find all points where $\nabla f(a,b)=\lambda\nabla g(a,b), \nabla g(a,b)=\underline{0}, g(a,b)=k$ and where $(a,b)$ is an end point of the curve. 
+\paragraph{Cylindrical Coordinates} \begin{align*}x&=r\cos\theta&r&=\sqrt{x^2+y^2}\\y&=r\sin\theta&\tan\theta&=\frac{y}{x}\\z&=z&z&=z\end{align*}
+\paragraph{Spherical Coordinates} \begin{align*}x&=\rho\sin\phi\cos\theta&\rho&=\sqrt{x^2+y^2+z^2}\\y&=\rho\sin\phi\sin\theta&\tan\theta&=\frac{y}{x}\\z&=\rho\cos\phi&\cos\phi&=\frac{z}{\sqrt{x^2+y^2+z^2}}\end{align*}
+\paragraph{Inverse of a Mapping} Solve $u,v$ for $x,y$. 
+\paragraph{Linear Approximation of Mappings} $\Delta\underline{u}\approx DF(\underline{a})\Delta\underline{x}$
+\paragraph{Composite Mappings} $D(F\circ G)(\underline{x})=DF(\underline{u})DG(\underline{x})$
+\paragraph{Jacobian} $\frac{\partial(u,v)}{\partial(x,y)}=\det\begin{bmatrix}\frac{\partial u}{\partial x}&\frac{\partial u}{\partial y}\\\frac{\partial v}{\partial x}&\frac{\partial v}{\partial y}\end{bmatrix}$. It is non-zero if $F$ has an inverse. 
+\paragraph{Constructing Mappings} Will always be two pairs of equations, just set one of each pair to be one side of the endpoint, and the other to be the other side (if needed, calculate the endpoints).
+\paragraph{Double Integral} $\underset{D}{\int\int}f(x,y)\,dA=\lim_{\Delta P\rightarrow0}\sum_{i=1}^nf(x_i,y_i)\,\Delta A_i=\int_{x_l}^{x_u}\int_{y_l(x)}^{y_u(x)}f(x,y)\,dy\,dx$. 
+\paragraph{Change of Variable} $\underset{D_{xy}}{\int\int}H(x,y)\,dx\,dy=\underset{D_{uv}}{\int\int}H\big(f(u,v),g(u,v)\big)\left|\frac{\partial(x,y)}{\partial(u,v)}\right|\,du\,dv$
+\paragraph{Triple Integrals}$\underset{D}{\int\int\int}f(x,y,z)\,dV=\lim_{\Delta P\rightarrow0}\sum_{i=1}^nf(x_i,y_i,z_i)\,\Delta V_i=\underset{D_{xy}}{\int\int}\int_{z_l(x,y)}^{z_u(x,y)}f(x,y,z)\,dz\,dA$ 
+\paragraph{Change of Variable}$\underset{D_{xyz}}{\int\int\int}H(x,y,z)\,dx\,dy\,dz=\underset{D_{uvw}}{\int\int\int}H\big(f(u,v,w),g(u,v,w),h(u,v,w)\big)\left|\frac{\partial(x,y,z)}{\partial(u,v,w)}\right|\,du\,dv\,w$
+
+
+
+\end{document}

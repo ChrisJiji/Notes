@@ -1,0 +1,98 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\usepackage{forest}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\usepackage{hyperref}
+
+\begin{document}
+\section{Definitions}
+\paragraph{Divisors}
+$d(n)=\Pi_{i=1}^k(\alpha_i+1)$ 
+\paragraph{Sigma}
+$\sigma(n)=\Pi_{i=1}^k(1+p_i+\cdots+p_i^{\alpha_i})$. Note if $m,n\in\mathbb{Z}$ are coprime, then $\sigma(mn)=\sigma(m)\sigma(n)$. A number is called perfect if $\sigma(n)=2n$. 
+\paragraph{Inverses}
+For $a^{-1}$ to exist mod $m$, we need gcd$(a,m)=1$. You can find inverses by using Euclidean algorithm to find gcd$(a,m)$, and then u can use that to find $1=ax+my$, ie. $ax=1\mod{m}$. 
+\paragraph{Euler's Phi Function}
+$\phi(m)$ is the number of integers $1\leq x\leq m$ such that gcd$(x,m)=1$. If $n=\Pi_{i=1}^kp_i^{\alpha_i}$, then $\phi(n)=\Pi_{i=1}^kp_i^{\alpha_i-1}(p_i-1)=n\Pi_{p|n}\left(1-\frac{1}{p}\right)$. If $p$ is prime, $\alpha\geq1$, then $\phi(p^\alpha)=p^\alpha-p^{\alpha-1}=p^{\alpha-1}(p-1)$. If gcd$(a,b)=1$, then $\phi(a,b)=\phi(a)\phi(b)$. 
+\paragraph{Order}
+Set $m\geq1,a\in\mathbb{Z}$, and gcd$(a,m)=1$. The \textbf{order} of $a$ mod $m$ is the smallest positive integer $l$ such that $a^l\equiv1\mod{m}$. $a$ is said to be a \textbf{primitive root} mod $m$ if it has order $\phi(m)$. Note that $m$ has a primitive root if and only if $m=2,4,p^\alpha,2p^\alpha$ for some prime $p$, and $\alpha\geq1$. 
+\paragraph{Quadratic Residue}
+Let $p$ be prime, and $a\in\mathbb{Z},a\neq0\mod{p}$. $a$ is said to be a \textbf{quadratic residue} modulo $p$ if there exists integers $x\in\mathbb{Z}$ such that $x^2\equiv a\mod{p}$. The product of 2 quadratic residues or 2 quadratic non-residues are always quadratic residues, and the product of a quadratic residue and a quadratic non-residue is a quadratic non-residue. 
+\paragraph{Legrende Symbol}
+Define the \textbf{Legrende Symbol} as $\left(\frac{a}{b}\right)=\begin{cases}1,\quad\text{if }a\text{ is a quadratic residue}\\-1,\quad\text{if }a\text{ is a quadratic non-residue}\\0,\quad\text{if }a\equiv0\end{cases}$. If we write $a=g^\alpha\mod{p}$, where $g$ is a primitive root mod $p$, then $a$ is a quadratic residue if and only if $\alpha$ is even. \\
+$\left(\frac{p}{q}\right)=\begin{cases}\left(\frac{q}{p}\right),\quad\text{if at least one of }p,q\equiv1\mod4\\\left(\frac{q}{p}\right),\quad\text{if both }p=q=3\mod4\end{cases}$\\
+$\left(\frac{2}{p}\right)=\begin{cases}1,\quad\text{if }p\equiv1\mod8\,\vee\,p\equiv7\mod8\\-1,\quad\text{if }p\equiv3\mod8\vee p\equiv5\mod8\end{cases}$
+
+\section{Theorems}
+\begin{theorem*}
+     Any integer $n>1$ is divisible by at least one prime.
+\end{theorem*}
+induction
+\begin{theorem*}
+     Any integer $n>1$ is either prime or a product of primes.
+\end{theorem*}
+induction
+\begin{theorem*}
+     There are infinitely many primes.
+\end{theorem*}
+Assume there are finitely many primes, and then notice that $p_1\cdots p_n+1$ is not divisible by any of the primes, and evoke the above theorems. 
+\begin{theorem*}
+     Let $a,b,q,r\in\mathbb{Z}$, and let $b=qa+r$. Then $\text{gcd}(a,b)=\text{gcd}(r,a)$
+\end{theorem*}
+use the fact that if $a|b$ and $a|c$, then $a|b+c$ and $a|b-c$. 
+\begin{theorem*}
+     Let $a,b\in\mathbb{Z}$. Then there exists $x,y\in\mathbb{Z}$ such that $\text{gcd}(a,b)=ax+by$.
+\end{theorem*}
+\begin{theorem*}[Fundamental Theorem of Arithmetic]
+     Every integer $n>1$ is either prime or can be uniquely expressed as a product of primes, up to the order in which the primes appear
+\end{theorem*}
+\begin{theorem*}[Chinese Remainder Theorem]
+     If gcd$(m_1,m_2)=1$, then the two congruences $n\equiv a_1\mod{m_1},n\equiv a_2\mod{m_2}$ are given by the set of all integers $n$ such that $n\equiv n_0\mod{m_1m_2}$. 
+\end{theorem*}
+\begin{theorem*}[Fermat's Little Theorem]
+     Let $p$ be a prime number, and $a\in\mathbb{Z}$ such that $p\nmid\mathbb{Z}$. Then $a^{p-1}\equiv 1\mod{p}$. Equivalently, $a^p\equiv a\mod{p}$.
+\end{theorem*}
+\begin{theorem*}
+     Let $m$ be a positive integer, and $a$ an integer satisfying gcd$(a,m)=1$. Then $a^{\phi(m)}\equiv 1\mod{m}$. 
+\end{theorem*}
+\begin{theorem*}[Wilson's]
+     An integer $p\geq2$ is prime if and only if $(p-1)!=-1\mod{p}$.
+\end{theorem*}
+\begin{theorem*}[Lagrange's]
+     Let $f(x)\in\mathbb{F}_p{x}$ have degree equal to $n$. There are at most $n$ solutions $x\in\mathbb{F}_p$ to the equation $f(x)\equiv 0\mod{p}$.
+\end{theorem*}
+\begin{theorem*}[Euler's Criterion]
+     $\left(\frac{a}{p}\right)\equiv a^{\frac{p-1}{2}}\mod{p}$
+\end{theorem*}
+\begin{theorem*}[Classification of Pythagorean Triples]
+\begin{align*}x&=v^2-u^2 &y&=2uv &z&=v^2+u^2\end{align*} $z$ odd, $u,v$ have different parity. 
+\end{theorem*}
+\begin{theorem*}[Finding Partial Quotients]
+\begin{align*}A_n&=q_nA_{n-1}+A_{n-2}&B_n&=q_nB_{n-1}+B_{n-2}\\A_{-1}&=1 &B_{-1}&=0\\A_{-2}&=0&B_{-2}&=1\end{align*}
+\end{theorem*}
+\begin{theorem*}
+$\frac{A_m}{B_m}-\frac{A_{m-1}}{B_{m-1}}=\frac{(-1)^m}{B_mB_{m-1}}$
+\end{theorem*}
+\paragraph{Pell's Equations}
+$x^2-Ny^2=1$. To solve, find the continued fraction for $\sqrt{N}$, and let $a=n-1$ be the length of the continued fraction. Then the $(n-1)^{th}$ convergent gives a solution to $x^2-Ny^2=1$. If $a$ is odd, then it is $x^2-Ny^2=-1$, and to obtain $x^2-Ny^2=1$ find the $(2n+1)^{th}$ convergent. 
+
+\end{document}

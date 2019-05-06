@@ -260,15 +260,15 @@ Thus congruence $\mod{m}$ partitions the set of integers into $m$ equivalence cl
 
 
 \paragraph{What about inverses mod m}
-Say $ca\equiv cb\mod{m}$. Can we cancel the $c$ and conclude $a\equiv b\mod{m}$? Not necessarily, however, if $\text{gcd}(c,m)=1$, then $ca\equiv cb\mod{m}\Rightarrow m|c(a-b)$, then if $\text{gcd}(c,m)=1$, $m|a-b\Rightarrow a\equiv b\mod{m}$. So if $\text{gcd}(c,m)=1$, then $c$ has a multiplicative inverse mod $m$. ie. $\exists f\in\mathbb{Z}:cf=1\mod{m}$. 
+Say $ca\equiv cb\mod{m}$. Can we cancel the $c$ and conclude $a\equiv b\mod{m}$? Not necessarily, however, if $\gcd(c,m)=1$, then $ca\equiv cb\mod{m}\Rightarrow m|c(a-b)$, then if $\gcd(c,m)=1$, $m|a-b\Rightarrow a\equiv b\mod{m}$. So if $\gcd(c,m)=1$, then $c$ has a multiplicative inverse mod $m$. ie. $\exists f\in\mathbb{Z}:cf=1\mod{m}$. 
 \paragraph{Observation}
-If $\text{gcd}(c,m)=1$, then $0c,c,2c,\ldots,(m-1)c$ are distinct mod $m$, hence are congruent in some funny (permuted) order to $\{0,\ldots,m-1\}$. Ie. it is a bijection. 
+If $\gcd(c,m)=1$, then $0c,c,2c,\ldots,(m-1)c$ are distinct mod $m$, hence are congruent in some funny (permuted) order to $\{0,\ldots,m-1\}$. Ie. it is a bijection. 
 \begin{proof}
-     Say $jc=kc\mod{m}\Rightarrow m|c(j-k)$, and since $\text{gcd}(c,m)=1$, $m|c(j-k)\Rightarrow m|j-k\Rightarrow j\equiv k\mod{m}$. Thus $jc$ is distinct from $kc$ (mod $m$) if $0\leq j<k<m$. 
+     Say $jc=kc\mod{m}\Rightarrow m|c(j-k)$, and since $\gcd(c,m)=1$, $m|c(j-k)\Rightarrow m|j-k\Rightarrow j\equiv k\mod{m}$. Thus $jc$ is distinct from $kc$ (mod $m$) if $0\leq j<k<m$. 
 \end{proof}
 
 \paragraph{Euclidean algorithm}
-Let $\text{gcd}(c,m)=1$. One can also use the Euclidean algorithm to prove (and efficiently find) $c^{-1}\mod{m}$. $\text{gcd}(c,m)=1\Rightarrow 1=xc+ym$. Hence $xc\equiv1\mod{m}$. 
+Let $\gcd(c,m)=1$. One can also use the Euclidean algorithm to prove (and efficiently find) $c^{-1}\mod{m}$. $\gcd(c,m)=1\Rightarrow 1=xc+ym$. Hence $xc\equiv1\mod{m}$. 
 Example: Find $37^{-1}\mod{101}$ if it exists. 
 \begin{align*}
 101&=2\cdot37+27\\ 
@@ -284,29 +284,30 @@ rip
 \section*{Lecture 10}
 rip. Here is all the missed content from the course notes: \\ 
 \paragraph{Sun Zi's Theorem (CRT)}
+Let $a_1,a_2$ be integers, and $m_1,m_2$ be positive integers. If $\gcd(m_1,m_2)=1$, then \begin{align*}n\equiv a_1\mod{m_1}\\n\equiv a_2\mod {m_2}\end{align*} have a unique solution modulo $m_1m_2$. Thus, if $n=n_0$ is a particular solution, then the solutions are given by the set of all integers $n$ such that $n\equiv n_0\mod{m_1m_2}$. 
 
 \paragraph{Fermat's Little Theorem}
-
+Let $p$ be a prime number, and $a\in\mathbb{Z}$ such that $p\nmid a$, then $a^{p-1}\equiv1\mod{p}$. Equivalently, $a^p\equiv a\mod {p}$. 
 
 \section*{Lecture 11}
 \paragraph{Euler's (totient) Phi function (is fun)}
 $n$ positive integer. Define $\phi(n)=\text{number of integers }1\leq x\leq n\text{ such that gcd}(x,n)=1$. Example: for $n=12$, $\phi(n)=4$ (1,5,7,11). For $p$ a prime integer, $\phi(p)=p-1$. Let $n=p^\alpha$ where $p$ is prime. Then $\phi(p^\alpha)=p^\alpha-p^{\alpha-1}$. \\ 
-Property: If $\text{gcd}(m,n)=1$, then $\phi(mn)=\phi(m)\phi(n)$ ie. $\phi$ is multiplicative. Note that if $\text{gcd}(x,mn)=1$, then $\text{gcd}(x,m)=1$, and $\text{gcd}(x,n)=1$. Then $x\equiv(m-1),(m-2),\ldots\mod{m}$(there are $\phi(m)$ of these), and $x\equiv(n-1),(n-2),\ldots\mod{n}$ (there are $\phi(n)$ of these). Note that gcd$(x,mn)=1$ implies that $x=(mn-1),\ldots\mod{mn}$, and there are $\phi(mn)$ of these. idk what's happening but i think this is just to show why its multiplicative. basically you are looking for numbers that are BOTH have no common factors with $m$ or $n$.
+Property: If $\gcd(m,n)=1$, then $\phi(mn)=\phi(m)\phi(n)$ ie. $\phi$ is multiplicative. Note that if $\gcd(x,mn)=1$, then $\gcd(x,m)=1$, and $\gcd(x,n)=1$. Then $x\equiv(m-1),(m-2),\ldots\mod{m}$(there are $\phi(m)$ of these), and $x\equiv(n-1),(n-2),\ldots\mod{n}$ (there are $\phi(n)$ of these). Note that $\gcd(x,mn)=1$ implies that $x=(mn-1),\ldots\mod{mn}$, and there are $\phi(mn)$ of these. idk what's happening but i think this is just to show why its multiplicative. basically you are looking for numbers that are BOTH have no common factors with $m$ or $n$.
 
 \section*{Lecture 12}
 \paragraph{Euler's Totient Function}
 Last time: 
 \begin{enumerate}
     \item If $p$ is prime, $\alpha\geq1$, then $\phi(p^\alpha)=p^\alpha-p^{\alpha-1}=p^{\alpha-1}(p-1)=p^\alpha(1-\frac{1}{p})$ 
-    \item If gcd$(a,b)=1$, then $\phi(ab)=\phi(a)\phi(b)$
+    \item If $\gcd(a,b)=1$, then $\phi(ab)=\phi(a)\phi(b)$
 \end{enumerate}
-Thus, if $n=p_1^{\alpha_1}p_2^{\alpha_2}\ldots p_k^{\alpha_k}$, distinct $p$'s, then $\phi(n)=\Pi_{i=1}^k\phi(p_i^{\alpha_i})=\Pi_{i=1}^kp_i^{\alpha_i}\left(1-\frac{1}{p_i}\right)=\left(\Pi_{i=1}^kp_i^{\alpha_1}\right)\left(\Pi_{i=1}^k1-\frac{1}{p_i}\right)=n\Pi_{p|n}\left(1-\frac{1}{p}\right)$
+Thus, if $n=p_1^{\alpha_1}p_2^{\alpha_2}\ldots p_k^{\alpha_k}$, distinct $p$'s, then $\phi(n)=\prod_{i=1}^k\phi(p_i^{\alpha_i})=\prod_{i=1}^kp_i^{\alpha_i}\left(1-\frac{1}{p_i}\right)=\left(\prod_{i=1}^kp_i^{\alpha_1}\right)\left(\prod_{i=1}^k1-\frac{1}{p_i}\right)=n\prod_{p|n}\left(1-\frac{1}{p}\right)$
 
 \paragraph{Divisor sum of Euler's totient function}
-$\sum_{d|n}\phi(n)=\Pi_{i=1}^k(1+\phi(p_i)+\cdots+\phi(p_i^{\alpha_i})$ (this is by unique factorization and property 2 as above). Note that this is a telescoping sum, so this is just equal to $\Pi_{i=1}^kp_i^{\alpha_i}=n$. 
+$\sum_{d|n}\phi(n)=\prod_{i=1}^k(1+\phi(p_i)+\cdots+\phi(p_i^{\alpha_i})$ (this is by unique factorization and property 2 as above). Note that this is a telescoping sum, so this is just equal to $\prod_{i=1}^kp_i^{\alpha_i}=n$. 
 
 \paragraph{Euler's Theorem}
-Let: $n$ positive integer, $a\in\mathbb{Z}$ such that gcd$(a,n)=1$. Then $a^{\phi(n)}\equiv1\mod{n}$ (note if $n=p$ is prime, then this specializes to Fermat's Little Theorem, ie if $\phi(p)=p-1$, then $a^{-1}\equiv1\mod{p}$). \\ 
+Let: $n$ positive integer, $a\in\mathbb{Z}$ such that $\gcd(a,n)=1$. Then $a^{\phi(n)}\equiv1\mod{n}$ (note if $n=p$ is prime, then this specializes to Fermat's Little Theorem, ie if $\phi(p)=p-1$, then $a^{-1}\equiv1\mod{p}$). \\ 
 \begin{proof}
      
 Similar to the 1st proof of FLT, but restrict to invertible residue classes $\mod{n}$. Example: $n=12$, consider $\{1,5,7,11\}$ represent the $\phi(12)=4$ invertible congruence classes mod $12$. Next, consider, say $a=5$. 
@@ -333,8 +334,14 @@ Let $p$ be prime, then $(p-1)!\equiv-1\mod{p}$.
 \section*{Lecture 13}
 rip. 
 \paragraph{Polynomials mod p}
+
+
+
 \paragraph{Division Algorithm}
+The division algorithm is simply long division, but with polynomials.
+
 \paragraph{Lagrange's Theorem}
+Let $f(x)\in\mathbb{F}_p[x]$ have degree equal to $n$. There are at most $n$ solutions $n\in\mathbb{F}_p$ to the equation $f(x)\equiv0\mod{p}$. 
 
 
 \section*{Lecture 14}
@@ -345,20 +352,191 @@ $p$ prime, $f$ polynomial with deg$f=n$. Then $f(x)\equiv0\mod{p}$ has at most $
 \end{proof}
 This is not generally true for $p$ not prime. Example: $x^2-1\equiv0\mod{8}$ has $4$ solutions mod 8, namely $x\equiv1,3,5,7\mod{8}$. 
 \paragraph{Order}
-Set $m\geq1,a\in\mathbb{Z},\text{gcd}(a,m)=1$. The \textbf{order} of $a$ for the modulus $m$ is the smallest positive integer $l$ such that $a^l\equiv1\mod{m}$. Note that $l\leq\phi(m)$ because $a^{\phi(m)\equiv1\mod{m}}$ \\ 
-\textbf{Fact:} Let $m\geq1,a\in\mathbb{Z},\text{gcd}(a,m)=1$. If $a$ has order $l\mod{m}$ then $l|\phi(m)$ \begin{proof}
+Set $m\geq1,a\in\mathbb{Z},\gcd(a,m)=1$. The \textbf{order} of $a$ for the modulus $m$ is the smallest positive integer $l$ such that $a^l\equiv1\mod{m}$. Note that $l\leq\phi(m)$ because $a^{\phi(m)\equiv1\mod{m}}$ \\ 
+\textbf{Fact:} Let $m\geq1,a\in\mathbb{Z},\gcd(a,m)=1$. If $a$ has order $l\mod{m}$ then $l|\phi(m)$ \begin{proof}
      Let $\phi(m)=ql+r$, with $0\leq r<l$ (we want to show that $r=0$). Euler stated $a^{\phi(m)}\equiv 1\mod{m}$, thus $a^{ql+r}\equiv1\mod{m}\Rightarrow (a^l)^qa^r\equiv1\mod{m}\Rightarrow a^r\equiv1\mod{m}\Rightarrow r=0$ (since $a^l\equiv1\mod{m}$ by definition). Otherwise, we would have a position integer $r<l$ such that $a^r\equiv1\mod{m}$. But $l$ is the smallest integer of that definition. 
 \end{proof}
 $a$ is said to be a \textbf{primitive root} mod $m$ if it has order $\phi(m)$. Note that not all moduli have primitive roots. $m\text{ has primitive roots}\Leftrightarrow m=1,2,4,p^\alpha,2p^\alpha$. We'll prove, if $m=p$ is prime, then there are primitive roots mod $m$. \begin{proof}
      $p$ is prime, let $l|\phi(p)=p-1$, and $f(l)$ be the number of $1\leq a\leq p-1$ that have order $l\mod{p}$. First notice that $\sum_{l|p-1}f(l)=p-1$. 
 \end{proof}
 
-\paragraph{Lecture 15}
+\section*{Lecture 15}
 \paragraph{Facts we know}
-\begin{itemize}
+\begin{enumerate}
     \item $\sum_{d|n}\phi(d)=n$
     \item Langrange's theorem: A polynomial $f(x)\in\mathbb{F}_p[x]$ of degree $m$ has at most $m$ solutions $0\leq x<p$ to $f(x)\equiv0\mod{p}$.  
-    \item Let $m\geq1$, $a\in\mathbb{Z}$. $a$ is said to have (finite) order $l$ mod $m$ if $l$ is the smallest positive integer $a^l\equiv1\mod{m}$. Note $a$ has finite order mod $m$ if and only if gcd$(a,m)=1$. Defined $f_m(l)=$ number of $1\leq a<m$ that have order $l$ (for $l|\phi(m)$). 
+    \item Let $m\geq1$, $a\in\mathbb{Z}$. $a$ is said to have (finite) order $l$ mod $m$ if $l$ is the smallest positive integer $a^l\equiv1\mod{m}$. Note $a$ has finite order mod $m$ if and only if $\gcd(a,m)=1$. 
+    \item Defined $f_m(l)=$ number of $1\leq a<m$ that have order $l$ (for $l|\phi(m)$). Then $\sum_{l|\phi(m)}f_m(l)=\phi(m)$
+    \item If $a$ has order $l$ mod $m$, then $a^j$ has order $\frac{l}{\gcd(j,l)}$ 
+\begin{proof}
+    Let $d=\gcd(j,l)$, then $l=dl_0,j=dj_0$, and $\gcd(l_0,j_0)=1$. Consider what is the smallest integer $k$ such that $a^{j^k}\equiv1\mod{m}$. $a^{jk}\equiv1\mod{m}\Rightarrow a^{dj_0k}\equiv1\mod{m}\Rightarrow l|dj_0k$, otherwise if $dj_0k=\alpha l+r$, with $l>r>0$, then $a$ would have order $r<l$ less than $l$ rather than order $l$. Then $l|dj_0k\Rightarrow dl_0|dj_0k\Rightarrow l_0|j_0k$ but $\gcd(l_0,j_0)=1$, so by Euclid $l_0|k$, so the smallest positive such $k$ is $k=l_0$, which is $l=dl_0\Rightarrow l_0=\frac{l}{d}=\frac{l}{\gcd(j,l)}$. 
+\end{proof}
+\end{enumerate}
+
+\paragraph{Primitive Root}
+$m\geq2$, $a$ is said to be a primitive root mod $m$ if $a$ has order $\phi(m)$. Which moduli have primitive roots? Answer: $2,4,p^\alpha,2p^\alpha$, where $p$ is prime and $\alpha\geq1$. 
+\begin{proof}
+     that if $p$ is prime, then $p$ has primitive roots mod $p$. Let $1\leq a<p$. Consider $f_p(l)$ for $l|\phi(p)=p-1$. Claim 1) $f_p(l)=0$ or $\phi(l)$ for all $l|p-1$. Claim 2) claim 1) implies that $f_p(l)=\phi(l)$. In particular, $f_p(p-1)=\phi(p-1)$, ie $p$ has $\phi(p-1)$ primitive roots amongst $1\leq a<p$. 
+     \begin{proof}\textit{claim 2)} If claim 1 is true then $f_p(l)\leq\phi(l)$. Hence $\sum_{l|p-1}f_p(l)\leq\sum_{l|p-1}\phi(l)$ with equality if and only if $f_p(l)=\phi(l)$ for all $l$. But by fact 4 of above, $\sum_{l|p-1}f_p(l)=p-1$, and by fact 1 of above $\sum_{l|p-1}\phi(l)=p-1$, so we do have equality, and $f_p(l)=\phi(l)$ for all $l|p-1$
+     \end{proof}
+\end{proof}
+\section*{Lecture 16}
+oops
+\section*{Lecture 17}
+oops
+
+
+\section*{Lecture 18}
+Midterm: Everything until Euler's Criterion (3.7 in the notes). 5-6 questions. Always 1 irrationality question. This class we'll go over homework 1 questions
+\paragraph{Homework 1 Question 1}
+find the gcd of two numbers oooooooo scary
+\paragraph{Homework 1 Question 2}
+Prove that the gcd between any two consecutive fibonacci numbers is $1$. This is easy induction, using the fact that $f_n=f_{n-1}+f_{n-2}$, and $d|a\vee d|b\Rightarrow d|a-b$. 
+\paragraph{Homework 1 Question 3}
+Prove that $n^7-n$ is a multiple of $7$ for $n\geq1$. It's clearly true for $n=1$, then assume true for $n$, and consider $(n+1)^7-(n+1)$. Looking at coefficients, and taking out a $n^7-n$, each is a multiple of $7$, and so by induction it is a multiple of $7$. 
+\paragraph{Homework 1 Question 4}
+Show that the only integer $n$ which $n^3+1$ is prime is $n=1$. Note $n^3+1=(n+1)(n^2-n+1)$. This is clearly composite when both are not equal to $1$. This is not prime when $n\geq2$, since $n+1\geq3$ and $n^2-n+1>2$. Note that $n+1$ and $n^2-n+1=n(n-1)+1$ are both strictly increasing. 
+\paragraph{Homework 1 Question 5}
+Show that if $k$ is a positive integer, then $\gcd(7k+2,11k+3)=1$. Let $d|7k+2,d|11k+3$. Then $d|11(7k+2)-7(11k+3)=77k+22-77k-21$. Then $d|1$, and so $d=1$. 
+\paragraph{Homework 1 Question 6}
+$\sum_{j=1}^n\frac{1}{j}\notin\mathbb{Z}$ for any $N>1$. Say for any $N>1$, then $\sum_{j=1}^n\frac{1}{j}=m\in\mathbb{Z}$. Then to get the same denominators, you need to multiply everything by the lcm of $\{1,\ldots,N\}$. Then all resulting terms are even, except for one term (the highest power of $2$), but the side with $m$ is even, as it is multiplied by an even number. 
+\paragraph{Homework 1 Question 7}
+Determine lcm of all the numbers from 1 to 25. Simply list out the prime factorization of all the numbers, then pick out the unique highest powers of each prime. 
+\paragraph{Homework 1 Question 8}
+Consider the numbers 1 to 200. remove two consecutive numbers such that the lcm is minimized. It is easy to see that removing prime powers and removing primes are the only two numbers to remove that lowers the lcm at all. Then it is just maximizing the product of two consecutive prime and prime powers. Note that since primes are all odd except for $2$ (which we are clearly not removing), then the only prime power that will be consecutive with a prime will be an even prime power, or a power of $2$. Then removing $127,128$ will minimize the lcm. 
+\paragraph{Homework 1 Question 9}
+let $p,q$ be odd primes, $a,b$ positive integers. Show $p^aq^b$ cannot be perfect. $\sigma(p^aq^b)=\sigma(p^a)\sigma(q^b)=\frac{p^{a+1}-1}{p-1}\frac{q^{b+1}-1}{q-1}<\frac{p^{a+1}}{p-1}\frac{q^{b+1}}{q-1}=p^aq^b\frac{p}{p-1}\frac{q}{q-1}$. Then notice $\frac{p}{p-1},\frac{q}{q-1}$ are both decreasing. Then $p^aq^b\frac{3}{3-1}\frac{5}{5-1}<2p^aq^b$. (the maximum values for the fractions). 
+\paragraph{Homework 2 Question 3}
+Show that if $n$ is the sum of two squares, then $n\neq3\mod{4}$. Note that the squares are congruent to either $0$ or $1\mod{4}$, then $a^2+b^2=0,1,2\mod{4}$. 
+\paragraph{Homework 2 Question 5}
+Find all $n$ such that $\phi(n)=44$. $\phi(n)=\prod p_i^{\alpha_i-1}(p_i-1)=44$. Hence $p-1|44\Rightarrow p-1\in\{1,2,4,11,22,44\}$. But $p$ is prime, so $p\in\{2,3,5,23\}$. Let $n=2^a3^b5^c23^d$. Now $3,5,23\nmid44$, and so $b,c,d\leq1$, and $a\leq3$. Since we need a factor of $11$, then $d=1$. 
+
+\section*{Lecture 19}
+used for Midterm
+
+\section*{Lecture 20}
+oops 
+
+\section*{Lecture 21}
+oops
+
+\section*{Lecture 22}
+oops
+
+\section*{Lecture 23}
+\paragraph{Quadratic Reciprocity}
+$p,q$ odd distinct primes. Then $\left(\frac{p}{q}\right)=\begin{cases}-\left(\frac{q}{p}\right),\text{ if }p\equiv q\equiv3\mod{4}\\\left(\frac{q}{p}\right),\text{ otherwise}\end{cases}$. Equivalently, $\left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}$ 
+\paragraph{Example}
+$\left(\frac{7}{151}\right)$ Note that these are both odd primes, and $7\equiv3\mod4$, $151\equiv3\mod4$, so this is equal to $-\left(\frac{151}{7}\right)=-\left(\frac{4}{7}\right)=-1$, since $151\equiv4\mod{7}$
+\paragraph{Example}
+$\left(\frac{15}{101}\right)=\left(\frac{3}{101}\right)\left(\frac{5}{101}\right)=\left(\frac{101}{3}\right)\left(\frac{101}{5}\right)=\left(\frac{2}{3}\right)\left(\frac{1}{5}\right)=-1*1=-1$, with the fact that $\left(\frac{2}{p}\right)=\begin{cases}1,\quad p\equiv1,7\mod8\\-1,\quad p\equiv3,5\mod8\end{cases}$
+\paragraph{Example}
+$\left(\frac{46}{101}\right)=\left(\frac{2}{101}\right)\left(\frac{23}{101}\right)=-1*\left(\frac{101}{23}\right)=-\left(\frac{9}{23}\right)=-\left(\frac{3}{23}\right)^2=-1$, since anything squared will be $1$. \\ 
+\paragraph{-1 case}
+$\left(\frac{-1}{p}\right)=\begin{cases}1,\quad p\equiv1\mod4\\-1,\quad p\equiv3\mod4\end{cases}$, proof 1 is Euler's Criterion \Bigg($\left(\frac{a}{p}\right)=a^{\frac{p-1}{2}}\mod{p}$ with $a=-1$\Bigg), proof 2 is Gauss' Lemma with $a=-1$ \Bigg($-1,-2,\ldots,-\left(\frac{p-1}{2}\right)$ are already in $\left(\frac{-p}{2},\frac{p}{2}\right)$, and are all negative, so $\nu=\frac{p-1}{2}$\Bigg).
+
+\paragraph{Diophantine Equations}
+Polynomial equations for which we seek integer solutions. Oldest diophantine equation (of degree $\geq2$) is $$x^2+y^2=z^2$$ has non-trivial integer solutions, for example $3^2+4^2=5^2,5^2+12^2=13^2$. We're interested in determining all the positive $x,y,z\in\mathbb{Z}$ with $\gcd(x,y,z)=1$. These are called \textbf{primitive} solutions. \\ 
+Given $x,y,z\in\mathbb{Z},\gcd(x,y,z)=1,x^2+y^2=z^2$. Now we know a few things. 
+\begin{itemize}
+    \item If $x,y$ are even, then $z$ is even and this is not primitive. 
+    \item If $x,y$ are both odd, then $z$ is even (and therefore congruent to $0,1\mod{4}$), but the square of an odd number is always congruent to $1\mod{4}$, and so $1+1\neq0,1$, so $x,y$ can not both be odd. Now we know one of $x,y$ is even, and the other is odd. 
+\end{itemize} 
+Let $x$ be odd, $y$ even. Thus $z$ is odd. Rewrite $x^2+y^2=z^2$ as $y^2=z^2-x^2=\underbrace{(z-x)}_{A}\underbrace{(z+x)}_{B}$, $A$ and $B$ are both even because $x,z$ are both odd. Furthermore, $\gcd(A,B)=2$. 
+
+\section*{Lecture 24}
+\paragraph{Pythagorean Triple}
+Let $x,y,z$ be positive integer solutions to $x^2+y^2=z^2$. Such a triple is called a pythagorean triple. We say it is primitive if $\gcd(x,y,z)=1$. 
+
+\paragraph{Classification of Primitive Pythagorean Triples}
+Note, if $x^2+y^2=z^2$ and $\gcd(x,y,z)=1$, then $\gcd(x,y)=\gcd(x,z)=\gcd(y,z)=1$. \\ 
+Last time, if $x,y,z$ is a primitive pythagorean triple then $z$ is odd, and one of $x,y$ is odd and the other is even. Without loss of generality, we can assume $x$ is odd, $y$ is even. Now $x^2+y^2=z^2\Rightarrow y^2=z^2-x^2=\underbrace{(z-x)}_{A}\underbrace{(z+x)}_{B}$. Note $A,B$ are both even since $x,z$ are both odd. Let $d=\gcd(A,B)$. $2|d$ since $A,B$ are both even, write $d=2d_0$. But $d|A,d|B\Rightarrow (d|A+B=2z)\wedge(d|B-A=2x)\Rightarrow (d_0|z)\wedge(d_0|x)$, but $\gcd(x,z)=1$, so $d_0=1\Rightarrow d=2$. Now we know that $A,B$ are both even, and share no other factors. \\ 
+Thus we can write $A=2u^2,B=2v^2$ with $\gcd(u,v)=1,0<u<v$. Then \begin{align*}z=\frac{A+B}{2}&=u^2+v^2\\x=\frac{B-A}{2}&=v^2-u^2\\y=\sqrt{AB}&=2uv\\\end{align*} with $\gcd(u,v)=1$, $v>u>0$. Furthermore, $u,v$ have opposite parity because $z$ is odd. \\ 
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$u$   &   $v$   &   $x=v^2-u^2$     &   $y=2uv$     &   $z=u^2+v^2$\\\hline
+1&2&3&4&5\\
+1&4&15&8&17\\
+1&6&35&12&37\\
+\vdots&\vdots&\vdots&\vdots&\vdots\\
+2&3&5&12&13\\
+2&5&21&20&29\\
+\vdots&\vdots&\vdots&\vdots&\vdots\\
+3&4&7&24&25\\
+3&8\\
+3&10\\
+\hline
+\end{tabular}
+\paragraph{Fermat's Last Theorem (Conjecture)}
+Let $n\geq3$ be a positive integer. Then there are no positive integer solutions $x,y,z$ to $$x^n+y^n=z^n$$
+Fermat did prove this for $n=4$. Finally proven in 1995 by Andrew Wiles and Richard Taylor. \\ 
+Fermat showed $x^4+y^4=z^2$ has no positive integer solutions $x,y,z$. Strategy: If there is a solution, then there is one with $z$ minimal. Then show there is another solution $\bar{x},\bar{y},s$, positive solution with $s<z$.
+
+\section*{Lecture 25} 
+Fermat proves $x^4+y^4=z^2$ has no positive integer solutions. Strategy: if there is a solution, then take $x,y,z$ with $z$ minimal. Find another solution $0<\ubar{\bar{x}},\ubar{\bar{y}},s$ with $s<z$, contradicting the minimality of $z$. \\ 
+\begin{proof} Assume $x^4+y^4=z^2$, $x,y,z\in\mathbb{Z}$, positive, $z$ minimal. Hence $\gcd(x,y)=1$, otherwise there would be a smaller solution $\left(\frac{x}{d}\right)^4+\left(\frac{y}{d}\right)^4=\left(\frac{z}{d^2}\right)^2$, $d=\gcd(x,y)$ with $\frac{x}{d},\frac{y}{d},\frac{z}{d^2}\in\mathbb{Z}$. Hence $x^2,y^2,z$ is a primitive pythagorean triple. Thus, by the classification of primitive pythagorean triples: \begin{align}x^2&=v^2-u^2\\y^2&=2uv\\z^2&=u^2+v^2\end{align}, with $\gcd(u,v)=1$, $u,v$ have opposite parity, and $v>u>0$. Since $x^2$ is odd, then $x$ is odd, and $x^2\equiv1\mod{4}$. Thus $v^2\equiv1\mod{4},u^2\equiv0\mod{4}$, and so $v$ is odd, $u$ is even. Since $u$ is even, it can be expressed as $u=2r$, with $0<r\in\mathbb{Z}$. Substituting $u=2r$ into (1), we get $(4):x^2=v^2-(2r)^2$, and then into (2), we get $y^2=4rv\Rightarrow\left(\frac{y}{2}\right)^2=rv$. But $\gcd{r,v}=1$, hence $r$ is a square (say $r=t^2$), and $v=s^2$. Substituting this into (4), we get $x^2=s^4-(2t^2)^2\Rightarrow x^2+(2t^2)^2=s^4$. Then $x,2t^2,s^2$ is a primitive (since $\gcd(r,v)=1\Rightarrow \gcd(t,s)=1$) pythagorean triple. Hence $\exists u,v:$ 
+\begin{align*}
+x&=\ubar{\bar{v}}^2-\ubar{\bar{u}}^2&&(A)\\
+2t^2&=2\ubar{\bar{u}}\ubar{\bar{v}} &&(B)\\
+s^2&=\ubar{\bar{u}}^2+\ubar{\bar{v}}^2 &&(C)
+\end{align*} with $\gcd(\ubar{\bar{u}},\ubar{\bar{v}})=1$, $\ubar{\bar{u}},\ubar{\bar{v}}$ have opposite parity, and $\ubar{\bar{v}}>\ubar{\bar{v}}>0$. (5) implies $t^2=\ubar{\bar{u}}\ubar{\bar{v}}$, thus $\ubar{\bar{u}}=\ubar{\bar{x}}^2,\ubar{\bar{v}}=\ubar{\bar{y}}^2$. Substituting this into (C), we get $\ubar{\bar{x}}^4=\ubar{\bar{y}}^4=s^2$. $\ubar{\bar{u}},\ubar{\bar{v}}>0\Rightarrow \ubar{\bar{x}},\ubar{\bar{y}},s>0$, ie. $\ubar{\bar{x}},\ubar{\bar{y}},s$ is a positive integer solution to our original equation. Furthermore, $s<z$, contradicting minimality of $z$. $s<z$ because $s^2=v$, but (3): $u^2+v^2=z\Rightarrow v<z^{1/2}$ ie. $s^2<z^{1/2}\Rightarrow s<z^{1/4}\leq z$. 
+\end{proof}
+
+\section*{Lecture 26}
+\paragraph{Sum of 2 Squares}
+Let $A,B,a,b,c,d\in\mathbb{Z}$. $A=a^2+b^2,B=c^2+d^2$, then $AB=(ac-bd)^2+(ad+bc)^2$. Primes as sums of squares: 
+\begin{enumerate}
+    \item Let $p\equiv3\mod{4}$, then $p$ is not a sum of squares (this is from homework 1, shown looking at the squares of all the numbers mod 4) 
+    \item Euler: If $p\equiv1\mod{4}$, then $\exists a,b\in\mathbb{Z}$ such that $p=a^2+b^2$. 
+    \begin{proof}
+        If $p\equiv1\mod{4}$, then there exists $z\in\mathbb{Z}$ such that $z^2\equiv-1\mod{p}$ (since $\left(\frac{-1}{p}\right)=1$ if $p=1\mod{4}$). I.e. $\exists z\in\mathbb{Z}$ such that $p|z^2+1\Rightarrow\exists m\in\mathbb{Z}$ such that $z^2+1=mp$. We can assume $-\frac{p}{2}<z<\frac{p}{2}$, hence $z^2+1<\frac{p^2}{4}+1$, and $m<p$. \\ 
+        If $mp=x^2+y^2$ (in this first case $x=z,y=1$), we want to show if $m>1$, then there exists $r,x',y'\in\mathbb{Z}$ such that $rp=(x')^2+(y')^2$ with $1\leq r<m$. If so, then repeat until we get $p=\ubar{\bar{x}}+\ubar{\bar{y}}$, ie. $r=1$. Thus, assume $m>1$ (if $m=1$ we are done). $mp=x^2+y^2$. Let $-\frac{m}{2}<u,v\leq\frac{m}{2}$ be two integers such that $u\equiv x\mod{m}$, $v\equiv y\mod{m}$. Thus $u^2+v^2\equiv x^2+y^2\equiv mp\equiv0\mod{m}$. Thus $\exists r\ni u^2+v^2=rm$. If $r=0$, then $u=v=0\Rightarrow x\equiv y\equiv0\mod{m}$. But $mp=x^2+y^2$, so if both $x,y\equiv0\mod{m}$, then $m^2|x^2+y^2=mp\Rightarrow m|p$. But $1<m<p$, contradicting $p$ is prime. Hence $r\neq0$, and so $r\geq1$. Furthermore $r=\frac{u^2+v^2}{m}\leq\frac{2(\frac{m}{2})^2}{m}=\frac{m}{2}<m$, ie. $r<m$. Next, $(mp)(mr)=\underbrace{(x^2+y^2)}_{mp}\underbrace{(u^2+v^2)}_{mr}=\underbrace{(xu+yv)}_{\text{multiple of }m}^2+\underbrace{(xv-yu)}_{\text{multiple of }m}^2$. $xu+yv\equiv x^2+y^2\mod{m}\equiv mp\equiv0\mod{m}$, since $u\equiv x\mod{m},v\equiv y\mod{m}$. Similarly, $xv-yu\equiv xy-yx\equiv0\mod{m}$. Thus dividing both sides of the equation above by $m^2$, we get $rp=\Big(\frac{xy+yv}{m}\Big)^2+\Big(\frac{xv-yu}{m}\Big)^2$, ie. we have found an $1\leq r<m$ such that $rp$ is also a sum of squares. 
+    \end{proof}
+\end{enumerate} 
+
+\section*{Lecture 27}
+rip
+\section*{Lecture 28}
+rip the rest of the lectures lmao
+
+
+\section*{Continued Fractions}
+Let $[q_0,q_1,\ldots,q_n]$ denote the numerator of a fraction so that $[q_1,\ldots,q_n]$ denotes the denomiator. The recursion for the numerator is thus $[q_0,q_1,\ldots,q_n]=q_0[q_1,\ldots,q_n]+[q_2,\ldots,q_n]$. 
+$$q_0+\frac{1}{q_1+\frac{1}{q_2+\frac{1}{\cdots+\frac{1}{q_n}}}}=\frac{[q_0,\ldots,q_n]}{[q_1,\ldots,q_n]}$$
+
+\paragraph{Finding Partial Quotients} 
+\begin{align*}A_n&=q_nA_{n-1}+A_{n-2}&B_n&=q_nB_{n-1}+B_{n-2}\\A_{-1}&=1 &B_{-1}&=0\\A_{-2}&=0&B_{-2}&=1\end{align*}, where every $q_n$ can be found using the Euclidean Algorithm. Then the $m^{th}$ partial quotient is $\frac{A_m}{B_m}$
+ 
+\begin{lemma*}
+     $\frac{A_m}{B_m}-\frac{A_{m-1}}{B_{m-1}}=\frac{B_{m-1}A_m+A_{m-1}B_m}{B_mB_{m-1}}=\frac{(-1)^m}{B_mB_{m-1}}$
+\end{lemma*}
+Proof: Induction starting at $m=-1$, the base case holds. Then look at $A_mB_{m-1}-A_{m-1}B_m=(q_mA_{m-1}+A_{m-2})B_{m-1}-A_{m-1}(q_mB_{m-1}+B_{m-2})=-(A_{m-1}B_{m-2}-A_{m-2}B_{m-1})=(-1)^{m-1}$
+
+\begin{corollary*}
+     $\frac{A_m}{B_m}$ is in reduced form. That is, $\gcd(A_m,B_m)=1$ 
+\end{corollary*}
+Proof: Let $d|A_m, d|B_m$. Then, $d|A_mB_{m-1}-B_mA_{m-1}=(-1)^{m-1}$, and so $d=1$. 
+
+\begin{theorem*}
+     If $\alpha\in\mathbb{R}$ and $\frac{A_n}{B_n}$ is the $n^{th}$ convergent then $\left|\alpha-\frac{a}{b}\right|<\left|\alpha-\frac{A_n}{B_n}\right|$. That is, continued fractions give the best approximations to real numbers. 
+\end{theorem*}
+Proof: Suppose that $n$ is even and $\frac{a}{b}$ were close to $\alpha$. Then $\frac{a}{b}\in\left(\frac{A_n}{B_n},\alpha+\alpha-\frac{A_n}{B_n}\right)\subset\left(\frac{A_n}{B_n},\frac{A_{n-1}}{B_{n-1}}\right)$. Observe that $\left(\frac{A_{n-1}}{B_{n-1}}-\frac{a}{b}\right)+\left(\frac{a}{b}-\frac{A_n}{B_n}\right)=\frac{1}{B_{n}B_{n-1}}$, hence $\frac{1}{B_{n-1}}+\frac{1}{bB_n}\leq\frac{1}{B_nB_{n-1}}$, and so $b\geq B_n+B_{n-1}\geq B_n$. 
+
+\paragraph{Periodic Continued Fractions}
+Replace the continued part with itself, then solve the quadratic formula that results from it. $\alpha$ is called a \textbf{quadratic irrational} if it is an irrational root of a quadratic equation with integer coefficients. If $\alpha$ is a root of $ax^2+bx+c=0$, then its \textbf{conjugate}, denoted $\alpha'$, is the other root. A quadratic irrational is called \textbf{reduced} if $\alpha>1$ and its conjugate satisfies $-1<\alpha'<0$. \\ 
+$\alpha$ has a purely periodic continued fraction if and only if $\alpha$ is reduced. $\alpha=\frac{-b+\sqrt{b^2-4ac}}{2a}=\frac{P+\sqrt{D}}{Q}$ is reduced implies:
+\begin{itemize}
+    \item $P,Q>0$ 
+    \item $Q|P^2-D$
+    \item $P<\sqrt{D}$, $Q<2\sqrt{D}$
 \end{itemize}
+To prove something is purely periodic: \begin{enumerate}
+    \item prove it is an irrational root of a quadratic equation
+    \item prove it is greater than 1
+    \item prove it's conjugate is $-1<\alpha'<0$
+\end{enumerate}
+
+\paragraph{Pell's Equations}
+$x^2-Ny^2=1$. To solve, find the continued fraction for $\sqrt{N}$, and let $n$ be the length of the continued fraction. Then the $(n-1)^{th}$ convergent gives a solution to $x^2-Ny^2=1$. If $n$ is odd, then it is $x^2-Ny^2=-1$, and to obtain $x^2-Ny^2=1$ find the $(2n+1)^{th}$ convergent. 
 
 \end{document}

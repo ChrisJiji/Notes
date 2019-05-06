@@ -1,0 +1,96 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+\begin{document}
+
+\paragraph{Types of Variates}
+\begin{itemize}
+    \item Continuous
+    \item Discrete
+    \item Categorical
+    \item Ordinal
+    \item Complex
+\end{itemize}
+
+\paragraph{Types of Studies}
+\begin{itemize}
+    \item Sample Survey - select a representative sample of units
+    \item Observational Study - dont change any variables 
+    \item Experimental Study - change variables
+\end{itemize}
+
+\paragraph{PPDAC terms}
+\begin{itemize}
+    \item Types of Problems     
+    \begin{itemize}
+        \item Descriptive - Determine an attribute 
+        \item Causative - Determine the relationship between two variates 
+        \item Predictive - Predict the response of a variate
+    \end{itemize}
+    \item Errors in Plans 
+    \begin{itemize}
+        \item Study Error - study population and target population 
+        \item Sample Error - sample and study population 
+        \item Measurement Error - measured value and true value of a variate 
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Chi-Squared}
+Let $W\sim\chi^2(n)$
+\begin{itemize}
+    \item $\chi^2(1)\sim Z^2$ 
+    \item $\chi^2(2)\sim\text{Exp}(2)$
+    \item if $n>>50$, then $W\sim N(n,2n)$ 
+\end{itemize}
+
+\paragraph{T-distribution}
+\begin{itemize}
+    \item Symmetric around 0
+    \item Kurtosis$>3$
+\end{itemize}
+
+\paragraph{Likelihood Functions}
+\begin{itemize}
+    \item Find $l(\theta)$, derive it, set it equal to $0$ and solve
+\end{itemize}
+
+\paragraph{Confidence Interval}
+\begin{itemize}
+    \item For Binomial, it is $\hat{\theta}\pm C\sqrt{\frac{\hat{\theta}(1-\hat{\theta})}{n}}$ 
+    \item For Poisson, it is $\hat{\theta}\pm C\sqrt{\frac{\hat{\theta}}{n}}$ 
+    \item For Exponential, it is $\hat{\theta}\pm C\frac{\hat{\theta}}{\sqrt{n}}$ 
+    \item For Normal $\mu$, $\sigma$ known it is $\bar{y}\pm c\sigma$ 
+    \item For Normal $\mu$, $\sigma$ unknown it is $\bar{y}\pm c\frac{s}{\sqrt{n}}$
+    \item For Normal $\sigma$, is it $\left[\sqrt{\frac{(n-1)s^2}{b}},\sqrt{\frac{(n-1)s^2}{a}}\right]$, with $a,b$ such that 
+    \item To convert from p\% likelihood interval to confidence coefficient, use $2P(Z\leq\sqrt{-2\log p})-1$
+    \item To convert from confidence interval to likelihood interval, use $\lbrace\theta:R(\theta)\geq e^{-\frac{a^2}{2}}\rbrace$. ie. given a q\% confidence interval, it is a $e^\frac{-q^*}{2}$\% likelihood interval. 
+    \item If we want to choose a sample size to guarantee our margin of error will be less than $\pm l$, then we choose $n\geq\left(\frac{Z^*}{l}\right)^2\times\frac{1}{4}$
+\end{itemize}
+
+\paragraph{Prediction Interval}
+For a new value $Y\sim G(\mu,\sigma)$, a 100p\% prediction interval is given by $\bar{y}\pm c\cdot s\sqrt{1+\frac{1}{n}}$, where $P(T\leq c)=\frac{1+p}{2}$ where $T\sim t(n-1)$ 
+
+
+
+
+
+
+
+\end{document}

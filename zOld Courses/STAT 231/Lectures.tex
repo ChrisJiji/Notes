@@ -1,0 +1,984 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newtheorem*{remark}{Remark}
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{definition*}{Definition}
+\usepackage{forest}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{enumitem}
+\usepackage{accents}
+\newlist{steps}{enumerate}{1}
+\setlist[steps, 1]{label = Step \arabic*:}
+\newlist{casesa}{enumerate}{1}
+\setlist[casesa, 1]{label = Case \arabic*:}
+\begin{document}
+
+\section{Introduction To Statistical Sciences}
+\subsection{Empirical Studies and Statistical Sciences}
+statistics is important and different than probability
+
+\subsection{Data Collection}
+\paragraph{Definitions}
+A \textbf{population} is a collection of units. \\ 
+A \textbf{process} is a system by which units are produced. Time is implied in a process. \\ 
+A \textbf{variate} is a characteristic of a unit. Types of variates: 
+\begin{itemize}
+    \item Continuous Variate: variates that can take any real number, e.g. height and weight
+    \item Discrete Variate: variates that take a discrete set of positive values, e.g. number of deaths in a year 
+    \item Categorical Variate: variates that are categories instead of numbers, e.g. hair colour, university program 
+    \item Ordinal Variate: a subclass of categorical variates in which ordering is implied, e.g. agree, neutral, disagree
+    \item Complex Variates: an image or open-ended response
+\end{itemize}
+An \textbf{attribute} of a population or process is a function of a variate which is defined for all units in the population/process. E.g.: for all people aged 18-25, an attribute might be the proportion of population who owns a smartphone, or mean annual income.\\ 
+
+\paragraph{Approaches to Data Collection}
+\begin{enumerate}
+    \item Sample Survey - a study in which information is gathered by selecting a representative sample of units. 
+    \item Observational Study - a study in which data are collected without any attempt to change any variates.
+    \item Experimental Study - a study in which the experimenter intervenes and changes or sets the values of one or more variables for the units in the study.
+\end{enumerate}
+
+han roslings 200 countries, 200 years
+
+
+
+\section*{Lecture 2}
+\subsection{Data Summaries}
+Summaries are important to conclude studies. They must be clear and informative. The basic set-up is as follows. Suppose that you perform a study on $n$ units, or a set $\{1,\ldots,n\}$. Then, for every variate you have data for, say $x,y$, denote the data on the $i^{th}$ unit by $x_i,y_i$. We refer to $n$ as the sample size and $\{x_1,\ldots,x_n\},\{y_1,\ldots,y_n\}$ or $\{(x_1,y_1),\ldots,(x_n,y_n)\}$ as data sets. There are two classes of summaries: numerical and graphical.
+\paragraph{Numerical Summaries}
+These are useful when the variates are either continuous or discrete. Numerical summaries generally fall into three categories: measure of location, measure of variability or dispersion, and measures of shape.
+\subparagraph{Measure of Location}
+\begin{itemize}
+    \item The (sample) mean also called sample average: $\bar{y}=\frac{1}{n}\sum_{i=1}^ny_i$ 
+    \item The (sample) median $m$ is the middle value when $n$ is odd and the sample is ordered, and the average of the two middle values when $n$ is even. 
+    \item The (sample) mode is the value of $y$ which appears with the highest frequency.
+\end{itemize}
+Since the median is less affected by a few extreme observations, it is a more robust measure of location. The units for all of these are the same as the original variate. 
+\subparagraph{Measure of Dispersion or Variability}
+\begin{itemize}
+    \item The (sample) variance $s^2=\frac{1}{n-1}\sum_{i=1}^n(y_i-\bar{y})^2=\frac{1}{n-1}\left[\sum_{i=1}^ny_i^2-\frac{1}{n}\left(\sum_{i=1}^ny_i\right)^2\right]=\frac{1}{n-1}\left[\sum_{i=1}^ny_i^2-n\bar{y}^2\right]$ and the (sample) standard deviation: $s=\sqrt{s^2}$
+    \item The range $=y_{(n)}-y_{(1)}$ where $y_{(n)}=\text{max}(y_1,\ldots,y_n)$ and $y_{(1)}=\text{min}(y_1,\ldots,y_n)$. 
+    \item The interquartile range $IQR$.
+\end{itemize}
+Since the interquartile range is less affected by a few extreme observations, it is a more robust measure of variability. The units are the same as the original variate.
+
+\paragraph{Quantiles and Percentiles}
+For $0<p<1$, the $p$th quantile (or 100$p$th percentile) is a value such that approximately $p$ of the $y$ values are less than $q(p)$ and approximately $1-p$ are greater than $q(p)$. \\ 
+\textbf{Definition:} Let $\{y_{(1)},\ldots,y_{(n)}\}$ where $y_{(1)}\leq\cdots\leq y_{(n)}$ be the \textbf{order statistic} for the data set $\{y_1,\ldots,y_n\}$. For $0<p<1$, the $p$th (sample) quantile is a value, $q(p)$, determined as follows:
+\begin{itemize}
+    \item Let $m=(n+1)p$ where $n$ is the sample size.
+    \item If $m$ is an integer and $1\leq m\leq n$, then $q(p)=y_{(m)}$ 
+    \item If $m$ is not an integer but $1<m<n$ then determine the closest integer $j$ such that $j<m<j+1$ and then $q(p)=\frac{1}{2}[y_{(j)}+y_{(j+1)}]$
+\end{itemize}
+The quantiles $q(0.25),q(0.5),q(0.75)$ are often used to summarize data, and are called the lower or first quartile, the median, and the upper or third quartile respectively. The \textbf{interquartile range} (IQR) is $IQR=q(0.75)-q(0.25)$. The \textbf{five number summary} of a data set is $\{y_{(1)},q(0.25),q(0.5),q(0.75),y_{(n)}\}$. 
+
+\section*{Lecture 3}
+\subparagraph{Measure of Shape}
+\begin{itemize}
+    \item The (sample) skewness $g_1=\frac{\frac{1}{n}\sum_{i=1}^n(y_i-\bar{y})^3}{\left[\frac{1}{n}\sum_{i=1}^n(y_i-\bar{y})^2\right]^\frac{3}{2}}$ 
+    \item The (sample) kurtosis $g_2=\frac{\frac{1}{n}\sum_{i=1}^n(y_i-\bar{y})^4}{\left[\frac{1}{n}\sum_{i=1}^n(y_i-\bar{y})^2\right]^2}$ 
+\end{itemize}
+Measures of shape generally indicate how the data differ from the Normal bell-shaped curve. Skewness is a measure of the lack of symmetry in data. Positive skewness results in a long right tail, and negative skewness results in a long left tail. Kurtosis measures the heaviness of the tails and the peakedness of the data relative to the Normal bell-shaped curve. The more positive the kurtosis, the more peaked in the centre the curve is. If the data looks normal, then the kurtosis is close to 3. If it is very peaked, then the kurtosis is larger than 3. If the data is uniform, the kurtosis is around $1.2$. Skewness and kurtosis have no units. 
+
+\paragraph{Sample Correlation}
+A numerical summary of bivariate data is the sample correlation, defined as $r=\frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}$. 
+$$S_{xx}=\sum_{i=1}^n(x_i-\bar{x})^2=\sum_{i=1}^nx_i^2-\frac{1}{n}\left(\sum_{i=1}^nx_i\right)^2$$ 
+$$S_{xy}=\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})=\sum_{i=1}^nx_iy_i-\frac{1}{n}\left(\sum_{i=1}^nx_i\right)\left(\sum_{i=1}^ny_i\right)$$
+$$S_{yy}=\sum_{i=1}^n(y_i-\bar{x})^2=\sum_{i=1}^ny_i^2-\frac{1}{n}\left(\sum_{i=1}^ny_i\right)^2$$
+The sample correlation takes on values between $-1$ and $1$, and measures the linear relationship between $x$ and $y$. If $r$ is close to $-1/1$ then we say the two variates have a strong negative/positive linear relationship. If $r$ is close to 0 then there is no linear relationship. 
+
+\paragraph{Graphical Summaries}All graphs should: 
+\begin{itemize}
+    \item Displayed at an appropriate size 
+    \item Graphics should have clear titles which are fairly self explanatory 
+    \item Axes should be labeled and units given where appropriate 
+    \item The choice of scales should be made with care 
+    \item Graphics should not be used without thought; there may well be better ways of displaying the information
+\end{itemize}
+
+The following are the types of graphical summaries: 
+\begin{itemize}
+    \item Histograms 
+    \item Empirical Cumulative Distribution Function (ecdf)
+    \item Box plots
+    \item Run charts 
+    \item Bar graphs 
+    \item Scatter plots
+\end{itemize}
+
+\subparagraph{Histograms}
+The idea is to create a graphical summary that we can use to compare to a pdf for a continuous random variable, or a pf for a discrete random variable. Histograms are helpful to determine what probability model could be used later. \\ 
+Let the observed data be represented as $\{y_1,\ldots,y_n\}$. Partition the range of $y$ into $k$ non-overlapping intervals $I_j=[a_j,a_{j-1})$ for $j=1,\ldots,k$. Let $f_j$ be the number of values from $\{y_1,\ldots,y_n\}$ that are in $I_j$. The $f_j$ are called the \textbf{observed frequencies}. Note that $\sum_{j=1}^kf_j=n$. A \textbf{histogram} is a graph in which a rectangle is constructed above each interval, with the height being proportional to $f_j$. There are two main types of histograms: 
+\begin{itemize}
+    \item In a \textbf{standard histogram} the intervals are of equal width and the heights are equal to the frequencies or the relative frequencies. 
+    \item In a \textbf{relative frequency histogram} the intervals may not be of equal width. The height of the rectangle is chosen so that the area of the rectangle equals $\frac{f_j}{n}$, that is $\text{height}=\frac{\frac{f_j}{n}}{(a_j-a_{j-1})}$. In this case the sum of the areas of the rectangles equals one. When comparing to a pdf, only a relative frequency histogram can be used. 
+\end{itemize}
+
+
+
+
+\section*{Lecture 4}
+\subparagraph{Empirical CDF}
+The idea is that we want to use a graphical summary of the data that we could use to compare with a cdf. This is helpful in determining what probability model could be used to model the data. The definition of the empirical cdf is $\hat{F}(y)=\frac{\text{number of values in }\{y_1,\ldots,y_n\}\text{ which are }\leq y}{n}$, $y\in\mathbb{R}$. The area above the ecdf line is the sample mean. This is because the "height" of each horizontal rectangle is $\frac{1}{n}$, and the width is $y_{(j)}$, and so the total area is summing all of the horizontal rectangles, and hence summing all of the $\frac{1}{n}\sum_{j}^ny_{(j)}$, exactly the sample mean.
+
+\subparagraph{Box Plots}
+A boxplot gives a graphical summary about the shape of the distribution. How to draw:
+\begin{enumerate}
+    \item Draw a box that ends at the lower and upper quartiles so the box height is the IQR.
+    \item Draw a line in the box at the median.
+    \item Draw two lines of "whiskers" outside the box to the minimum and maximum. If the minimum or maximum is more than $1.5*$IQR then add whiskers at $q(0.25)-1.5*$IQR and $q(0.75)+1.5*$IQR.
+    \item Plot any additional points beyond $\pm1.5*$IQR individually using a special symbol like "$+$" or "$*$". These points are called "outliers". 
+\end{enumerate}
+
+\subparagraph{Run Chart}
+A graphical summary of data which are varying over time. 
+
+\subparagraph{Scatterplots}
+Used for when the datasets $\{(x_1,y_1),\ldots,(x_n,y_n)\}$, where $x_i$ and $y_i$ are real numbers. You simply plot the points at the coordinates $(x_i,y_i)$. 
+
+\section*{Lecture 5}
+First lecture of Dr. Banajee, he just did another introduction to the course talking about difference between STAT230/231, and some examples of interesting statistics (st.petersburg paradox, disappearance of the 400 hitter, correlation vs causation).
+
+\section*{Lecture 6}
+\paragraph{What is a Statistical Model}
+A \textbf{statistical model} is a specification of the distribution from which your data is drawn, where the attribute of interest is typically a parameter of the distribution. Gave an example of whether or not Canadians are better at Jeopardy than Americans. The data points are the number of shows each Canadian is featured in, and it is easy to see that each data point is the number of trials before the first failure, and so therefore follows a geometric distribution. \\ 
+Data has two personalities. $y_1,\ldots,y_n$ are numbers, but ALSO outcomes of some random experiment. Identifying that random experiment is setting up a statistical model. For this course, $y_1$ is actual data (numbers), and $Y_i$ are random variables. $\theta,\pi,\mu$ will all be population parameters (unknown constants). 
+
+\paragraph{Types of Statistical Inference}
+\begin{itemize}
+\item Estimation Problems: Trying to make an educated guess of the value of some population attribute based on the data.
+\item Hypothesis Testing: Based on data, is the hypothesis "reasonable"? 
+\item Prediction: How to forecast future observations from data sets? (stat 443)
+\end{itemize}
+
+
+\section*{Lecture 7}
+\paragraph{On the tutorial}
+\begin{itemize}
+    \item R commands that were on the assignment
+    \item STAT 230 
+    \begin{itemize}
+        \item Normal Distribution
+        \begin{itemize}
+            \item if $Y\sim N(\mu,\sigma^2)$, then $\frac{Y-\mu}{\sigma}=Z\sim N(0,1)$
+            \item If $Y_1,\ldots,Y_n\sim(\mu,\sigma^2)$ are independent, then $\bar{Y}\sim N(\mu,\frac{\sigma^2}{n})$
+            \item Empirical fact: If the data is normal, then 68\% of the observations lie within $\mu\pm\sigma$. 95\% of the observations lie within $\mu\pm2\sigma$, and 99\% of the observations lie within $\mu\pm3\sigma$. 
+        \end{itemize}
+    \end{itemize}
+    \item Definitions and concepts 
+    \begin{itemize}
+        \item Linear transformation problems (location stays the same, variance and standard deviation we know from stat230) 
+        \item calculate new mean and variance if you remove a data point (mean is easy, for variance use $\frac{1}{n-1}\left[\sum_{i=1}^ny_i^2-n\bar{y}^2\right]$)
+    \end{itemize}
+    \item Graphical and Numerical data summaries 
+    Types of Data:
+    \begin{itemize}
+        \item Discrete 
+        \item Continuous 
+        \item Categorical 
+        \item Ordinal
+    \end{itemize}
+    Variates of Interest: 
+    \begin{itemize}
+        \item Response Variate - variates that are usually the focus of the study
+        \item Explanatory Variate - variates used to explain the response 
+    \end{itemize}   
+    Numerical Measures: 
+    \begin{itemize}
+        \item Location: sample mean, sample median, sample mode 
+        \item Variability: range, IQR, sample variance, sample standard deviation 
+        \item Shape: sample skewness, sample kurtosis 
+    \end{itemize}
+\end{itemize}
+
+\paragraph{The Theory of Estimation}
+maximum likelihood estimation (covered examples this time, the formal definition will be next class)
+
+\section*{Lecture 8}
+\paragraph{The Theory of Estimation}
+We have an unknown population parameter $\theta$ that we are interested in. We have data: $\{y_1,\ldots,y_n\}$, and $Y_i\sim f(y_i;\theta)$, with $i=1,\ldots,n$. Question: Based on your data, what is the most likely value of $\theta$? 
+\paragraph{Definition}
+Let $y=(y_1,\ldots,y_n)$ be a vector of the data set. The likelihood function $L(y;\theta)=P(Y_1=y_1,\ldots,Y_n=y_n)$. What is the probability of observing our sample, as a function of $\theta$? Example: Suppose a coin is tossed 200 times and $Y=\text{number of heads}$. The experiment leads to 110 heads. Assume $\theta=P(\text{head})$, then we have $L(y,\theta)=\binom{200}{110}\theta^{110}(1-\theta)^{90}$. We choose the value of $\theta$ that maximizes the probability of observing what we observed, or the maximum likelihood estimate, denoted $\hat{\theta}$. Instead of taking the derivative of the function to maximize (cause its hard to), we take the log-likelihood function $l(\theta)=\log L(\theta)$, note that $\log$ is always base $e$. Then $l(\theta)=\ln\binom{200}{110}+110\ln\theta+90\ln(1-\theta)$, then $\frac{dl}{d\theta}=0\Rightarrow \frac{110}{\theta}-\frac{90}{1-\theta}=0$, and solving we get $\theta=\frac{110}{200}=0.55$. 
+\paragraph{Example 2}
+Canadian Jeopardy example. Let $\theta=P(\text{Canadian wins})$. Then we have $y=(2,3,1,1,1,2)$, and $L(y,\theta)=P(Y_1=y_1,\ldots,Y_6=y_6)$. Then $L(y,\theta)=\theta(1-\theta)\theta^2(1-\theta)(1-\theta)(1-\theta)(1-\theta)\theta(1-\theta)=\theta^4(1-\theta)^6$. Then $\frac{dl}{d\theta}=0\Rightarrow \frac{4}{\theta}-\frac{6}{1-\theta}=0\Rightarrow \theta=\frac{4}{10}$ 
+\paragraph{Example 3}
+The number of texts you receive in an hour is assumed to have a Poisson distribution. Data points: $(2,3,1,0,0,0,1,2,1,0)$. $\mu=\text{average amount of texts per hour}$. Based on your sample, what is $\hat{\mu}$? (MLE for $\mu$). $L(\mu;y)=\frac{e^{-\mu}\mu^2}{2!}\cdots\frac{e^{-u}\mu^0}{0!}=L(\mu)=\frac{e^{-10\mu}\mu^{10}}{2!3!1!\ldots0!}$. Then setting the horrible denominator to be $k$, we get $l(\mu)=-10\mu+10\ln\mu-\ln k$, then $\frac{dl}{d\mu}=-10+\frac{10}{\mu}=0\Rightarrow \hat{\mu}=1$. 
+\paragraph{General Poisson}
+Let $\{y_1,\ldots,y_n\}$ be our data set, and $Y_i\sim \text{Poisson}(\mu)$. Then the MLE for $\mu$ can be found using $L(\mu,y)=\frac{e^{-\mu}\mu^{y_1}}{y_1!}\cdots\frac{e^{-\mu}\mu^{y_n}}{y_n!}=\frac{e^{-n\mu}\mu^{\sum y_i}}{y_1!\ldots y_n!}$. Then $l(\mu)=-n\mu+\sum y_i\ln\mu-\ln k$, and then solving for $\frac{dl}{d\mu}=0$ we get $\hat{\mu}=\bar{y}$. 
+
+\section*{Lecture 9}
+\paragraph{Set up}
+Say we have some (population) parameter of interest, $\theta(\mu,\pi,\sigma^2,\ldots)$. We collect a sample from the population, $\{y_1,\ldots,y_n\}$, then $Y_i\sim f(y_i;\theta)$ is our model. Based on the model and the data, what is the "most likely" value of $\theta$? The MLE of $\theta=\hat{\theta}(y_1,\ldots,y_n)$\\ 
+\paragraph{Definition}
+$L(\theta;y_1,\ldots,y_n)=P(Y_1=y_1,\ldots,Y_n=y_n)$ If the data is drawn independently, and the distribution is the same, then $L(\theta;y_1,\ldots,y_n)=\prod_{i=1}^nf(y_i;\theta)$. $\hat{\theta}$ is called the MLE if $\hat{\theta}$ maximizes $L(\theta;y_1,\ldots,y_n)$. $l(\theta;y_1,\ldots,y_n)=\log_lL(\theta;y_1,\ldots,y_n)$. $\hat{\theta}\text{ maximizes }L\Leftrightarrow \hat{\theta}\text{ maximizes }l$. 
+\paragraph{Example}
+A sample of 1000 voters are taken. 293 of them say they approve of what the government is doing. $\theta=$approval rating. Find $\hat{\theta}$ \\ 
+Solution: Note that $Y\sim\text{Bin}(1000,\theta)$, so $L(\theta;y)=\binom{1000}{293}\theta^{293}(1-\theta)^{707}$. Taking logs, we get $l(\theta)=\ln(k)+293\ln\theta+707\ln(1-\theta)$, with $k=\binom{1000}{293}$. Since we want to maximize $\theta$, we find the $0$ of the derivative, so $\frac{dl}{d\theta}=0\Rightarrow\frac{293}{\theta}-\frac{707}{1-\theta}=0$, or $\hat\theta=0.293$. Note that this is equal to $\frac{y}{n}$, which is true in general for binomial distributions. 
+
+\section*{Lecture 10}
+\paragraph{MLE for Normal Distribution}
+If $Y_i\sim N(\mu,\sigma^2)$, if $\mu,\sigma^2$ were unknown, what are $\hat\mu,\hat\sigma^2$? \\ 
+Multiplying out the definition of $L(\theta)$, taking the log-likelihood function, and taking partial derivatives, we get $\hat\mu=\bar{y}$, and $\hat\sigma^2=\frac{1}{n}\sum(y_i-\bar{y})^2$
+\paragraph{Invariance Property of the MLE}
+If $\hat\theta$ is the MLE for $\theta$, then $g(\hat\theta)$ is the MLE for $g(\theta)$. 
+\paragraph{Using the Invariance Property}
+Let $Y_i\sim N(\mu,\sigma^2)$ for $i=1,\ldots,n$. Find the MLE for the $95^{th}$ percentile of $Y$. \\ 
+solution: first, what is the $95^{th}$ percentile of $Y$? Let $A=95^{th}$ percentile. Then $P(Y\leq A)=0.95\Rightarrow P\left(\frac{Y-\mu}{\sigma}\leq\frac{A-\mu}{\sigma}\right)=0.95$. Let $Z=\frac{Y-\mu}{\sigma},B=\frac{A-\mu}{\sigma}$. We can find $B$ from the $Z-$table, $B=1.65$, and then $A=\mu+1.65\sigma$. By the invariance property, the MLE for $A$ is $\hat\mu+1.65\hat\sigma$, with $\hat\mu=\bar{y},\hat\sigma=\sqrt{\frac{1}{n}\sum(y_i-\bar{y})^2}$
+
+
+
+
+\section*{Lecture 11}
+\paragraph{Recap}
+\subparagraph{Model} $Y_i\sim f(y_i;\theta)$, with $i=1,\ldots,n$. \begin{itemize}
+    \item $n$ is the sample size 
+    \item $\theta$ is the population parameter 
+    \item $Y_i$'s are independent and identically distributed
+    \item $\{y_1,\ldots,y_n\}$ is our sample 
+\end{itemize}
+Objective: Find $\hat{\theta}$ where $L(\theta)=\pi_{i=1}^nf(y_i;\theta)$, which is the product of the probability (or density) function, evaluated at each sample point. $\hat{\theta}$ maximizes $L(\theta)$. \\ 
+Binomial: When $Y\sim\text{Bin}(n,\theta)$, we have $\hat{\theta}=\frac{y}{n}$\\ 
+Poisson: When $Y_1,\ldots,Y_n\sim\text{Poi}(\mu)$, we have $\hat{\mu}=\overline{y}$ \\ 
+Uniform: When $Y_1,\ldots,Y_n\sim U[0,\theta]$, we have $\hat{\theta}=\text{max}\{y_1,\ldots,y_n\}$ \\ 
+Exponential: When $Y_1,\ldots,Y_n\sim\text{Exp}(\theta)$, we have $\hat{\theta}=\overline{y}$ \\ 
+Normal: When $Y_1,\ldots,Y_n\sim N(\mu,\sigma^2)$, we have $\hat{\mu}=\overline{y}$, and $\sigma^2=\frac{1}{n}\sum(y_i-\overline{y})^2$
+\subparagraph{Invariance Property}
+$\hat{\theta}$ is the MLE for $\theta\Rightarrow g(\hat{\theta})$ is the MLE for $g(\theta)$.  
+
+\paragraph{Example of Invariance Property}
+We have $Y_1,\ldots,Y_n\sim\text{Exp}(\theta)$ are independent. Find the MLE for the median of $Y$. Our data set would be $\{y_1,\ldots,y_n\}$. Step 1: find the median of the exponential, and hopefully it will be a function of theta. Then just use the invariance property. Remember for an exponential distribution, we have $f(y)=\frac{1}{\theta}e^{-\frac{y}{\theta}}, F(y)=1-e^{-\frac{y}{\theta}}$. Suppose the median is $m$. We know $F(m)=\frac{1}{2}\Rightarrow e^{-\frac{m}{\theta}}=\frac{1}{2}\Rightarrow m=-\theta\ln\left(\frac{1}{2}\right)$. Then $\hat{m}$ (MLE for median) would be $-\hat{\theta}\ln\frac{1}{2}=-\overline{y}\ln\frac{1}{2}$ by the invariance property. 
+
+\paragraph{Relative Likelihood Function}
+The \textbf{relative likelihood function} $R(\theta)$ is defined as: $R(\theta)=\frac{L(\theta)}{L(\hat{\theta})}$, where $\hat{\theta}$ is the MLE. The log relative likelihood function is given by $r(\theta)=\ln(R(\theta))=l(\theta)-l(\hat{\theta})$, where $l$ is the log-likelihood function. $R(\theta)$ looks like  a normal curve, maximum is $1$ at $R(\hat{\theta})$. 
+
+\paragraph{Likelihood for Multinomial}
+$(\theta_1,\ldots,\theta_m)$, with $\theta_i=P(\text{success for the }i\text{'th player})$. $n$ trials, and $y_i=$number of wins by player $i$. It is easy to see that $\hat{\theta_i}=\frac{y_i}{n}$ 
+
+\paragraph{Model Selection}
+\begin{itemize}
+    \item Compare the histogram to the probability function 
+    \item Compare the ECDF to the theoretical CDF 
+\end{itemize}
+
+\paragraph{The Q-Q plot}
+Let our data set be $\{y_1,\ldots,y_n\}$. The normal $Q-Q$ plot is the plot of $(z_{(\alpha)},y_{(\alpha)})$, where $z_{(\alpha)}$ is the $\alpha^{th}$ quantile of $Z\sim N(0,1)$, and $y_{(\alpha)}$ is the $\alpha^{th}$ quantile of your data set. If you draw a $Q-Q$ plot and it's a straight line, normality is a good assumption. If $Y\sim N(\mu,\sigma^2)$, then the $Q-Q$ plot will be a straight line. If it looks like an "s", it will probably be uniform, and a "u" shape will correspond to an exponential. 
+
+\section*{Lecture 12}
+\paragraph{Model Selection}
+If we have $Y_i$ is some random variable, and we get $\{y_1,\ldots,y_n\}$ as our data points, we suspect that these data set comes from some distribution. To select a model, just compare the given data set with the expected data set from the model 
+
+\paragraph{The PPDAC}
+\begin{itemize}
+    \item P: Problem: A clear statement of the study's objectives
+    \item P: Plan: the procedures used to carry out the study including how we will collect the data
+    \item D: Data: the physical collection of the data, as described in the Plan
+    \item A: Analysis: the analysis of the data collected in light of the Problem and the Plan 
+    \item C: Conclusion: The conclusions that are drawn about the Problem and their limitations
+\end{itemize}
+
+\subparagraph{Problem}
+The elements of the Problem addresses questions starting with "what": 
+\begin{itemize}
+    \item What conclusions are we trying to draw? 
+    \item What group of things or people do we want the conclusions to apply? 
+    \item What variates can we define? 
+    \item What are the questions we are trying to answer?
+\end{itemize}
+
+Types of Problems:
+\begin{itemize}
+    \item Descriptive: The problem is to determine a particular attribute of a population. e.g., national unemployment rate
+    \item Hypothesis Testing (causative): Determine the existence or non-existence of a causal relatioship between two variates. e.g., does taking a low dose of aspirin reduce heart disease?
+    \item Predictive: Predict the response of a variate for a given unit. Mostly in finance or economics. 
+\end{itemize}
+To help define problems we first define a couple terms: 
+\begin{itemize}
+    \item \textbf{Target population} or \textbf{process} is the collection of units to which the experimenters conducting the empirical study wish the conclusions to apply 
+    \item \textbf{Variate} is a characteristic associated with each unit 
+    \item \textbf{Attribute} is a function of the variates over a population
+\end{itemize}
+
+
+\subparagraph{Plan}
+How do we collect our sample? \textbf{Study population} is the population from which your sample is drawn, ie. a random sample of 100 people between 18-35 are selected from the KW area. 18-35 year olds in KW is a study population. Study population does not need to be a subset of the target population. The \textbf{sampling protocol} is the procedure used to select a sample of units from the study population.\\ 
+Types of errors: 
+\begin{itemize}
+    \item \textbf{Study error}: the attributes in the study population differ from the attributes in the target population
+    \item \textbf{Sample error}: the attributes in the sample differ from the attributes in the study population 
+    \item \textbf{Measurement error}: the measured value and the true value of a variate are not identical
+\end{itemize}
+
+
+\subparagraph{Data}
+Recall the types of data:
+\begin{itemize}
+    \item Discrete
+    \item Continuous
+    \item Categorical
+    \item Ordinal
+\end{itemize}
+The data step is to just collect data according to the Plan. Any deviations from the Plan should be noted. \textbf{Response bias} is when incorrect data is collected due to people being dumb.  
+
+\subparagraph{Analysis}
+Analyze the data using previously learned ways (graphs and fitting to models). 
+\subparagraph{Conclusion}
+Answer the questions posed in the Problem. Should attempt to discuss potential errors as described in the Plan and any limitations to the conclusions.
+
+\section*{Lecture 13}
+oopsie
+
+\section*{Lecture 14}
+\paragraph{Set-up for Sampling Distributions}
+$\theta:$ unknown population parameter. $Y_i\sim f(y_i;\theta)$, with $i=1,\ldots,n$ and $f$ is our probability function. We have $\{y_1,\ldots,y_n\}$ as our data points. \\ 
+Question: Given our data set, what are the "reasonable" values of $\theta$? We construct an interval: $[l,u]$, with $l=l(y_1,\ldots,y_n)$, and $u=u(y_1,\ldots,y_n)$ such that the interval will contain $\theta$ with a "high degree of confidence". 
+\paragraph{Likelihood Interval}
+Take any $p\in(0,1)$. The 100p\% likelihood interval is $\{\theta:R(\theta)\geq p\}$. \\ 
+\textbf{Example:} Suppose $p=0.1$. 10\% likelihood is $\{\theta:R(\theta)\geq0.1\}$. Remember $R(\theta)=\frac{L(\theta)}{L(\hat{\theta})}$, so the 10\% likelihood is all $\theta$ such that $\frac{L(\theta)}{L(\hat{\theta})}\geq 0.1$ 
+\subparagraph{Convention} 
+\begin{itemize}
+    \item If $R(\theta)\geq0.5$, then $\theta$ is \textbf{extremely plausible} 
+    \item If $0.1\leq R(\theta)<0.5$, then $\theta$ is \textbf{plausible}
+    \item If $0.01\leq R(\theta)<0.1$, then $\theta$ is \textbf{implausible}
+    \item If $R(\theta)<0.01$, then $\theta$ is \textbf{extremely implausible}
+\end{itemize}
+\paragraph{Example}
+Suppose $Y\sim\text{Bin}(n,\theta)$. Say $n=200,y=80$. Is $\theta=0.5$ plausible? \\ 
+Solution: $L(\theta)=\binom{200}{y}\theta^y(1-\theta)^{200-y}$. By inspection we can see $\hat{\theta}=\frac{80}{200}=0.4$. Then $R(\theta)=\frac{L(\theta)}{L(\hat\theta)}=\frac{\binom{200}{y}\theta^y(1-\theta)^{200-y}}{\binom{200}{y}\hat\theta^y(1-\hat\theta)^{200-y}}=\frac{\theta^y(1-\theta)^{200-y}}{(0.4)^y(0.6)^{200-y}}$. So is $\theta=0.5$ plausible? Just plug in $\theta=0.5,y=80$ into the above expression, and refer to the list above. Plugging in the values we get $R(\theta)=0.0178$, so $\theta=0.5$ is not plausible. 
+
+\paragraph{somethingsomething Confidence Interval}
+Insight: Our sample mean, variances, etc. are also outcomes of some random experiment. If we have $Y_1,\ldots,Y_n\sim N(\mu,\sigma^2)$ independent, then $\bar{Y}\sim N(\mu,\frac{\sigma^2}{n})$ is called our sampling distribution of the sample mean.  
+\paragraph{Our different Thetas}
+\begin{itemize}
+    \item $\theta$ is the population mean, or $\mu$ 
+    \item $\hat{\theta}$ is the best guess based on sample on what $\theta$ is, or $\bar{y}$ 
+    \item $\tilde{\theta}$ is the distribution from which $\hat{\theta}$ was drawn, or $\bar{Y}$ \\
+\end{itemize}
+\paragraph{Example}
+$Y_1,\ldots,Y_n\sim N(\mu,49)$. A sample of 25 observations are collected. Find the 95\% confidence interval for $\mu$. \\ 
+Solution: We want to find $L,U$ such that $P(L\leq\mu\leq U)=0.95$. We know from STAT 230 that $\bar{Y}\sim N(\mu,\frac{49}{25})$, so $\frac{\bar{Y}-\mu}{\frac{7}{5}}=Z\sim N(0,1)$. Looking it up, we find that we get $P(-1.96\leq Z\leq 1.96)=0.95\Rightarrow P(-1.96\leq \frac{\bar{Y}-\mu}{\frac{7}{5}}\leq1.96)=0.95$. 
+
+\section*{Lecture 15}
+\paragraph{Model for Confidence Interval}
+$Y_i\sim f(y_i;\theta)$, where $\theta$ is our parameter of interest, $n$ is our sample size. We have $\{y_1,\ldots,y_n\}$ as our data. \\ 
+\textbf{Objective}: To construct an interval $[l,u]$, $l,u$ are computed using the data set, such that we can be "reasonably confident" that $\theta$ lies in the above interval. \\ 
+\textbf{Two approaches}: 
+\begin{itemize}
+    \item Through $R(\theta)$
+    \item Sampling distributions
+\end{itemize}
+
+\paragraph{Likelihood Interval}
+Recall from last class: The 100\%p likelihood interval: $\{\theta:R(\theta)\geq p\}$. 
+
+\paragraph{Sampling distributions}
+Problem: We are given a pre specified probability: 90\%, 95\%, 99\%\\ 
+Objective: Estimate (\textbf{confidence interval}) the random interval (\textbf{coverage interval}) that contains $\theta$  with that specified probability.\\ 
+Find the sampling distribution of our estimators. 
+
+\paragraph{Normal Example}
+Reminder: \begin{itemize}
+    \item $\theta$: unknown constant : $(\mu,\sigma^2)$
+    \item $\hat{\theta}$: number from our sample, estimate : $(\bar{y},\hat\sigma^2)$
+    \item $\tilde{\theta}$: random variable from which $\hat{\theta}$ is an outcome: $(\overline{Y},S^2)$
+\end{itemize}
+The Stat 231 scores are normally distributed with mean $\mu$ and variance $100$. A sample of 25 students are collected wuth $\bar{y}=75$. Find a 99\% confidence interval for $\mu$. \\ 
+Solution: $Y_i\sim N(\mu,100)$. MLE: $\bar{y}=75$. Note this is our estimate. Our estimator is $\overline{Y}\sim N\left(\mu,\frac{100}{25}\right)$. From stat230, $\frac{\overline{Y}-\mu}{\sqrt{\frac{100}{25}}}=Z=N(0,1)$. Then we can go to the $Z$-table and find the 99\% interval for Z. This should be $2.58$. Then $P(-2.58\leq Z\leq2.58)=0.99\Rightarrow P(-2.58\leq\frac{\overline{Y}-\mu}{2}\leq2.58)=0.99\Rightarrow P(\overline{Y}-2.58\times2\leq\mu\leq\overline{Y}+2.58\times2)=0.99$ This is our coverage interval. Our confidence interval is $(\bar{y}-2.58\times2,\bar{y}+2.58\times2)$. So our confidence interval is $(75-2.58\times2,75+2.58\times2)$, or our 99\% confidence interval is $75\pm2.58\times2$. In general, it will be $\bar{y}\pm Z^*\frac{\sigma}{\sqrt{n}}$, where $Z^*$ is some value from the $Z$ table. The $\frac{\sigma}{\sqrt{n}}$ is called the \textbf{margin of error}.
+
+\paragraph{Interpretation}
+The confidence interval is the \underline{best estimate} of the random interval that contains $\theta$ with the pre-specified high probability. ALTERNATIVELY: If we all did the same experiment and constructed our own confidence intervals, approximately 99\% of those intervals will contain $\mu$ 
+
+\paragraph{Binomial Example}
+Suppose $Y\sim\text{Bin}(n,\theta)$. A sample of 1500 people are taken, and 800 of them voted for Trump. find the 95\% confidence interval for $\theta$. \\ 
+Solution: $\hat{\theta}=\frac{y}{n}=\frac{800}{1500}=\frac{8}{15}=0.5\overline{3}$. By the CLT to Binomial, $\tilde{\theta}\approx N\left(\theta,\frac{\tilde\theta(1-\tilde\theta)}{n}\right)$, and then $\frac{\tilde{\theta}-\theta}{\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}}=Z\sim N(0,1)$. Finding the 95\% CI for $\theta$, from the $Z-$table, we get $P(-1.96\leq Z\leq1.96)=0.95\Rightarrow P\left(-1.96\leq\frac{\tilde{\theta}-\theta}{\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}}\leq1.96\right)=0.95\Rightarrow P\left(\tilde{\theta}-1.96\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}\leq\theta\leq\tilde{\theta}+1.96\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}\right)=0.95$. This is our coverage interval. Then our confidence interval is $\theta\pm1.96\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}$, or $0.33\pm1.96\sqrt{\frac{0.533\times0.467}{1500}}$. The $1.96\sqrt{\frac{0.533\times0.467}{1500}}$ is our margin of error.
+
+$P\left(-1.96\leq\frac{\tilde{\theta}-\theta}{\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}}\leq1.96\right)=0.95$
+
+\section*{Lecture 16}
+oops 
+\paragraph{Construction of a Coverage Interval}
+Model: $Y_i\sim f(y_i;\theta)$, with $Y_i$'s iid, and $i=1,\ldots,n$. Objective: Given a pre-specified probability (say 95\%), we want to construct $[l,u]\Rightarrow95\%$ confidence interval for $\theta$. \begin{enumerate}
+    \item Find the estimate of $\theta$, $(\hat{\theta})$ and the corresponding estimator $\tilde{\theta}$. E.g. if $Y_1,\ldots,Y_n\sim N(\mu,100)$, then $\hat{\theta}=\bar{y}$, $\tilde{\theta}=\bar{Y}$. 
+    \item Identify the distribution (if possible) of the estimator. e.g., $\bar{Y}\sim N\left(\mu,\frac{100}{n}\right)$ 
+    \item Construct the \textbf{pivotal distribution} (find the pivotal quantity). A pivotal quantity is a function of the estimator whose probabilities can be calculated without knowing what $\theta$ is. e.g. $\frac{\bar{Y}-\mu}{\frac{10}{\sqrt{n}}}=Z$, and the fraction is our pivotal quantity. 
+    \item Find the end points of your pivotal distribution. e.g. $P(-1.96\leq Z\leq1.96)=0.95$. 
+    \item Using step 3 and step 4, separate the unknown parameter. E.g. $P\left(-1.96\leq\frac{\bar{Y}-\mu}{10/\sqrt{n}}\leq1.96\right)=0.95\Leftrightarrow P\left(\bar{Y}-1.96\frac{10}{\sqrt{n}}\leq\mu\leq\bar{Y}+1.96\frac{10}{\sqrt{n}}\right)=0.95$
+    \item Estimate the coverage interval using your data. e.g. Confidence interval: coverage: $\bar{Y}\pm Z^*\frac{\sigma}{\sqrt{n}}$ and confidence: $\bar{y}+Z^*\frac{\sigma}{\sqrt{n}}$. 
+\end{enumerate}
+Notes: the coverage intervals decrease as $n$ increases. 
+
+
+
+\section*{Lecture 17}
+oops
+\paragraph{Recap of how to construct confidence interval}
+\begin{enumerate}
+    \item Construct the pivotal quantity Q distribution, $P(Q\leq a), P(Q\geq b)$ without knowing $\theta)$. 
+    \item Extract the unknown parameter $\theta$ using the pivotal distribution $P(a<Q<b)=0.95$. Use this to separate $\theta$ (coverage)
+    \item Estimate that interval using your data (confidence interval)
+\end{enumerate}
+How to choose the right sample size?  \\ 
+As the level of confidence increases, the confidence interval becomes wider. As the sample size increases, the confidence interval becomes narrower. 
+
+\paragraph{Chi-Squared Distribution}
+Let $W$ be a random variable which takes non-negative values. $W$ is said to follow a chi-squared distribution with $n$ degrees of freedom $W\sim\chi^2(n)$, where $n$ is a parameter, if $W=Z_1^2+Z_2^2+\cdots+Z_n^2$, where $Z_i\sim N(0,1)$, and the $Z_i$'s are independent. $W$ is the sum of squares of $n$ independent Normal $(0,1)$ variables. Properties: 
+\begin{itemize}
+    \item If $W\sim\chi^2(n)$, then $E(W)=n,V(W)=2n$. 
+\end{itemize}
+Special cases:
+\subparagraph{n=1}
+Then $W=Z^2$. Example: Suppose $W\sim \chi^2(1)$. Then $P(W\leq a)=P(-\sqrt{a}\leq Z\leq \sqrt{a})$ for any $a$. 
+\subparagraph{n=2}
+If $n=2$, then $\chi^2(2)$ has the same distribution as $\text{Exp}(\mu=2)$. \\ 
+Example: Find $P(W\geq2.5)$. $P(W\geq2.5)=1-F(2.5)$, where $F$ is the cdf of Exp$(2)$. $F(\lambda)=1-e^{\frac{-\lambda}{\mu}}$, then $1-F(2.5)=1-(1-e^{\frac{-2.5}{2}})$
+\subparagraph{n is large}
+"large" meaning $n\geq50$, if $W\sim\chi^2(n)$ and $n$ is large, then $W\approx N(n,2n)$. \\ 
+Example: Let $W\sim\chi^2(72)$. Find $P(W\leq96)$. $W\approx N(72,144)$. Then $P(W\leq96)=P\left(\frac{W-72}{12}\leq\frac{96-72}{12}\right)=P(Z\leq2)$
+
+
+\section*{Lecture 18}
+\paragraph{Chi-Squared Distribution (Recap)}
+Two definitions:
+\begin{enumerate}
+    \item $W$ is a continuous random variable that takes non-negative values $W\sim\chi^2(n)$. $W$ is said to follow a Chi-squared distribution with $n$ degrees of freedom if $W=Z_1^2+\cdots+Z_n^2$, where $Z_i\sim N(0,1)$, and $Z_i$'s are independent. 
+    \item $W\sim\chi^2(n)$ if the density function fo $W$ is given by $f(x)=\frac{1}{2^{\frac{n}{2}}\Gamma\left(\frac{n}{2}\right)}x^{\frac{n}{2}-1}e^{-\frac{x}{2}}$, with $x>0$. Remember that $\Gamma(\alpha)=\int_0^\infty y^{\alpha-1}e^{-y}dy$, and \begin{enumerate}
+        \item $\Gamma(\alpha)=(\alpha-1)\Gamma(\alpha-1)$ 
+        \item $\Gamma(n)=(n-1)!$ 
+        \item $\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}$
+    \end{enumerate}
+    Outline of proof of (a): $\Gamma(1)=\int_0^\infty e^{-y}dy=1$. $\Gamma(2)=\int_0^\infty ye^{-y}dy=e^{-y}+\int_0^\infty e^{-y}$ by integration by parts. You can easily see the integral in this is exactly $\Gamma(1)$. Then proceed by induction. 
+\end{enumerate}
+\paragraph{Properties of Chi Squared Distribution}
+\begin{enumerate}
+    \item If $n=1$, $W=Z^2$ 
+    \item If $n=2$, $W=\text{Exp}(\mu=2)$
+    \item If $n$ is large, then $W\approx N(n,2n)$. 
+    \item $E(W)=n$, $V(W)=2n$.
+    \item $W_1\sim\chi^2(n_1),W_2\sim\chi^2(n_2)$, and $W_1,W_2$ are independent, $W_1+W_2\sim\chi^2(n_1+n_2)$ 
+\end{enumerate}
+The shape of the graph depends on the degrees of freedom. For $n=1$, it looks like quadrant 1 of $y=\frac{1}{x}$. For $n=2$, it is further away from the axes. For $n>2$, it becomes a right-skewed normal distribution. 
+
+\paragraph{Chi-Squared Tables Examples}
+\begin{enumerate}
+    \item Find the $90^{th}$ percentile of $W\sim\chi^2(15)$ \\ 
+    Solution: go to the $15^{th}$ row, and look at the $0.9$ column, and see it is $22.307$. 
+    \item Find $a$ and $b$ such that $P(a\leq W\leq b)=0.95$, where $W\sim\chi^2(15)$ \\ 
+    Solution: Since there are infinite solutions, we can just set $a=0,b=24.996$, $b$ is taken from the $15^{th}$ row, $0.95$ column. However, when this type of question is asked, we typically want a symmetric solution, or where $P(W\leq a)\approx P(W\geq b)\approx 0.025$. So then we want $a$ to be the $0.025$ percentile, or $a=6.262$. Then $b$ is the $0.975$ percentile, or $b=27.488$. 
+    \item $W_1\sim\chi^2(30),W_2\sim\chi^2(42)$, where $W_1,W_2$ are independent. Find $P(W_1+W_2\leq48)$.\\ 
+    Solution: Note that $W_1+W_2\sim\chi^2(72)$. Since $72$ is large, this is approximately normal, or $W_1+W_2\approx Y\sim N(72,144)$. Then we need to find $P(Y\leq 48)$, which is easy from STAT230. 
+\end{enumerate}
+
+\paragraph{Student's T-Distribution}
+2 equivalent definitions: 
+\begin{enumerate}
+    \item Let $T$ be a continuous random variable $T\in(-\infty,\infty)$. $T$ is said to follow a $T$ distribution with $n$ degrees of freedom, $T\sim T(n)$ if $T$ is a ratio of two independent random variables: $T=\frac{Z}{\sqrt{\frac{W}{n}}}$, where $Z\sim N(0,1),W\sim\chi^2(n)$. 
+    \item density function, but we don't care about it
+\end{enumerate}
+\paragraph{Shape of T-Distribution}
+\begin{itemize}
+    \item it is always symmetric around $0$ 
+    \item Looks similar to a Normal distribution, but has fatter tails and sharper peaks 
+    \item As $n\rightarrow\infty$, $T\rightarrow Z$ 
+\end{itemize}
+
+\paragraph{Examples}
+\begin{itemize}
+    \item Let $T\sim T(15)$. Find $a$ such that $P(|T|\leq a)=0.95$. \\ 
+    Solution: Using the $T$-table, rows are once again degrees of freedom, and the columns are percentiles. The row we want for this question is $15$, and we want the $0.975$ column ($T$ is symmetric around $0$, the $0.025$ to the left is exactly equal to the $0.025$ to the right of the distribution we want), and we find $a=2.13$.
+\end{itemize}
+
+\paragraph{Why do we care?}
+When we have $Y_1,\ldots,Y_n\sim N(\mu,\sigma^2)$, then we have $\frac{\bar{Y}-\mu}{\sigma/\sqrt{n}}=Z$. However, in life, $\sigma$ is never known, we only know estimators. So if we replace $\sigma$ with an estimator, $S$, then $\frac{\bar{Y}-\mu}{S/\sqrt{n}}$ turns out to follow a $T$-distribution with $n-1$ degrees of freedom. 
+
+\section*{Lecture 19}
+Things on the tutorial quiz:
+\begin{itemize}
+    \item R assignment 
+    \item STAT230
+    \begin{itemize}
+        \item Central Limit Theorem 
+        \item Chi-Squared Distribution and its properties
+        \item The T-distribution and its properties
+    \end{itemize}
+\end{itemize}
+\paragraph{Central Limit Theorem}
+If $Y_1,\ldots,Y_n$ are identically distributed independent random variables, with mean $\mu$ and variance $\sigma^2$, then if $\bar{Y}=\frac{1}{n}\sum_{i=1}^n Y_i$:
+\begin{enumerate}
+    \item $E(\bar{Y})=\mu$ 
+    \item $\bar{Y}\sim N\left(\mu,\frac{\sigma^2}{n}\right)$ if $n$ is large
+\end{enumerate}
+\paragraph{Example}
+If $Y_i\sim \text{Poisson}(4)$ $i=1,\ldots,30$, i.i.d.. Approximate $P(\bar{Y}\geq4.2)$, where $\bar{Y}=\frac{1}{n}\sum Y_i$. Note $E(\bar{Y})=\mu=4$, and $V(\bar{Y})=\frac{\sigma^2}{n}=\frac{4}{30}$. By CLT, then $\bar{Y}\sim N(4,\frac{4}{30})$ approximately. Then we just find $P(\bar{Y}\geq4.2)=P\left(\frac{\bar{Y}-4}{\sqrt{\frac{4}{30}}}\geq\frac{4.2-4}{\sqrt{\frac{4}{30}}}\right)=P(Z\geq0.5477)$
+\paragraph{Chi-Squared}
+$W\sim \chi^2(n)$, where $n$ is a positive integer. \begin{itemize}
+    \item If $n=1$, then $W=Z^2$ 
+    \item If $n=2$, then $W\sim\text{Exp}(2)$ 
+    \item If $n>>50$, then $W\sim N(n,2n)$ 
+    \item $E(W)=n,V(W)=2n$ 
+    \item If $W_1\sim\chi^2(n_1),W_2\sim\chi^2(n_2)$ and $W_1,W_2$ are independent, then $W_1+W_2\sim\chi^2(n_1+n_2)$. 
+\end{itemize}
+\paragraph{The T-Distribution}
+\begin{itemize}
+    \item $T(n)$ is symmetric around $0$ 
+    \item It has a kurtosis$>3$ 
+    \item As $n\rightarrow\infty$, $T\rightarrow Z$ 
+    \item Lookup T-tables
+\end{itemize}
+\paragraph{Likelihood Intervals}
+100p\% likelihood $\Rightarrow\{\theta:R(\theta)\geq p\}$. $R(\theta)=\frac{L(\theta)}{L(\hat{\theta})}$, where $\hat{\theta}$ is the MLE. If $R(\theta)\geq0.5$ then it is extremely plausible, etc. 
+\paragraph{Hypothetical Question}
+Say $Y\sim\text{Bin}(200,\theta)$, and $y=120$. Find the 10\% likelihood interval. $L(\theta)=\binom{200}{ y}\theta^y(1-\theta)^{200-y}$. Then maximize to find $\hat{\theta}=\frac{120}{200}=0.6$. Then $R(\theta)=\frac{\binom{200}{120}\theta^{120}(1-\theta)^{80}}{\binom{200}{120}0.6^{120}(0.4)^{80}}\geq0.1$. Note this is impossible. For tests, we might be given and graph plotting $(\theta,R(\theta))$ and asked: 
+\begin{itemize}
+    \item What is the MLE? (maximum value of $R(\theta)$) 
+    \item Find the extreme plausible values of $\theta$ (draw a horizontal line at $R(\theta)=0.5$, then find $[a,b]$ of $\theta$ such that $R(a)=R(b)=0.5$)
+\end{itemize}
+\paragraph{Confidence Interval}
+\begin{itemize}
+    \item Coverage interval, confidence interval interpretation 
+    \item special cases
+    \item How to find a confidence interval? 
+    \begin{itemize}
+        \item Find the pivotal distribution 
+        \item Find the coverage and confidence interval
+    \end{itemize}
+    \item Properties of a confidence interval
+\end{itemize}
+Cases:
+\begin{enumerate}
+    \item Normal problem with known variance: find the confidence interval for $\mu$. The pivot is $\frac{\bar{Y}-\mu}{\frac{\sigma}{\sqrt{n}}}\sim Z=N(0,1)$. Then find the 100p\% interval for $Z$, and then try to extract $\mu$. The coverage interval is $\left(\bar{Y}\pm Z^*\frac{\sigma}{\sqrt{n}}\right)$, and the confidence interval is $\left(\bar{y}\pm Z^*\frac{\sigma}{\sqrt{n}}\right)$, where $\bar{y}$ is the sample mean, and $Z^*$ is given by the confidence interval and $Z-table$. 
+    \item Binomial problem, ie. $Y\sim\text{Bin}(n,\theta)$. The pivot is $\frac{\tilde{\theta}-\theta}{\sqrt{\frac{\tilde{\theta}(1-\tilde{\theta})}{n}}}\sim Z$, where $\tilde{\theta}=\frac{y}{n}$. Then the coverage interval is $\hat{\theta}\pm Z^*\sqrt{\frac{\hat{\theta}(1-\hat{\theta})}{n}}$. We can choose a sample size to guarantee our margin of error will be less than $\pm l$: $n\geq\left(\frac{Z^*}{l}\right)^2\times\frac{1}{4}$. 
+\end{enumerate}
+\textbf{This ends the review}
+
+\begin{theorem*}[Likelihood ratio test statistic]
+If $\theta$ is the true value of the unknown parameter, and if $n$(sample size) is large, then \begin{align*}\Lambda(\theta)&=-2\log\frac{L(\theta)}{L(\tilde{\theta})}\\&\sim\chi^2(1)\end{align*} where $\tilde{\theta}$ is the maximum likelihood estimator. $\Lambda$ is the \textbf{likelihood ratio test statistic}, and note all $\log$'s are base $e$. 
+\end{theorem*}
+This can be used as a pivotal quantity to calculate confidence intervals. It also has another application: 
+Suppose $n$ is large. $\theta$ is an unknown parameter, and we have a 10\% likelihood interval for $\theta$. What is the corresponding confidence level? $R(\theta)\geq0.1\Rightarrow\frac{L(\theta)}{L(\hat{\theta})}\geq0.1$. Taking the logs of both sides and multiplying by $-2$, we get $-2\log\frac{L(\theta)}{L(\hat{\theta})}\leq-2\log0.1$. The corresponding coverage probability is $P\left(-2\log\frac{L(\theta)}{L(\hat{\theta})}\leq-2\log(0.1)\right)=P(Z^2\leq-2\log(0.1))=P(|Z|\leq\sqrt{-2\log(0.1)})=0.968$. So a 10\% likelihood interval is approximately a 97\% confidence interval for large samples. A 50\% likelihood interval is approximately a 76\% confidence interval. \\ 
+What about the converse? Given a confidence interval, how do you get the likelihood interval? Say we get a 95\% confidence interval, to get the likelihood interval, it is $e^\frac{-1.96^2}{2}$\% likelihood interval. \\ 
+
+Given any distribution, you can use central limit theorem to convert to $Z$, and then find likelihood interval
+
+
+
+\section*{Lecture 20}
+oops 
+\begin{theorem*}
+     If $\theta$ is the true value, and if $n$ is large, then $\Lambda(\theta)=-2\log\frac{L(\theta)}{L(\tilde{\theta})}\sim\chi^2(1)$, where $\tilde{\theta}$ is the ML Estimator. 
+\end{theorem*}
+This has the following results: 
+\begin{enumerate}
+    \item Suppose we have a p\% likelihood interval. The corresponding confidence coefficient is $P(|Z|\leq\sqrt{-2\log p})=2P(Z\leq\sqrt{-2\log p})-1$ 
+    \item Suppose we have a q\% confidence level. What is the corresponding likelihood interval? If $a$ is a value such that $q=2P(Z\leq a)-1$, then the likelihood interval  is $\{\theta:R(\theta)\geq e^{\frac{-a^2}{2}}\}=\{\theta:-2\log R(\theta)\leq-2\log e^{\frac{-a^2}{2}}\}$. 
+\end{enumerate}
+\begin{theorem*}
+     If $Y_1,\ldots,Y_n$ iid $N(\mu,\sigma^2)$, then 
+     \begin{enumerate}
+         \item $\frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)$ 
+         \item $\frac{\bar{Y}-\mu}{\frac{S}{\sqrt{n}}}\sim T(n-1)$
+     \end{enumerate}
+     where $\bar{Y}=\frac{1}{n}\sum_{i=1}^n Y_i,\quad S^2=\frac{1}{n-1}\sum_{i=1}^n(Y_i-\bar{Y})^2$
+\end{theorem*}
+\paragraph{Example}
+
+\section*{Lecture 21}
+oops
+\paragraph{Examples}
+\paragraph{Prediction Intervals}
+Problem: We have $Y_1,\ldots,Y_n\sim N(\mu,\sigma^2)$ independent. Find the 95\% P.I. for $Y_{n+1}$ \\ 
+Solution: We have \begin{align}Y_{n+1}\sim N(\mu,\sigma^2)\\ \bar{Y}\sim N(\mu,\frac{\sigma^2}{n})\end{align}
+Subtracting $(2)$ from $(1)$, we get $Y_{n+1}-\bar{Y}\sim N\left(0,\sigma^2(1+\frac{1}{n})\right)$, or rearranging, we get $\frac{(Y_{n+1}-\bar{Y})}{\sigma\sqrt{1+\frac{1}{n}}}= Z$, or $\frac{Y_{n+1}-\bar{Y}}{S\sqrt{1+\frac{1}{n}}}\sim T(n-1)$, and we get $\bar{Y}\pm T^*S\sqrt{1+\frac{1}{n}}$ is our general P.I.
+
+\section*{Lecture 22(march 6)}
+oops 
+
+
+\section*{Lecture 23}
+\paragraph{Reminder of Terminology}
+\textbf{Null Hypothesis}: $H_0:\theta=\theta_0$, where $\theta$ is the unknown parameter. $\theta_0$ is the \textbf{incumbent}. \textbf{Two sided alternate hypothesis}: $H_1:\theta\neq\theta_0$. $\theta_0$ is the \textbf{challenger}. We then collect data: $\{y_1,\ldots,y_n\}$, and based on the data, we calculate the $p$-value of the test, and draw appropriate conclusions. Note the null hypothesis is not a probability: it is either true or false. \\ 
+The \textbf{p-value} is the probability of observing your evidence (or worse), given $H_0$ is true. \\ 
+Conventions based on $p$-value \begin{itemize}
+    \item "Reject $H_0$ at 5\% level of significance" means that $p<0.05$ 
+    \item We never accept the null hypothesis: we either reject it or can not reject it 
+\end{itemize}
+
+\paragraph{Test Statistic (Discrepancy Measure)}
+A \textbf{discrepancy measure} $D$ is a random variable which measures the level of disagreement between the data and $H_0$. Typically, $D$ has the following properties: 
+\begin{itemize}
+    \item $D\geq0$ $\forall$ possible values 
+    \item The higher the value of $D$, the more disagreement with the data. $D=0$ is complete agreement with $H_0$ 
+    \item The probability of $D$'s can be calculated if $H_0$ is true
+\end{itemize}
+\paragraph{Example 1}
+Test if a coin is fair. $\theta=P(\text{Head})$. Then $H_0:\theta=\frac{1}{2},H_1:\theta\neq\frac{1}{2}$. Suppose we toss the coin 20 times, and $Y=$number of heads. Then we can take $D=|Y-10|$ as a discrepancy measure. We find the $p$-value as $P(D\geq d;H_0\text{ is true})$, where $d$ is our value of $D$ given a data set. Suppose $d=10$. Then $p(D\geq10;H_0\text{ is true})=P(|Y-10|\geq10;H_0\text{ is true})=P(Y=20)+P(Y=10)=\binom{20}{0}\left(\frac{1}{2}\right)^0\left(\frac{1}{2}\right)^{20}+\binom{20}{0}\left(\frac{1}{2}\right)^{20}+\left(\frac{1}{2}\right)^0$ 
+\paragraph{Example 2}
+Consider another binomial with $H_0:\theta=\frac{1}{2},H_1:\theta\neq\frac{1}{2}$, $n=1000$. CLT for binomial: $\frac{\tilde{\theta}-\theta}{\sqrt\frac{\theta(1-\theta)}{n}}\sim N(0,1)$, where $\tilde{\theta}$ is our sample proportion. Is $D=\left|\frac{\tilde{\theta}-\frac{1}{2}}{\sqrt{\frac{\frac{1}{2}(1-\frac{1}{2})}{n}}}\right|$ a good test statistic? Yes it is, as it is non negative, inversely proportional with the agreement with the data, and we can calculate the probability since it is $N(0,1)$ 
+\paragraph{Example 3}
+Suppose we think the mean for STAT231 scores is 75. $Y_1,\ldots,Y_n\sim N(\mu,64)$. With $n=25$, then $H_0:\mu=75,H_1:\mu\neq75$. We are given a data set: $n=25,\bar{y}=72$. \\ 
+This is a normal problem with known variance, so we have the pivot $\frac{\bar{Y}-\mu}{\frac{\sigma}{\sqrt{n}}}\sim N(0,1)$, and so we can take $D=\left|\frac{\bar{Y}-75}{\frac{8}{\sqrt{n}}}\right|$. For our data set, we have $d=\left|\frac{72-75}{\frac{8}{\sqrt{25}}}\right|=1.875$. Then for our $p$-value, we have $P(D\geq d)=P(|Z|\geq 1.875)$, which is between 5\% and 10\% (guessed by the prof), and so this is weak evidence against $H_0$. \\ 
+If we were given the same problem, but instead of $\sigma^2=64$, we get $s^2=81$, then since we know $\frac{\bar{Y}-\mu}{\frac{S}{\sqrt{n}}}\sim T_{n-1}$, then we can take $D=\left|\frac{\bar{Y}-75}{\frac{S}{\sqrt{n}}}\right|$\\ 
+How does one convert from two-sided tests to one sided tests?
+\paragraph{Example 4}
+$Y_1,\ldots,Y_n\sim\text{Poi}(\mu)$. $H_0:\mu=5,H_1:\mu\neq5$, $n=100$. By CLT, $\frac{\bar{Y}-\mu}{\sqrt\frac{\mu}{n}}\sim N(0,1)$. Then $D=\left|\frac{\bar{Y}-5}{\sqrt{\frac{5}{n}}}\right|$
+
+\section*{Lecture 24}
+\paragraph{Interval Estimation (Midterm review)}
+\begin{itemize}
+    \item Chi-Squared Distribution 
+    \item Student's T 
+    \item Change variables to find the CDF of $Y=g(x)$ 
+    \item Interval estimation using likelihood functions $\{\theta:R(\theta)\geq p\}$, $p\in(0,1)$ 
+    \item Properties of the likelihood interval 
+    \item \textbf{Confidence Intervals}\begin{itemize}
+        \item Coverage probability and coverage intervals 
+        \item Pivotal quantity and pivotal distribution 
+        \item Confidence interval and its interpretations
+        \item Applications: \begin{itemize}
+            \item Normal Problem: \begin{itemize}
+                \item CI for $\mu$, $\sigma$ known 
+                \item CI for $\mu$, $\sigma$ unknown 
+                \item CI for $\sigma$ 
+            \end{itemize}
+            \item Binomial Problem: \begin{itemize}
+                \item CI for $\theta$ 
+            \end{itemize}
+            \item Poisson problem: \begin{itemize}
+                \item CI for $\theta$
+            \end{itemize}
+            \item Exponential Problem: \begin{itemize}
+                \item Unknown distributions
+            \end{itemize}
+        \end{itemize}
+        \item How are CI and LI related for large samples? $\Lambda(\theta)=-2\log\frac{L(\theta)}{L(\tilde{\theta})}\sim\chi^2(1)=Z^2$
+    \end{itemize}
+\end{itemize}
+\paragraph{Example}
+Say you had a right angle triangle formed by $AB,BC,AC$, where $AC$ is the hypotenuse. If $AB,BC\sim N(0,1)$, what is the probability that the hypotenuse is greater than 1.2? \\ 
+Solution: We want $P(\sqrt{Z_{1}^{2}+Z_{2}^{2}}\geq1.2)=P(\chi^{2}(2)\geq1.44)=P(Y\geq1.44)$, where $Y\sim\text{Exp}(2)$. 
+\paragraph{Example}
+Let $Y$ be a random variable. If $f(y)=\frac{y}{\theta^2}e^{-\frac{y}{\theta}}$, where $\theta>0,y\geq\theta$. \begin{enumerate}
+    \item Show that $W=\frac{2Y}{\theta}$ has a density function $g(w)=\frac{1}{4}we^{-\frac{w}{2}}\sim\chi^2(4)$
+    \item Let $Y_1,\ldots,Y_n$ be iid, $U=\frac{2}{\theta}\sum_{i=1}^nY_i$
+\end{enumerate}
+SOLUTIONS:
+\begin{enumerate}
+    \item We have $Y\sim f(y)$, we want to find the density function of $W=g(Y)$. $f(y)=\frac{y}{\theta^2}e^{-\frac{y}{\theta}},W=\frac{2Y}{theta}$. Let $F_W(w)=P(W\leq w)=P\left(\frac{2Y}{\theta}\leq w\right)=P\bigg(Y\leq\frac{w\theta}{2}\bigg)=\int\frac{y}{\theta^2}e^{-\frac{y}{\theta}}dy$
+    \item If $W\sim\chi^2(4)$, then $\sum_{i=1}^nW_i=\chi^2(4n)$, then $\sum\frac{2Y_i}{\theta}\sim\chi^2(4n)\Rightarrow \frac{2}{\theta}\sum Y_i\sim\chi^2(4n)$
+\end{enumerate}
+\paragraph{Testing of Hypothesis}
+$H_0:\theta=\theta_0 \text{ vs }H_1:\theta\neq\theta_0$, $Y_1,\ldots,Y_n$ are random variables, $(y_1,\ldots,y_n)$ is the data set. 
+Steps:
+\begin{enumerate}
+    \item Construct the test statistic $D$
+    \item Calculate the value of the test-statistic from you sample $d$ 
+    \item Calculate the $p$ value (remember $p-$value=$P(D\geq d;H_0$ is true)) 
+    \item Draw appropriate conclusions
+\end{enumerate}
+\paragraph{Example}
+Is the scale biased (meaning is it tending more to one side than the other)? Measure 1 kg object 10 times, we get $1.911,0.966,0.965,0.999,0.988,0.987,0.950,0.969,0.980$ \\ 
+Solution: Model? Say $\delta$ is the bias of our scale. $Y_i=1+\delta+\epsilon$, where $\epsilon\sim N(0,\sigma^2)$. Then $Y_i\sim N(\underbrace{1+\delta}_{\mu},\sigma^2)$, where $i=1,\ldots,10$. Then the hypothesis $H_0:\delta=0\Leftrightarrow H_0:\mu=1$. Then $D=\left|\frac{\bar{Y}-\mu}{\frac{S}{\sqrt{n}}}\right|\sim T(n-1)$. Since $\mu=1$, then $d=\left|\frac{\bar{y}-1}{\frac{s}{\sqrt{n}}}\right|$ and we can calculate this number to be $3.534$. Then $p=P(D\geq d)=P(|T(n-1)|\geq3.534)=P(|T(9)|\geq3.534)$. Now we can't find this from the $T$ table, but we can use it to find the range of the $p$ value. 
+
+\section*{Lecture 25}
+\paragraph{Example: Hypothesis Testing}
+$Y_1,\ldots,Y_n$ are independent and identically distributed. $Y_i\sim N(\mu,\sigma^2)$, $i=1,\ldots,n$. Data: $\lbrace n=25,\bar{y}=10,s^2=49\rbrace$. Problem: Test whether the population mean is $8$ against the two sided alternative. \\ 
+\begin{steps}
+     \item Set up the null hypothesis and the alternate: $H_0:\mu=8,H_1:\mu\neq8$. 
+     \item Construct the Test-Statistic. Remember if $\sigma$ is known, then we use $Z$ as the pivotal quantity ($D=\left|\frac{\bar{Y}-\mu}{\sigma/\sqrt{n}}\right|$). Since $\sigma$ is unknown, we use $D=\left|\frac{\bar{Y}-\mu}{S/\sqrt{n}}\right|$ 
+     \item Calculate the value of $d$ from your sample: $d=\left|\frac{10-8}{7/\sqrt{25}}\right|=\frac{10}{7}=1.43$ 
+     \item Calculate the $p$-value: $P(D\geq d)=P(D\geq1.43)=P(|T_{24}|\geq1.43)$. Looking at the $T-$table, we know the $p-$value is between 10\% and 20\% (1.43 is between 1.31 (0.9) and 1.71 (0.95), then the right tail is between 5-10\%, and since it is symmetric the left tail is between 5-10\%). Then since it is above 10\%, there is no evidence against the null hypothesis. 
+\end{steps}
+\paragraph{Example: Hypothesis Testing}
+$Y_1,\ldots,Y_n$ are independent and identically distributed. $Y_i\sim N(\mu,\sigma^2)$, $i=1,\ldots,n$. Data: $\lbrace n=25,\bar{y}=10,\sigma^2=49\rbrace$. Problem: Test whether the population mean is $8$ against the two sided alternative. $H_0:\mu=8,H_1:\mu\neq8$\\
+$D=\left|\frac{\bar{Y}-\mu}{\sigma/\sqrt{n}}\right|, d=\left|\frac{\bar{y}-8}{7/\sqrt{25}}\right|=\frac{10}{7}=1.43$. Then the $p-$value is $P(D\geq1.43)=P(|Z|\geq1.43)$ (calculate from $Z$ table) \\ 
+The value of the test statistic depends on the sample mean and the sample variance. This can be seen easily by looking at the fraction. 
+\paragraph{Problem}
+$Y_1,\ldots,Y_n$ are independent and identically distributed. $Y_i\sim N(\mu,\sigma^2)$, $i=1,\ldots,n$. $\mu,\sigma^2$ are unknown. Take a value of $\mu:\mu_0$. Suppose it is given that $\mu_0$ is in the 95\% confidence interval. Then we want to test $H_0:\mu=\mu_0,H_1:\mu\neq\mu_0$. If we run this test, the $p-$value will be at least $0.05$. \\ 
+If $\theta_0\in100q\%$ confidence interval, and assuming the same pivot, then $H_0:\theta=\theta_0,H_1:\theta\neq\theta_0$. The $p-$value of this test will be at least $1-q$. 
+\paragraph{Example: Poisson}
+$Y_1,\ldots,Y_n\sim\text{Poi}(\mu)$. Data: $n=50,\bar{y}=6$. $H_0:\mu=5,H_1:\mu\neq5$\\ 
+\begin{steps}
+     \item To construct the test statistic, we need to use CLT. $\bar{Y}\sim N\left(\mu,\frac{\mu}{n}\right)$ by CLT, then $\frac{\bar{Y}-\mu}{\sqrt\frac{\mu}{n}}=Z$. If $H_0$ is true, then $\frac{\bar{Y}-5}{\sqrt{5/n}}=Z\sim N(0,1)$. Then $D=\left|\frac{\bar{Y}-5}{\sqrt{5/n}}\right|$ 
+     \item $d=\left\lvert\frac{6-5}{\sqrt{5/50}}\right\rvert=\sqrt{10}=3.1$ 
+     \item $p-$value: $P(D\geq3.1)=P(|Z|\geq3.1)$. Then the $p-$value is lower than $1\%$, so there is strong evidence against $H_0$ 
+\end{steps}
+\paragraph{Example: Binomial}
+A sample of 2000 voters are taken, and 56\% of them said they are going to vote for Trump in 2020. We want to test $H_0:\theta=0.5,H_1:\theta\neq0.5$, where $\theta=$proportion of voters for Trump. 
+\begin{steps}
+    \item By CLT (with $\tilde{\theta}=y/n$), we have $\tilde{\theta}\sim N\left(\theta,\frac{\theta(1-\theta)}{n}\right)$, then $\frac{\tilde{\theta}-\theta}{\sqrt{\frac{\theta(1-\theta)}{n}}}=Z$. If $H_0$ is true, then $\frac{\tilde{\theta}-0.5}{\sqrt{\frac{0.5(1-0.5)}{n}}}=Z$. Set $D=\frac{\tilde{\theta}-0.5}{\sqrt{\frac{0.5(1-0.5)}{n}}}$ 
+    \item $d=\left|\frac{0.56-0.5}{\sqrt{\frac{0.5\times0.5}{2000}}}\right|$ 
+    \item Then $p-$value$=P(D\geq d)=P(|Z|\geq d)$
+\end{steps}
+
+
+\section*{Lecture 26}
+\paragraph{Example 1}
+$Y_1,\ldots,Y_n$ are independently and identically distributed r.v.s. $Y_i\sim N(\mu,\sigma^2)$ and our data gives $\{n=25,\bar{y}=10,s^2=49\}$. Problem: Test whether the population mean is 8 against the two sided alternative. 
+\begin{steps}
+    \item Set up the null and the alternative: $H_0:\mu=8,H_1:\mu\neq8$. 
+    \item Construct the test statistic $D=\left|\frac{\bar{Y}-\mu}{S/\sqrt{n}}\right|$. Assuming $H_0$ is true, then this is $D=\left|\frac{\bar{Y}-8}{S/\sqrt{n}}\right|$ 
+    \item Calculate the value of $d$ from your sample $d=\left|\frac{10-8}{7/\sqrt{25}}\right|=\frac{10}{7}=1.43$ 
+    \item Calculate the $p-$value= $P(D\geq d)=P(D\geq1.43)=P(|T_{24}|\geq1.43)$ and so the $p-$value is between 10\% and 20\% and there is no evidence against $H_0$. 
+\end{steps}
+
+\paragraph{Example 2}
+$n=25,\bar{y}=10, \sigma^2=49$, $H_0:\mu=8,H_1:\mu\neq8$. $d=\left|\frac{\bar{y}-8}{7/\sqrt{25}}\right|=1.43$, then our p-value is $P(D\geq1.43)=P(|Z|\geq1.43)$. 
+
+\paragraph{Relationship between CI and HT}
+$\theta_0\in100q\%$ confidence interval and assuming the same pivot, and we take $\begin{cases}H_0:\theta=\theta_0\\H_1:\theta\neq\theta_0\end{cases}$, then the p-value of the test will be at least $1-q$, or $p\geq1-q$.
+
+\paragraph{Example 3}
+$Y_1,\ldots,Y_n\sim\text{Poi}(\mu)$, and we have $n=50,\bar{y}=6$. 
+\begin{steps}
+\item $H_0:\mu=5$, $H_1:\mu\neq5$ 
+\item $\bar{Y}\sim N(\mu,\mu/n)$ by CLT, and so $\frac{\bar{Y}-\mu}{\sqrt{\frac{\mu}{n}}}=Z$. If $H_0$ is true, then $\frac{\bar{Y}-5}{\sqrt{\frac{5}{n}}}=Z\sim N(0,1)$. This is our test statistic. 
+\item calculate $d$. $d=\left|\frac{6-5}{\sqrt{\frac{5}{50}}}\right|=\sqrt{10}=3.1$. 
+\item $p-$value=$P(D\geq3.1)=P(|Z|\geq3.1)$, and so the $p-$value is lower than 1\%, and so there is strong evidence against $H_0$. 
+\end{steps}
+
+\paragraph{Example}
+A sample of 2000 voters are taken and 56\% of them said they are going to vote for Trump in 2020. $H_0:\theta=0.5,H_1:\theta\neq0.5$, where $\theta$ is the proportion of voters for Trump. What is $D$? Well $\tilde\theta=\frac{Y}{n}$, and by CLT $\tilde\theta\sim N(\theta,\frac{\theta(1-\theta)}{n})$, and so $\frac{\tilde\theta-\theta}{\sqrt{\frac{\theta(1-\theta)}{n}}}=Z$. If $H_0$ is true, then $\frac{\tilde\theta-0.5}{\sqrt{\frac{0.5(0.5)}{2000}}}=Z$, and so $d=\frac{0.56-0.5}{\sqrt{\frac{0.25}{2000}}}$, and we get our p-value through $P(D\geq d)=P(|Z|\geq d)$. 
+
+
+\section*{Lecture 27 march 15}
+\paragraph{Example 1}
+A coin is tossed 200 times. We observe 110 heads. Test whether the coin is a fair coin. 
+\begin{steps}
+     \item $H_0:\theta=\frac{1}{2},H_1:\theta\neq\frac{1}{2}$ where $\theta=P(H)$.  
+     \item Construct the test statistic $\tilde\theta=\frac{Y}{n}$ from the CLT, $\tilde\theta\sim N\left(\theta,\frac{\theta(1-\theta)}{n}\right)$, and $\frac{\tilde\theta-\theta}{\sqrt{\frac{\theta(1-\theta)}{n}}}=Z=N(0,1)$. If $H_0$ is true, then $\frac{\tilde\theta-1/2}{\sqrt{\frac{1/2\cdot1/2}{200}}}=Z\sim N(0,1)$
+     \item Calculate the value of the test statistic $d=\frac{0.5505}{\sqrt{0.25/200}}=1.41$. 
+     \item Calculate the $p-$value $P(|Z|\geq1.41)\approx15.5\%$, so there is not enough evidence against $H_0$
+\end{steps}
+
+\paragraph{Example 2}
+Exponential distribution. $Y_1,\ldots,Y_n\sim\text{Exp}(\theta)$. $H_0:\theta=10,H_1:\theta\neq10$. $n=49,\bar{y}=7$. \textbf{Test Statistic}: $E(\bar{Y})=\theta,V(\bar{Y})=\frac{\theta^2}{n}$. By the CLT, $\bar{Y}\sim N(\theta,\theta^2/n)$, and so $\frac{\bar{Y}-\theta}{\theta/\sqrt{n}}=Z$. If $H_0$ is true, then $\frac{\bar{Y}-10}{10/\sqrt{49}}=Z$. Then $d=|\frac{7-10}{10/\sqrt{49}}|=2.1$. $p-$value is $P(D\geq d)=P(|Z|\geq2.1)=...$ 
+
+\paragraph{Example: Test for Variances}
+$Y_1,\ldots,Y_n$ are iid $N(\mu,\sigma^2)$ rvs. $H_0:\sigma^2=\sigma_0^2,H_1:\sigma^2\neq\sigma_0^2$, and we have $n=21,\sigma_0^2=50, s^2=70$. Remember that $s^2=\frac{1}{n-1}\sum(y_i-\bar{y})^2$. Then $\frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)$, and this is our test statistic. 
+
+\paragraph{Example}
+Generally, $d$ can be found by using the likelihood ratio test statistic. Say we have a coin that is tossed 200 times, and we get 110 heads. We want to test $H_0:\theta=\frac{1}{2},H_1:\theta\neq\frac{1}{2}$, using the LRTS we get $\lambda(\theta_0)=-2\log\frac{L(\theta_0)}{L(\hat{\theta_0})}=-2\log\frac{L(0.5)}{L(0.55)}=2.003$. Then $d=2.003$, and we to get the $p-$vaalue we find $P(\Lambda\geq2.003)=P(\chi^2(1)\geq2.003)$ 
+
+\section*{Lecture 28 march 18}
+\paragraph{Hypothesis testing}
+We have $Y_1,\ldots,Y_n\sim f(y_i;\theta)$, and we want to test $H_0:\theta=\theta_0 \text{ vs }H_1:\theta\neq\theta_0$. If $n$ is large, and if we can calculate the likelihood function and the MLE, then we can use $\Lambda(\theta_0)$ as our test statistic. 
+\paragraph{Example}
+$Y_i$ is the lifetime of a lightbulb with an average of $\theta$. We want to test $H_0:\theta=2000,H_1:\theta\neq2000$, and our data is $y_1,\ldots,y_{50}$, and $\sum_{i=1}^{50}y_i=93840$. \\ 
+SOLUTION: \begin{steps}
+     \item Set-up the model: $Y_i\sim\text{Exp}(\theta)$. 
+     \item Set-up $H_0$ and $H_1$: $H_0:\theta=2000,H_1:\theta\neq2000$
+     \item Calculate the Likelihood function and the MLE $f(y,\theta)=\frac{1}{\theta}e^{-\frac{y}{\theta}}, L(\theta)=\frac{1}{\theta^n}e^{-\frac{1}{\theta}\sum y_i}=\theta^{-n}e^{-n\bar{y}/\theta}$. Take logs and derivatives, and show $\hat{\theta}=MLE=\bar{y}=1876.8$. 
+     \item Construct the LRTS $\Lambda$ and calculate the value from your sample $\lambda$. $\lambda=-2\log\frac{L(\theta_0)}{L(\hat{\theta})}=0.1979$, where $\theta_0=2000,\hat\theta=1876.8$. 
+     \item Calculate the $p-$value $P(\Lambda\geq\lambda)=P(Z^2\geq0.1979)\approx0.66$, so we have no evidence against $H_0$. 
+\end{steps}
+\paragraph{One-sided Tests}
+We have $Y_1,\ldots,Y_n\sim N(\mu,\sigma^2)$, with $H_0:\mu=200,H_1:\mu>200$. For one-sided tests, we have $D=\begin{cases}0\text{ if  }\bar{Y}\leq\mu_0\\\frac{\bar{Y}-\mu}{\frac{S}{\sqrt{n}}}\text{ if }\bar{Y}>\mu_0\end{cases}$. Then $Y_i=\mu+R_i$, where $R_i\sim N(0,\sigma^2)$. 
+
+\paragraph{Simple Linear Regression Model}
+Let $Y_i$=STAT 231 final score be our response variate, and $x_i$ be our explanatory variable. How much of the variability of $Y$ can be explained by $x$? \\ 
+\textbf{Assumptions of the SLRM}
+\begin{itemize}
+    \item $Y_i$'s are all normally distributed
+    \item $E(Y_i)=\alpha+\beta x_i$ 
+    \item $Y_i$'s are independent 
+    \item $V(Y_i)=\sigma^2$, independent of $x$ (this property is called homoscedasticity)
+\end{itemize}
+Using our data, we are trying to estimate $\alpha$ and $\beta$. Our model is $Y_i\sim N(\alpha+\beta x_i,\sigma^2)$. $Y_i=\alpha+\beta x_i+R_i$, where $R_i\sim N(0,\sigma^2)$. 
+
+\section*{Lecture 29 march 20}
+\paragraph{Normal Model}
+$Y_1,\ldots,Y_n\sim N(\mu,\sigma^2)$ are independent, and they are our response variables. $Y_i=\underbrace{\mu}_{\text{systematic part}}+\underbrace{R_i}_{\text{random part}}$, where $R_i\sim N(0,\sigma^2)$. These two statements are equivalent. In the regression model, $\mu$ is a function of $x$, and $x$ (explanatory variable) is assumed to be given. 
+\paragraph{Example}
+Let $Y_i$ be the starting salary of UW graduates. Does the choice of major affect starting salaries? Let $X_i=\begin{cases}0\text{ if STAT}\\1\text{ if ACTSC}\end{cases}$. We assume that $\mu(x)=\alpha+\beta x$, and we estimate $\alpha,\beta$ (linear function) from our sample. We have $\alpha,\beta,\sigma$ as our unknown constants. Using a bunch of derivatives, we find that $\hat\alpha=\bar{y}-\hat\beta\bar{x},\hat\beta=S_{xy}/S_{xx},\hat\sigma^2=\frac{1}{n}(S_{yy}-\hat\beta S_{xy})$. So then we choose $\alpha,\beta$ such that $\sum\big(y_i-(\alpha+\beta x_i)\big)^2$ is minimal. Note that our equation for $\hat\alpha,\hat\beta$ is the same as MLE estimates. If we want to test/find CI for $\alpha,\beta,\sigma$, we have to find the distribution of $\tilde{\beta},\tilde{\alpha},\tilde{\sigma}$. 
+
+
+\section*{Lecture 30 march 22}
+Equations
+\begin{itemize}
+    \item $\alpha=E(Y)$ when $x_i=0$
+    \item $y=\hat\alpha+\hat\beta x$ 
+    \item $\hat\beta=S_{xy}/S_{xx}$ 
+    \item $\hat\alpha=\bar{y}-\hat\beta\bar{x}$ 
+    \item ${s_e}^2=\frac{1}{n-2}[S_{yy}-\hat\beta S_{xy}]$ 
+\end{itemize}
+\textbf{Properties}
+\begin{itemize}
+    \item $\hat{\beta}=\sum a_iy_i$ 
+    \item $\tilde{\beta}=\sum a_iY_i$. Note that $\tilde\beta$ must be Normal, since $Y_i$'s are normal
+    \item $\tilde{\beta}\sim G(\beta,\frac{\sigma}{\sqrt{S_{xx}}})$
+    \item $\sum a_i=0$ 
+    \item $\sum a_ix_i=1$ 
+    \item $\sum a_i^2=\frac{1}{S_{xx}}$
+\end{itemize}
+
+\section*{Lecture 31 march 25}
+\paragraph{Simple Linear Regression Model}
+Let $Y_i$ be STAT231 scores, and $x_i$ be STAT230 scores. We will assume $Y_i$'s are independent, Gaussian, $E(Y)=\alpha+\beta x$, $V(Y)=\sigma^2$. Then $Y_i=\alpha+\beta x_i+R_i$. Say our data set is: $n=30,\bar{x}=76.733,\bar{y}=72.233,S_{yy}=7585.3667,S_{xy}=5106.8667,S_{xx}=5135.8667$ \\ 
+TYPES OF PROBLEMS:
+\begin{enumerate}
+    \item Find the least square line and estimates of $\sigma^2$ 
+    SOLUTION:\\ 
+    $\hat\beta=S_{xy}/S_{xx}=0.944,\hat\alpha=\bar{y}-\hat\beta\bar{x}=-4.0677$. Then the least square equation is $Y=-4.0677+0.9944x$. The estimate for $\hat\sigma^2=\frac{1}{n}[S_{yy}-\hat\beta S_{xy}]$ is $s_e^2=\frac{1}{n-2}[S_{yy}-\hat\beta S_{xy}]$ gives $s_e=9.4630$. 
+    \item Find the 95\% CI for $\beta,\alpha,\sigma^2$ 
+    SOLUTION:\\ 
+    Since $\hat\beta$ is a linear function of $y_i$'s, $\tilde\beta$ is a linear function of $Y_i$'s. Then $\tilde\beta$ is Normal, since $Y_i$'s are normal. $\tilde\beta\sim N(\beta,\sigma^2/S_{xx})$, and $\frac{\tilde\beta-\beta}{S_e/\sqrt{S_{xx}}}\sim T_{n-2}$, and so looking at $n-2=28$ row, $(0.95+1)/2=0.975$ column, we get $t^*=2.0484$. Then our coverage interval is $\tilde\beta\pm2.0484\frac{S_e}{\sqrt{S_{xx}}}$, and our confidence interval is $\hat\beta\pm2.0484\frac{S_e}{\sqrt{S_{xx}}}$. Then the 95\% CI for $\beta$ is $[0.7233,1.2648]$. Generally, the CI for $\beta$ is $[\hat{\beta}\pm t^*\frac{S_e}{\sqrt{S_{xx}}}]$. \\ 
+    The CI for $\sigma^2$ can be found using $\frac{(n-2)S_e^2}{\sigma^2}\sim\chi^2_{n-2}$, and we look at the $\chi^2(28)$ to find $a,b$ such that $P(a<\frac{(n-2)S_e}{\sigma^2}<b)=0.95$, and the CI for $\sigma^2=\left[\frac{(n-2)s_e^2}{b},\frac{(n-2)s_e^2}{a}\right]$
+    \item Test $H_0:\beta=\beta_0,H_1:\beta\neq\beta_0$ 
+    SOLUTION:\\ 
+    Test statistic is $D=\frac{\tilde\beta-\beta}{S_e/\sqrt{S_{xx}}}$, and if $H_0$ is true, then $\beta=0$, and $d=\left|\frac{\hat\beta-0}{S_e/\sqrt{S_{xx}}}\right|=7.5304$. Then the $p-$value can be found using $P(D\geq d)=P(|T_{28}|\geq7.5304)\approx0$, so there is strong evidence against $H_0$. 
+    \item Suppose $x=80$, find the 95\% CI for the average STAT231 score for $\mu(80)$ in STAT230
+    SOLUTION:\\ 
+    ML estimate: $\hat\mu(80)=\hat\alpha+\hat\beta\cdot80$. yadayadayada, look at the formula sheet $\tilde\mu(x)\sim N(\mu(x),\sigma^2\left(\frac{1}{n}+\frac{(x-\bar{x})^2}{S_{xx}}\right)$.
+    \item Find the PI for $Y$, if $x=80$ 
+    SOLUTION:\\ 
+    
+    \item Are the assumptions justified? 
+    SOLUTION:\\ 
+    
+\end{enumerate}
+
+\section*{Lecture 32 march 27}
+Problem: $Y_i$ is STAT231 scores, $x_i$ is STAT230 score. Data set: $n=30,\bar{x}=76.733,\bar{y}=72.273,S_{yy}=7585.3667,S_{xy}=5106.8667,S_{xx}=5135.8667$. We have $\hat\beta=S_{xy}/S_{xx}=0.9944,\hat\alpha=\bar{y}-\hat\beta x=-4.0677,\sigma^2=\frac{1}{n}[S_{yy}-\hat\beta S_{xy}],s_e^2=\frac{1}{n-2}[S_{yy}-\hat\beta S_{xy}]$, so $s_e=9.4630$. Then the least square equation gives $-4.0677+0.9944x$. \\ 
+\textbf{Prediction interval}
+Since $\tilde\mu(x)\sim N(\alpha+\beta x,\sigma^2\left[\frac{1}{n}+\frac{(x-\bar{x})^2}{S_{xx}}\right])$, then $Y-\tilde\mu(x)\sim N(0,\sigma^2[1+\frac{1}{n}+\frac{(x-\bar{x})^2}{S_{xx}}])$
+
+\paragraph{How to check for assumptions?}
+$Y_i=\alpha+\beta x_i+R_i$, where $R_i\sim N(0,\sigma^2)$, and are independent. $\hat{r}_i=y_i-\hat\alpha-\hat\beta x_i$. If the model is "reasonable", then $\hat{r}_i$'s should behave like independent outcomes from $N(0,\sigma^2)$. \\ 
+\textbf{Possible Graphical Tests}
+Q-Q plot of the $r_i$'s: If normality is a good assumption, then it should be a straight line. We are looking for no obvious trends. $\hat{r}_i^*=\frac{\hat{r}_i}{s_e}$. If it looks like a cosine wave, then there is evidence of possible non-linear relationship. If notice the variability in $\hat{r}_i$ increase/decrease with $x$, that's evidence of non-constant $r^2$. 
+
+
+\section*{Lecture 32 march 29}
+\paragraph{Regression Model}
+We either get $Y_i=\alpha+\beta x_i+R_i$ or $Y_i\sim N(\alpha+\beta x_i,r^2)$. Our data is $\{(x_i,y_i),i=1,\ldots,n\}$, and we are given $\bar{y},\bar{x},S_{xx},S_{xy},S_{yy}$. We want to:
+\begin{enumerate}
+    \item Find the LS equation and interpret $\hat{\alpha},\hat{\beta},\hat\sigma,s_e$ 
+    \item Test whether $\beta=\beta_0$ or CI for $\beta$ (these are the same thing)
+    \item Find the CI for the mean response $\mu(x)=\alpha+\beta x$  ($x$ is given). The CI for $\alpha$ is $\hat\alpha+\hat\beta x\pm t^*s_e\sqrt{\frac{1}{n}+\frac{(x-\bar{x})^2}{S_{xx}}}$
+    \item Find the PI for $Y$ given $x=x_{new}$ 
+    \item Check whether the assumptions are valid. 
+\end{enumerate}
+\paragraph{Hypothesis Testing} 
+\begin{itemize}
+    \item Small sample problems 
+    A die is rolled 18 times. $\theta=P(6)$. $H_0:\theta=\frac{1}{6},H_1:\theta\neq\frac{1}{6}$. Let $Y=$ \# of sixes. $D=|Y-3|$.
+    \item Normal problems \begin{itemize}
+        \item Testing for mean $\sigma$ known (use $Z$ table)
+        \item Testing for mean $\sigma$ unknown (use $T_{n-1}$ table)
+        \item Testing for $\sigma$ (use $\chi^2_{n-1}$ table)
+    \end{itemize}
+    \item Other distributions using CLT 
+    $n$ large, and say $Y_1,\ldots,Y_n\sim \text{Exp}(\theta)$. We want to test $H_0:\theta=\theta_0,H_1:\theta\neq\theta_0$, then by CLT $\bar{Y}\sim N\left(\theta,\frac{\theta^2}{n}\right)$. Then $D=\left|\frac{\bar{Y}-\theta}{\frac{\theta}{\sqrt{n}}}\right|$. Use $Z$ table. 
+    \item LRTS
+    $H_0:\theta=\theta_0,H_1:\theta\neq\theta_0$. If $n$ is large, then $\Lambda=-2\log\frac{L(\theta_0)}{L(\tilde\theta)},\lambda=-2\log R(\theta_0)$. Then the $p-$value is $P(\Lambda\geq\lambda)$, use the $\chi^2(1)=Z^2$ table. 
+\end{itemize}
+Base conclusions on the $p-$value, using provided charts and level of significance. 
+
+\paragraph{Two Population Problems}
+Two populations 1 and 2. $Y_{1i}\sim N(\mu_1,\sigma_1^2),Y_{2j}\sim N(\mu_2,\sigma_2^2)$. We want to test $H_0:\mu_1=\mu_2\text{ vs }H_1:\mu_1\neq\mu_2$. \begin{casesa}
+    \item Matched pair problem 
+    \item Unmatched data, equal variances 
+    \item Unmatched data, unequal variances, large sample size
+    \item (not covered) Unmatched, unequal variance, small sample size 
+\end{casesa}
+\paragraph{Matched Pair Problem}
+Same unit, but two different treatments. Ie.e There is a natural pairing between the two populations. We can convert the two population matched problem into a one population matched problem by looking at the differences. Let $D_i\sim N(\mu_1-\mu_2,\sigma^2)$, and $d_i=b_i-a_i$. Then we want to test $H_0:\mu=0\text{ vs }H_1:\mu\neq0$. This is the same as testing for the mean when $\sigma$ is unknown. We have our $D=\left|\frac{\bar{D}-0}{S/\sqrt{n}}\right|$, and our $p-$value is $P(D\geq d)=P(|T_{n-1}|\geq d)$. 
+
+\section*{Lecture 32 april 1}
+\paragraph{Two Population Problems}
+\begin{casesa}
+     \item Matched Pair 
+     One to one "natural" map between units of the population. We get $Y_{1i}\sim N(\mu_1,\sigma_1^2),Y_{2j}\sim N(\mu_2,\sigma_2^2)$. We want to test $H_0:\mu_1=\mu_2\text{ vs }H_1:\mu_1\neq\mu_2$.  Steps to solve: \begin{steps}
+          \item Construct $d_i=y_{1i}-y_{2i}$. If $H_0$ is true, $d_i$'s are outcomes of a Normal distribution with zero mean. 
+          \item Calculate $\bar{d}$ and the sample variance of the differences, $s_d^2=\frac{1}{n-1}\sum(d_i-\bar{d})^2$ 
+          \item $D=\left|\frac{\bar{D}-0}{S_d/\sqrt{n}}\right|,d=\left|\frac{\bar{d}-0}{s_d/\sqrt{n}}\right|$. Then our $p-$value is $P(D\geq d)=P(|T_{n-1}|\geq d)$. 
+     \end{steps}
+     To calculate CI for $(\mu_1-\mu_2)$, use $\bar{d}\pm t^*\frac{s_d}{\sqrt{n}}$, where $df$ for the $T$ table is $n-1$. 
+     \item Unmatched data, equal variances. We have $Y_{1i}\sim N(\mu_1,\sigma^2),Y_{2j}\sim N(\mu_2,\sigma^2)$. We are assuming that the variability is the same ($\sigma$ is equal, but unknown). We want to test $H_0:\mu_1=\mu_2,H_1:\mu_1\neq\mu_2$. We have $\bar{Y}_1\sim N(\mu_1,\frac{\sigma^2}{n_1}),\bar{Y}_2\sim N(\mu_2,\frac{\sigma^2}{n_2})$, so then $\bar{Y}_1-\bar{Y}_2\sim N\left(\mu_1-\mu_2,\sigma^2\Big(\frac{1}{n_1}+\frac{1}{n_2}\Big)\right)$. We have $\frac{(\bar{Y}_1-\bar{Y}_2)-(\mu_1-\mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\sim T_{n_1+n_2-2}$, where $S^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}$ Steps to solve: \begin{steps}
+          \item Calculate $s^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$ 
+          \item Calculate $d=\left|\frac{\bar{y}_1-\bar{y}_2}{s\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\right|$ 
+          \item $p-$value $P(D\geq d)=P(|T_{n_1+n_2-2}|\geq d)$
+     \end{steps}
+     \item Unmatched data, unequal variances, large sample sizes. If we have $Y_{1i}\sim N(\mu_1,\sigma_1^2),Y_{2j}\sim N(\mu_2,\sigma_2^2)$, and we want to test $H_0:\mu_1=\mu_2,H_1:\mu_1\neq\mu_2$, then $\bar{Y}_1-\bar{Y}_2\sim N(\mu_1-\mu_2,\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2})$, and $\frac{(\bar{Y}_1-\bar{Y}_2)-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}=Z$, and our $D=\left|\frac{(\bar{Y}_1-\bar{Y}_2)-(\mu_1-\mu_2)}{\sqrt{\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}}}\right|$. Find the $p-$value $P(D\geq d)=P(|Z|\geq d)$
+\end{casesa}
+
+
+\section*{Lecture 32 april 3}
+Say we have $\underaccent{\tilde}{\theta}=(\theta_1,\ldots,\theta_n)$ is a vector of unknown parameters. 
+
+\begin{theorem*}
+    If $n$ is large, then $\Lambda(\theta)=-2\log\frac{L(\theta)}{L(\tilde{\theta})}\sim\chi^2_m$, where $m$ is the number of "unrestricted" choices of the components of $\theta$, or the number of components estimated under the null hypothesis.  
+\end{theorem*}
+
+
+\paragraph{Multinomial Distributions}
+\begin{theorem*}
+     The Likelihood Ratio Test Statistic for multinomial is given by $\Lambda(\theta)=2\sum Y_i\log\frac{Y_i}{E_i}$, where $Y_i$ is the observed frequency of category $i$, and $E_i$ is the expected frequency of category $i$ under $H_0$. Then $\Lambda(\theta)\sim\chi^2_{n-1-k}$, where $n$ is the number of categories, and $k$ is the number of components of $\theta$ estimated under $H_0$. 
+\end{theorem*}
+\paragraph{Example}
+A die is thrown 300 times. Test whether is is fair. $\theta=(\theta_1,\theta_2,\ldots,\theta_6)$, where $\theta_i=P(\text{face }i)$. We have $(6-1)$ unrestricted choices of $\theta$. $H_0:\theta_1=\cdots=\theta_6=\frac{1}{6}\text{ vs }H_1:\theta_i\neq\frac{1}{6}$. Say we get
+\begin{tabular}{|c|c|c|}\hline
+1 & 60 & 50\\
+2 & 40 & 50\\
+3 & 70 & 50\\
+4 & 30 & 50\\
+5 & 50 & 50\\
+6 & 50 & 50\\\hline
+\end{tabular}
+Then $\lambda=2\sum y_i\log\frac{y_i}{e_i}=2[60\log\frac{60}{50}+\cdots+50\log\frac{50}{50}]$, and it is an outcome of $\chi^2$, where $df=\underbrace{n}_6-1-\underbrace{k}_0$. $k=0$ becasue all $\theta$'s were given under $H_0$. Then $p-$value $P(\Lambda=\chi^2_5\geq\lambda)$. 
+
+
+\paragraph{Model Selection}
+We have $W_1,\ldots,W_n$, where $W_i$ is the number of hits on your website every hour. \textbf{Suggested Model:} $W_i\sim\text{Poi}(\mu)$. Test whether Poisson is a good model
+
+\paragraph{Independence of Attributes}
+Test whether smoking and wealth are independent. Given: 
+Observation table:
+\begin{tabular}{|c|c|c|}\hline
+&S&NS\\\hline
+R&30&70\\\hline
+P&50&50\\\hline
+\end{tabular}
+We want to test \begin{tabular}{|c|c|c|c|}\hline
+&S&NS\\\hline
+R&$\theta_{11}$&$\theta_{12}$&$\alpha_1$\\\hline
+P&$\theta_{21}$&$\theta_{22}$&$1-\alpha_1$\\\hline
+&$\beta_1$&$1-\beta_1$&\\\hline
+\end{tabular}
+Then $H_0:\theta_{ij}=\alpha_i\beta_j\quad\forall i,j$. How to test? If They are independent, then $P(R\cap S)=P(R)\cdot P(S)=\frac{100}{200}\cdot\frac{80}{200}$. Then $e_{11}=\frac{100}{200}\frac{80}{200}$. In general, $e_{ij}=\frac{r_i\times c_j}{n}$, where $r_i$ is the $i^{th}$ row total, and $c_j$ is the $j^{th}$ column total, and $n$ is the total population. Then $\lambda=2\sum_{i}\sum_j y_{ij}\log\frac{y_{ij}}{e_{ij}}$, and we can find our $p-$value $P(\Lambda\geq\lambda)$, where $\Lambda\sim\chi^2_{n-1-k}$ as above. 
+
+
+\section*{Lecture 32 april 5}
+\paragraph{LRTS for the Multinomial}
+$\Gamma(\theta)=2\sum_{i=1}^n Y_i\log\frac{Y_i}{E_i}$, where $Y_i=$ observed frequency of category $i$, $E_i$ is the expected under the assumption that $H_0$ is true. $\Gamma\sim\chi^2_{k-1-p}$, $k=$ number of categories, $p=$ number of components of $\theta$ estimated under $H_0$. 
+\paragraph{Model Selection}
+$W_1,\ldots,W_n$ are iid. $H_0:W_i\sim N(\mu,\sigma^2)$. 
+\begin{tabular}{|c|c|c|}\hline
+Intervals
+[0,10) & $y_1$ & $e_1$ \\ 
+[10,30) & $y_2$ & $e_2$\\ 
+[30,70) & $y_3$ & $e_3$\\
+[70, 90) & $y_4$ & $e_4$\\
+$\geq90$ & $y_5$ & $e_5$\\\hline
+\end{tabular}
+Find $\hat\mu$ and $\hat\sigma$ from data set. Use these values to estimate the probability. Multiply by $n$ to get the expected frequencies. $\lambda=2\sum y_i\log\frac{y_i}{e_i}$ can be calculated now. The $p-$value is $P(\Lambda\geq\lambda)=P(\chi^2_{5-2-1=2}\geq\lambda)$. 
+
+\paragraph{Independence of Attributes}
+\begin{tabular}{|c|c|c|}
+&S&NS \\ 
+Rich & 64 & 176 & $\alpha_1=240$ \\ 
+Poor & 86 & 150 & $1-\alpha_1=236$
+\end{tabular}
+
+\end{document}
